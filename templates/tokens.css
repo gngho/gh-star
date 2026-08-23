@@ -1,45 +1,48 @@
-/* 기본 디자인 토큰.
+/* 이 파일은 자동 생성된다. 직접 고치지 마라.
  *
- * 이 파일은 design-sync 가 피그마에서 추출한 값으로 덮어쓴다 (SPEC 7.2).
- * 피그마 파일이 아직 없어도 렌더링이 돌아야 하므로 기본 팔레트를 여기 둔다.
- * 직접 손으로 고쳐도 되지만, design-sync 를 돌리면 덮어써진다.
+ *   생성: python -m agent design-sync
+ *   원본: design/tokens.json  (피그마에서 추출)
+ *   피그마: https://www.figma.com/design/8aUoxhjjQW5Gklo7XakrPS
+ *   추출 시각: 2026-08-23T10:55:00Z
+ *
+ * 디자인을 바꾸려면 피그마에서 고친 뒤 토큰을 다시 추출하고 이 명령을 실행하라.
  */
 
 :root {
-  /* 배경 */
-  --bg: #0b0d10;
-  --bg-elevated: #14171c;
-  --bg-code: #0f1216;
 
-  /* 전경 */
-  --fg: #e9ecf1;
-  --fg-muted: #98a1ae;
-  --fg-faint: #5c6672;
-
-  /* 강조 */
+  /* 색 */
   --accent: #7c5cff;
-  --accent-soft: #a68dff;
   --accent-2: #22d3ee;
+  --accent-soft: #a68dff;
+  --bg: #0b0d10;
+  --bg-code: #0f1216;
+  --bg-elevated: #14171c;
+  --border: #232830;
+  --fg: #e9ecf1;
+  --fg-faint: #5c6672;
+  --fg-muted: #98a1ae;
   --warn: #f5a524;
 
-  --border: #232830;
-
   /* 타이포 */
+  --size-body: 34px;
+  --size-code: 27px;
+  --size-eyebrow: 26px;
+  --size-meta: 24px;
+  --size-title: 64px;
+  --size-title-cover: 82px;
+
+  /* 여백 */
+  --gap: 32px;
+  --pad-x: 88px;
+  --pad-y: 96px;
+
+  /* 아래는 피그마에서 오지 않는 값이다 (design_sync.py MANUAL_TOKENS 에서 관리).
+     폰트 스택은 렌더러가 번들한 Pretendard 를 쓰고, 피그마 목업은 Noto Sans KR 을
+     쓴다 — 피그마에 Pretendard 가 없기 때문이다. 그래서 시각 회귀 비교는
+     픽셀 일치가 아니라 유사도 기준이어야 한다. */
   --font-sans: "Pretendard Variable", system-ui, -apple-system, sans-serif;
   --font-mono: ui-monospace, "Cascadia Mono", Consolas, monospace;
 
-  --size-eyebrow: 26px;
-  --size-title: 64px;
-  --size-title-cover: 82px;
-  --size-body: 34px;
-  --size-code: 27px;
-  --size-meta: 24px;
-
   --leading-title: 1.22;
   --leading-body: 1.62;
-
-  /* 여백 */
-  --pad-x: 88px;
-  --pad-y: 96px;
-  --gap: 32px;
 }

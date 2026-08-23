@@ -5,6 +5,7 @@
     python -m agent research [--date YYYY-MM-DD] [--dry-run]
     python -m agent compose  [--date YYYY-MM-DD] [--dry-run]
     python -m agent render   [--date YYYY-MM-DD] [--dry-run]
+    python -m agent design-sync [--dry-run]
     python -m agent status
 """
 
@@ -168,6 +169,24 @@ def cmd_render(args: argparse.Namespace) -> int:
     return 0
 
 
+def cmd_design_sync(args: argparse.Namespace) -> int:
+    from . import design_sync as ds
+
+    try:
+        result = ds.run(dry_run=args.dry_run)
+    except ds.DesignSyncError as exc:
+        print(f"\n[error] {exc}", file=sys.stderr)
+        return 1
+
+    state = "갱신됨" if result["changed"] else "변경 없음"
+    print(f"\n디자인 동기화: 토큰 {result['tokens']}개 → {state}")
+    print(f"  원본 : {result['source'] or '(미상)'}")
+    print(f"  출력 : {result['css_path']}")
+    if result["changed"] and not args.dry_run:
+        print("\n  카드를 다시 렌더하세요: python -m agent render")
+    return 0
+
+
 def cmd_status(_: argparse.Namespace) -> int:
     snapshots = sorted(p.stem for p in paths.SNAPSHOTS.glob("*.json"))
     watchlist = paths.read_json(paths.WATCHLIST, default={}) or {}
@@ -204,6 +223,12 @@ def main(argv: list[str] | None = None) -> int:
         p.add_argument("--date", default=_today_kst(), help="기준일 (KST, 기본: 오늘)")
         p.add_argument("--dry-run", action="store_true", help="파일을 쓰지 않는다")
         p.set_defaults(func=handler)
+
+    p_sync = sub.add_parser(
+        "design-sync", help="피그마 토큰으로 카드 CSS 를 다시 생성한다"
+    )
+    p_sync.add_argument("--dry-run", action="store_true", help="파일을 쓰지 않는다")
+    p_sync.set_defaults(func=cmd_design_sync)
 
     p_status = sub.add_parser("status", help="스냅샷 축적 현황을 확인한다")
     p_status.set_defaults(func=cmd_status)

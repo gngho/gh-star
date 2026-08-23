@@ -52,7 +52,13 @@ body {
   position: absolute;
   top: -280px; left: -200px;
   width: 760px; height: 760px;
-  background: radial-gradient(circle, rgba(124, 92, 255, .22), transparent 68%);
+  /* accent 토큰에서 파생시킨다. 하드코딩하면 design-sync 로 색을 바꿔도
+     이 광원만 옛 색으로 남는다 — 실제로 그렇게 어긋났었다. */
+  background: radial-gradient(
+    circle,
+    color-mix(in srgb, var(--accent) 22%, transparent),
+    transparent 68%
+  );
   pointer-events: none;
 }
 
@@ -118,8 +124,8 @@ body {
   align-items: center;
   gap: 12px;
   align-self: flex-start;
-  background: rgba(124, 92, 255, .14);
-  border: 1px solid rgba(124, 92, 255, .38);
+  background: color-mix(in srgb, var(--accent) 14%, transparent);
+  border: 1px solid color-mix(in srgb, var(--accent) 38%, transparent);
   border-radius: 999px;
   padding: calc(14px * {{ scale }}) calc(28px * {{ scale }});
   font-size: calc(var(--size-meta) * {{ scale }});

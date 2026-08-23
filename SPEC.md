@@ -1,12 +1,13 @@
 # GitHub 핫 레포 → 인스타그램 카드뉴스 자동화 에이전트 기능명세서
 
-- 문서 버전: v1.4
+- 문서 버전: v1.5
 - 작성일: 2026-08-23
-- 상태: M1·M2 구현 완료, M3은 render 완료 / design-sync 미착수
+- 상태: M1·M2·M3 구현 완료, M4·M5 미착수
 - 변경: v1.1 — 카드 디자인 원본을 피그마로 두는 `design-sync` 흐름 추가 (7.1, 7.2)
 - 변경: v1.2 — 파이프라인 효율 재검토 반영 (워치리스트 스냅샷, GraphQL 배치, 지연 검증, 선행 로딩, 저장소 비대화 관리)
 - 변경: v1.3 — M2 구현 반영 (output_format 스키마 강제, max_budget_usd 상한, 자동 보정/재생성 분리, 실측 비용)
 - 변경: v1.4 — M3 렌더링 구현 반영 (코드 줄 쪼개짐 방지, eyebrow 중복 가드, 실측 기반 코드 줄 상한 조정)
+- 변경: v1.5 — design-sync 구현 반영 (추출/생성 분리, Variables REST API 는 읽기도 Enterprise 전용이라는 정정, 색 하드코딩 금지)
 
 ---
 
@@ -506,20 +507,31 @@ options = ClaudeAgentOptions(
 피그마 → 코드 반영은 **별도 서브커맨드**로 분리한다. 일일 파이프라인(2.1)에 포함되지 않으며, 디자인이 바뀔 때만 사람이 수동 실행한다.
 
 ```
-python -m agent design-sync --file-key {key} --node-id {id}
+python -m agent design-sync
 ```
 
-| 단계 | 수단 | 산출물 |
-|---|---|---|
-| 1. 토큰 추출 | Figma MCP `get_variable_defs` | `design/tokens.json` |
-| 2. CSS 변수 생성 | 토큰 → CSS 커스텀 프로퍼티 변환 | `templates/tokens.css` |
-| 3. 레이아웃 참조 | Figma MCP `get_design_context` | 참조 HTML/CSS (사람이 `card.html.j2`에 반영) |
-| 4. 기준 스냅샷 | Figma MCP `get_screenshot` | `design/baseline/{role}.png` |
+**추출과 생성을 `design/tokens.json` 경계로 나눈다.**
+
+```
+피그마 ──[MCP 또는 REST]──▶ design/tokens.json ──[design-sync]──▶ templates/tokens.css
+          (자격증명 필요, 플랜 제약)      (Git 커밋)          (순수 함수, 항상 동작)
+```
+
+| 단계 | 수단 | 산출물 | 자격증명 |
+|---|---|---|---|
+| 1. 토큰 추출 | Figma MCP 로 로컬 변수 덤프 | `design/tokens.json` | MCP 연결 |
+| 2. CSS 변수 생성 | `design-sync` (네트워크 없음) | `templates/tokens.css` | 불필요 |
+| 3. 레이아웃 참조 | Figma MCP `get_design_context` | 참조 코드 (사람이 `card.html.j2`에 반영) | MCP 연결 |
+| 4. 기준 스냅샷 | Figma MCP `get_screenshot` | `design/baseline/{role}.png` | MCP 연결 |
+
+**초안의 오류 정정**: 초안은 1단계를 "Variables REST API"로 적었으나, **Variables REST API는 쓰기(POST)뿐 아니라 읽기(GET)도 Enterprise 전용**이다. 현재 계정은 student 티어라 403이 난다. 실제로 값을 읽을 수 있었던 것은 MCP 경로다. MCP는 Claude 세션에 붙어 있어 헤드리스 CLI가 직접 호출할 수 없으므로, 추출 결과를 커밋된 JSON으로 떨어뜨리고 **생성 단계만 CLI로 만든다.** 이렇게 하면 2단계는 자격증명도 네트워크도 없이 결정적으로 돌아가 테스트가 쉽고, CI에서도 안전하다.
 
 **피그마 파일 구조 규약**
 
 - 카드 역할별 프레임을 1080×1350으로 만들고 프레임명을 `card/cover`, `card/feature`, `card/code`, `card/outro` 등으로 고정한다. 이 이름이 코드의 템플릿 키와 1:1 대응한다.
 - 색·폰트크기·간격은 반드시 **피그마 변수(Variable)로 정의**한다. 변수로 잡히지 않은 값은 1단계에서 추출되지 않아 코드와 어긋난다.
+- **템플릿(`card.html.j2`)에도 색을 하드코딩하지 않는다.** 파생색이 필요하면 `color-mix(in srgb, var(--accent) 14%, transparent)` 처럼 토큰에서 만든다. 실제로 배지 배경과 상단 광원이 하드코딩돼 있어, 피그마에서 accent를 바꿔도 그 둘만 옛 색으로 남았다. 테스트가 색 리터럴을 잡아낸다.
+- **피그마에는 Pretendard가 없다.** 목업은 Noto Sans KR로, 렌더러는 번들한 Pretendard로 그린다. 따라서 시각 회귀는 픽셀 일치가 아니라 유사도(0.90) 기준이어야 한다 — 폰트가 다르므로 애초에 일치할 수 없다.
 - 텍스트 레이어에는 최대 글자수를 가정한 더미 텍스트를 넣어, 6.2의 글자수 상한이 실제로 안 넘치는지 디자인 단계에서 확인한다.
 
 **드리프트 방지**: `design/tokens.json`을 Git에 커밋한다. `design-sync` 실행 시 diff가 나면 디자인이 바뀐 것이므로 리뷰 대상이 된다. 3단계(레이아웃)는 자동 반영이 아니라 사람이 판단해 옮긴다 — 피그마의 절대 좌표 레이아웃을 그대로 코드에 밀어 넣으면 한글 줄바꿈에 대응하지 못하는 경직된 CSS가 나오기 때문이다.

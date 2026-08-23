@@ -6,14 +6,14 @@
 
 ## 현재 상태
 
-**M1(수집·선정) · M2(조사·원고) · M3의 렌더링 구현 완료.** `design-sync` 와 M4·M5 는 미구현.
+**M1(수집·선정) · M2(조사·원고) · M3(디자인·렌더) 구현 완료.** M4·M5 는 미구현.
 
 | 마일스톤 | 단계 | 상태 |
 |---|---|---|
 | M1 | `collect`, `select` | ✅ 동작 |
 | M2 | `research`, `compose` | ✅ 동작 (실측 $1.10/건) |
 | M3 | `render` | ✅ 동작 (1080×1350 JPEG) |
-| M3 | `design-sync` | 미착수 (피그마 파일 필요) |
+| M3 | `design-sync` | ✅ 동작 (피그마 토큰 → CSS) |
 | M4 | GitHub Actions 초안 PR | 미착수 |
 | M5 | `publish`, 토큰 갱신 | 미착수 |
 
@@ -38,6 +38,7 @@ python -m agent select      # 심층 리뷰 대상 1개 + 예비 2개 선정
 python -m agent research    # 에이전트가 저장소를 직접 읽고 근거 수집
 python -m agent compose     # 조사 결과로 카드 10장 원고 생성
 python -m agent render      # 원고를 1080×1350 JPEG 카드로 렌더
+python -m agent design-sync # 피그마 토큰으로 카드 CSS 재생성 (수동, 일일 실행 아님)
 ```
 
 `render` 는 Playwright/Chromium 이 필요하다: `python -m playwright install chromium`
@@ -92,7 +93,21 @@ assets/fonts/       Pretendard (OFL, 번들 — CI 에 한글 폰트가 없다)
 
 ## 디자인
 
-현재는 기본 다크 테마다. 피그마 파일을 만들고 `design-sync` 를 붙이면
-`templates/tokens.css` 가 피그마 값으로 교체된다. 토큰 파일이 없거나 피그마
-연결이 실패해도 렌더는 기본 팔레트로 계속 돈다 — 일일 실행이 디자인 도구에
-발목 잡히지 않게 하기 위해서다.
+카드 디자인의 원본은 피그마다:
+<https://www.figma.com/design/8aUoxhjjQW5Gklo7XakrPS>
+
+```
+피그마 ──[MCP 로 변수 덤프]──▶ design/tokens.json ──[design-sync]──▶ templates/tokens.css
+```
+
+색을 바꾸려면 피그마에서 변수를 고치고, 토큰을 다시 추출해 `design/tokens.json`
+에 반영한 뒤 `design-sync` + `render` 를 돌린다.
+
+**추출과 생성을 나눈 이유**: 피그마 Variables REST API 는 읽기도 Enterprise
+전용이라 student 플랜에서는 403 이 난다. 값이 읽히는 건 MCP 경로뿐인데 MCP 는
+Claude 세션에 붙어 있어 헤드리스 CLI 가 못 부른다. 그래서 추출 결과를 커밋된
+JSON 으로 떨어뜨리고, 생성만 CLI 로 만들었다 — 이쪽은 네트워크도 자격증명도
+없이 결정적으로 돈다. `tokens.json` 의 diff 가 곧 "디자인이 바뀌었다"는 신호다.
+
+색은 템플릿에 하드코딩하지 않는다. 파생색은 `color-mix()` 로 토큰에서 만든다 —
+테스트가 색 리터럴을 잡아낸다.
