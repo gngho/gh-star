@@ -48,8 +48,7 @@ render:
 design:                            # design-sync 전용. 일일 파이프라인에서는 읽지 않음
   # 실제 토큰 값은 design/tokens.json 에 있다. 여기엔 출처만 적는다.
   figma_file_key: "8aUoxhjjQW5Gklo7XakrPS"
-  figma_node_ids:
-    feature: "2:2"
+  # 프레임 노드 ID 는 design/tokens.json 의 frames 에 있다 (역할별 8종).
 
 publish:
   timezone: "Asia/Seoul"

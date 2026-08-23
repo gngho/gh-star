@@ -96,6 +96,14 @@ assets/fonts/       Pretendard (OFL, 번들 — CI 에 한글 폰트가 없다)
 카드 디자인의 원본은 피그마다:
 <https://www.figma.com/design/8aUoxhjjQW5Gklo7XakrPS>
 
+| 페이지 | 내용 |
+|---|---|
+| **Style Guide** | 색 토큰 11종(브랜드·서피스·텍스트), 타이포 스케일 6단, 여백, 카드 컴포넌트(배지·코드블록·각주·페이저) |
+| **Card Templates** | 역할별 카드 8종. 캐러셀 순서대로 배치되어 있고 각 카드가 자기 순번을 표시한다 |
+
+색·타이포·여백은 전부 **피그마 변수**로 정의돼 있다. 변수로 잡히지 않은 값은
+추출되지 않아 코드와 어긋나므로, 새 값을 쓸 땐 반드시 변수부터 만든다.
+
 ```
 피그마 ──[MCP 로 변수 덤프]──▶ design/tokens.json ──[design-sync]──▶ templates/tokens.css
 ```
