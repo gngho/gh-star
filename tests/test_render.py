@@ -236,3 +236,59 @@ class TestSentenceSplitting:
     def test_trailing_sentence_without_period_survives(self):
         out = render_mod.split_sentences("첫 문장입니다. 마침표 없는 끝")
         assert out == ["첫 문장입니다.", "마침표 없는 끝"]
+
+
+class TestConciseCards:
+    """커버와 마무리는 간결해야 한다. 나머지 카드와 다른 규칙을 따른다."""
+
+    def test_cover_and_outro_get_no_image(self, tmp_path):
+        images = tmp_path / "images"
+        images.mkdir()
+        for name in ("01.png", "10.png", "04.png"):
+            Image.new("RGB", (8, 8)).save(images / name)
+
+        cards = [
+            Card(index=1, role="cover", title="레포"),
+            Card(index=4, role="feature", title="기능"),
+            Card(index=10, role="outro", title="정리하면"),
+        ]
+        render_mod._attach_images(cards, tmp_path)
+        assert cards[0].image is None
+        assert cards[1].image is not None   # 일반 카드는 붙는다
+        assert cards[2].image is None
+
+    def test_no_image_roles_match_imagery(self):
+        """두 모듈이 각자 목록을 들면 언젠가 어긋난다."""
+        from agent import imagery
+        assert render_mod.NO_IMAGE_ROLES == imagery.NO_IMAGE
+
+
+class TestOutroFacts:
+    """주소·라이선스는 한 글자만 틀려도 잘못된 정보다. 문장 생성에 맡기지 않는다."""
+
+    def _deck(self):
+        return _deck([Card(index=1, role="outro", title="정리하면")])
+
+    def test_strips_scheme_from_url(self, tmp_path, monkeypatch):
+        monkeypatch.setattr(
+            render_mod, "_find_research",
+            lambda d: {"meta": {"html_url": "https://github.com/acme/widget",
+                                "license": "MIT", "language": "Python"}},
+        )
+        facts = render_mod._outro_facts(self._deck())
+        assert facts["url"] == "github.com/acme/widget"
+        assert facts["meta"] == "MIT · Python"
+
+    def test_falls_back_to_repo_when_research_missing(self, monkeypatch):
+        monkeypatch.setattr(render_mod, "_find_research", lambda d: None)
+        facts = render_mod._outro_facts(self._deck())
+        assert facts["url"] == "github.com/acme/widget"
+        assert facts["meta"] == ""
+
+    def test_omits_missing_license_or_language(self, monkeypatch):
+        monkeypatch.setattr(
+            render_mod, "_find_research",
+            lambda d: {"meta": {"html_url": "https://github.com/acme/widget",
+                                "license": None, "language": "Rust"}},
+        )
+        assert render_mod._outro_facts(self._deck())["meta"] == "Rust"

@@ -143,6 +143,27 @@ body {
 }
 .code .line::before { content: "$ "; color: var(--fg-faint); }
 
+/* 마무리 카드 — 출처·라이선스는 조사 데이터에서 자동으로 채운다.
+   주소는 한 글자만 틀려도 잘못된 정보라 문장 생성에 맡기지 않는다. */
+.outro-source {
+  font-family: var(--font-mono);
+  font-size: calc(38px * {{ scale }});
+  color: var(--accent-soft);
+  word-break: break-all;
+  line-height: 1.4;
+}
+.outro-meta {
+  font-size: calc(var(--size-body) * {{ scale }});
+  color: var(--fg-muted);
+}
+.outro-rule {
+  width: calc(120px * {{ scale }});
+  height: 3px;
+  background: var(--accent);
+  opacity: .7;
+  margin: calc(10px * {{ scale }}) 0;
+}
+
 .footnote {
   font-size: calc(var(--size-meta) * {{ scale }});
   color: var(--fg-muted);   /* faint 는 본문 옆에서 거의 안 보인다 */
@@ -185,6 +206,14 @@ body {
 
   <div class="body-wrap">
     <div class="content" id="measure">
+      {% if card.role == 'outro' %}
+        {# 출처 → 라이선스 → 마무리 한마디. 그 이상 넣지 않는다. #}
+        <h1 class="title">{{ card.title }}</h1>
+        <div class="outro-rule"></div>
+        <div class="outro-source">{{ outro.url }}</div>
+        {% if outro.meta %}<div class="outro-meta">{{ outro.meta }}</div>{% endif %}
+        {% if card.body %}<p class="body">{{ card.body }}</p>{% endif %}
+      {% else %}
       {% if eyebrow %}<div class="eyebrow">{{ eyebrow }}</div>{% endif %}
       <h1 class="title">{{ card.title }}</h1>
 
@@ -201,6 +230,7 @@ body {
       {% endif %}
 
       {% if card.footnote %}<div class="footnote">{{ card.footnote }}</div>{% endif %}
+      {% endif %}
     </div>
 
     <div class="footer">

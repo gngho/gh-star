@@ -115,6 +115,7 @@ def run(config: Config, run_date: str, dry_run: bool = False) -> dict[str, Any]:
     font_uri = _font_data_uri()
 
     star_badge = _star_badge(deck)
+    outro_facts = _outro_facts(deck)
     _attach_images(cards, post_dir)
     cards_dir = post_dir / "cards"
     warnings: list[str] = []
@@ -143,6 +144,7 @@ def run(config: Config, run_date: str, dry_run: bool = False) -> dict[str, Any]:
                     height=height,
                     total=len(cards),
                     star_badge=star_badge,
+                    outro=outro_facts,
                 )
                 if overflow_by > 0:
                     msg = (
@@ -201,6 +203,7 @@ def _render_card(
     height: int,
     total: int,
     star_badge: str,
+    outro: dict[str, str],
 ) -> tuple[bytes, float, int]:
     """오버플로가 없어질 때까지 축소하며 렌더한다. (PNG, 배율, 남은초과px)"""
     last_over = 0
@@ -217,6 +220,7 @@ def _render_card(
             eyebrow=eyebrow_for(card.role, card.title),
             body_sentences=split_sentences(card.body),
             star_badge=star_badge,
+            outro=outro,
         )
         page.set_content(html, wait_until="load")
         page.evaluate("() => document.fonts.ready")
@@ -265,6 +269,9 @@ def _tokens_from_figma() -> bool:
     return (paths.ROOT / "design" / "tokens.json").exists()
 
 
+# imagery.NO_IMAGE 와 같은 값. 순환 임포트를 피해 여기에 둔다.
+NO_IMAGE_ROLES = {"cover", "outro"}
+
 IMAGE_SUFFIXES = (".jpg", ".jpeg", ".png", ".webp")
 IMAGE_MIME = {".jpg": "image/jpeg", ".jpeg": "image/jpeg", ".png": "image/png", ".webp": "image/webp"}
 
@@ -279,8 +286,8 @@ def _attach_images(cards: list[Card], post_dir: Path) -> None:
     """
     images_dir = post_dir / "images"
     for card in cards:
-        if card.role == "cover":
-            card.image = None  # 커버는 이미지 없이 간다 (디자인 결정)
+        if card.role in NO_IMAGE_ROLES:
+            card.image = None  # 간결해야 하는 카드는 이미지를 쓰지 않는다
             continue
         for suffix in IMAGE_SUFFIXES:
             candidate = images_dir / f"{card.index:02d}{suffix}"
@@ -318,6 +325,22 @@ def _load_deck(run_date: str) -> tuple[CardDeckFile, Path]:
         )
     path = matches[0]
     return CardDeckFile.model_validate(paths.read_json(path)), path.parent
+
+
+def _outro_facts(deck: CardDeckFile) -> dict[str, str]:
+    """마무리 카드에 넣을 출처·라이선스.
+
+    모델에게 시키지 않고 조사 데이터에서 직접 채운다. 주소나 라이선스는
+    한 글자만 틀려도 잘못된 정보이고, 그건 문장 생성에 맡길 일이 아니다.
+    """
+    research = _find_research(deck) or {}
+    meta = research.get("meta", {})
+    url = (meta.get("html_url") or "").replace("https://", "").replace("http://", "")
+    parts = [p for p in (meta.get("license"), meta.get("language")) if p]
+    return {
+        "url": url or f"github.com/{deck.repo}",
+        "meta": " · ".join(parts),
+    }
 
 
 def _star_badge(deck: CardDeckFile) -> str:

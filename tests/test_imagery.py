@@ -19,8 +19,8 @@ from agent import imagery  # noqa: E402
 
 def _deck() -> CardDeckFile:
     roles = [
-        "cover", "problem", "why_now", "feature", "feature",
-        "feature", "architecture", "quickstart", "fit", "outro",
+        "cover", "what_is_it", "problem", "why_now", "feature",
+        "feature", "feature", "quickstart", "fit", "outro",
     ]
     return CardDeckFile(
         repo="acme/widget",
@@ -92,25 +92,32 @@ class TestComposition:
 
 
 class TestRoleMapping:
-    def test_cover_gets_no_image(self, fake_sources, tmp_path):
+    def test_concise_cards_get_no_image(self, fake_sources, tmp_path):
+        """커버와 마무리는 간결해야 하는 카드다."""
         result = imagery.run(_deck(), tmp_path)
-        assert 1 not in [i["index"] for i in result["images"]]
+        indexes = [i["index"] for i in result["images"]]
+        assert 1 not in indexes and 10 not in indexes
         assert not (tmp_path / "images" / "01.jpg").exists()
+        assert not (tmp_path / "images" / "10.jpg").exists()
 
-    def test_outro_uses_the_og_card(self, fake_sources, tmp_path):
+    def test_what_is_it_uses_the_og_card(self, fake_sources, tmp_path):
+        """레포 이름·설명이 박힌 카드라 '이게 뭐냐'에 어울린다."""
         result = imagery.run(_deck(), tmp_path)
-        outro = next(i for i in result["images"] if i["role"] == "outro")
-        assert outro["source"] == "og"
+        card = next(i for i in result["images"] if i["role"] == "what_is_it")
+        assert card["source"] == "og"
 
     def test_other_roles_use_the_avatar(self, fake_sources, tmp_path):
         result = imagery.run(_deck(), tmp_path)
-        others = [i for i in result["images"] if i["role"] not in ("outro", "cover")]
+        others = [
+            i for i in result["images"]
+            if i["role"] not in ("what_is_it", "cover", "outro")
+        ]
         assert others and all(i["source"] == "avatar" for i in others)
 
-    def test_writes_one_file_per_card_except_cover(self, fake_sources, tmp_path):
+    def test_writes_one_file_per_card_except_concise_ones(self, fake_sources, tmp_path):
         imagery.run(_deck(), tmp_path)
         written = sorted(p.name for p in (tmp_path / "images").glob("*.jpg"))
-        assert written == [f"{i:02d}.jpg" for i in range(2, 11)]
+        assert written == [f"{i:02d}.jpg" for i in range(2, 10)]
 
     def test_dry_run_writes_nothing(self, fake_sources, tmp_path):
         result = imagery.run(_deck(), tmp_path, dry_run=True)

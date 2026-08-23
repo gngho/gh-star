@@ -32,6 +32,12 @@ CAPTION_LIMIT = 2200
 MAX_JARGON_PER_CARD = 1
 MAX_JARGON_IN_CAPTION = 4
 
+# 커버와 마무리는 간결하게 간다. 커버는 훅이라 짧아야 훅이고,
+# 마무리는 주소·라이선스를 렌더가 데이터에서 자동으로 채우므로
+# 모델이 쓸 것은 마무리 한마디뿐이다.
+SHORT_ROLES = {"cover", "outro"}
+SHORT_BODY_MAX = 70
+
 SYSTEM_PROMPT = """\
 너는 인스타그램 카드뉴스의 원고를 쓴다.
 
@@ -84,7 +90,9 @@ SYSTEM_PROMPT = """\
 
 각 카드는 role 로 역할이 정해져 있다. 주어진 role 순서를 그대로 지켜라.
 
-- cover: 레포명과 한 줄 훅. 궁금하게 만들되 낚시하지 마라.
+- cover: 레포명과 **한 줄 훅**. 궁금하게 만들되 낚시하지 마라.
+  **여기만 짧게 쓴다 — 한 문장, 70자 이내.** 훅은 짧아야 훅이다.
+  별 개수는 카드가 배지로 따로 보여주니 본문에 또 쓰지 마라.
 - what_is_it: **"한마디로 뭐냐면"** — 이게 뭔지 딱 한 문장으로. 비유를 써도 좋다.
   독자가 이 카드에서 못 알아들으면 나머지는 안 읽는다. 가장 공들여라.
 - problem: 이게 없으면 뭐가 불편한지. "이런 적 있죠?" 처럼 공감으로 열어라.
@@ -96,7 +104,10 @@ SYSTEM_PROMPT = """\
   명령 두 개처럼 읽힌다. 길면 더 짧은 대표 명령을 골라라.
   body 에 이게 어디에 입력하는 건지 한마디 덧붙여라.
 - fit: 어떤 사람에게 맞고 어떤 사람에겐 아직 이른지. 단점을 숨기지 마라.
-- outro: 레포 주소와 라이선스, 그리고 행동 유도.
+- outro: **마무리 한마디만 쓴다 — 한 문장, 70자 이내.**
+  레포 주소·라이선스·언어는 카드가 조사 데이터에서 자동으로 채운다.
+  본문에 주소나 라이선스를 다시 쓰지 마라. 부담 없는 마무리면 충분하다
+  (예: "오늘은 구경만 해도 충분해요").
 
 ## 매체 제약을 절대 어기지 마라
 
@@ -244,6 +255,7 @@ def _build_prompt(
     max_code_chars: int,
     tone: str,
 ) -> str:
+    short_max = SHORT_BODY_MAX
     p = research.payload
     m = research.meta
     delta = f"+{m.delta_1d} (오늘)" if m.delta_1d is not None else "(미상)"
@@ -282,6 +294,7 @@ def _build_prompt(
 - title: {max_title}자 이하 (공백 포함)
 - body: **{min_body}~{max_body}자** (공백 포함). 2~3문장으로 채운다.
   한 문장으로 끝내지 마라 — 카드가 휑해 보이고 설명도 부족하다.
+  **단 cover 와 outro 는 예외다. 한 문장, {short_max}자 이내로 간결하게.**
 - code 는 quickstart 카드에만. {max_code_lines}줄 이하, 줄당 {max_code_chars}자 이하
   각 줄은 그 자체로 완전한 명령이어야 한다. 한 명령을 쪼개지 마라.
 - caption: {CAPTION_LIMIT}자 이하, 해시태그 미포함
@@ -414,11 +427,18 @@ def _validate(
             problems.append(
                 f"{where} title 이 {len(card.title)}자입니다 ({max_title}자 이하로 줄이세요): \"{card.title}\""
             )
-        if len(card.body) > max_body:
+        if expected_role in SHORT_ROLES:
+            # 간결해야 하는 카드. 하한은 적용하지 않는다.
+            if len(card.body) > SHORT_BODY_MAX:
+                problems.append(
+                    f"{where} body 가 {len(card.body)}자입니다. 이 카드는 간결해야 하니 "
+                    f"한 문장, {SHORT_BODY_MAX}자 이내로 줄이세요."
+                )
+        elif len(card.body) > max_body:
             problems.append(
                 f"{where} body 가 {len(card.body)}자입니다 ({max_body}자 이하로 줄이세요)."
             )
-        elif min_body and expected_role != "cover" and 0 < len(card.body) < min_body:
+        elif min_body and 0 < len(card.body) < min_body:
             problems.append(
                 f"{where} body 가 {len(card.body)}자로 너무 짧습니다 "
                 f"({min_body}자 이상, 2~3문장). 한 문장으로 끝내지 마세요."

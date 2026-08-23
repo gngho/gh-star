@@ -7,11 +7,13 @@
 - OG 이미지 (`opengraph.githubassets.com`) — GitHub 이 임베드용으로 만들어 제공
 - 소유자 아바타 (`github.com/{owner}.png`)
 
-같은 OG 이미지를 8장에 반복하면 캐러셀이 단조로워지므로 역할별로 다르게 쓴다:
-- outro : OG 이미지 그대로 (레포 카드 자체가 마무리에 어울린다)
-- 그 외 : 아바타를 크게 흐린 색면 + 선명한 아바타를 얹은 조합.
-          카드 번호에 따라 그라디언트 방향을 바꿔 같은 그림이 반복되지 않게 한다.
-- cover : 이미지를 쓰지 않는다 (제목과 배지가 이미 시선을 잡는다)
+같은 OG 이미지를 여러 장에 반복하면 캐러셀이 단조로워지므로 역할별로 다르게 쓴다:
+- what_is_it : OG 이미지 (레포 이름·설명이 박힌 카드라 "이게 뭐냐"에 어울린다)
+- 그 외      : 아바타를 크게 흐린 색면 + 선명한 아바타를 얹은 조합.
+               카드 번호에 따라 음영 방향을 바꿔 같은 그림이 반복되지 않게 한다.
+- cover, outro : 이미지를 쓰지 않는다. 둘은 간결해야 하는 카드다 —
+                 커버는 제목과 배지가 시선을 잡고, 마무리는 출처·라이선스·
+                 한마디만 남긴다.
 """
 
 from __future__ import annotations
@@ -35,10 +37,10 @@ USER_AGENT = "gh-cardnews-agent (+https://github.com/)"
 OG_URL = "https://opengraph.githubassets.com/1/{repo}"
 AVATAR_URL = "https://github.com/{owner}.png?size=460"
 
-# 이미지를 쓰지 않는 역할
-NO_IMAGE = {"cover"}
+# 이미지를 쓰지 않는 역할 — 간결해야 하는 카드들
+NO_IMAGE = {"cover", "outro"}
 # OG 이미지를 쓰는 역할
-OG_ROLES = {"outro"}
+OG_ROLES = {"what_is_it"}
 
 
 class ImageryError(RuntimeError):
