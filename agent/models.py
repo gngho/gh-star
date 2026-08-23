@@ -98,6 +98,104 @@ class SelectionFile(BaseModel):
     rejected: list[RejectionSummary] = Field(default_factory=list)
 
 
+# --------------------------------------------------------------- research
+
+
+class Claim(BaseModel):
+    """모든 서술은 근거를 동반한다. SPEC 5.5.
+
+    evidence 는 실제로 조회한 파일 경로, 이슈 번호, 릴리스 태그, URL 이어야 한다.
+    빈 근거를 그럴듯한 문장으로 채우는 것이 이 시스템의 가장 흔한 실패 모드다.
+    """
+
+    text: str
+    evidence: list[str] = Field(default_factory=list)
+
+    @property
+    def is_grounded(self) -> bool:
+        return bool(self.text.strip()) and bool(self.evidence)
+
+
+class Feature(BaseModel):
+    title: str
+    text: str
+    evidence: list[str] = Field(default_factory=list)
+
+    @property
+    def is_grounded(self) -> bool:
+        return bool(self.title.strip()) and bool(self.evidence)
+
+
+class Quickstart(BaseModel):
+    commands: list[str] = Field(default_factory=list)
+    evidence: list[str] = Field(default_factory=list)
+
+    @property
+    def is_grounded(self) -> bool:
+        return bool(self.commands) and bool(self.evidence)
+
+
+class ResearchPayload(BaseModel):
+    """에이전트가 채워야 하는 부분. output_format 의 json_schema 로 강제된다."""
+
+    one_liner: str
+    problem: Claim
+    why_now: Claim
+    key_features: list[Feature] = Field(default_factory=list)
+    architecture: Claim
+    quickstart: Quickstart
+    differentiators: Claim
+    limitations: Claim
+
+
+class ResearchMeta(BaseModel):
+    license: str | None = None
+    language: str | None = None
+    stars: int = 0
+    delta_1d: int | None = None
+    html_url: str = ""
+
+
+class ResearchFile(BaseModel):
+    repo: str
+    researched_at: datetime
+    payload: ResearchPayload
+    meta: ResearchMeta
+    ungrounded_fields: list[str] = Field(default_factory=list)
+    cost_usd: float | None = None
+    num_turns: int | None = None
+
+
+# ---------------------------------------------------------------- compose
+
+
+class Card(BaseModel):
+    index: int
+    role: str  # cover|problem|why_now|feature|architecture|quickstart|fit|outro
+    title: str
+    body: str = ""
+    code: list[str] = Field(default_factory=list)
+    footnote: str | None = None
+
+
+class CardDeckPayload(BaseModel):
+    """에이전트가 생성하는 카드 원고."""
+
+    cards: list[Card] = Field(default_factory=list)
+    caption: str = ""
+    hashtags: list[str] = Field(default_factory=list)
+
+
+class CardDeckFile(BaseModel):
+    repo: str
+    date: str
+    generated_at: datetime
+    payload: CardDeckPayload
+    dropped_roles: list[str] = Field(default_factory=list)
+    cost_usd: float | None = None
+    attempts: int = 1
+
+
 class PublishedPost(BaseModel):
     repo: str
     date: str

@@ -1,0 +1,132 @@
+{
+  "repo": "NousResearch/hermes-agent",
+  "researched_at": "2026-08-23T09:38:35.555403Z",
+  "payload": {
+    "one_liner": "모델을 갈아끼울 수 있는 MIT 라이선스 파이썬 CLI 에이전트. 스킬·메모리를 스스로 쌓는 학습 루프와 텔레그램/디스코드 게이트웨이, 7종 실행 백엔드를 한 저장소에 담았다.",
+    "problem": {
+      "text": "코딩 에이전트는 대부분 노트북의 터미널 세션에 묶여 있고, 세션이 끝나면 그동안 쌓인 맥락도 사라진다. Hermes는 이 두 가지를 코드 수준에서 다르게 잡았다. 실행 환경을 추상화해 로컬 외에 Docker·SSH·Singularity·Modal·Daytona·Vercel Sandbox 위에서 같은 에이전트를 돌리고(tools/environments/*.py), 대화가 끝난 뒤 남은 스킬과 메모리를 그래프로 재구성한다(agent/learning_graph.py의 build_learning_graph). learning_graph는 base 설치 스킬을 걸러내고 created_by == \"agent\" 이거나 use_count > 0 인 스킬만 '학습된 것'으로 취급한다.",
+      "evidence": [
+        "tools/environments/local.py",
+        "tools/environments/docker.py",
+        "tools/environments/ssh.py",
+        "tools/environments/singularity.py",
+        "tools/environments/modal.py",
+        "tools/environments/daytona.py",
+        "tools/environments/vercel_sandbox.py",
+        "agent/learning_graph.py"
+      ]
+    },
+    "why_now": {
+      "text": "개발 속도가 비정상적으로 빠르다. 릴리스 노트 기준 v0.20.4 → v0.20.5 한 구간(8월 18일 → 19일 태그)에서만 약 746 커밋, 1,250여 개 파일, +111,500 / −20,701 라인, 약 323개 PR이 병합됐다. 그 직전 구간(v0.20.3)도 약 250 커밋·125 PR이다. 이 구간에 들어온 것들: 키 없이 쓰는 무료 웹 검색 티어(5개 벤더 로테이션), Bot Mode 그룹 대화, MCP 2.x SDK 마이그레이션과 2026-07-28 stateless 프로토콜, 데스크톱 앱 작업, cron 작업의 영속 메모리. 스타 급증은 새 기능 하나가 아니라 이 릴리스 속도 자체와 맞물려 있다고 보는 편이 사실에 가깝다.",
+      "evidence": [
+        "릴리스 v2026.8.19 (2026-08-21)",
+        "릴리스 v2026.8.18 (2026-08-18)",
+        "릴리스 v2026.8.16.2 (2026-08-17)"
+      ]
+    },
+    "key_features": [
+      {
+        "title": "스킬·메모리를 노드로 만드는 학습 루프",
+        "text": "README가 말하는 '학습 루프'는 마케팅 문구가 아니라 실제 모듈로 존재한다. agent/learning_graph.py는 ~/.hermes/skills 아래 SKILL.md들의 frontmatter(related_skills, category)와 tools/skill_usage.py의 사용 기록(use_count, created_by, last_used_at)을 읽어 스킬 노드를 만들고, memories/MEMORY.md·USER.md를 '§' 구분자로 잘라 메모리 카드 노드로 만든 뒤 어휘 겹침으로 메모리↔스킬 간선을 잇는다. 관련 모듈로 agent/curator.py(87KB), agent/learn_prompt.py, agent/learning_mutations.py, agent/memory_manager.py가 함께 있다.",
+        "evidence": [
+          "agent/learning_graph.py",
+          "agent/curator.py",
+          "agent/learn_prompt.py",
+          "agent/learning_mutations.py",
+          "agent/memory_manager.py",
+          "tools/skill_usage.py"
+        ]
+      },
+      {
+        "title": "실행 환경 7종 — README 주장과 코드가 일치",
+        "text": "README의 '일곱 개 터미널 백엔드' 주장을 코드로 확인했다. tools/environments/ 아래에 base.py 위에 local, docker, ssh, singularity, modal(및 managed_modal), daytona, vercel_sandbox 구현이 각각 존재한다. docker.py 91KB, local.py 85KB로 로컬/도커 경로가 가장 두껍고, 나머지 원격 백엔드는 10~21KB 수준이라 성숙도 차이는 감안하는 게 좋다.",
+        "evidence": [
+          "tools/environments/base.py",
+          "tools/environments/docker.py",
+          "tools/environments/local.py",
+          "tools/environments/modal.py",
+          "tools/environments/managed_modal.py",
+          "tools/environments/daytona.py",
+          "tools/environments/vercel_sandbox.py",
+          "tools/environments/singularity.py"
+        ]
+      },
+      {
+        "title": "CLI 하나가 아니라 게이트웨이·크론·데스크톱까지 묶인 모노레포",
+        "text": "최상위에 cli.py / run_agent.py 외에 gateway/, cron/, apps/(데스크톱), acp_adapter/, plugins/, evals/, batch_runner.py, mini_swe_runner.py가 나란히 있다. 진입점인 run_agent.py의 AIAgent 클래스는 생성자 하나에 provider/api_mode/acp_command/enabled_toolsets/session_id부터 platform·user_id·chat_id·thread_id·gateway_session_key까지 받는다. 즉 CLI 세션과 메신저 세션이 같은 에이전트 객체를 공유하는 구조다. 툴 레이어도 tools/ 아래 120개 이상 파일(mcp_tool.py 364KB, browser_tool.py 240KB, delegate_tool.py 219KB)로 커버 범위가 넓다.",
+        "evidence": [
+          "run_agent.py (class AIAgent, __init__ 시그니처)",
+          "tools/mcp_tool.py",
+          "tools/delegate_tool.py",
+          "tools/cronjob_tools.py",
+          "tools/send_message_tool.py",
+          "최상위 트리: gateway/, cron/, apps/, acp_adapter/, evals/"
+        ]
+      }
+    ],
+    "architecture": {
+      "text": "Python 3.11 고정(.python-version), uv 기반 설치. 핵심은 agent/ 패키지 안에 있고, 에이전트 루프(agent/conversation_loop.py 471KB), 프롬프트 조립(agent/prompt_builder.py 129KB), 컨텍스트 압축(agent/context_compressor.py 401KB, conversation_compression.py 213KB), 툴 실행(agent/tool_executor.py 132KB)이 각각 별도 모듈이다. 프로바이더 어댑터도 anthropic_adapter, bedrock_adapter, gemini_native_adapter, codex_responses_adapter, vertex_adapter 등으로 나뉘어 있어 '모델 교체 시 코드 변경 없음' 주장의 근거가 된다. 다만 개별 파일이 대단히 크다 — agent/auxiliary_client.py 481KB, agent/conversation_loop.py 471KB, agent/agent_runtime_helpers.py 209KB. 외부 기여자가 특정 동작을 추적하려면 파일 하나가 수천 줄인 상황을 각오해야 한다.",
+      "evidence": [
+        ".python-version (3.11)",
+        "agent/conversation_loop.py",
+        "agent/context_compressor.py",
+        "agent/prompt_builder.py",
+        "agent/tool_executor.py",
+        "agent/auxiliary_client.py",
+        "agent/anthropic_adapter.py",
+        "agent/gemini_native_adapter.py",
+        "agent/bedrock_adapter.py"
+      ]
+    },
+    "quickstart": {
+      "commands": [
+        "curl -fsSL https://hermes-agent.nousresearch.com/install.sh | bash",
+        "source ~/.bashrc",
+        "hermes",
+        "hermes model",
+        "hermes setup --portal",
+        "hermes gateway setup && hermes gateway start",
+        "hermes doctor",
+        "cd \"${HERMES_HOME:-$HOME/.hermes}/hermes-agent\" && uv pip install -e \".[all,dev]\" && scripts/run_tests.sh"
+      ],
+      "evidence": [
+        "README.md Quick Install / Getting Started / Contributing 섹션",
+        ".python-version (3.11)"
+      ]
+    },
+    "differentiators": {
+      "text": "비교 대상이 되는 클로즈드 CLI 에이전트들과 다른 점은 세 가지가 코드로 확인된다. (1) MIT 라이선스에 모델 비종속 — 프로바이더별 어댑터가 저장소 안에 있고 hermes model로 바꾼다. (2) 실행 위치가 노트북에 묶이지 않음 — tools/environments의 원격/서버리스 백엔드와 gateway/(텔레그램·디스코드 등) 조합. (3) 학습 산출물이 파일로 남음 — 스킬은 SKILL.md, 메모리는 MEMORY.md/USER.md 평문이라 사용자가 직접 열어보고 고칠 수 있다(agent/learning_graph.py가 이 파일들을 직접 파싱한다). 반대로 'Nous Portal 하나로 API 키 수집을 건너뛴다'는 부분은 자사 유료 구독으로의 유도이기도 하다는 점은 명시해두는 게 공정하다.",
+      "evidence": [
+        "LICENSE (MIT)",
+        "agent/learning_graph.py (_memory_cards, _skill_roots)",
+        "tools/environments/",
+        "gateway/",
+        "README.md Nous Portal 섹션"
+      ]
+    },
+    "limitations": {
+      "text": "속도의 대가가 열린 이슈에 그대로 보인다. 데스크톱 Bot Mode 화면이 무한 스피너로 멈추는 회귀가 정식 태그 릴리스(v0.20.5 / 2026.8.19)에 들어갔다 — 병합 충돌 해결 중 activeBotRoute() 정의가 사라졌는데 호출부 두 곳은 남았고, 쿼리가 무한 재시도라 에러 카드조차 못 뜬다(#92832, #92830). 네이티브 윈도우에서 Bot 로스터가 비는 문제(#92843), heartbeat가 '발화했다'고 기록만 하고 실제 턴을 만들지 않는 문제(#92837), Ghostty 확장 키보드 프로토콜에서 setup 메뉴의 Enter/Esc가 먹지 않는 문제(#92833)도 열려 있다. 한국어 사용자에게 직접 걸리는 건 #92814 — 데스크톱이 `**\"...\"**는` 같이 볼드 뒤에 조사가 붙는 CJK 강조를 리터럴 `**`로 렌더링한다. 구조적으로는 '패치 릴리스' 하나가 323개 PR을 굴려 담는 방식이라 회귀가 태그에 실릴 확률이 구조적으로 높고, v0.21.0 전까지는 정리된 릴리스 노트도 없다. 또 README가 권하는 설치 경로는 curl | bash 원라이너이며, 윈도우에서는 번들된 uv.exe가 백신에 오탐되는 사례가 README에 트러블슈팅으로 문서화돼 있을 만큼 흔하다. Termux에서는 음성 의존성 때문에 .[all] 대신 축소된 .[termux] extra만 설치된다.",
+      "evidence": [
+        "이슈 #92832",
+        "이슈 #92830",
+        "이슈 #92843",
+        "이슈 #92837",
+        "이슈 #92833",
+        "이슈 #92814",
+        "이슈 #92817",
+        "릴리스 v2026.8.19 (~323 PR 롤업, 'Full curated release notes ... will ship with v0.21.0')",
+        "README.md Troubleshooting / Termux 안내"
+      ]
+    }
+  },
+  "meta": {
+    "license": "MIT",
+    "language": "Python",
+    "stars": 234515,
+    "delta_1d": 443,
+    "html_url": "https://github.com/NousResearch/hermes-agent"
+  },
+  "ungrounded_fields": [],
+  "cost_usd": 0.9056035000000001,
+  "num_turns": 13
+}

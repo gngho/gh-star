@@ -6,12 +6,12 @@
 
 ## 현재 상태
 
-**M1 (수집 + 선정) 구현 완료.** 나머지는 미구현.
+**M1 (수집 + 선정) · M2 (조사 + 원고) 구현 완료.** 나머지는 미구현.
 
 | 마일스톤 | 단계 | 상태 |
 |---|---|---|
 | M1 | `collect`, `select` | ✅ 동작 |
-| M2 | `research`, `compose` | 미착수 |
+| M2 | `research`, `compose` | ✅ 동작 (실측 $1.10/건) |
 | M3 | `design-sync`, `render` | 미착수 |
 | M4 | GitHub Actions 초안 PR | 미착수 |
 | M5 | `publish`, 토큰 갱신 | 미착수 |
@@ -34,7 +34,12 @@ star velocity 정확도가 떨어진다. 토큰은 `public_repo` 읽기 권한�
 python -m agent status      # 스냅샷 축적 현황
 python -m agent collect     # 후보 수집 + 점수화
 python -m agent select      # 심층 리뷰 대상 1개 + 예비 2개 선정
+python -m agent research    # 에이전트가 저장소를 직접 읽고 근거 수집
+python -m agent compose     # 조사 결과로 카드 10장 원고 생성
 ```
+
+`research` 와 `compose` 는 Claude 인증이 필요하다. 로컬에서는 Claude Code CLI 의
+기존 로그인으로도 동작하지만, **CI 무인 실행에는 `ANTHROPIC_API_KEY` 가 필요하다.**
 
 공통 옵션: `--date YYYY-MM-DD` (기준일), `--dry-run` (파일 미기록), `-v` (디버그 로그).
 
@@ -67,5 +72,10 @@ agent/
 ├── trending.py     Trending 스크래핑 (실패해도 파이프라인 유지)
 ├── scoring.py      백분위 정규화 + 가중 합산
 ├── collect.py      소스 A/B/C 통합 → 후보 점수화
-└── select.py       2단계 필터 (무호출 → README 검증)
+├── select.py       2단계 필터 (무호출 → README 검증)
+├── schema.py       Pydantic → 엄격한 json_schema 변환
+├── llm.py          Agent SDK 래퍼 (구조적 출력 + 비용 상한)
+├── research.py     선행 로딩 + 근거 강제 조사
+├── compose.py      카드 원고 생성 (자동 보정 + 재생성)
+└── tools/          에이전트에 노출하는 읽기 전용 GitHub 툴 6종
 ```

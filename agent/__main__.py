@@ -1,7 +1,9 @@
 """CLI 진입점.
 
-    python -m agent collect [--date YYYY-MM-DD] [--dry-run]
-    python -m agent select  [--date YYYY-MM-DD] [--dry-run]
+    python -m agent collect  [--date YYYY-MM-DD] [--dry-run]
+    python -m agent select   [--date YYYY-MM-DD] [--dry-run]
+    python -m agent research [--date YYYY-MM-DD] [--dry-run]
+    python -m agent compose  [--date YYYY-MM-DD] [--dry-run]
     python -m agent status
 """
 
@@ -94,6 +96,51 @@ def cmd_select(args: argparse.Namespace) -> int:
     return 0
 
 
+def cmd_research(args: argparse.Namespace) -> int:
+    from . import research as research_mod
+
+    config = load_config()
+    try:
+        result = research_mod.run(config, args.date, dry_run=args.dry_run)
+    except FileNotFoundError as exc:
+        print(f"\n[error] {exc}", file=sys.stderr)
+        return 1
+
+    p = result.payload
+    print(f"\n[{args.date}] 조사 완료: {result.repo}")
+    print(f"  {p.one_liner}")
+    print(f"  핵심 기능 {len(p.key_features)}개")
+    for feature in p.key_features:
+        print(f"    - {feature.title}  [근거: {', '.join(feature.evidence[:2])}]")
+    if result.ungrounded_fields:
+        print(f"  ⚠ 근거 없어 제외될 필드: {', '.join(result.ungrounded_fields)}")
+    print(f"  비용 ${result.cost_usd or 0:.4f} / {result.num_turns}턴")
+    return 0
+
+
+def cmd_compose(args: argparse.Namespace) -> int:
+    from . import compose as compose_mod
+
+    config = load_config()
+    try:
+        result = compose_mod.run(config, args.date, dry_run=args.dry_run)
+    except FileNotFoundError as exc:
+        print(f"\n[error] {exc}", file=sys.stderr)
+        return 1
+
+    print(f"\n[{result.date}] 원고 완료: {result.repo}")
+    print(f"  카드 {len(result.payload.cards)}장 (시도 {result.attempts}회, ${result.cost_usd or 0:.4f})")
+    for card in result.payload.cards:
+        body = card.body.replace("\n", " ")
+        print(f"  {card.index:2d}. [{card.role:12}] {card.title}")
+        if body:
+            print(f"      {body[:60]}{'…' if len(body) > 60 else ''}")
+    if result.dropped_roles:
+        print(f"  ⚠ 근거 부족으로 제외: {', '.join(result.dropped_roles)}")
+    print(f"  해시태그 {len(result.payload.hashtags)}개")
+    return 0
+
+
 def cmd_status(_: argparse.Namespace) -> int:
     snapshots = sorted(p.stem for p in paths.SNAPSHOTS.glob("*.json"))
     watchlist = paths.read_json(paths.WATCHLIST, default={}) or {}
@@ -122,6 +169,8 @@ def main(argv: list[str] | None = None) -> int:
     for name, handler, help_text in (
         ("collect", cmd_collect, "핫 레포 후보를 수집하고 점수화한다"),
         ("select", cmd_select, "후보 중 심층 리뷰 대상 1개 + 예비 2개를 선정한다"),
+        ("research", cmd_research, "선정된 레포를 에이전트가 심층 조사한다"),
+        ("compose", cmd_compose, "조사 결과로 카드 원고를 생성한다"),
     ):
         p = sub.add_parser(name, help=help_text)
         p.add_argument("--date", default=_today_kst(), help="기준일 (KST, 기본: 오늘)")

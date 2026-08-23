@@ -1,0 +1,233 @@
+from datetime import datetime, timezone
+
+import pytest
+
+from agent import compose as compose_mod
+from agent.models import (
+    Card,
+    CardDeckPayload,
+    Claim,
+    Feature,
+    Quickstart,
+    ResearchFile,
+    ResearchMeta,
+    ResearchPayload,
+)
+from agent.schema import json_schema_for
+
+MAX_TITLE, MAX_BODY, MAX_TAGS = 24, 90, 30
+
+
+def _claim(text="본문", evidence=("README.md",)) -> Claim:
+    return Claim(text=text, evidence=list(evidence))
+
+
+def _research(**overrides) -> ResearchFile:
+    payload = ResearchPayload(
+        one_liner="한 줄",
+        problem=_claim(),
+        why_now=_claim(),
+        key_features=[
+            Feature(title=f"기능{i}", text="설명", evidence=["src/a.py"])
+            for i in range(3)
+        ],
+        architecture=_claim(),
+        quickstart=Quickstart(commands=["pip install x"], evidence=["README.md"]),
+        differentiators=_claim(),
+        limitations=_claim(),
+    )
+    for key, value in overrides.items():
+        setattr(payload, key, value)
+    return ResearchFile(
+        repo="o/r",
+        researched_at=datetime.now(timezone.utc),
+        payload=payload,
+        meta=ResearchMeta(stars=1000),
+    )
+
+
+class TestPlanRoles:
+    def test_full_deck_is_ten_cards(self):
+        roles, dropped = compose_mod._plan_roles(_research())
+        assert len(roles) == 10
+        assert dropped == []
+        assert roles[0] == "cover" and roles[-1] == "outro"
+        assert roles.count("feature") == 3
+
+    def test_two_features_yields_nine_cards(self):
+        research = _research()
+        research.payload.key_features = research.payload.key_features[:2]
+        roles, _ = compose_mod._plan_roles(research)
+        assert len(roles) == 9
+        assert roles.count("feature") == 2
+
+    def test_ungrounded_field_is_dropped_not_invented(self):
+        """근거 없는 필드는 카드로 만들지 않는다. 지어내지 않기 위해서다."""
+        research = _research(architecture=Claim(text="추측", evidence=[]))
+        roles, dropped = compose_mod._plan_roles(research)
+        assert "architecture" in dropped
+        assert "architecture" not in roles
+
+    def test_empty_text_counts_as_ungrounded(self):
+        research = _research(problem=Claim(text="   ", evidence=["README.md"]))
+        _, dropped = compose_mod._plan_roles(research)
+        assert "problem" in dropped
+
+    def test_fit_survives_if_either_half_is_grounded(self):
+        research = _research(limitations=Claim(text="", evidence=[]))
+        roles, dropped = compose_mod._plan_roles(research)
+        assert "fit" in roles and "fit" not in dropped
+
+
+class TestValidate:
+    ROLES = ["cover", "feature", "quickstart", "outro"]
+
+    def _deck(self, **overrides) -> CardDeckPayload:
+        cards = [
+            Card(index=i, role=role, title=f"제목{i}", body="본문")
+            for i, role in enumerate(self.ROLES, 1)
+        ]
+        cards[2].code = ["pip install x"]
+        deck = CardDeckPayload(cards=cards, caption="요약", hashtags=["깃허브"])
+        for key, value in overrides.items():
+            setattr(deck, key, value)
+        return deck
+
+    def _check(self, deck):
+        return compose_mod._validate(deck, self.ROLES, MAX_TITLE, MAX_BODY, MAX_TAGS)
+
+    def test_valid_deck_passes(self):
+        assert self._check(self._deck()) == []
+
+    def test_long_title_is_reported_with_the_offending_text(self):
+        deck = self._deck()
+        deck.cards[0].title = "가" * (MAX_TITLE + 1)
+        problems = self._check(deck)
+        assert len(problems) == 1
+        # 모델에 그대로 돌려주므로 무엇이 문제인지 문장에 담겨야 한다
+        assert str(MAX_TITLE + 1) in problems[0] and "가" in problems[0]
+
+    def test_long_body_is_reported(self):
+        deck = self._deck()
+        deck.cards[1].body = "나" * (MAX_BODY + 1)
+        assert any("body" in p for p in self._check(deck))
+
+    def test_wrong_card_count(self):
+        deck = self._deck()
+        deck.cards = deck.cards[:2]
+        assert any("정확히" in p for p in self._check(deck))
+
+    def test_role_order_must_match(self):
+        deck = self._deck()
+        deck.cards[1].role = "outro"
+        assert any("role" in p for p in self._check(deck))
+
+    def test_code_outside_quickstart_is_rejected(self):
+        deck = self._deck()
+        deck.cards[1].code = ["some code"]
+        assert any("quickstart" in p for p in self._check(deck))
+
+    def test_long_code_line_is_rejected(self):
+        deck = self._deck()
+        deck.cards[2].code = ["x" * 43]
+        assert any("42자" in p for p in self._check(deck))
+
+    def test_too_many_hashtags(self):
+        deck = self._deck(hashtags=[f"t{i}" for i in range(MAX_TAGS + 1)])
+        assert any("해시태그" in p for p in self._check(deck))
+
+    def test_hash_in_caption_prose_is_allowed(self):
+        """'C#', '이슈 #42' 는 정당한 쓰임이다. 모두 막으면 오탐이 된다."""
+        deck = self._deck(caption="C# 지원과 이슈 #42 수정이 핵심입니다.")
+        assert self._check(deck) == []
+
+    def test_empty_caption_is_rejected(self):
+        deck = self._deck(caption="   ")
+        assert any("caption" in p for p in self._check(deck))
+
+    def test_caption_over_limit(self):
+        deck = self._deck(caption="가" * (compose_mod.CAPTION_LIMIT + 1))
+        assert any(str(compose_mod.CAPTION_LIMIT) in p for p in self._check(deck))
+
+
+class TestRepair:
+    """의미를 바꾸지 않는 위반은 실패시키지 말고 고친다."""
+
+    def _deck(self, **kw) -> CardDeckPayload:
+        base = dict(cards=[], caption="요약", hashtags=["깃허브"])
+        base.update(kw)
+        return CardDeckPayload(**base)
+
+    def test_trailing_hashtag_block_moves_to_array(self):
+        deck = self._deck(caption="요약 문장입니다.\n\n#깃허브 #오픈소스", hashtags=[])
+        notes = compose_mod.repair(deck, MAX_TAGS)
+        assert deck.caption == "요약 문장입니다."
+        assert deck.hashtags == ["깃허브", "오픈소스"]
+        assert notes
+
+    def test_inline_hash_in_prose_is_left_alone(self):
+        deck = self._deck(caption="C# 과 이슈 #42 를 다룹니다.", hashtags=["깃허브"])
+        compose_mod.repair(deck, MAX_TAGS)
+        assert deck.caption == "C# 과 이슈 #42 를 다룹니다."
+        assert deck.hashtags == ["깃허브"]
+
+    def test_hash_prefix_is_stripped(self):
+        deck = self._deck(hashtags=["#깃허브", "오픈소스"])
+        compose_mod.repair(deck, MAX_TAGS)
+        assert deck.hashtags == ["깃허브", "오픈소스"]
+
+    def test_duplicates_are_removed_case_insensitively(self):
+        deck = self._deck(hashtags=["AI", "ai", "#AI", "LLM"])
+        compose_mod.repair(deck, MAX_TAGS)
+        assert deck.hashtags == ["AI", "LLM"]
+
+    def test_excess_tags_are_trimmed(self):
+        deck = self._deck(hashtags=[f"t{i}" for i in range(MAX_TAGS + 5)])
+        compose_mod.repair(deck, MAX_TAGS)
+        assert len(deck.hashtags) == MAX_TAGS
+
+    def test_repaired_deck_passes_validation(self):
+        """보정 후에는 검증을 통과해야 한다 — 이게 재시도를 아끼는 지점이다."""
+        deck = CardDeckPayload(
+            cards=[Card(index=1, role="cover", title="제목", body="본문")],
+            caption="요약입니다.\n\n#깃허브 #ai #AI",
+            hashtags=[],
+        )
+        compose_mod.repair(deck, MAX_TAGS)
+        assert compose_mod._validate(deck, ["cover"], MAX_TITLE, MAX_BODY, MAX_TAGS) == []
+
+    def test_clean_deck_needs_no_repair(self):
+        deck = self._deck(caption="요약", hashtags=["깃허브", "오픈소스"])
+        assert compose_mod.repair(deck, MAX_TAGS) == []
+
+
+class TestRenderCaption:
+    def test_hashtags_are_appended_with_hash(self):
+        deck = CardDeckPayload(cards=[], caption="요약", hashtags=["깃허브", "오픈소스"])
+        assert compose_mod._render_caption(deck) == "요약\n\n#깃허브 #오픈소스\n"
+
+
+class TestSchema:
+    """output_format 에 넘길 스키마는 모델이 필드를 빠뜨릴 여지를 없애야 한다."""
+
+    def test_all_objects_are_closed_and_required(self):
+        schema = json_schema_for(ResearchPayload)
+
+        def walk(node):
+            if isinstance(node, dict):
+                if node.get("type") == "object" and "properties" in node:
+                    assert node["additionalProperties"] is False
+                    assert set(node["required"]) == set(node["properties"])
+                for value in node.values():
+                    walk(value)
+            elif isinstance(node, list):
+                for item in node:
+                    walk(item)
+
+        walk(schema)
+
+    def test_optional_fields_are_still_required(self):
+        """Optional 이라고 빠뜨리면 카드가 비므로, 명시적 null 을 요구한다."""
+        schema = json_schema_for(CardDeckPayload)
+        card = schema["$defs"]["Card"]
+        assert "footnote" in card["required"]
