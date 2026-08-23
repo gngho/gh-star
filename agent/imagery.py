@@ -8,7 +8,7 @@
 | what_is_it | GitHub OG 이미지 | `opengraph.githubassets.com` |
 
 | quickstart | 터미널 창 | 카드의 실제 설치 명령 |
-| fit | 두 칸 머리글 | 고정 문구 |
+| fit | 이모지 세 단계 (👍 🤔 👎) | 고정 문구 |
 | feature | 큰 번호 01/02/03 | 카드 순서 |
 | problem | 큰 물음표 | — |
 | cover, outro | 없음 | 간결해야 하는 카드 |

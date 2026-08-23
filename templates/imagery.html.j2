@@ -96,15 +96,19 @@ body {
   color: var(--fg-muted); margin-top: 20px;
 }
 
-/* ── fit: 두 칸 머리글만 ────────────────────────────── */
-.split { display: flex; gap: 24px; }
+/* ── fit: 세 단계 판단 ──────────────────────────────── */
+.split { display: flex; gap: 22px; }
 .col {
-  flex: 1; border-radius: 16px; padding: 30px 28px;
+  flex: 1; border-radius: 18px; padding: 26px 20px;
   border: 1px solid var(--border); background: rgba(255,255,255,.02);
-  font-size: 34px; font-weight: 700;
+  display: flex; flex-direction: column; align-items: center; gap: 12px;
+  text-align: center;
 }
-.col.yes { color: var(--accent-2); }
-.col.no { color: var(--warn); }
+.col .emo { font-size: 58px; line-height: 1; }
+.col .cap { font-size: 29px; font-weight: 700; }
+.col.yes .cap { color: var(--accent-2); }
+.col.mid .cap { color: var(--fg-muted); }
+.col.no .cap { color: var(--warn); }
 </style>
 </head>
 <body>
@@ -114,7 +118,7 @@ body {
   <div class="label">STARS TODAY</div>
   <div class="stat-row">
     <div class="stat-delta">+{{ "{:,}".format(delta) }}</div>
-    <div class="stat-unit">별 {{ "{:,}".format(stars) }}개 중</div>
+    <div class="stat-unit">stars / {{ "{:,}".format(stars) }}개 중</div>
   </div>
   {% if bars %}
   <div class="bars">
@@ -132,8 +136,9 @@ body {
 
 {% elif kind == 'split' %}
   <div class="split">
-    <div class="col yes">이럴 때 좋아요</div>
-    <div class="col no">아직 이르다면</div>
+    <div class="col yes"><div class="emo">👍</div><div class="cap">잘 맞아요</div></div>
+    <div class="col mid"><div class="emo">🤔</div><div class="cap">고민된다면</div></div>
+    <div class="col no"><div class="emo">👎</div><div class="cap">아직 일러요</div></div>
   </div>
 
 {% else %}
