@@ -68,6 +68,14 @@ jobs:
             exit 0
           fi
           git commit -m "chore(data): $(date -u +%Y-%m-%d) 수집 스냅샷"
-          # 다른 실행이 먼저 밀어넣었을 수 있으므로 rebase 후 push
-          git pull --rebase --autostash origin main
-          git push origin main
+
+          # 정상 경로는 그냥 push 다. concurrency 그룹이 이 워크플로끼리의
+          # 경합을 막아주므로 충돌은 사람이 그 사이 main 에 푸시한 경우뿐이다.
+          # 그때만 얕은 클론을 풀어 rebase 한다 — 얕은 상태로 rebase 하면
+          # 히스토리가 잘려 있어 실패할 수 있기 때문이다.
+          if ! git push origin main; then
+            echo "push 충돌 — 원격 변경을 반영해 재시도합니다."
+            git fetch --unshallow origin main || git fetch origin main
+            git pull --rebase origin main
+            git push origin main
+          fi
