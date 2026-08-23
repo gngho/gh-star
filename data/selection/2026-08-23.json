@@ -1,9 +1,9 @@
 {
   "date": "2026-08-23",
-  "generated_at": "2026-08-23T08:48:02.993610Z",
+  "generated_at": "2026-08-23T09:12:16.925416Z",
   "primary": {
     "full_name": "NousResearch/hermes-agent",
-    "score": 0.783269,
+    "score": 0.783266,
     "reason": "score=0.783, Δ1d=+443(trending), recency=0.76, topic=1.00",
     "flags": [],
     "repo": {
@@ -27,21 +27,21 @@
         "nous-research",
         "openai"
       ],
-      "stars": 234515,
-      "forks": 47210,
-      "open_issues": 34877,
+      "stars": 234523,
+      "forks": 47212,
+      "open_issues": 34887,
       "archived": false,
       "fork": false,
       "license_spdx": "MIT",
       "created_at": "2025-07-22T22:22:28Z",
-      "pushed_at": "2026-08-23T08:45:38Z",
+      "pushed_at": "2026-08-23T09:07:19Z",
       "html_url": "https://github.com/NousResearch/hermes-agent"
     }
   },
   "backups": [
     {
       "full_name": "obra/superpowers",
-      "score": 0.777452,
+      "score": 0.777449,
       "reason": "score=0.777, Δ1d=+592(trending), recency=0.85, topic=0.50",
       "flags": [],
       "repo": {
@@ -60,8 +60,8 @@
           "subagent-driven-development",
           "superpowers"
         ],
-        "stars": 276386,
-        "forks": 24724,
+        "stars": 276400,
+        "forks": 24726,
         "open_issues": 308,
         "archived": false,
         "fork": false,
@@ -103,9 +103,9 @@
           "skills",
           "tree-sitter"
         ],
-        "stars": 109654,
+        "stars": 109657,
         "forks": 10664,
-        "open_issues": 1048,
+        "open_issues": 1049,
         "archived": false,
         "fork": false,
         "license_spdx": "Apache-2.0",

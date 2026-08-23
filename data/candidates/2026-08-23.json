@@ -1,6 +1,6 @@
 {
   "date": "2026-08-23",
-  "generated_at": "2026-08-23T08:47:53.708484Z",
+  "generated_at": "2026-08-23T09:12:15.651395Z",
   "sources": {
     "search": 632,
     "trending": 80,
@@ -30,14 +30,14 @@
           "nous-research",
           "openai"
         ],
-        "stars": 234515,
-        "forks": 47210,
-        "open_issues": 34877,
+        "stars": 234523,
+        "forks": 47212,
+        "open_issues": 34887,
         "archived": false,
         "fork": false,
         "license_spdx": "MIT",
         "created_at": "2025-07-22T22:22:28Z",
-        "pushed_at": "2026-08-23T08:45:38Z",
+        "pushed_at": "2026-08-23T09:07:19Z",
         "html_url": "https://github.com/NousResearch/hermes-agent"
       },
       "score": {
@@ -45,11 +45,11 @@
         "delta_7d": null,
         "delta_1d_norm": 0.875,
         "delta_7d_norm": null,
-        "recency_bonus": 0.7634597538332448,
+        "recency_bonus": 0.7634412613638306,
         "topic_score": 1.0,
         "stars_today_source": "trending",
         "confidence": 0.75,
-        "total": 0.783269
+        "total": 0.783266
       },
       "flags": []
     },
@@ -70,8 +70,8 @@
           "subagent-driven-development",
           "superpowers"
         ],
-        "stars": 276386,
-        "forks": 24724,
+        "stars": 276400,
+        "forks": 24726,
         "open_issues": 308,
         "archived": false,
         "fork": false,
@@ -85,11 +85,11 @@
         "delta_7d": null,
         "delta_1d_norm": 1.0,
         "delta_7d_norm": null,
-        "recency_bonus": 0.8496792691135524,
+        "recency_bonus": 0.8496607766445051,
         "topic_score": 0.5,
         "stars_today_source": "trending",
         "confidence": 0.75,
-        "total": 0.777452
+        "total": 0.777449
       },
       "flags": []
     },
@@ -121,9 +121,9 @@
           "skills",
           "tree-sitter"
         ],
-        "stars": 109654,
+        "stars": 109657,
         "forks": 10664,
-        "open_issues": 1048,
+        "open_issues": 1049,
         "archived": false,
         "fork": false,
         "license_spdx": "Apache-2.0",
@@ -161,7 +161,7 @@
           "mcp",
           "productivity"
         ],
-        "stars": 242300,
+        "stars": 242306,
         "forks": 36708,
         "open_issues": 148,
         "archived": false,
@@ -176,11 +176,11 @@
         "delta_7d": null,
         "delta_1d_norm": 0.8125,
         "delta_7d_norm": null,
-        "recency_bonus": 0.9592015444372597,
+        "recency_bonus": 0.9591830519557908,
         "topic_score": 0.5,
         "stars_today_source": "trending",
         "confidence": 0.75,
-        "total": 0.709505
+        "total": 0.709502
       },
       "flags": []
     },
@@ -203,14 +203,14 @@
           "skill",
           "tokens"
         ],
-        "stars": 100400,
+        "stars": 100402,
         "forks": 5829,
         "open_issues": 362,
         "archived": false,
         "fork": false,
         "license_spdx": null,
         "created_at": "2026-04-04T10:03:00Z",
-        "pushed_at": "2026-08-23T08:47:18Z",
+        "pushed_at": "2026-08-23T08:59:23Z",
         "html_url": "https://github.com/JuliusBrussee/caveman"
       },
       "score": {
@@ -292,8 +292,8 @@
           "video-generation",
           "video-production"
         ],
-        "stars": 49573,
-        "forks": 6221,
+        "stars": 49576,
+        "forks": 6223,
         "open_issues": 232,
         "archived": false,
         "fork": false,
@@ -344,8 +344,8 @@
           "tutorial",
           "typescript"
         ],
-        "stars": 47675,
-        "forks": 8398,
+        "stars": 47678,
+        "forks": 8399,
         "open_issues": 112,
         "archived": false,
         "fork": false,
@@ -394,7 +394,7 @@
           "tui",
           "typescript"
         ],
-        "stars": 35060,
+        "stars": 35062,
         "forks": 2333,
         "open_issues": 1572,
         "archived": false,
@@ -444,8 +444,8 @@
           "tui",
           "workspace-manager"
         ],
-        "stars": 31662,
-        "forks": 2267,
+        "stars": 31666,
+        "forks": 2268,
         "open_issues": 225,
         "archived": false,
         "fork": false,
@@ -491,7 +491,7 @@
           "xlsx"
         ],
         "stars": 29067,
-        "forks": 1981,
+        "forks": 1982,
         "open_issues": 98,
         "archived": false,
         "fork": false,
@@ -531,7 +531,7 @@
           "openclaw-plugin",
           "vector-search"
         ],
-        "stars": 23913,
+        "stars": 23915,
         "forks": 2207,
         "open_issues": 689,
         "archived": false,
@@ -583,7 +583,7 @@
           "value-investing",
           "warren-buffett"
         ],
-        "stars": 15775,
+        "stars": 15778,
         "forks": 2361,
         "open_issues": 33,
         "archived": false,
@@ -636,7 +636,7 @@
           "research-automation"
         ],
         "stars": 15023,
-        "forks": 1322,
+        "forks": 1323,
         "open_issues": 63,
         "archived": false,
         "fork": false,
@@ -683,7 +683,7 @@
         ],
         "stars": 14187,
         "forks": 8543,
-        "open_issues": 164,
+        "open_issues": 159,
         "archived": false,
         "fork": false,
         "license_spdx": "MIT",
@@ -725,8 +725,8 @@
           "harness-framework",
           "llm"
         ],
-        "stars": 13796,
-        "forks": 1379,
+        "stars": 13798,
+        "forks": 1380,
         "open_issues": 7,
         "archived": false,
         "fork": false,
@@ -777,7 +777,7 @@
           "typescript",
           "workspace"
         ],
-        "stars": 10681,
+        "stars": 10680,
         "forks": 710,
         "open_issues": 6,
         "archived": false,
@@ -823,14 +823,14 @@
           "vue3",
           "web-ui"
         ],
-        "stars": 10527,
+        "stars": 10528,
         "forks": 1282,
-        "open_issues": 269,
+        "open_issues": 267,
         "archived": false,
         "fork": false,
         "license_spdx": null,
         "created_at": "2026-04-11T07:38:18Z",
-        "pushed_at": "2026-08-23T08:33:02Z",
+        "pushed_at": "2026-08-23T09:06:02Z",
         "html_url": "https://github.com/EKKOLearnAI/hermes-studio"
       },
       "score": {
@@ -873,12 +873,12 @@
         ],
         "stars": 9182,
         "forks": 1407,
-        "open_issues": 1201,
+        "open_issues": 1204,
         "archived": false,
         "fork": false,
         "license_spdx": "Apache-2.0",
         "created_at": "2026-06-11T12:18:13Z",
-        "pushed_at": "2026-08-23T08:44:58Z",
+        "pushed_at": "2026-08-23T09:07:00Z",
         "html_url": "https://github.com/omnigent-ai/omnigent"
       },
       "score": {
@@ -966,14 +966,14 @@
           "web-scraping",
           "web-search"
         ],
-        "stars": 4630,
+        "stars": 4632,
         "forks": 344,
-        "open_issues": 56,
+        "open_issues": 57,
         "archived": false,
         "fork": false,
         "license_spdx": null,
         "created_at": "2026-04-12T15:04:11Z",
-        "pushed_at": "2026-08-23T08:24:08Z",
+        "pushed_at": "2026-08-23T08:56:30Z",
         "html_url": "https://github.com/KnockOutEZ/wigolo"
       },
       "score": {
@@ -1010,14 +1010,14 @@
           "open-source-ai",
           "rag"
         ],
-        "stars": 4614,
+        "stars": 4615,
         "forks": 617,
-        "open_issues": 38,
+        "open_issues": 28,
         "archived": false,
         "fork": false,
         "license_spdx": "CC0-1.0",
         "created_at": "2026-03-24T15:58:22Z",
-        "pushed_at": "2026-08-22T18:59:51Z",
+        "pushed_at": "2026-08-23T08:58:46Z",
         "html_url": "https://github.com/alvinreal/awesome-opensource-ai"
       },
       "score": {
@@ -1135,7 +1135,7 @@
           "sft",
           "tutorial"
         ],
-        "stars": 4063,
+        "stars": 4064,
         "forks": 296,
         "open_issues": 10,
         "archived": false,
@@ -1225,12 +1225,12 @@
         ],
         "stars": 3179,
         "forks": 352,
-        "open_issues": 829,
+        "open_issues": 832,
         "archived": false,
         "fork": false,
         "license_spdx": "Apache-2.0",
         "created_at": "2026-07-16T21:21:54Z",
-        "pushed_at": "2026-08-23T08:43:28Z",
+        "pushed_at": "2026-08-23T09:11:36Z",
         "html_url": "https://github.com/kirodotdev/KiroCrew"
       },
       "score": {
@@ -1404,12 +1404,12 @@
         ],
         "stars": 2259,
         "forks": 317,
-        "open_issues": 1031,
+        "open_issues": 1030,
         "archived": false,
         "fork": false,
         "license_spdx": "Apache-2.0",
         "created_at": "2026-07-22T17:49:34Z",
-        "pushed_at": "2026-08-23T08:45:46Z",
+        "pushed_at": "2026-08-23T09:02:17Z",
         "html_url": "https://github.com/makecindy/cindy"
       },
       "score": {
@@ -1438,7 +1438,7 @@
           "automation",
           "developer-tools"
         ],
-        "stars": 1988,
+        "stars": 1989,
         "forks": 184,
         "open_issues": 25,
         "archived": false,
@@ -1484,12 +1484,12 @@
         ],
         "stars": 1919,
         "forks": 134,
-        "open_issues": 23,
+        "open_issues": 22,
         "archived": false,
         "fork": false,
         "license_spdx": null,
         "created_at": "2026-03-18T15:18:51Z",
-        "pushed_at": "2026-08-23T08:31:33Z",
+        "pushed_at": "2026-08-23T09:05:46Z",
         "html_url": "https://github.com/omnimind-ai/OmniBot"
       },
       "score": {
@@ -1526,14 +1526,14 @@
           "windows",
           "windows-terminal"
         ],
-        "stars": 1782,
+        "stars": 1783,
         "forks": 140,
         "open_issues": 86,
         "archived": false,
         "fork": false,
         "license_spdx": "MIT",
         "created_at": "2026-05-18T10:57:07Z",
-        "pushed_at": "2026-08-23T08:43:46Z",
+        "pushed_at": "2026-08-23T09:06:00Z",
         "html_url": "https://github.com/microsoft/intelligent-terminal"
       },
       "score": {
@@ -1571,8 +1571,8 @@
           "skills",
           "vibecoding"
         ],
-        "stars": 79460,
-        "forks": 5432,
+        "stars": 79467,
+        "forks": 5433,
         "open_issues": 56,
         "archived": false,
         "fork": false,
@@ -1586,11 +1586,11 @@
         "delta_7d": null,
         "delta_1d_norm": null,
         "delta_7d_norm": null,
-        "recency_bonus": 0.995124611655548,
+        "recency_bonus": 0.995106119179708,
         "topic_score": 1.0,
         "stars_today_source": "none",
         "confidence": 0.3,
-        "total": 0.649269
+        "total": 0.649266
       },
       "flags": []
     },
@@ -1623,14 +1623,14 @@
           "vibecoding",
           "vibedesign"
         ],
-        "stars": 5584,
+        "stars": 5585,
         "forks": 491,
         "open_issues": 13,
         "archived": false,
         "fork": false,
         "license_spdx": "MIT",
         "created_at": "2026-02-17T10:51:46Z",
-        "pushed_at": "2026-08-23T08:01:52Z",
+        "pushed_at": "2026-08-23T08:49:30Z",
         "html_url": "https://github.com/ZSeven-W/openpencil"
       },
       "score": {
@@ -1638,11 +1638,11 @@
         "delta_7d": null,
         "delta_1d_norm": null,
         "delta_7d_norm": null,
-        "recency_bonus": 0.9924437398050117,
+        "recency_bonus": 0.9924252473302723,
         "topic_score": 1.0,
         "stars_today_source": "none",
         "confidence": 0.3,
-        "total": 0.648867
+        "total": 0.648864
       },
       "flags": []
     },
@@ -1664,7 +1664,7 @@
           "zeroclaw"
         ],
         "stars": 32636,
-        "forks": 4904,
+        "forks": 4905,
         "open_issues": 783,
         "archived": false,
         "fork": false,
@@ -1678,11 +1678,11 @@
         "delta_7d": null,
         "delta_1d_norm": null,
         "delta_7d_norm": null,
-        "recency_bonus": 0.987984343984454,
+        "recency_bonus": 0.9879658515122698,
         "topic_score": 1.0,
         "stars_today_source": "none",
         "confidence": 0.3,
-        "total": 0.648198
+        "total": 0.648195
       },
       "flags": []
     },
@@ -1727,11 +1727,11 @@
         "delta_7d": null,
         "delta_1d_norm": null,
         "delta_7d_norm": null,
-        "recency_bonus": 0.9869371875003415,
+        "recency_bonus": 0.9869186950145593,
         "topic_score": 1.0,
         "stars_today_source": "none",
         "confidence": 0.3,
-        "total": 0.648041
+        "total": 0.648038
       },
       "flags": []
     },
@@ -1766,11 +1766,11 @@
         "delta_7d": null,
         "delta_1d_norm": null,
         "delta_7d_norm": null,
-        "recency_bonus": 0.9864794866173978,
+        "recency_bonus": 0.9864609941315523,
         "topic_score": 1.0,
         "stars_today_source": "none",
         "confidence": 0.3,
-        "total": 0.647972
+        "total": 0.647969
       },
       "flags": []
     },
@@ -1794,7 +1794,7 @@
           "vscode-extension"
         ],
         "stars": 6968,
-        "forks": 2769,
+        "forks": 2768,
         "open_issues": 391,
         "archived": false,
         "fork": false,
@@ -1808,11 +1808,11 @@
         "delta_7d": null,
         "delta_1d_norm": null,
         "delta_7d_norm": null,
-        "recency_bonus": 0.9861680238441358,
+        "recency_bonus": 0.9861495313513332,
         "topic_score": 1.0,
         "stars_today_source": "none",
         "confidence": 0.3,
-        "total": 0.647925
+        "total": 0.647922
       },
       "flags": []
     },
@@ -1848,11 +1848,11 @@
         "delta_7d": null,
         "delta_1d_norm": null,
         "delta_7d_norm": null,
-        "recency_bonus": 0.9794707839383096,
+        "recency_bonus": 0.9794522914548927,
         "topic_score": 1.0,
         "stars_today_source": "none",
         "confidence": 0.3,
-        "total": 0.646921
+        "total": 0.646918
       },
       "flags": []
     },
@@ -1875,7 +1875,7 @@
         ],
         "stars": 2094,
         "forks": 267,
-        "open_issues": 181,
+        "open_issues": 180,
         "archived": false,
         "fork": false,
         "license_spdx": "AGPL-3.0",
@@ -1888,11 +1888,11 @@
         "delta_7d": null,
         "delta_1d_norm": null,
         "delta_7d_norm": null,
-        "recency_bonus": 0.973663153891229,
+        "recency_bonus": 0.9736446614041059,
         "topic_score": 1.0,
         "stars_today_source": "none",
         "confidence": 0.3,
-        "total": 0.646049
+        "total": 0.646047
       },
       "flags": []
     },
@@ -1929,11 +1929,11 @@
         "delta_7d": null,
         "delta_1d_norm": null,
         "delta_7d_norm": null,
-        "recency_bonus": 0.9730784670869383,
+        "recency_bonus": 0.9730599745984112,
         "topic_score": 1.0,
         "stars_today_source": "none",
         "confidence": 0.3,
-        "total": 0.645962
+        "total": 0.645959
       },
       "flags": []
     },
@@ -1964,7 +1964,7 @@
           "vite",
           "vue3"
         ],
-        "stars": 14367,
+        "stars": 14368,
         "forks": 2606,
         "open_issues": 3,
         "archived": false,
@@ -1979,11 +1979,11 @@
         "delta_7d": null,
         "delta_1d_norm": null,
         "delta_7d_norm": null,
-        "recency_bonus": 0.9716589670237806,
+        "recency_bonus": 0.9716404745477257,
         "topic_score": 1.0,
         "stars_today_source": "none",
         "confidence": 0.3,
-        "total": 0.645749
+        "total": 0.645746
       },
       "flags": []
     },
@@ -2020,11 +2020,11 @@
         "delta_7d": null,
         "delta_1d_norm": null,
         "delta_7d_norm": null,
-        "recency_bonus": 0.9644302809910064,
+        "recency_bonus": 0.9644117885040351,
         "topic_score": 1.0,
         "stars_today_source": "none",
         "confidence": 0.3,
-        "total": 0.644665
+        "total": 0.644662
       },
       "flags": []
     },
@@ -2057,11 +2057,11 @@
         "delta_7d": null,
         "delta_1d_norm": null,
         "delta_7d_norm": null,
-        "recency_bonus": 0.9530356366882337,
+        "recency_bonus": 0.9530171442009588,
         "topic_score": 1.0,
         "stars_today_source": "none",
         "confidence": 0.3,
-        "total": 0.642955
+        "total": 0.642953
       },
       "flags": []
     },
@@ -2086,7 +2086,7 @@
           "palantir",
           "situation"
         ],
-        "stars": 83842,
+        "stars": 83845,
         "forks": 12524,
         "open_issues": 392,
         "archived": false,
@@ -2101,11 +2101,11 @@
         "delta_7d": null,
         "delta_1d_norm": null,
         "delta_7d_norm": null,
-        "recency_bonus": 0.9490271743958839,
+        "recency_bonus": 0.9490086819208283,
         "topic_score": 1.0,
         "stars_today_source": "none",
         "confidence": 0.3,
-        "total": 0.642354
+        "total": 0.642351
       },
       "flags": []
     },
@@ -2153,11 +2153,11 @@
         "delta_7d": null,
         "delta_1d_norm": null,
         "delta_7d_norm": null,
-        "recency_bonus": 0.9480502087006805,
+        "recency_bonus": 0.9480317162237402,
         "topic_score": 1.0,
         "stars_today_source": "none",
         "confidence": 0.3,
-        "total": 0.642208
+        "total": 0.642205
       },
       "flags": []
     },
@@ -2182,7 +2182,7 @@
           "terminal",
           "tui"
         ],
-        "stars": 18285,
+        "stars": 18287,
         "forks": 2057,
         "open_issues": 337,
         "archived": false,
@@ -2197,11 +2197,11 @@
         "delta_7d": null,
         "delta_1d_norm": null,
         "delta_7d_norm": null,
-        "recency_bonus": 0.9453974688452742,
+        "recency_bonus": 0.9453789763735579,
         "topic_score": 1.0,
         "stars_today_source": "none",
         "confidence": 0.3,
-        "total": 0.64181
+        "total": 0.641807
       },
       "flags": []
     },
@@ -2249,11 +2249,11 @@
         "delta_7d": null,
         "delta_1d_norm": null,
         "delta_7d_norm": null,
-        "recency_bonus": 0.9370609731712584,
+        "recency_bonus": 0.9370424806888281,
         "topic_score": 1.0,
         "stars_today_source": "none",
         "confidence": 0.3,
-        "total": 0.640559
+        "total": 0.640556
       },
       "flags": []
     }
