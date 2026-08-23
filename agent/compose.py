@@ -27,39 +27,84 @@ log = logging.getLogger(__name__)
 MAX_ATTEMPTS = 3
 CAPTION_LIMIT = 2200
 
+# 카드 한 장에 허용할 전문용어 개수. 0 은 비현실적이라(고유명사·언어명이 걸린다)
+# 소량은 통과시키되 나열 수준이면 잡는다.
+MAX_JARGON_PER_CARD = 1
+MAX_JARGON_IN_CAPTION = 4
+
 SYSTEM_PROMPT = """\
-너는 개발자 대상 인스타그램 카드뉴스의 원고를 쓴다.
+너는 인스타그램 카드뉴스의 원고를 쓴다.
+
+## 독자가 누구인지 잊지 마라
+
+**코딩과 AI에 이제 막 발을 들인 사람**이다. 구체적으로:
+
+- 깃허브가 뭔지는 들어봤지만 레포를 클론해본 적은 없다
+- 파이썬을 조금 배웠거나, 아직 안 배웠다
+- ChatGPT는 써봤지만 API나 에이전트는 모른다
+- "터미널"이라는 말에 아직 긴장한다
+
+이 사람이 **끝까지 읽고 "오 이거 재밌겠다"고 느끼게** 만드는 게 목표다.
+한 장이라도 "무슨 말인지 모르겠네"가 되면 거기서 이탈한다.
+
+## 쉽게 쓰는 규칙
+
+1. **전문용어를 쓰면 그 자리에서 괄호로 풀어라.**
+   나쁨: "CLI 에이전트다"
+   좋음: "터미널(검은 화면에 글자로 명령하는 창)에서 돌아가는 AI 비서다"
+
+2. **파일명·클래스명·함수명을 카드에 쓰지 마라.**
+   조사 자료에는 `curator.py`, `learning_graph` 같은 게 잔뜩 있다. 그건 근거지
+   독자에게 보여줄 내용이 아니다. **무엇을 하는지**로 바꿔 써라.
+   나쁨: "learning_graph.py가 SKILL.md를 읽어 노드를 만든다"
+   좋음: "한 번 알려준 요령을 파일로 적어두고 다음에 다시 꺼내 쓴다"
+
+3. **비유를 최소 한 장에는 넣어라.** 익숙한 것에 빗대면 바로 이해된다.
+
+4. **숫자는 감이 오게 써라.**
+   나쁨: "스타 234,523개"
+   좋음: "별 23만 개 — 웬만한 유명 앱보다 많이 받았다"
+
+5. **영어 약어는 처음 나올 때 풀어라.** MIT 라이선스, API, MCP 전부 해당된다.
+
+6. **말투는 친구에게 설명하듯.** "~한다" 보다 "~해요/~합니다" 가 낫고,
+   질문을 던져도 좋다. 다만 호들갑은 떨지 마라.
+
+## 쉽게 쓰되 틀리게 쓰지 마라
+
+이게 제일 중요하다. 쉽게 만들려고 **사실을 바꾸거나 지어내면 안 된다.**
+조사 자료에 없는 내용을 추가하지 마라. 어떤 내용이 도저히 쉽게 설명이 안 되면
+그 카드는 짧게 쓰거나 다른 이야기를 해라. 정확성이 먼저다.
+
+## 카드 구성
+
+각 카드는 role 로 역할이 정해져 있다. 주어진 role 순서를 그대로 지켜라.
+
+- cover: 레포명과 한 줄 훅. 궁금하게 만들되 낚시하지 마라.
+- what_is_it: **"한마디로 뭐냐면"** — 이게 뭔지 딱 한 문장으로. 비유를 써도 좋다.
+  독자가 이 카드에서 못 알아들으면 나머지는 안 읽는다. 가장 공들여라.
+- problem: 이게 없으면 뭐가 불편한지. "이런 적 있죠?" 처럼 공감으로 열어라.
+- why_now: 왜 지금 뜨는지. 숫자와 계기를 함께, 감이 오게.
+- feature: 기능 하나씩. title 에 기능명(쉬운 말로), body 에 그래서 뭐가 좋은지.
+- quickstart: 직접 써보려면 뭘 하는지. code 배열에 명령을 넣고 body 는 짧게.
+  **code 의 각 줄은 그 자체로 완전한 명령이어야 한다.** 한 명령을 길이 때문에
+  여러 줄로 쪼개지 마라 — 카드에는 줄마다 `$` 프롬프트가 붙어서, 쪼개면 별개의
+  명령 두 개처럼 읽힌다. 길면 더 짧은 대표 명령을 골라라.
+  body 에 이게 어디에 입력하는 건지 한마디 덧붙여라.
+- fit: 어떤 사람에게 맞고 어떤 사람에겐 아직 이른지. 단점을 숨기지 마라.
+- outro: 레포 주소와 라이선스, 그리고 행동 유도.
 
 ## 매체 제약을 절대 어기지 마라
 
 카드는 1080×1350 이미지다. 글자가 넘치면 잘려서 발행된다. 글자수 상한은 권고가
 아니라 물리적 한계다. 상한을 넘기느니 내용을 덜어내라.
 
-## 카드 구성
-
-각 카드는 role 로 역할이 정해져 있다. 주어진 role 순서를 그대로 지켜라.
-- cover: 레포명과 한 줄 훅. 궁금하게 만들되 낚시하지 마라.
-- problem: 이게 없으면 뭐가 불편한지.
-- why_now: 왜 지금 뜨는지. 숫자와 계기를 함께.
-- feature: 기능 하나씩. title 에 기능명, body 에 그게 왜 좋은지.
-- architecture: 어떻게 동작하는지 3줄 요약.
-- quickstart: 설치·실행 커맨드. code 배열에 넣고 body 는 짧게.
-  **code 의 각 줄은 그 자체로 완전한 명령이어야 한다.** 한 명령을 길이 때문에
-  여러 줄로 쪼개지 마라 — 카드에는 줄마다 `$` 프롬프트가 붙어서, 쪼개면 별개의
-  명령 두 개처럼 읽힌다. 길면 더 짧은 대표 명령을 골라라
-  (예: 긴 curl 원라이너 대신 `pip install x`).
-- fit: 이럴 때 쓰면 좋고 이럴 땐 아니다. 단점을 숨기지 마라.
-- outro: 레포 URL 과 라이선스, 그리고 행동 유도.
-
-## 톤
-
-한국어. 실무 개발자에게 말하듯. 과장 금지. "혁신적인", "게임 체인저" 같은 표현 금지.
-근거 자료에 없는 사실을 추가하지 마라. 자료에 없으면 그 카드는 짧게 써라.
-
 ## 캡션
 
-요약 2~3줄 + 레포 링크 + 스타 수 + 라이선스. 해시태그는 hashtags 배열에 따로 넣어라
-(# 없이 단어만). 캡션 본문에는 해시태그를 넣지 마라.
+카드보다 조금 더 자세히 써도 되지만 **독자는 똑같다.** 여기서도 파일명을 나열하지
+마라. 요약 3~4줄 + 레포 링크 + 별 개수 + 라이선스.
+해시태그는 hashtags 배열에 따로 넣어라 (# 없이 단어만).
+캡션 본문에는 해시태그를 넣지 마라.
 """
 
 
@@ -150,20 +195,22 @@ async def _run_async(config: Config, run_date: str, dry_run: bool) -> CardDeckFi
 
 
 def _plan_roles(research: ResearchFile) -> tuple[list[str], list[str]]:
-    """근거 있는 필드만으로 카드 순서를 짠다. 근거 없는 카드는 만들지 않는다."""
+    """근거 있는 필드만으로 카드 순서를 짠다. 근거 없는 카드는 만들지 않는다.
+
+    `architecture` 는 카드에서 뺐다. 입문자에게 "어떻게 동작하나"를 90자로
+    설명하면 정확하거나 쉽거나 둘 중 하나를 반드시 포기하게 된다. 대신 그 자리에
+    **"한마디로 뭐냐면"(what_is_it)** 을 앞쪽에 넣었다 — 여기서 못 알아들으면
+    나머지 아홉 장을 안 읽기 때문이다.
+    조사한 아키텍처 내용은 버리지 않고 프롬프트 맥락으로 계속 넘긴다.
+    """
     p = research.payload
-    roles = ["cover"]
+    roles = ["cover", "what_is_it"]  # one_liner 는 필수 필드라 항상 있다
     dropped: list[str] = []
 
     for role, claim in (("problem", p.problem), ("why_now", p.why_now)):
         (roles if claim.is_grounded else dropped).append(role)
 
     roles.extend("feature" for _ in p.key_features[:3])
-
-    if p.architecture.is_grounded:
-        roles.append("architecture")
-    else:
-        dropped.append("architecture")
 
     if p.quickstart.is_grounded:
         roles.append("quickstart")
@@ -280,6 +327,37 @@ def repair(payload: CardDeckPayload, max_tags: int) -> list[str]:
     return fixed
 
 
+# ------------------------------------------------------- 난이도 검사
+
+
+# 파일명·모듈명 (`curator.py`, `learning_graph.py`, `pyproject.toml`)
+_IDENTIFIER = re.compile(r"\b[a-zA-Z_][a-zA-Z0-9_]*\.(py|js|ts|toml|json|yaml|yml|md|sh|cfg)\b")
+# snake_case / camelCase 식별자 (`learning_graph`, `memoryManager`)
+_SNAKE_OR_CAMEL = re.compile(r"\b[a-z]+_[a-z_]+\b|\b[a-z]+[A-Z][a-zA-Z]*\b")
+# 풀어 쓰지 않은 영문 약어 (2~5글자 대문자). 괄호 설명이 붙어 있으면 통과시킨다.
+_ACRONYM = re.compile(r"\b[A-Z]{2,5}\b(?!\s*\()")
+
+# 설명 없이 써도 되는 것들 — 독자가 이미 알거나, 고유명사이거나, 뜻이 자명하다
+_ALLOWED = {
+    "AI", "PC", "OS", "URL", "MIT", "APT", "GPU", "CPU", "UI", "IT",
+    "GPT", "OK", "TV", "USB", "PDF", "ID",
+}
+
+
+def jargon_hits(text: str) -> list[str]:
+    """입문자가 막힐 만한 토큰을 뽑는다.
+
+    프롬프트로 "쉽게 써라"라고만 하면 조사 자료의 파일명이 그대로 새어 나온다.
+    실제로 첫 버전 캡션에 `curator.py 87KB`, `learning_graph` 가 그대로 실렸다.
+    """
+    found = [m.group(0) for m in _IDENTIFIER.finditer(text)]
+    found += [m.group(0) for m in _SNAKE_OR_CAMEL.finditer(text)]
+    found += [
+        m.group(0) for m in _ACRONYM.finditer(text) if m.group(0) not in _ALLOWED
+    ]
+    return sorted(set(found))
+
+
 # -------------------------------------------------------------- 검증
 
 
@@ -361,8 +439,39 @@ def _validate(
     if not payload.caption.strip():
         problems.append("caption 이 비어 있습니다.")
 
+    problems.extend(_jargon_problems(payload, roles))
+
     # 해시태그 위치와 '#' 접두는 repair() 가 처리하므로 여기서 보지 않는다.
     # 캡션 안의 '#' 은 "C#", "이슈 #42" 처럼 정당한 쓰임이 있다.
+    return problems
+
+
+def _jargon_problems(payload: CardDeckPayload, roles: list[str]) -> list[str]:
+    """입문자가 막힐 만한 표현을 잡아 되돌려준다.
+
+    quickstart 의 code 와 outro 는 검사에서 뺀다 — 명령어와 레포 주소는
+    영문일 수밖에 없고, 그게 정보의 본체다.
+    """
+    problems: list[str] = []
+    for card, role in zip(payload.cards, roles):
+        if role == "outro":
+            continue
+        text = f"{card.title} {card.body}"  # code 는 제외
+        hits = jargon_hits(text)
+        if len(hits) > MAX_JARGON_PER_CARD:
+            problems.append(
+                f"카드 {card.index}({role}) 가 입문자에게 어렵습니다. "
+                f"파일명·식별자·풀지 않은 약어: {', '.join(hits)} — "
+                "무엇을 하는지 쉬운 말로 바꾸거나 괄호로 뜻을 풀어주세요."
+            )
+
+    caption_hits = jargon_hits(payload.caption)
+    if len(caption_hits) > MAX_JARGON_IN_CAPTION:
+        problems.append(
+            f"캡션이 입문자에게 어렵습니다. 파일명·식별자·풀지 않은 약어 "
+            f"{len(caption_hits)}개: {', '.join(caption_hits[:8])} — "
+            "무엇을 하는지로 바꿔 쓰세요."
+        )
     return problems
 
 

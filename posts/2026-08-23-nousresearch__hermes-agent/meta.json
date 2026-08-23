@@ -1,7 +1,7 @@
 {
   "repo": "NousResearch/hermes-agent",
   "date": "2026-08-23",
-  "rendered_at": "2026-08-23T13:27:18.759057+00:00",
+  "rendered_at": "2026-08-23T13:53:26.117206+00:00",
   "width": 1080,
   "height": 1350,
   "format": "jpeg",
@@ -17,7 +17,7 @@
     },
     {
       "index": 2,
-      "role": "problem",
+      "role": "what_is_it",
       "file": "02.jpg",
       "scale": 1.0,
       "overflow_px": 0,
@@ -25,7 +25,7 @@
     },
     {
       "index": 3,
-      "role": "why_now",
+      "role": "problem",
       "file": "03.jpg",
       "scale": 1.0,
       "overflow_px": 0,
@@ -33,7 +33,7 @@
     },
     {
       "index": 4,
-      "role": "feature",
+      "role": "why_now",
       "file": "04.jpg",
       "scale": 1.0,
       "overflow_px": 0,
@@ -57,7 +57,7 @@
     },
     {
       "index": 7,
-      "role": "architecture",
+      "role": "feature",
       "file": "07.jpg",
       "scale": 1.0,
       "overflow_px": 0,

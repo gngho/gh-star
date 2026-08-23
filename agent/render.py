@@ -36,12 +36,12 @@ SCALES = (1.0, 0.92, 0.85)
 
 EYEBROWS = {
     "cover": "",
-    "problem": "왜 필요한가",
+    "what_is_it": "한마디로",
+    "problem": "왜 필요할까",
     "why_now": "지금 뜨는 이유",
-    "feature": "핵심 기능",
-    "architecture": "어떻게 동작하나",
-    "quickstart": "30초 시작",
-    "fit": "도입 판단",
+    "feature": "이런 걸 해요",
+    "quickstart": "직접 써보려면",
+    "fit": "나한테 맞을까",
     "outro": "",
 }
 

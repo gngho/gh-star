@@ -122,18 +122,17 @@ class TestEyebrow:
 
     def test_duplicate_label_is_dropped(self):
         """제목이 라벨을 거의 그대로 품으면 라벨을 뺀다."""
-        assert render_mod.eyebrow_for("feature", "핵심 기능 셋") == ""
-        assert render_mod.eyebrow_for("quickstart", "30초 시작하기") == ""
+        assert render_mod.eyebrow_for("what_is_it", "한마디로 말하면") == ""
+        assert render_mod.eyebrow_for("problem", "왜 필요할까요") == ""
 
     def test_distinct_title_keeps_label(self):
-        assert render_mod.eyebrow_for("feature", "실행 백엔드 7종") == "핵심 기능"
+        assert render_mod.eyebrow_for("feature", "요령을 기억해요") == "이런 걸 해요"
 
-    def test_renamed_fit_label_no_longer_echoes_title(self):
-        """'이럴 때 / 이럴 땐' 라벨이 '이럴 때 / 아닐 때' 제목과 겹쳐 나왔던 사례.
-
-        라벨을 '도입 판단'으로 바꿔 근본 원인을 없앴고, 가드는 남은 안전망이다.
-        """
-        assert render_mod.eyebrow_for("fit", "이럴 때 / 아닐 때") == "도입 판단"
+    def test_labels_are_beginner_friendly(self):
+        """타겟이 입문자로 바뀌면서 라벨도 대화체로 갈았다."""
+        assert render_mod.eyebrow_for("what_is_it", "AI 비서예요") == "한마디로"
+        assert render_mod.eyebrow_for("quickstart", "세 줄이면 끝") == "직접 써보려면"
+        assert render_mod.eyebrow_for("fit", "누구에게 맞을까") == "나한테 맞을까"
 
     def test_cover_and_outro_have_no_label(self):
         assert render_mod.eyebrow_for("cover", "hermes-agent") == ""

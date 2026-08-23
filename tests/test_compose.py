@@ -54,6 +54,16 @@ class TestPlanRoles:
         assert roles[0] == "cover" and roles[-1] == "outro"
         assert roles.count("feature") == 3
 
+    def test_what_is_it_comes_second(self):
+        """입문자가 여기서 못 알아들으면 나머지 아홉 장을 안 읽는다."""
+        roles, _ = compose_mod._plan_roles(_research())
+        assert roles[1] == "what_is_it"
+
+    def test_architecture_is_not_a_card(self):
+        """90자로 '어떻게 동작하나'를 쓰면 정확하거나 쉽거나 하나를 포기하게 된다."""
+        roles, _ = compose_mod._plan_roles(_research())
+        assert "architecture" not in roles
+
     def test_two_features_yields_nine_cards(self):
         research = _research()
         research.payload.key_features = research.payload.key_features[:2]
@@ -63,10 +73,10 @@ class TestPlanRoles:
 
     def test_ungrounded_field_is_dropped_not_invented(self):
         """근거 없는 필드는 카드로 만들지 않는다. 지어내지 않기 위해서다."""
-        research = _research(architecture=Claim(text="추측", evidence=[]))
+        research = _research(quickstart=Quickstart(commands=[], evidence=[]))
         roles, dropped = compose_mod._plan_roles(research)
-        assert "architecture" in dropped
-        assert "architecture" not in roles
+        assert "quickstart" in dropped
+        assert "quickstart" not in roles
 
     def test_empty_text_counts_as_ungrounded(self):
         research = _research(problem=Claim(text="   ", evidence=["README.md"]))
@@ -288,3 +298,66 @@ class TestSchema:
         schema = json_schema_for(CardDeckPayload)
         card = schema["$defs"]["Card"]
         assert "footnote" in card["required"]
+
+
+class TestJargonGate:
+    """타겟 독자는 '코딩·AI에 이제 발을 들인 사람' 이다.
+
+    프롬프트로 "쉽게 써라"만 하면 조사 자료의 파일명이 그대로 새어 나온다.
+    실제로 첫 버전 캡션에 `curator.py 87KB`, `learning_graph` 가 실렸다.
+    """
+
+    @pytest.mark.parametrize(
+        "text,expected",
+        [
+            ("learning_graph.py가 SKILL.md를 읽는다", {"learning_graph", "SKILL"}),
+            ("MCP 서버와 IPC 브리지", {"MCP", "IPC"}),
+            ("memoryManager 가 처리한다", {"memoryManager"}),
+            ("pyproject.toml 에 고정돼 있다", {"pyproject.toml"}),
+        ],
+    )
+    def test_detects_developer_speak(self, text, expected):
+        assert set(compose_mod.jargon_hits(text)) >= expected
+
+    @pytest.mark.parametrize(
+        "text",
+        [
+            "터미널(검은 화면에 글자로 명령하는 창)에서 도는 AI 비서예요",
+            "별 23만 개를 받은 오픈소스 프로젝트예요",
+            "한 번 알려준 요령을 적어두고 다음에 다시 꺼내 씁니다",
+            "무료로 쓸 수 있고 PC 에도 설치됩니다",
+        ],
+    )
+    def test_plain_korean_passes(self, text):
+        assert compose_mod.jargon_hits(text) == []
+
+    def test_common_acronyms_are_allowed(self):
+        """AI, MIT, URL 까지 잡으면 쓸 수 있는 문장이 없다."""
+        assert compose_mod.jargon_hits("AI 도구이고 MIT 라이선스예요") == []
+
+    def test_explained_acronym_passes(self):
+        """괄호로 풀어 썼으면 통과시킨다 — 그게 우리가 원하는 형태다."""
+        assert compose_mod.jargon_hits("API(프로그램끼리 대화하는 통로)로 연결해요") == []
+
+    def test_hard_card_is_reported_as_violation(self):
+        deck = CardDeckPayload(
+            cards=[
+                Card(index=1, role="what_is_it", title="학습 루프",
+                     body="learning_graph.py가 SKILL.md와 MCP 서버를 연결한다"),
+            ],
+            caption="요약", hashtags=[],
+        )
+        problems = compose_mod._validate(
+            deck, ["what_is_it"], MAX_TITLE, MAX_BODY, MAX_TAGS
+        )
+        assert any("입문자에게 어렵습니다" in p for p in problems)
+
+    def test_outro_is_exempt(self):
+        """레포 주소와 라이선스는 영문일 수밖에 없고 그게 정보의 본체다."""
+        deck = CardDeckPayload(
+            cards=[Card(index=1, role="outro", title="MIT · Python",
+                        body="github.com/NousResearch/hermes-agent")],
+            caption="요약", hashtags=[],
+        )
+        problems = compose_mod._validate(deck, ["outro"], MAX_TITLE, MAX_BODY, MAX_TAGS)
+        assert not any("입문자" in p for p in problems)
