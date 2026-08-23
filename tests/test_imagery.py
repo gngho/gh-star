@@ -152,3 +152,29 @@ class TestSourcesArePermitted:
 
     def test_concise_cards_are_excluded(self):
         assert imagery.NO_IMAGE == {"cover", "outro"}
+
+
+class TestMarkLabels:
+    """그래픽 라벨이 카드 eyebrow 와 같으면 같은 문구가 위아래로 두 번 보인다."""
+
+    def test_label_never_repeats_the_eyebrow(self):
+        from agent.render import EYEBROWS
+
+        deck = _deck()
+        for card in deck.payload.cards:
+            if card.role in imagery.NO_IMAGE:
+                continue
+            plan = imagery._plan(card, deck, _research())
+            label = plan.get("label")
+            if not label:
+                continue
+            assert label != EYEBROWS.get(card.role), (
+                f"{card.role}: 그래픽 라벨과 eyebrow 가 '{label}' 로 겹칩니다"
+            )
+
+    def test_problem_mark_has_no_label(self):
+        assert _plan("problem")["label"] == ""
+
+    def test_feature_keeps_its_label(self):
+        """벌거벗은 번호에 의미를 주는 유일한 라벨이라 남긴다."""
+        assert _plan("feature")["label"] == "핵심 기능"

@@ -10,7 +10,7 @@
 | quickstart | 터미널 창 | 카드의 실제 설치 명령 |
 | fit | 이모지 세 단계 (👍 🤔 👎) | 고정 문구 |
 | feature | 큰 번호 01/02/03 | 카드 순서 |
-| problem | 큰 물음표 | — |
+| problem | 큰 물음표 (라벨 없음) | — |
 | cover, outro | 없음 | 간결해야 하는 카드 |
 
 **이미지 생성 모델을 쓰지 않는다.** 우리는 스타 증가량·설치 명령·기능명 같은
@@ -124,7 +124,13 @@ def run(deck: CardDeckFile, post_dir: Path, dry_run: bool = False) -> dict[str, 
 
 
 def _plan(card: Any, deck: CardDeckFile, research: ResearchFile | None) -> dict[str, Any] | None:
-    """카드 내용에서 그래픽에 넣을 값을 뽑는다."""
+    """카드 내용에서 그래픽에 넣을 값을 뽑는다.
+
+    라벨은 카드의 eyebrow 와 같은 말이면 안 된다. 그래픽 바로 아래에 eyebrow 가
+    오기 때문에 같은 문구가 두 번 보인다. 실제로 problem 카드에서 "왜 필요할까"가
+    위아래로 겹쳐 나왔다. feature 만 "핵심 기능" 을 남기는데, 벌거벗은 번호에
+    의미를 주는 유일한 라벨이고 eyebrow("이런 걸 해요")와 다른 말이기 때문이다.
+    """
     role = card.role
 
     if role in OG_ROLES:
@@ -138,13 +144,13 @@ def _plan(card: Any, deck: CardDeckFile, research: ResearchFile | None) -> dict[
             return {"kind": "stat", "delta": delta, "stars": stars,
                     "bars": _star_bars(deck)}
         # 증가량을 모르면 수치 카드가 거짓말이 된다. 다른 그림으로 넘어간다.
-        return {"kind": "mark", "mark": "↑", "label": "지금 뜨는 이유"}
+        return {"kind": "mark", "mark": "↑", "label": ""}
 
     if role == "quickstart":
         lines = [l for l in card.code if l.strip()][:3]
         if lines:
             return {"kind": "terminal", "lines": lines}
-        return {"kind": "mark", "mark": "$", "label": "직접 써보려면"}
+        return {"kind": "mark", "mark": "$", "label": ""}
 
     if role == "fit":
         # 조사 원문을 두 칸에 넣어봤으나 셋 다 틀렸다: 글자가 단어 중간에서
@@ -157,7 +163,7 @@ def _plan(card: Any, deck: CardDeckFile, research: ResearchFile | None) -> dict[
                 "label": "핵심 기능"}
 
     if role == "problem":
-        return {"kind": "mark", "mark": "?", "label": "왜 필요할까"}
+        return {"kind": "mark", "mark": "?", "label": ""}
 
     return {"kind": "mark", "mark": "*", "label": ""}
 
