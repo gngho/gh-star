@@ -96,6 +96,7 @@ def run(config: Config, run_date: str, dry_run: bool = False) -> dict[str, Any]:
     font_uri = _font_data_uri()
 
     star_badge = _star_badge(deck)
+    _attach_images(cards, post_dir)
     cards_dir = post_dir / "cards"
     warnings: list[str] = []
     results: list[dict[str, Any]] = []
@@ -144,6 +145,7 @@ def run(config: Config, run_date: str, dry_run: bool = False) -> dict[str, Any]:
                         "file": out.name,
                         "scale": scale,
                         "overflow_px": overflow_by,
+                        "has_image": bool(card.image),
                     }
                 )
         finally:
@@ -241,6 +243,35 @@ def _read_tokens() -> str:
 def _tokens_from_figma() -> bool:
     """토큰이 피그마에서 온 것인지 기본값인지 표시한다."""
     return (paths.ROOT / "design" / "tokens.json").exists()
+
+
+IMAGE_SUFFIXES = (".jpg", ".jpeg", ".png", ".webp")
+IMAGE_MIME = {".jpg": "image/jpeg", ".jpeg": "image/jpeg", ".png": "image/png", ".webp": "image/webp"}
+
+
+def _attach_images(cards: list[Card], post_dir: Path) -> None:
+    """카드 상단 이미지를 `posts/{...}/images/{index:02d}.{ext}` 에서 찾아 붙인다.
+
+    없으면 그대로 비워 둔다. 이미지가 없는데 자리표시자를 그리면
+    "여기에 이미지가 삽입됩니다"가 인스타그램에 그대로 발행된다.
+    피그마 템플릿의 점선 박스는 어디에 무엇이 들어가는지 알려주는 설명이지,
+    렌더 결과물이 아니다.
+    """
+    images_dir = post_dir / "images"
+    for card in cards:
+        if card.role == "cover":
+            card.image = None  # 커버는 이미지 없이 간다 (디자인 결정)
+            continue
+        for suffix in IMAGE_SUFFIXES:
+            candidate = images_dir / f"{card.index:02d}{suffix}"
+            if candidate.exists():
+                card.image = _data_uri(candidate)
+                break
+
+
+def _data_uri(path: Path) -> str:
+    mime = IMAGE_MIME.get(path.suffix.lower(), "application/octet-stream")
+    return f"data:{mime};base64," + base64.b64encode(path.read_bytes()).decode("ascii")
 
 
 def _font_data_uri() -> str:

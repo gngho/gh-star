@@ -177,6 +177,11 @@ class Card(BaseModel):
     code: list[str] = Field(default_factory=list)
     footnote: str | None = None
 
+    # 카드 상단 이미지. 렌더 단계에서 채운다 (compose 는 채우지 않는다).
+    # 비어 있으면 이미지 영역을 그리지 않고 본문이 카드 전체를 쓴다 —
+    # 자리표시자가 그대로 발행되는 것을 막기 위해서다. cover 는 항상 비운다.
+    image: str | None = None
+
 
 class CardDeckPayload(BaseModel):
     """에이전트가 생성하는 카드 원고."""

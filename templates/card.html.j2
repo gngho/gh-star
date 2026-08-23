@@ -40,10 +40,39 @@ body {
   position: relative;
   width: 100%;
   height: 100%;
-  padding: var(--pad-y) var(--pad-x);
   display: flex;
   flex-direction: column;
   font-size: {{ scale }};      /* 축소 배율의 기준 */
+}
+
+/* 상단 이미지 영역 — 이미지가 있을 때만 그린다.
+   자리표시자를 그대로 내보내면 "여기에 이미지가 삽입됩니다"가 발행되므로,
+   이미지가 없으면 이 영역을 아예 만들지 않고 본문이 카드 전체를 쓴다. */
+.image-slot {
+  position: relative;
+  width: 100%;
+  height: calc(470px * {{ scale }});
+  flex: none;
+  background-color: var(--bg-elevated);
+  background-image: url("{{ card.image }}");
+  background-size: cover;
+  background-position: center;
+}
+/* 이미지 아래를 배경색으로 녹여 본문과 이어지게 한다 */
+.image-slot::after {
+  content: "";
+  position: absolute;
+  inset: auto 0 0 0;
+  height: calc(160px * {{ scale }});
+  background: linear-gradient(to bottom, transparent, var(--bg));
+}
+
+.body-wrap {
+  flex: 1;
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+  padding: calc(var(--pad-y) * {{ '0.75' if card.image else '1' }}) var(--pad-x) var(--pad-y);
 }
 
 /* 상단 좌측 은은한 광원 — 밋밋한 단색 배경을 피한다 */
@@ -144,40 +173,34 @@ body {
   padding-top: calc(var(--gap) * {{ scale }});
 }
 .repo-tag { font-family: var(--font-mono); color: var(--fg-muted); }
-
-.pager { display: flex; gap: 8px; align-items: center; }
-.dot {
-  width: 8px; height: 8px; border-radius: 50%;
-  background: var(--fg-faint); opacity: .35;
-}
-.dot.on { background: var(--accent); opacity: 1; width: 22px; border-radius: 999px; }
 </style>
 </head>
 <body>
 <div class="card">
-  <div class="content" id="measure">
-    {% if eyebrow %}<div class="eyebrow">{{ eyebrow }}</div>{% endif %}
-    <h1 class="title">{{ card.title }}</h1>
+  {% if card.image %}<div class="image-slot"></div>{% endif %}
 
-    {% if card.role == 'cover' and star_badge %}
-      <div class="badge">⭐ {{ star_badge }}</div>
-    {% endif %}
+  <div class="body-wrap">
+    <div class="content" id="measure">
+      {% if eyebrow %}<div class="eyebrow">{{ eyebrow }}</div>{% endif %}
+      <h1 class="title">{{ card.title }}</h1>
 
-    {% if card.body %}<p class="body">{{ card.body }}</p>{% endif %}
+      {% if card.role == 'cover' and star_badge %}
+        <div class="badge">⭐ {{ star_badge }}</div>
+      {% endif %}
 
-    {% if card.code %}
-      <div class="code">{% for line in card.code %}<div class="line">{{ line }}</div>{% endfor %}</div>
-    {% endif %}
+      {% if card.body %}<p class="body">{{ card.body }}</p>{% endif %}
 
-    {% if card.footnote %}<div class="footnote">{{ card.footnote }}</div>{% endif %}
-  </div>
+      {% if card.code %}
+        <div class="code">{% for line in card.code %}<div class="line">{{ line }}</div>{% endfor %}</div>
+      {% endif %}
 
-  <div class="footer">
-    {# 커버는 제목이 곧 레포명이라 하단 태그가 중복된다 #}
-    <span class="repo-tag">{{ '' if card.role == 'cover' else repo }}</span>
-    <span class="pager">
-      {% for i in range(total) %}<span class="dot{{ ' on' if i + 1 == card.index else '' }}"></span>{% endfor %}
-    </span>
+      {% if card.footnote %}<div class="footnote">{{ card.footnote }}</div>{% endif %}
+    </div>
+
+    <div class="footer">
+      {# 커버는 제목이 곧 레포명이라 하단 태그가 중복된다 #}
+      <span class="repo-tag">{{ '' if card.role == 'cover' else repo }}</span>
+    </div>
   </div>
 </div>
 </body>

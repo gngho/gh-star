@@ -141,3 +141,65 @@ class TestEyebrow:
 
     def test_unknown_role_has_no_label(self):
         assert render_mod.eyebrow_for("mystery", "제목") == ""
+
+
+class TestImageSlot:
+    """카드 상단 이미지 영역. 이미지가 없으면 자리표시자를 그리지 않는다.
+
+    피그마 템플릿의 점선 박스는 "여기에 무엇이 들어간다"는 설명이지 렌더 결과가
+    아니다. 그대로 내보내면 '여기에 이미지가 삽입됩니다' 가 인스타그램에 발행된다.
+    """
+
+    def _cards(self):
+        return [
+            Card(index=1, role="cover", title="레포명", body="훅"),
+            Card(index=2, role="feature", title="기능", body="설명"),
+        ]
+
+    def test_missing_image_leaves_slot_empty(self, tmp_path):
+        cards = self._cards()
+        render_mod._attach_images(cards, tmp_path)
+        assert all(c.image is None for c in cards)
+
+    def test_image_is_embedded_as_data_uri(self, tmp_path):
+        images = tmp_path / "images"
+        images.mkdir()
+        # 최소 크기의 유효한 PNG
+        Image.new("RGB", (8, 8), (10, 20, 30)).save(images / "02.png")
+
+        cards = self._cards()
+        render_mod._attach_images(cards, tmp_path)
+        assert cards[1].image.startswith("data:image/png;base64,")
+
+    def test_cover_never_gets_an_image(self, tmp_path):
+        """커버는 이미지 없이 간다는 디자인 결정."""
+        images = tmp_path / "images"
+        images.mkdir()
+        Image.new("RGB", (8, 8)).save(images / "01.png")
+
+        cards = self._cards()
+        render_mod._attach_images(cards, tmp_path)
+        assert cards[0].image is None
+
+    def test_jpg_is_also_picked_up(self, tmp_path):
+        images = tmp_path / "images"
+        images.mkdir()
+        Image.new("RGB", (8, 8)).save(images / "02.jpg")
+
+        cards = self._cards()
+        render_mod._attach_images(cards, tmp_path)
+        assert cards[1].image.startswith("data:image/jpeg;base64,")
+
+    def test_meta_records_whether_each_card_had_an_image(self, rendered):
+        meta, _ = rendered
+        assert all("has_image" in c for c in meta["cards"])
+        assert meta["cards"][0]["has_image"] is False
+
+
+class TestNoPager:
+    """페이지 인디케이터는 쓰지 않기로 했다."""
+
+    def test_template_has_no_pager_markup(self):
+        source = (paths.ROOT / "templates" / "card.html.j2").read_text(encoding="utf-8")
+        assert "pager" not in source
+        assert "class=\"dot" not in source

@@ -1,7 +1,7 @@
 {
   "repo": "NousResearch/hermes-agent",
   "date": "2026-08-23",
-  "rendered_at": "2026-08-23T10:50:20.247153+00:00",
+  "rendered_at": "2026-08-23T11:32:27.069499+00:00",
   "width": 1080,
   "height": 1350,
   "format": "jpeg",
@@ -12,70 +12,80 @@
       "role": "cover",
       "file": "01.jpg",
       "scale": 1.0,
-      "overflow_px": 0
+      "overflow_px": 0,
+      "has_image": false
     },
     {
       "index": 2,
       "role": "problem",
       "file": "02.jpg",
       "scale": 1.0,
-      "overflow_px": 0
+      "overflow_px": 0,
+      "has_image": false
     },
     {
       "index": 3,
       "role": "why_now",
       "file": "03.jpg",
       "scale": 1.0,
-      "overflow_px": 0
+      "overflow_px": 0,
+      "has_image": false
     },
     {
       "index": 4,
       "role": "feature",
       "file": "04.jpg",
       "scale": 1.0,
-      "overflow_px": 0
+      "overflow_px": 0,
+      "has_image": false
     },
     {
       "index": 5,
       "role": "feature",
       "file": "05.jpg",
       "scale": 1.0,
-      "overflow_px": 0
+      "overflow_px": 0,
+      "has_image": false
     },
     {
       "index": 6,
       "role": "feature",
       "file": "06.jpg",
       "scale": 1.0,
-      "overflow_px": 0
+      "overflow_px": 0,
+      "has_image": false
     },
     {
       "index": 7,
       "role": "architecture",
       "file": "07.jpg",
       "scale": 1.0,
-      "overflow_px": 0
+      "overflow_px": 0,
+      "has_image": false
     },
     {
       "index": 8,
       "role": "quickstart",
       "file": "08.jpg",
       "scale": 1.0,
-      "overflow_px": 0
+      "overflow_px": 0,
+      "has_image": false
     },
     {
       "index": 9,
       "role": "fit",
       "file": "09.jpg",
       "scale": 1.0,
-      "overflow_px": 0
+      "overflow_px": 0,
+      "has_image": false
     },
     {
       "index": 10,
       "role": "outro",
       "file": "10.jpg",
       "scale": 1.0,
-      "overflow_px": 0
+      "overflow_px": 0,
+      "has_image": false
     }
   ],
   "warnings": []
