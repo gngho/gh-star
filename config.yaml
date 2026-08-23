@@ -32,7 +32,8 @@ select:
 compose:
   card_count: 10
   max_title_chars: 24
-  max_body_chars: 90
+  min_body_chars: 85         # 하한이 없으면 한두 문장으로 끝나 카드가 휑해진다
+  max_body_chars: 150        # 34px 기준 약 5줄. 오버플로 검출이 최종 방어선
   max_hashtags: 30
   max_code_lines: 3
   max_code_line_chars: 52       # 27px 모노스페이스 기준 실측 여유 (기존 42는 과했다)

@@ -202,3 +202,37 @@ class TestNoPager:
         source = (paths.ROOT / "templates" / "card.html.j2").read_text(encoding="utf-8")
         assert "pager" not in source
         assert "class=\"dot" not in source
+
+
+class TestSentenceSplitting:
+    """한 줄에 두 문장이 걸치면 뒤 문장이 줄 끝에서 시작해 어정쩡하게 잘린다."""
+
+    def test_splits_on_sentence_end(self):
+        out = render_mod.split_sentences("수정 700건이 들어갔어요. 웹 검색도 됩니다.")
+        assert out == ["수정 700건이 들어갔어요.", "웹 검색도 됩니다."]
+
+    @pytest.mark.parametrize(
+        "text",
+        [
+            "v0.20.4 이후 하루 만에 들어갔어요.",   # 버전 번호의 점
+            "별 23.4만 개를 받았습니다.",           # 소수점
+        ],
+    )
+    def test_does_not_split_on_decimal_points(self, text):
+        """소수점에서 끊기면 '23.' / '4만 개' 처럼 숫자가 갈라진다."""
+        assert render_mod.split_sentences(text) == [text]
+
+    def test_handles_question_and_exclamation(self):
+        out = render_mod.split_sentences("이런 적 있죠? 요령이 사라집니다! 그래서 만들었어요.")
+        assert len(out) == 3
+
+    def test_single_sentence_stays_one_block(self):
+        assert render_mod.split_sentences("한 문장뿐입니다.") == ["한 문장뿐입니다."]
+
+    def test_empty_body_yields_nothing(self):
+        assert render_mod.split_sentences("") == []
+        assert render_mod.split_sentences("   ") == []
+
+    def test_trailing_sentence_without_period_survives(self):
+        out = render_mod.split_sentences("첫 문장입니다. 마침표 없는 끝")
+        assert out == ["첫 문장입니다.", "마침표 없는 끝"]

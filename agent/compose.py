@@ -70,6 +70,10 @@ SYSTEM_PROMPT = """\
 6. **말투는 친구에게 설명하듯.** "~한다" 보다 "~해요/~합니다" 가 낫고,
    질문을 던져도 좋다. 다만 호들갑은 떨지 마라.
 
+7. **본문은 2~3문장으로 채워라.** 한 문장만 쓰면 카드가 휑하고 설명도 부족하다.
+   보통 "무엇인지" 한 문장, "그래서 뭐가 좋은지/왜 그런지" 한두 문장이면 된다.
+   다만 채우려고 같은 말을 반복하거나 없는 사실을 만들지는 마라.
+
 ## 쉽게 쓰되 틀리게 쓰지 마라
 
 이게 제일 중요하다. 쉽게 만들려고 **사실을 바꾸거나 지어내면 안 된다.**
@@ -117,7 +121,8 @@ async def _run_async(config: Config, run_date: str, dry_run: bool) -> CardDeckFi
     cfg = config.section("compose")
 
     max_title = int(cfg.get("max_title_chars", 24))
-    max_body = int(cfg.get("max_body_chars", 90))
+    min_body = int(cfg.get("min_body_chars", 85))
+    max_body = int(cfg.get("max_body_chars", 150))
     max_tags = int(cfg.get("max_hashtags", 30))
     max_code_lines = int(cfg.get("max_code_lines", 3))
     max_code_chars = int(cfg.get("max_code_line_chars", 52))
@@ -129,7 +134,8 @@ async def _run_async(config: Config, run_date: str, dry_run: bool) -> CardDeckFi
         log.warning("근거 부족으로 제외된 카드: %s", ", ".join(dropped))
 
     base_prompt = _build_prompt(
-        research, roles, max_title, max_body, max_tags, max_code_lines, max_code_chars, tone
+        research, roles, max_title, min_body, max_body, max_tags,
+        max_code_lines, max_code_chars, tone
     )
 
     feedback = ""
@@ -150,7 +156,8 @@ async def _run_async(config: Config, run_date: str, dry_run: bool) -> CardDeckFi
             log.info("자동 보정: %s", note)
 
         violations = _validate(
-            payload, roles, max_title, max_body, max_tags, max_code_lines, max_code_chars
+            payload, roles, max_title, max_body, max_tags,
+            max_code_lines, max_code_chars, min_body
         )
         if not violations:
             log.info("원고 검증 통과 (시도 %d회, $%.4f)", attempt, total_cost)
@@ -230,6 +237,7 @@ def _build_prompt(
     research: ResearchFile,
     roles: list[str],
     max_title: int,
+    min_body: int,
     max_body: int,
     max_tags: int,
     max_code_lines: int,
@@ -272,7 +280,8 @@ def _build_prompt(
 
 ## 하드 제약
 - title: {max_title}자 이하 (공백 포함)
-- body: {max_body}자 이하 (공백 포함)
+- body: **{min_body}~{max_body}자** (공백 포함). 2~3문장으로 채운다.
+  한 문장으로 끝내지 마라 — 카드가 휑해 보이고 설명도 부족하다.
 - code 는 quickstart 카드에만. {max_code_lines}줄 이하, 줄당 {max_code_chars}자 이하
   각 줄은 그 자체로 완전한 명령이어야 한다. 한 명령을 쪼개지 마라.
 - caption: {CAPTION_LIMIT}자 이하, 해시태그 미포함
@@ -387,6 +396,7 @@ def _validate(
     max_tags: int,
     max_code_lines: int = 3,
     max_code_line_chars: int = 52,
+    min_body: int = 0,
 ) -> list[str]:
     """위반을 사람이 읽을 수 있는 문장으로 모은다. 그대로 모델에 되돌려준다."""
     problems: list[str] = []
@@ -407,6 +417,11 @@ def _validate(
         if len(card.body) > max_body:
             problems.append(
                 f"{where} body 가 {len(card.body)}자입니다 ({max_body}자 이하로 줄이세요)."
+            )
+        elif min_body and expected_role != "cover" and 0 < len(card.body) < min_body:
+            problems.append(
+                f"{where} body 가 {len(card.body)}자로 너무 짧습니다 "
+                f"({min_body}자 이상, 2~3문장). 한 문장으로 끝내지 마세요."
             )
         if not card.title.strip():
             problems.append(f"{where} title 이 비어 있습니다.")

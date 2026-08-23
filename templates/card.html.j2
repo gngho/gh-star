@@ -124,6 +124,10 @@ body {
   line-height: var(--leading-body);
   color: var(--fg-muted);
 }
+/* 문장마다 블록. 한 줄에 두 문장이 걸치면 뒤 문장이 줄 끝에서 시작해
+   어정쩡하게 잘린다. 블록을 주면 다음 문장은 항상 새 줄에서 시작한다. */
+.body .s { display: block; }
+.body .s + .s { margin-top: calc(6px * {{ scale }}); }
 
 .code {
   background: var(--bg-code);
@@ -188,7 +192,9 @@ body {
         <div class="badge">⭐ {{ star_badge }}</div>
       {% endif %}
 
-      {% if card.body %}<p class="body">{{ card.body }}</p>{% endif %}
+      {% if body_sentences %}
+        <p class="body">{% for s in body_sentences %}<span class="s">{{ s }}</span>{% endfor %}</p>
+      {% endif %}
 
       {% if card.code %}
         <div class="code">{% for line in card.code %}<div class="line">{{ line }}</div>{% endfor %}</div>
