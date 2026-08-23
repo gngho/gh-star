@@ -254,9 +254,39 @@ def cmd_run(args: argparse.Namespace) -> int:
             return 1
 
     post_dirs = sorted(paths.POSTS.glob(f"{date}-*"))
-    print("\n" + "═" * 52)
-    print(f"완료. 카드를 확인하세요: {post_dirs[-1] if post_dirs else paths.POSTS}")
-    print("고칠 게 있으면 content.json 을 수정하고 `python -m agent render` 만 다시 돌리면 됩니다.")
+    if not post_dirs:
+        print("\n[error] 산출물 디렉터리를 찾지 못했습니다.", file=sys.stderr)
+        return 1
+    post_dir = post_dirs[-1]
+
+    print("\n" + "═" * 56)
+    print(f"  {post_dir}")
+
+    meta = paths.read_json(post_dir / "meta.json", default={}) or {}
+    cards = meta.get("cards", [])
+    warnings = meta.get("warnings", [])
+    print(f"  카드 {len(cards)}장 · 이미지 {sum(1 for c in cards if c.get('has_image'))}장")
+
+    if warnings:
+        # 넘치는 카드를 그대로 올리면 문장이 잘린 채 발행된다.
+        print(f"\n  ⚠️ 렌더 경고 {len(warnings)}건 — 올리기 전에 확인하세요:")
+        for w in warnings:
+            print(f"     - {w}")
+
+    caption = post_dir / "caption.md"
+    if caption.exists():
+        head = caption.read_text(encoding="utf-8").strip().split("\n")[0]
+        print(f"\n  캡션: {caption.name}  \"{head[:52]}{'…' if len(head) > 52 else ''}\"")
+
+    print("\n  올리는 법")
+    print("   1. cards/ 를 01 부터 순서대로 인스타그램 캐러셀에 업로드")
+    print("   2. caption.md 내용을 그대로 붙여넣기")
+    print("   3. 올린 뒤 data/published.json 에 기록 (재발행 차단 기준)")
+    print("\n  문구를 고치려면 content.json 수정 후 `python -m agent render`")
+
+    if args.open:
+        import subprocess
+        subprocess.run(["explorer", str(post_dir / "cards")], check=False)
     return 0
 
 
@@ -304,6 +334,7 @@ def main(argv: list[str] | None = None) -> int:
     p_run.add_argument("--date", default=_today_kst(), help="기준일 (KST, 기본: 오늘)")
     p_run.add_argument("--full", action="store_true", help="수집·선정도 로컬에서 함께 실행")
     p_run.add_argument("--no-images", action="store_true", help="상단 이미지 생략")
+    p_run.add_argument("--open", action="store_true", help="끝나면 카드 폴더를 연다")
     p_run.set_defaults(func=cmd_run)
 
     p_sync = sub.add_parser(
