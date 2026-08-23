@@ -578,7 +578,7 @@ python -m agent design-sync
 
 **피그마 파일 구조 규약**
 
-- 카드 역할별 프레임을 1080×1350으로 만들고 프레임명을 `card/cover`, `card/feature`, `card/code`, `card/outro` 등으로 고정한다. 이 이름이 코드의 템플릿 키와 1:1 대응한다.
+- 카드 역할별 프레임을 1080×1350으로 만들고 프레임명을 `card/{role}` 로 고정한다(`card/cover`, `card/what-is-it`, `card/problem`, `card/why-now`, `card/feature`, `card/quickstart`, `card/fit`, `card/outro`). 이 이름이 코드의 role 과 1:1 대응한다.
 - 색·폰트크기·간격은 반드시 **피그마 변수(Variable)로 정의**한다. 변수로 잡히지 않은 값은 1단계에서 추출되지 않아 코드와 어긋난다.
 - **템플릿(`card.html.j2`)에도 색을 하드코딩하지 않는다.** 파생색이 필요하면 `color-mix(in srgb, var(--accent) 14%, transparent)` 처럼 토큰에서 만든다. 실제로 배지 배경과 상단 광원이 하드코딩돼 있어, 피그마에서 accent를 바꿔도 그 둘만 옛 색으로 남았다. 테스트가 색 리터럴을 잡아낸다.
 - **피그마에는 Pretendard가 없다.** 목업은 Noto Sans KR로, 렌더러는 번들한 Pretendard로 그린다. 따라서 시각 회귀는 픽셀 일치가 아니라 유사도(0.90) 기준이어야 한다 — 폰트가 다르므로 애초에 일치할 수 없다.
