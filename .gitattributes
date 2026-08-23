@@ -1,0 +1,10 @@
+# 저장소 안에서는 항상 LF 로 보관한다.
+# 특히 워크플로 YAML 은 CRLF 로 커밋되면 Actions 러너가 run: 블록을 셸 스크립트로
+# 풀어낼 때 각 줄 끝에 \r 이 붙어 bash 가 깨진다.
+* text=auto eol=lf
+
+*.png binary
+*.jpg binary
+*.jpeg binary
+*.ttf binary
+*.woff2 binary

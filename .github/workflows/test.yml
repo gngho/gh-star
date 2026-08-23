@@ -1,0 +1,28 @@
+# 테스트 CI. 스코어링 회귀(누락값 처리)가 조용히 되돌아가는 것을 막는 게 주 목적이다.
+
+name: test
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  pytest:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+
+      - run: python -m pip install --upgrade pip && python -m pip install -e ".[dev]"
+
+      - run: python -m pytest tests -q

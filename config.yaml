@@ -1,0 +1,55 @@
+# GitHub 핫 레포 → 인스타그램 카드뉴스 에이전트 운영 설정
+# 명세: SPEC.md 2.4
+
+collect:
+  search_min_stars: 200            # Search API 후보 하한
+  search_pushed_within_days: 14
+  search_max_pages: 2              # 쿼리당 페이지 수 (100건/페이지)
+  trending_languages: ["", "python", "typescript", "rust", "go"]
+  trending_since: daily
+  watchlist_max: 500               # 워치리스트 상한
+  watchlist_ttl_days: 30           # 미등장 시 제거까지의 일수
+  snapshot_retention_days: 180
+  candidates_top_n: 50
+
+score:
+  w_delta_1d: 0.45
+  w_delta_7d: 0.25
+  w_recency: 0.15
+  w_topic_match: 0.15
+  recency_full_days: 180           # 이 기간 내 생성이면 보너스 1.0
+  recency_zero_days: 1095          # 이 지점에서 보너스 0
+
+select:
+  min_stars: 500
+  republish_block_days: 90
+  stale_push_days: 90              # 마지막 푸시가 이보다 오래되면 탈락
+  min_readme_chars: 500
+  topic_filter: ["ai", "llm", "agent", "machine-learning"]
+  backup_count: 2
+  max_validation_calls: 15         # 위에서부터 검증할 최대 후보 수
+
+compose:
+  card_count: 10
+  max_title_chars: 24
+  max_body_chars: 90
+  max_hashtags: 30
+  tone: "실무 개발자에게 말하듯, 과장 없이"
+
+render:
+  width: 1080
+  height: 1350                     # 4:5
+  jpeg_quality: 90
+  theme: dark
+  visual_regression_threshold: 0.90
+
+design:                            # design-sync 전용. 일일 파이프라인에서는 읽지 않음
+  figma_file_key: ""
+  figma_node_ids:
+    cover: ""
+    feature: ""
+    code: ""
+    outro: ""
+
+publish:
+  timezone: "Asia/Seoul"
