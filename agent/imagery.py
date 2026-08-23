@@ -1,32 +1,40 @@
-"""카드 상단 이미지 생성. SPEC.md 7.4.
+"""카드 상단 그래픽 생성. SPEC.md 7.4.
 
-**GitHub 이 제공하는 자산만 쓴다.** 레포의 README 스크린샷이나 로고를 가져다
-쓰지 않는다 — 저작권이 레포 소유자에게 있고 라이선스가 코드만 다룰 수 있다.
+**역할마다 다른 그림을 그린다.** 같은 이미지를 반복하면 캐러셀이 밋밋하고,
+무엇보다 각 카드가 하는 말과 그림이 따로 논다.
 
-쓰는 것:
-- OG 이미지 (`opengraph.githubassets.com`) — GitHub 이 임베드용으로 만들어 제공
-- 소유자 아바타 (`github.com/{owner}.png`)
+| 역할 | 그래픽 | 출처 |
+|---|---|---|
+| what_is_it | GitHub OG 이미지 | `opengraph.githubassets.com` |
+| why_now | 스타 증가 수치 + 막대 | 스냅샷 이력 (실데이터) |
+| quickstart | 터미널 창 | 카드의 실제 설치 명령 |
+| fit | 두 칸 머리글 | 고정 문구 |
+| feature | 큰 번호 01/02/03 | 카드 순서 |
+| problem | 큰 물음표 | — |
+| cover, outro | 없음 | 간결해야 하는 카드 |
 
-같은 OG 이미지를 여러 장에 반복하면 캐러셀이 단조로워지므로 역할별로 다르게 쓴다:
-- what_is_it : OG 이미지 (레포 이름·설명이 박힌 카드라 "이게 뭐냐"에 어울린다)
-- 그 외      : 아바타를 크게 흐린 색면 + 선명한 아바타를 얹은 조합.
-               카드 번호에 따라 음영 방향을 바꿔 같은 그림이 반복되지 않게 한다.
-- cover, outro : 이미지를 쓰지 않는다. 둘은 간결해야 하는 카드다 —
-                 커버는 제목과 배지가 시선을 잡고, 마무리는 출처·라이선스·
-                 한마디만 남긴다.
+**이미지 생성 모델을 쓰지 않는다.** 우리는 스타 증가량·설치 명령·기능명 같은
+실제 데이터를 갖고 있고, 그걸 그리는 편이 생성 일러스트보다 정확하고 덜
+상투적이다. 렌더링은 카드와 같은 Playwright 파이프라인을 재사용한다 —
+디자인 토큰이 자동으로 공유되므로 카드와 그래픽이 한 세트로 보인다.
+
+레포의 README 스크린샷이나 로고는 여전히 쓰지 않는다 (SPEC 13.3).
 """
 
 from __future__ import annotations
 
 import logging
+from datetime import date, timedelta
 from io import BytesIO
 from pathlib import Path
+from typing import Any
 
 import httpx
-from PIL import Image, ImageDraw, ImageFilter
+from PIL import Image
+from playwright.sync_api import sync_playwright
 
 from . import paths
-from .models import CardDeckFile
+from .models import CardDeckFile, ResearchFile
 
 log = logging.getLogger(__name__)
 
@@ -35,142 +43,190 @@ TIMEOUT = 30.0
 USER_AGENT = "gh-cardnews-agent (+https://github.com/)"
 
 OG_URL = "https://opengraph.githubassets.com/1/{repo}"
-AVATAR_URL = "https://github.com/{owner}.png?size=460"
 
 # 이미지를 쓰지 않는 역할 — 간결해야 하는 카드들
 NO_IMAGE = {"cover", "outro"}
-# OG 이미지를 쓰는 역할
+# GitHub OG 이미지를 쓰는 역할
 OG_ROLES = {"what_is_it"}
+
+BG = (11, 13, 16)  # color/bg
 
 
 class ImageryError(RuntimeError):
     pass
 
 
-def run(deck: CardDeckFile, post_dir: Path, dry_run: bool = False) -> dict[str, object]:
-    owner = deck.repo.split("/")[0]
+def run(deck: CardDeckFile, post_dir: Path, dry_run: bool = False) -> dict[str, Any]:
+    research = _load_research(deck)
     out_dir = post_dir / "images"
-
-    og = _fetch_image(OG_URL.format(repo=deck.repo))
-    avatar = _fetch_image(AVATAR_URL.format(owner=owner))
-
-    if og is None and avatar is None:
-        raise ImageryError(
-            "GitHub 에서 OG 이미지와 아바타를 모두 가져오지 못했습니다. "
-            "이미지 없이 렌더하려면 이 단계를 건너뛰세요."
-        )
-
     if not dry_run:
         out_dir.mkdir(parents=True, exist_ok=True)
 
-    written: list[dict[str, object]] = []
-    for card in deck.payload.cards:
-        if card.role in NO_IMAGE:
-            continue
+    plans = [
+        (card, _plan(card, deck, research))
+        for card in deck.payload.cards
+        if card.role not in NO_IMAGE
+    ]
+    plans = [(c, p) for c, p in plans if p is not None]
+    if not plans:
+        raise ImageryError("그릴 카드가 없습니다.")
 
-        if card.role in OG_ROLES and og is not None:
-            image, source = _from_og(og), "og"
-        elif avatar is not None:
-            image, source = _from_avatar(avatar, card.index), "avatar"
-        elif og is not None:
-            image, source = _from_og(og), "og"
-        else:
-            continue
+    written: list[dict[str, Any]] = []
+    og_image = None
+    if any(p["kind"] == "og" for _, p in plans):
+        og_image = _fetch_og(deck.repo)
 
-        target = out_dir / f"{card.index:02d}.jpg"
-        if not dry_run:
-            image.save(target, format="JPEG", quality=88, optimize=True)
-        written.append({"index": card.index, "role": card.role, "source": source})
+    from .render import _environment, _font_data_uri, _read_tokens  # 렌더러 재사용
+
+    template = _environment().get_template("imagery.html.j2")
+    tokens_css = _read_tokens()
+    font_uri = _font_data_uri()
+
+    with sync_playwright() as pw:
+        browser = pw.chromium.launch()
+        try:
+            page = browser.new_page(viewport={"width": W, "height": H}, device_scale_factor=1)
+            for card, plan in plans:
+                if plan["kind"] == "og":
+                    if og_image is None:
+                        log.warning("OG 이미지를 못 가져와 카드 %d 를 건너뜁니다.", card.index)
+                        continue
+                    image = _from_og(og_image)
+                    source = "og"
+                else:
+                    html = template.render(
+                        w=W, h=H, seed=card.index,
+                        tokens_css=tokens_css, font_uri=font_uri, **plan,
+                    )
+                    page.set_content(html, wait_until="load")
+                    page.evaluate("() => document.fonts.ready")
+                    image = Image.open(BytesIO(page.screenshot(type="png"))).convert("RGB")
+                    source = plan["kind"]
+
+                if not dry_run:
+                    image.save(out_dir / f"{card.index:02d}.jpg", format="JPEG",
+                               quality=88, optimize=True)
+                written.append({"index": card.index, "role": card.role, "source": source})
+        finally:
+            browser.close()
+
+    if not written:
+        raise ImageryError("그래픽을 하나도 만들지 못했습니다.")
 
     return {
         "repo": deck.repo,
-        "og_available": og is not None,
-        "avatar_available": avatar is not None,
         "images": written,
         "dir": str(out_dir),
     }
 
 
-# ------------------------------------------------------------------ 조합
+# ------------------------------------------------------------------ 계획
 
 
-BG = (11, 13, 16)  # color/bg — 이미지를 카드 배경 쪽으로 눌러 통일한다
+def _plan(card: Any, deck: CardDeckFile, research: ResearchFile | None) -> dict[str, Any] | None:
+    """카드 내용에서 그래픽에 넣을 값을 뽑는다."""
+    role = card.role
+
+    if role in OG_ROLES:
+        return {"kind": "og"}
+
+    if role == "why_now":
+        meta = research.meta if research else None
+        delta = (meta.delta_1d if meta else None) or 0
+        stars = (meta.stars if meta else 0) or 0
+        if delta > 0:
+            return {"kind": "stat", "delta": delta, "stars": stars,
+                    "bars": _star_bars(deck)}
+        # 증가량을 모르면 수치 카드가 거짓말이 된다. 다른 그림으로 넘어간다.
+        return {"kind": "mark", "mark": "↑", "label": "지금 뜨는 이유"}
+
+    if role == "quickstart":
+        lines = [l for l in card.code if l.strip()][:3]
+        if lines:
+            return {"kind": "terminal", "lines": lines}
+        return {"kind": "mark", "mark": "$", "label": "직접 써보려면"}
+
+    if role == "fit":
+        # 조사 원문을 두 칸에 넣어봤으나 셋 다 틀렸다: 글자가 단어 중간에서
+        # 잘리고, 조사 원문은 개발자 용어라 입문자 원칙을 어기며, 아래 본문이
+        # 같은 내용을 쉬운 말로 다시 말해 중복이었다. 머리글만 남긴다.
+        return {"kind": "split"}
+
+    if role == "feature":
+        return {"kind": "mark", "mark": f"{_feature_number(card, deck):02d}",
+                "label": "핵심 기능"}
+
+    if role == "problem":
+        return {"kind": "mark", "mark": "?", "label": "왜 필요할까"}
+
+    return {"kind": "mark", "mark": "*", "label": ""}
+
+
+def _feature_number(card: Any, deck: CardDeckFile) -> int:
+    features = [c for c in deck.payload.cards if c.role == "feature"]
+    for i, c in enumerate(features, 1):
+        if c.index == card.index:
+            return i
+    return 1
+
+
+def _star_bars(deck: CardDeckFile) -> list[int]:
+    """최근 스냅샷에서 일별 증가량을 뽑아 막대 높이(%)로 만든다.
+
+    스냅샷이 며칠 없으면 막대를 아예 그리지 않는다. 없는 데이터를 그럴듯한
+    모양으로 채우면 그건 그래프가 아니라 장식이다.
+    """
+    try:
+        today = date.fromisoformat(deck.date)
+    except ValueError:
+        return []
+
+    counts: list[int] = []
+    for offset in range(6, -1, -1):
+        snap = paths.read_json(paths.snapshot_path((today - timedelta(days=offset)).isoformat()))
+        repos = (snap or {}).get("repos", {})
+        entry = repos.get(deck.repo)
+        counts.append(entry.get("stars", 0) if entry else 0)
+
+    deltas = [
+        b - a for a, b in zip(counts, counts[1:])
+        if a > 0 and b > 0 and b >= a
+    ]
+    if len(deltas) < 3:
+        return []
+
+    peak = max(deltas) or 1
+    return [max(12, round(d / peak * 100)) for d in deltas[-7:]]
+
+
+# --------------------------------------------------------------- OG 이미지
 
 
 def _from_og(og: Image.Image) -> Image.Image:
     """OG 이미지를 카드 비율로 잘라 배경 쪽으로 눌러 넣는다.
 
     GitHub 의 OG 이미지는 흰 배경이라 다크 카드 위에 그대로 얹으면 위아래가
-    서로 다른 디자인처럼 따로 논다. 배경색과 섞어 한 장으로 읽히게 만든다.
-    글자는 장식 수준으로만 남는데, 어차피 같은 정보를 본문이 다시 말한다.
+    서로 다른 디자인처럼 따로 논다.
     """
     fitted = _cover_crop(og, W, H)
     damped = Image.blend(fitted, Image.new("RGB", (W, H), BG), 0.62)
     return _fade_bottom(damped)
 
 
-def _from_avatar(avatar: Image.Image, index: int) -> Image.Image:
-    """아바타에서 색면을 만들고 그 위에 선명한 아바타를 얹는다.
-
-    아바타 하나로 여러 장을 만들면 똑같아지므로, 카드 번호로 그라디언트 방향과
-    확대 위치를 바꿔 장마다 다르게 보이도록 한다.
-    """
-    # 배경: 크게 확대해 흐린 색면
-    blurred = _cover_crop(avatar, int(W * 1.6), int(H * 1.6))
-    blurred = blurred.filter(ImageFilter.GaussianBlur(48))
-    # 카드 번호에 따라 잘라내는 위치를 옮긴다
-    shift = (index * 97) % max(1, blurred.width - W)
-    shift_y = (index * 53) % max(1, blurred.height - H)
-    canvas = blurred.crop((shift, shift_y, shift + W, shift_y + H))
-
-    # 어둡게 눌러 텍스트 대비를 확보한다
-    canvas = Image.blend(canvas, Image.new("RGB", (W, H), BG), 0.55)
-
-    # 방향이 도는 그라디언트를 덧씌운다.
-    # 잘라내는 위치만 옮기는 방식은 아바타가 단색이면 아무 차이가 없다 —
-    # 흑백 로고를 쓰는 레포가 흔해서 실제로 8장이 똑같아졌다.
-    canvas = _angled_shade(canvas, index)
-
-    # 전경: 선명한 아바타를 원형으로
-    size = 220
-    face = avatar.resize((size, size), Image.LANCZOS)
-    mask = Image.new("L", (size, size), 0)
-    ImageDraw.Draw(mask).ellipse((0, 0, size, size), fill=255)
-    canvas.paste(face, ((W - size) // 2, (H - size) // 2 - 20), mask)
-
-    return _fade_bottom(canvas)
-
-
-def _angled_shade(img: Image.Image, index: int) -> Image.Image:
-    """카드 번호마다 방향이 도는 음영을 얹어 장마다 다르게 보이게 한다.
-
-    소스 이미지가 단색이어도 결과가 달라진다는 점이 핵심이다.
-    """
-    angle = (index * 47) % 360
-    gradient = Image.linear_gradient("L").rotate(angle, expand=True, resample=Image.BILINEAR)
-    # 회전으로 생긴 빈 모서리를 피해 가운데를 잘라 쓴다
-    side = min(gradient.size)
-    left = (gradient.width - side) // 2
-    top = (gradient.height - side) // 2
-    mask = gradient.crop((left, top, left + side, top + side)).resize((W, H), Image.BILINEAR)
-    # 음영 세기를 절반으로 눌러 과하지 않게
-    mask = mask.point(lambda v: int(v * 0.45))
-    return Image.composite(Image.new("RGB", (W, H), BG), img, mask)
-
-
 def _cover_crop(img: Image.Image, w: int, h: int) -> Image.Image:
-    """비율을 유지하며 채우고 중앙을 잘라낸다 (CSS background-size: cover)."""
     src = img.convert("RGB")
     scale = max(w / src.width, h / src.height)
-    resized = src.resize((max(1, round(src.width * scale)), max(1, round(src.height * scale))), Image.LANCZOS)
+    resized = src.resize(
+        (max(1, round(src.width * scale)), max(1, round(src.height * scale))), Image.LANCZOS
+    )
     left = (resized.width - w) // 2
     top = (resized.height - h) // 2
     return resized.crop((left, top, left + w, top + h))
 
 
 def _fade_bottom(img: Image.Image) -> Image.Image:
-    """아래쪽을 카드 배경색으로 녹인다. HTML 쪽 그라디언트와 이중으로 겹쳐도
-    자연스럽고, 이미지가 밝을 때 본문 첫 줄이 묻히는 것을 막는다."""
+    from PIL import ImageDraw
+
     out = img.copy()
     fade_h = int(H * 0.34)
     overlay = Image.new("RGB", (W, fade_h), BG)
@@ -182,22 +238,34 @@ def _fade_bottom(img: Image.Image) -> Image.Image:
     return out
 
 
-# ------------------------------------------------------------------ 수집
-
-
-def _fetch_image(url: str) -> Image.Image | None:
-    """실패해도 예외를 던지지 않는다. 이미지가 없으면 그 카드는 텍스트만으로 간다."""
+def _fetch_og(repo: str) -> Image.Image | None:
+    """실패해도 예외를 던지지 않는다. 그 카드만 이미지 없이 간다."""
+    url = OG_URL.format(repo=repo)
     try:
         with httpx.Client(
             headers={"User-Agent": USER_AGENT}, timeout=TIMEOUT, follow_redirects=True
         ) as client:
             response = client.get(url)
         if response.status_code != 200:
-            log.warning("이미지 요청 실패 (%s): %s", response.status_code, url)
+            log.warning("OG 이미지 요청 실패 (%s)", response.status_code)
             return None
         return Image.open(BytesIO(response.content)).convert("RGB")
     except (httpx.HTTPError, OSError) as exc:
-        log.warning("이미지를 열 수 없습니다 (%s): %s", type(exc).__name__, url)
+        log.warning("OG 이미지를 열 수 없습니다 (%s)", type(exc).__name__)
+        return None
+
+
+# ------------------------------------------------------------------ 로드
+
+
+def _load_research(deck: CardDeckFile) -> ResearchFile | None:
+    slug = deck.repo.replace("/", "__").lower()
+    raw = paths.read_json(paths.RESEARCH / f"{deck.date}-{slug}.json", default=None)
+    if not raw:
+        return None
+    try:
+        return ResearchFile.model_validate(raw)
+    except Exception:  # noqa: BLE001 - 조사 파일이 깨졌으면 없는 셈 친다
         return None
 
 

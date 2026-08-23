@@ -225,7 +225,8 @@ body {
         <p class="body">{% for s in body_sentences %}<span class="s">{{ s }}</span>{% endfor %}</p>
       {% endif %}
 
-      {% if card.code %}
+      {# 상단 그래픽이 이미 터미널 창으로 같은 명령을 보여주면 중복이다 #}
+      {% if card.code and not card.image %}
         <div class="code">{% for line in card.code %}<div class="line">{{ line }}</div>{% endfor %}</div>
       {% endif %}
 

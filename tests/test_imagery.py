@@ -1,149 +1,154 @@
-"""카드 상단 이미지 생성 검증.
+"""카드 상단 그래픽 검증.
 
-네트워크는 타지 않는다 — 수집 함수를 갈아끼우고 조합 로직만 본다.
-여기서 지키려는 것은 두 가지다:
-1. GitHub 이 주는 자산만 쓴다 (저작권, SPEC 13.3)
-2. 같은 그림이 캐러셀 내내 반복되지 않는다
+여기서 지키려는 것:
+1. 역할마다 다른 그림이 나온다 (같은 그림이 반복되면 캐러셀이 밋밋하다)
+2. **그래픽이 카드 본문을 반복하지 않는다** — 실제로 그렇게 만들었다가
+   같은 제목이 위아래로 두 번 나왔다
+3. 없는 데이터를 그럴듯한 모양으로 채우지 않는다
 """
 
 from datetime import datetime, timezone
 
 import pytest
 
-from agent.models import Card, CardDeckFile, CardDeckPayload
+from agent import imagery, paths
+from agent.models import (
+    Card, CardDeckFile, CardDeckPayload, Claim, Feature,
+    Quickstart, ResearchFile, ResearchMeta, ResearchPayload,
+)
 
-Image = pytest.importorskip("PIL.Image")
 
-from agent import imagery  # noqa: E402
-
-
-def _deck() -> CardDeckFile:
-    roles = [
-        "cover", "what_is_it", "problem", "why_now", "feature",
-        "feature", "feature", "quickstart", "fit", "outro",
-    ]
+def _deck(cards=None) -> CardDeckFile:
+    if cards is None:
+        roles = [
+            "cover", "what_is_it", "problem", "why_now", "feature",
+            "feature", "feature", "quickstart", "fit", "outro",
+        ]
+        cards = [Card(index=i, role=r, title=f"제목{i}") for i, r in enumerate(roles, 1)]
+        cards[7].code = ["hermes", "hermes model"]
     return CardDeckFile(
         repo="acme/widget",
         date="2099-01-01",
         generated_at=datetime.now(timezone.utc),
-        payload=CardDeckPayload(
-            cards=[Card(index=i, role=r, title=f"제목{i}") for i, r in enumerate(roles, 1)],
-            caption="요약",
-            hashtags=["테스트"],
-        ),
+        payload=CardDeckPayload(cards=cards, caption="요약", hashtags=["테스트"]),
     )
 
 
-@pytest.fixture
-def fake_sources(monkeypatch):
-    """OG 는 가로로 긴 흰 이미지, 아바타는 정사각 컬러 이미지로 흉내낸다."""
-    og = Image.new("RGB", (1280, 640), (250, 250, 250))
-    avatar = Image.new("RGB", (460, 460), (40, 120, 200))
+def _research(delta=443, stars=1000) -> ResearchFile:
+    return ResearchFile(
+        repo="acme/widget",
+        researched_at=datetime.now(timezone.utc),
+        payload=ResearchPayload(
+            one_liner="한 줄",
+            problem=Claim(text="문제", evidence=["README.md"]),
+            why_now=Claim(text="이유", evidence=["README.md"]),
+            key_features=[Feature(title="기능", text="설명", evidence=["a.py"])],
+            architecture=Claim(text="구조", evidence=["src/"]),
+            quickstart=Quickstart(commands=["pip install x"], evidence=["README.md"]),
+            differentiators=Claim(text="차별점", evidence=["README.md"]),
+            limitations=Claim(text="한계", evidence=["issues/1"]),
+        ),
+        meta=ResearchMeta(stars=stars, delta_1d=delta),
+    )
 
-    def fetch(url: str):
-        if "opengraph" in url:
-            return og
-        if "github.com" in url:
-            return avatar
-        return None
 
-    monkeypatch.setattr(imagery, "_fetch_image", fetch)
-    return og, avatar
-
-
-class TestComposition:
-    def test_cover_crop_hits_exact_size(self):
-        src = Image.new("RGB", (300, 900))
-        out = imagery._cover_crop(src, 1080, 470)
-        assert out.size == (1080, 470)
-
-    def test_og_output_is_card_sized(self, fake_sources):
-        og, _ = fake_sources
-        assert imagery._from_og(og).size == (imagery.W, imagery.H)
-
-    def test_avatar_output_is_card_sized(self, fake_sources):
-        _, avatar = fake_sources
-        assert imagery._from_avatar(avatar, 4).size == (imagery.W, imagery.H)
-
-    def test_bright_source_is_dimmed_to_fit_dark_theme(self, fake_sources):
-        """흰 OG 이미지를 그대로 얹으면 위아래가 다른 디자인처럼 따로 논다."""
-        og, _ = fake_sources
-        top_pixel = imagery._from_og(og).getpixel((540, 40))
-        assert max(top_pixel) < 190, f"충분히 눌리지 않았습니다: {top_pixel}"
-
-    def test_bottom_fades_to_background(self, fake_sources):
-        """아래쪽은 카드 배경색이어야 본문과 이어진다."""
-        og, _ = fake_sources
-        bottom = imagery._from_og(og).getpixel((540, imagery.H - 2))
-        assert max(abs(a - b) for a, b in zip(bottom, imagery.BG)) <= 6
-
-    def test_same_avatar_yields_different_images_per_card(self, fake_sources):
-        """아바타 하나로 8장을 만들면 똑같아진다. 카드 번호로 변주를 준다."""
-        _, avatar = fake_sources
-        renders = [imagery._from_avatar(avatar, i).tobytes() for i in range(2, 10)]
-        assert len(set(renders)) == len(renders), "장마다 달라야 합니다"
-
-    def test_variation_works_even_for_a_flat_avatar(self):
-        """흑백 로고를 쓰는 레포가 흔하다. 위치만 옮기는 변주는 단색에서 무력하다."""
-        flat = Image.new("RGB", (460, 460), (128, 128, 128))
-        a = imagery._from_avatar(flat, 2).tobytes()
-        b = imagery._from_avatar(flat, 7).tobytes()
-        assert a != b
+def _plan(role, deck=None, research=None, **card_kw):
+    deck = deck or _deck()
+    card = next(c for c in deck.payload.cards if c.role == role)
+    for k, v in card_kw.items():
+        setattr(card, k, v)
+    return imagery._plan(card, deck, research if research is not None else _research())
 
 
 class TestRoleMapping:
-    def test_concise_cards_get_no_image(self, fake_sources, tmp_path):
-        """커버와 마무리는 간결해야 하는 카드다."""
-        result = imagery.run(_deck(), tmp_path)
-        indexes = [i["index"] for i in result["images"]]
-        assert 1 not in indexes and 10 not in indexes
-        assert not (tmp_path / "images" / "01.jpg").exists()
-        assert not (tmp_path / "images" / "10.jpg").exists()
+    def test_what_is_it_uses_the_og_card(self):
+        assert _plan("what_is_it")["kind"] == "og"
 
-    def test_what_is_it_uses_the_og_card(self, fake_sources, tmp_path):
-        """레포 이름·설명이 박힌 카드라 '이게 뭐냐'에 어울린다."""
-        result = imagery.run(_deck(), tmp_path)
-        card = next(i for i in result["images"] if i["role"] == "what_is_it")
-        assert card["source"] == "og"
+    def test_why_now_shows_real_numbers(self):
+        plan = _plan("why_now")
+        assert plan["kind"] == "stat"
+        assert plan["delta"] == 443 and plan["stars"] == 1000
 
-    def test_other_roles_use_the_avatar(self, fake_sources, tmp_path):
-        result = imagery.run(_deck(), tmp_path)
-        others = [
-            i for i in result["images"]
-            if i["role"] not in ("what_is_it", "cover", "outro")
-        ]
-        assert others and all(i["source"] == "avatar" for i in others)
+    def test_quickstart_shows_the_actual_commands(self):
+        plan = _plan("quickstart")
+        assert plan["kind"] == "terminal"
+        assert plan["lines"] == ["hermes", "hermes model"]
 
-    def test_writes_one_file_per_card_except_concise_ones(self, fake_sources, tmp_path):
-        imagery.run(_deck(), tmp_path)
-        written = sorted(p.name for p in (tmp_path / "images").glob("*.jpg"))
-        assert written == [f"{i:02d}.jpg" for i in range(2, 10)]
+    def test_features_are_numbered_in_order(self):
+        deck = _deck()
+        features = [c for c in deck.payload.cards if c.role == "feature"]
+        marks = [imagery._plan(c, deck, _research())["mark"] for c in features]
+        assert marks == ["01", "02", "03"]
 
-    def test_dry_run_writes_nothing(self, fake_sources, tmp_path):
-        result = imagery.run(_deck(), tmp_path, dry_run=True)
-        assert result["images"]
-        assert not (tmp_path / "images").exists()
+    def test_fit_shows_only_fixed_headers(self):
+        assert _plan("fit")["kind"] == "split"
+
+    def test_problem_gets_a_question_mark(self):
+        assert _plan("problem")["mark"] == "?"
+
+    def test_every_role_gets_some_graphic(self):
+        deck = _deck()
+        for card in deck.payload.cards:
+            if card.role in imagery.NO_IMAGE:
+                continue
+            assert imagery._plan(card, deck, _research()) is not None
 
 
-class TestFallbacks:
-    def test_avatar_missing_falls_back_to_og(self, monkeypatch, tmp_path):
-        og = Image.new("RGB", (1280, 640), (250, 250, 250))
-        monkeypatch.setattr(
-            imagery, "_fetch_image", lambda url: og if "opengraph" in url else None
-        )
-        result = imagery.run(_deck(), tmp_path)
-        assert all(i["source"] == "og" for i in result["images"])
+class TestNoDuplication:
+    """그래픽에 카드 제목을 넣으면 바로 아래에서 같은 말이 반복된다."""
 
-    def test_both_missing_raises_rather_than_shipping_blanks(self, monkeypatch, tmp_path):
-        """빈 이미지를 만들어 붙이느니 실패시킨다. render 가 이미지 없이 진행한다."""
-        monkeypatch.setattr(imagery, "_fetch_image", lambda url: None)
-        with pytest.raises(imagery.ImageryError):
-            imagery.run(_deck(), tmp_path)
+    @pytest.mark.parametrize("role", ["problem", "feature", "fit", "quickstart"])
+    def test_graphic_never_carries_the_card_title(self, role):
+        plan = _plan(role, title="아주 특징적인 제목입니다")
+        assert "아주 특징적인 제목입니다" not in str(plan.values())
+
+
+class TestHonestData:
+    """없는 데이터를 그럴듯한 모양으로 채우면 그건 그래프가 아니라 장식이다."""
+
+    def test_unknown_delta_falls_back_instead_of_showing_zero(self):
+        plan = _plan("why_now", research=_research(delta=None))
+        assert plan["kind"] != "stat"
+
+    def test_missing_research_falls_back(self):
+        deck = _deck()
+        card = next(c for c in deck.payload.cards if c.role == "why_now")
+        assert imagery._plan(card, deck, None)["kind"] != "stat"
+
+    def test_no_commands_means_no_terminal(self):
+        plan = _plan("quickstart", code=[])
+        assert plan["kind"] != "terminal"
+
+    def test_sparse_snapshots_yield_no_bars(self, monkeypatch, tmp_path):
+        """스냅샷이 며칠 없으면 막대를 아예 그리지 않는다."""
+        monkeypatch.setattr(paths, "SNAPSHOTS", tmp_path)
+        monkeypatch.setattr(paths, "snapshot_path", lambda d: tmp_path / f"{d}.json")
+        assert imagery._star_bars(_deck()) == []
+
+    def test_bars_appear_once_enough_history_exists(self, monkeypatch, tmp_path):
+        from datetime import date, timedelta
+
+        base = date(2099, 1, 1)
+        stars = 1000
+        for offset in range(6, -1, -1):
+            stars += 50 + offset * 10
+            paths.write_json(
+                tmp_path / f"{(base - timedelta(days=offset)).isoformat()}.json",
+                {"captured_at": "2099-01-01T00:00:00Z",
+                 "repos": {"acme/widget": {"stars": stars, "forks": 1}}},
+            )
+        monkeypatch.setattr(paths, "snapshot_path", lambda d: tmp_path / f"{d}.json")
+
+        bars = imagery._star_bars(_deck())
+        assert len(bars) >= 3
+        assert all(0 < b <= 100 for b in bars)
 
 
 class TestSourcesArePermitted:
     """레포 README 스크린샷·로고는 저작권이 소유자에게 있어 쓰지 않는다."""
 
-    def test_only_github_hosted_endpoints(self):
-        for url in (imagery.OG_URL, imagery.AVATAR_URL):
-            assert "githubassets.com" in url or "github.com" in url
+    def test_only_github_hosted_endpoint(self):
+        assert "githubassets.com" in imagery.OG_URL
+
+    def test_concise_cards_are_excluded(self):
+        assert imagery.NO_IMAGE == {"cover", "outro"}

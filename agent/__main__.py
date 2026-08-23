@@ -154,9 +154,7 @@ def cmd_illustrate(args: argparse.Namespace) -> int:
         print(f"\n[error] {exc}", file=sys.stderr)
         return 1
 
-    print(f"\n[{args.date}] 이미지 준비: {result['repo']}")
-    print(f"  OG {'있음' if result['og_available'] else '없음'} · "
-          f"아바타 {'있음' if result['avatar_available'] else '없음'}")
+    print(f"\n[{args.date}] 그래픽 생성: {result['repo']}")
     for item in result["images"]:
         print(f"  {item['index']:02d}.jpg  [{item['role']:12}] ← {item['source']}")
     if not args.dry_run:

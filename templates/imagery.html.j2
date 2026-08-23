@@ -1,0 +1,146 @@
+{#
+  카드 상단 그래픽. 1080×470. SPEC 7.4.
+
+  역할마다 다른 그림을 그린다. 같은 이미지를 반복하면 캐러셀이 밋밋해지고,
+  무엇보다 각 카드가 하는 말과 그림이 따로 논다.
+  여기 쓰이는 값은 전부 조사 데이터에서 온 실제 값이다 — 지어낸 그림이 아니다.
+#}
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<style>
+@font-face {
+  font-family: "Pretendard Variable";
+  src: url("{{ font_uri }}") format("woff2-variations");
+  font-weight: 100 900;
+  font-display: block;
+}
+{{ tokens_css }}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html, body { width: {{ w }}px; height: {{ h }}px; overflow: hidden; }
+body {
+  background: var(--bg-elevated);
+  color: var(--fg);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+  word-break: keep-all;
+}
+
+.stage {
+  position: relative;
+  width: 100%; height: 100%;
+  padding: 56px 72px;
+  display: flex; flex-direction: column; justify-content: center;
+  overflow: hidden;
+}
+/* 역할마다 각도가 다른 광원 — 장마다 다르게 보이게 한다 */
+.stage::before {
+  content: "";
+  position: absolute; inset: -40%;
+  background: radial-gradient(
+    circle at {{ 20 + (seed * 23) % 60 }}% {{ 15 + (seed * 37) % 50 }}%,
+    color-mix(in srgb, var(--accent) 30%, transparent), transparent 55%);
+}
+.stage > * { position: relative; }
+
+/* 아래를 카드 배경색으로 녹여 본문과 잇는다 */
+.stage::after {
+  content: "";
+  position: absolute; inset: auto 0 0 0; height: 150px;
+  background: linear-gradient(to bottom, transparent, var(--bg));
+}
+
+.label {
+  font-size: 27px; font-weight: 700; letter-spacing: .04em;
+  color: var(--accent-soft); margin-bottom: 18px;
+}
+
+/* ── why_now: 스타 증가 ─────────────────────────────── */
+.stat-row { display: flex; align-items: flex-end; gap: 28px; }
+.stat-delta {
+  font-size: 132px; font-weight: 800; line-height: .9;
+  letter-spacing: -.04em; color: var(--fg);
+}
+.stat-unit { font-size: 34px; color: var(--fg-muted); padding-bottom: 14px; }
+.bars { display: flex; align-items: flex-end; gap: 12px; height: 130px; margin-top: 26px; }
+.bar { width: 46px; border-radius: 6px 6px 0 0; background: var(--accent); opacity: .45; }
+.bar.now { opacity: 1; }
+
+/* ── quickstart: 터미널 창 ──────────────────────────── */
+.term {
+  border: 1px solid var(--border); border-radius: 16px;
+  background: var(--bg-code); overflow: hidden;
+}
+.term-bar {
+  display: flex; gap: 9px; padding: 15px 20px;
+  border-bottom: 1px solid var(--border);
+}
+.dot3 { width: 13px; height: 13px; border-radius: 50%; background: var(--fg-faint); opacity: .5; }
+.term-body { padding: 24px 28px; font-family: var(--font-mono); font-size: 27px; line-height: 1.85; }
+.term-body .l { color: var(--accent-2); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.term-body .l::before { content: "$ "; color: var(--fg-faint); }
+
+/* 큰 표식 하나 + 작은 라벨.
+   카드 제목을 여기에 또 쓰면 바로 아래에서 같은 말이 반복된다.
+   그림은 리듬만 주고 내용은 카드가 말하게 둔다. */
+.mark {
+  font-size: 190px; font-weight: 800; line-height: .8;
+  letter-spacing: -.05em;
+  color: transparent;
+  -webkit-text-stroke: 4px color-mix(in srgb, var(--accent) 70%, transparent);
+}
+.mark-label {
+  font-size: 30px; font-weight: 700; letter-spacing: .06em;
+  color: var(--fg-muted); margin-top: 20px;
+}
+
+/* ── fit: 두 칸 머리글만 ────────────────────────────── */
+.split { display: flex; gap: 24px; }
+.col {
+  flex: 1; border-radius: 16px; padding: 30px 28px;
+  border: 1px solid var(--border); background: rgba(255,255,255,.02);
+  font-size: 34px; font-weight: 700;
+}
+.col.yes { color: var(--accent-2); }
+.col.no { color: var(--warn); }
+</style>
+</head>
+<body>
+<div class="stage">
+
+{% if kind == 'stat' %}
+  <div class="label">오늘 늘어난 별</div>
+  <div class="stat-row">
+    <div class="stat-delta">+{{ "{:,}".format(delta) }}</div>
+    <div class="stat-unit">별 {{ "{:,}".format(stars) }}개 중</div>
+  </div>
+  {% if bars %}
+  <div class="bars">
+    {% for b in bars %}<div class="bar{{ ' now' if loop.last else '' }}" style="height: {{ b }}%"></div>{% endfor %}
+  </div>
+  {% endif %}
+
+{% elif kind == 'terminal' %}
+  <div class="term">
+    <div class="term-bar"><span class="dot3"></span><span class="dot3"></span><span class="dot3"></span></div>
+    <div class="term-body">
+      {% for line in lines %}<div class="l">{{ line }}</div>{% endfor %}
+    </div>
+  </div>
+
+{% elif kind == 'split' %}
+  <div class="split">
+    <div class="col yes">이럴 때 좋아요</div>
+    <div class="col no">아직 이르다면</div>
+  </div>
+
+{% else %}
+  <div class="mark">{{ mark }}</div>
+  {% if label %}<div class="mark-label">{{ label }}</div>{% endif %}
+{% endif %}
+
+</div>
+</body>
+</html>
