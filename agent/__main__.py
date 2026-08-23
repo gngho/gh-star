@@ -143,6 +143,27 @@ def cmd_compose(args: argparse.Namespace) -> int:
     return 0
 
 
+def cmd_illustrate(args: argparse.Namespace) -> int:
+    from . import imagery
+
+    try:
+        deck, post_dir = imagery.load_deck(args.date)
+        result = imagery.run(deck, post_dir, dry_run=args.dry_run)
+    except (FileNotFoundError, imagery.ImageryError) as exc:
+        print(f"\n[error] {exc}", file=sys.stderr)
+        return 1
+
+    print(f"\n[{args.date}] 이미지 준비: {result['repo']}")
+    print(f"  OG {'있음' if result['og_available'] else '없음'} · "
+          f"아바타 {'있음' if result['avatar_available'] else '없음'}")
+    for item in result["images"]:
+        print(f"  {item['index']:02d}.jpg  [{item['role']:12}] ← {item['source']}")
+    if not args.dry_run:
+        print(f"\n  → {result['dir']}")
+        print("  카드를 다시 렌더하세요: python -m agent render")
+    return 0
+
+
 def cmd_render(args: argparse.Namespace) -> int:
     from . import render as render_mod
 
@@ -217,6 +238,7 @@ def main(argv: list[str] | None = None) -> int:
         ("select", cmd_select, "후보 중 심층 리뷰 대상 1개 + 예비 2개를 선정한다"),
         ("research", cmd_research, "선정된 레포를 에이전트가 심층 조사한다"),
         ("compose", cmd_compose, "조사 결과로 카드 원고를 생성한다"),
+        ("illustrate", cmd_illustrate, "GitHub 자산으로 카드 상단 이미지를 만든다"),
         ("render", cmd_render, "원고를 카드 이미지(JPEG)로 렌더한다"),
     ):
         p = sub.add_parser(name, help=help_text)

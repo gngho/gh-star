@@ -1,7 +1,7 @@
 {
   "repo": "NousResearch/hermes-agent",
   "date": "2026-08-23",
-  "rendered_at": "2026-08-23T11:32:27.069499+00:00",
+  "rendered_at": "2026-08-23T11:56:14.602026+00:00",
   "width": 1080,
   "height": 1350,
   "format": "jpeg",
@@ -21,7 +21,7 @@
       "file": "02.jpg",
       "scale": 1.0,
       "overflow_px": 0,
-      "has_image": false
+      "has_image": true
     },
     {
       "index": 3,
@@ -29,7 +29,7 @@
       "file": "03.jpg",
       "scale": 1.0,
       "overflow_px": 0,
-      "has_image": false
+      "has_image": true
     },
     {
       "index": 4,
@@ -37,7 +37,7 @@
       "file": "04.jpg",
       "scale": 1.0,
       "overflow_px": 0,
-      "has_image": false
+      "has_image": true
     },
     {
       "index": 5,
@@ -45,7 +45,7 @@
       "file": "05.jpg",
       "scale": 1.0,
       "overflow_px": 0,
-      "has_image": false
+      "has_image": true
     },
     {
       "index": 6,
@@ -53,7 +53,7 @@
       "file": "06.jpg",
       "scale": 1.0,
       "overflow_px": 0,
-      "has_image": false
+      "has_image": true
     },
     {
       "index": 7,
@@ -61,7 +61,7 @@
       "file": "07.jpg",
       "scale": 1.0,
       "overflow_px": 0,
-      "has_image": false
+      "has_image": true
     },
     {
       "index": 8,
@@ -69,7 +69,7 @@
       "file": "08.jpg",
       "scale": 1.0,
       "overflow_px": 0,
-      "has_image": false
+      "has_image": true
     },
     {
       "index": 9,
@@ -77,7 +77,7 @@
       "file": "09.jpg",
       "scale": 1.0,
       "overflow_px": 0,
-      "has_image": false
+      "has_image": true
     },
     {
       "index": 10,
@@ -85,7 +85,7 @@
       "file": "10.jpg",
       "scale": 1.0,
       "overflow_px": 0,
-      "has_image": false
+      "has_image": true
     }
   ],
   "warnings": []

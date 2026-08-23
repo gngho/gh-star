@@ -14,6 +14,7 @@
 | M2 | `research`, `compose` | ✅ 동작 (실측 $1.10/건) |
 | M3 | `render` | ✅ 동작 (1080×1350 JPEG) |
 | M3 | `design-sync` | ✅ 동작 (피그마 토큰 → CSS) |
+| M3 | `illustrate` | ✅ 동작 (GitHub OG·아바타) |
 | M4 | GitHub Actions 초안 PR | 미착수 |
 | M5 | `publish`, 토큰 갱신 | 미착수 |
 
@@ -37,6 +38,7 @@ python -m agent collect     # 후보 수집 + 점수화
 python -m agent select      # 심층 리뷰 대상 1개 + 예비 2개 선정
 python -m agent research    # 에이전트가 저장소를 직접 읽고 근거 수집
 python -m agent compose     # 조사 결과로 카드 10장 원고 생성
+python -m agent illustrate  # GitHub OG·아바타로 카드 상단 이미지 생성
 python -m agent render      # 원고를 1080×1350 JPEG 카드로 렌더
 python -m agent design-sync # 피그마 토큰으로 카드 CSS 재생성 (수동, 일일 실행 아님)
 ```
