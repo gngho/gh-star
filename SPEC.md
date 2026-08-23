@@ -615,7 +615,7 @@ python -m agent design-sync
 | 역할 | 그래픽 | 출처 |
 |---|---|---|
 | what_is_it | GitHub OG 이미지 | `opengraph.githubassets.com` |
-| why_now | 오늘 늘어난 별 + 일별 막대 | 스냅샷 이력 (실데이터) |
+| why_now | STARS TODAY 수치 + 일별 막대 | 스냅샷 이력 (실데이터) |
 | quickstart | 터미널 창 | 카드의 실제 설치 명령 |
 | feature | 큰 번호 01/02/03 | 카드 순서 |
 | problem | 큰 물음표 | — |

@@ -53,7 +53,7 @@ body {
 }
 
 .label {
-  font-size: 27px; font-weight: 700; letter-spacing: .04em;
+  font-size: 24px; font-weight: 700; letter-spacing: .08em;
   color: var(--accent-soft); margin-bottom: 18px;
 }
 
@@ -111,7 +111,7 @@ body {
 <div class="stage">
 
 {% if kind == 'stat' %}
-  <div class="label">오늘 늘어난 별</div>
+  <div class="label">STARS TODAY</div>
   <div class="stat-row">
     <div class="stat-delta">+{{ "{:,}".format(delta) }}</div>
     <div class="stat-unit">별 {{ "{:,}".format(stars) }}개 중</div>

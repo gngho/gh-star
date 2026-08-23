@@ -6,7 +6,7 @@
 | 역할 | 그래픽 | 출처 |
 |---|---|---|
 | what_is_it | GitHub OG 이미지 | `opengraph.githubassets.com` |
-| why_now | 스타 증가 수치 + 막대 | 스냅샷 이력 (실데이터) |
+
 | quickstart | 터미널 창 | 카드의 실제 설치 명령 |
 | fit | 두 칸 머리글 | 고정 문구 |
 | feature | 큰 번호 01/02/03 | 카드 순서 |
