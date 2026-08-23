@@ -14,9 +14,9 @@
 | M2 | `research`, `compose` | ✅ 동작 (실측 $1.10/건) |
 | M3 | `render` | ✅ 동작 (1080×1350 JPEG) |
 | M3 | `design-sync` | ✅ 동작 (피그마 토큰 → CSS) |
-| M3 | `illustrate` | ✅ 동작 (GitHub OG·아바타) |
-| M4 | GitHub Actions 초안 PR | 미착수 |
-| M5 | `publish`, 토큰 갱신 | 미착수 |
+| M3 | `illustrate` | ✅ 동작 (역할별 내용 기반 그래픽) |
+| M4 | GitHub Actions 일일 수집·선정 | ✅ 동작 (조사부터는 로컬, SPEC 9.0) |
+| ~~M5~~ | ~~`publish`, 토큰 갱신~~ | **취소** — 발행은 수동 (SPEC 8.1) |
 
 ## 설치
 
@@ -36,21 +36,24 @@ star velocity 정확도가 떨어진다. 토큰은 `public_repo` 읽기 권한�
 ## 사용
 
 ```bash
+python -m agent run --open  # 조사→원고→그래픽→렌더를 한 번에 (매일 쓰는 명령)
+python -m agent mark-published   # 올린 뒤 발행 이력에 기록
+
 python -m agent status      # 스냅샷 축적 현황
 python -m agent collect     # 후보 수집 + 점수화
 python -m agent select      # 심층 리뷰 대상 1개 + 예비 2개 선정
 python -m agent research    # 에이전트가 저장소를 직접 읽고 근거 수집
 python -m agent compose     # 조사 결과로 카드 10장 원고 생성
-python -m agent illustrate  # GitHub OG·아바타로 카드 상단 이미지 생성
+python -m agent illustrate  # 역할별 내용 기반 그래픽 생성
 python -m agent render      # 원고를 1080×1350 JPEG 카드로 렌더
 python -m agent design-sync # 피그마 토큰으로 카드 CSS 재생성 (수동, 일일 실행 아님)
-python -m agent mark-published  # 올린 뒤 발행 이력에 기록
 ```
 
-`render` 는 Playwright/Chromium 이 필요하다: `python -m playwright install chromium`
+`render` 와 `illustrate` 는 Playwright/Chromium 이 필요하다:
+`python -m playwright install chromium`
 
-`research` 와 `compose` 는 Claude 인증이 필요하다. 로컬에서는 Claude Code CLI 의
-기존 로그인으로도 동작하지만, **CI 무인 실행에는 `ANTHROPIC_API_KEY` 가 필요하다.**
+`research` 와 `compose` 는 Claude 인증이 필요하다. 로컬에서 Claude Code 로그인으로
+돌아가며 **API 키는 필요 없다** — 자세한 이유는 SPEC.md 9.0.
 
 공통 옵션: `--date YYYY-MM-DD` (기준일), `--dry-run` (파일 미기록), `-v` (디버그 로그).
 
@@ -89,10 +92,13 @@ agent/
 ├── research.py     선행 로딩 + 근거 강제 조사
 ├── compose.py      카드 원고 생성 (자동 보정 + 재생성)
 ├── render.py       Jinja2 → Playwright → JPEG (오버플로 자동 축소)
+├── imagery.py      역할별 카드 상단 그래픽
+├── design_sync.py  피그마 토큰 → CSS (순수 함수, 네트워크 없음)
 └── tools/          에이전트에 노출하는 읽기 전용 GitHub 툴 6종
 
 templates/
 ├── card.html.j2    카드 레이아웃 (role 별 분기)
+├── imagery.html.j2 상단 그래픽 (수치·터미널·번호·이모지)
 └── tokens.css      디자인 토큰 — design-sync 가 덮어쓴다
 assets/fonts/       Pretendard (OFL, 번들 — CI 에 한글 폰트가 없다)
 ```
@@ -104,13 +110,17 @@ assets/fonts/       Pretendard (OFL, 번들 — CI 에 한글 폰트가 없다)
 
 | 페이지 | 내용 |
 |---|---|
-| **Style Guide** | 색 토큰 11종(브랜드·서피스·텍스트), 타이포 스케일 6단, 여백, 카드 컴포넌트(배지·코드블록·각주·페이저) |
+| **Style Guide** | 색 토큰 11종(브랜드·서피스·텍스트), 타이포 스케일 6단, 여백, 카드 컴포넌트(배지·코드블록·각주) |
 | **Card Templates** | 역할별 카드 8종. **실제 문구가 아니라 "여기에 무엇이 들어가는지"** 를 대괄호 `[ ]` 로 적어둔 구조 명세다 |
 
-카드 상단 470px 은 이미지 영역이다(커버 제외). 렌더 시
-`posts/{date}-{slug}/images/{번호}.jpg` 를 찾아 붙이고, **없으면 그 영역을 그리지
-않는다** — 피그마의 "여기에 이미지가 삽입됩니다" 점선 박스는 설명이지 결과물이
-아니기 때문이다.
+카드 상단 470px 은 그래픽 영역이다. **커버와 마무리는 예외** — 둘은 간결해야
+하는 카드라 여백이 정보다. 그래픽은 `illustrate` 가 역할에 맞춰 만든다
+(수치·터미널·번호·이모지). 렌더 시 `posts/{date}-{slug}/images/{번호}.jpg` 를
+찾아 붙이고, **없으면 그 영역을 그리지 않는다** — 피그마의 "여기에 이미지가
+삽입됩니다" 점선 박스는 설명이지 결과물이 아니기 때문이다.
+
+⚠️ 피그마의 카드 템플릿은 아직 옛 구조(`architecture` 포함, `what_is_it` 없음)다.
+코드가 정본이므로 발행에는 지장이 없지만, 디자인을 손볼 때 맞춰두면 좋다.
 
 색·타이포·여백은 전부 **피그마 변수**로 정의돼 있다. 변수로 잡히지 않은 값은
 추출되지 않아 코드와 어긋나므로, 새 값을 쓸 땐 반드시 변수부터 만든다.
