@@ -290,6 +290,50 @@ def cmd_run(args: argparse.Namespace) -> int:
     return 0
 
 
+def cmd_mark_published(args: argparse.Namespace) -> int:
+    """올린 뒤 발행 이력에 기록한다. 이 기록이 90일 재발행 차단의 기준이다."""
+    from .models import CardDeckFile
+
+    matches = sorted(paths.POSTS.glob(f"{args.date}-*/content.json"))
+    if not matches:
+        print(f"\n[error] {args.date} 산출물이 없습니다.", file=sys.stderr)
+        return 1
+    deck = CardDeckFile.model_validate(paths.read_json(matches[0]))
+
+    data = paths.read_json(paths.PUBLISHED, default={"posts": []}) or {"posts": []}
+    posts = data.setdefault("posts", [])
+
+    already = next(
+        (p for p in posts if p.get("repo") == deck.repo and p.get("date") == args.date),
+        None,
+    )
+    if already:
+        if args.permalink:
+            already["permalink"] = args.permalink
+            paths.write_json(paths.PUBLISHED, data)
+            print(f"\n기존 기록의 permalink 를 갱신했습니다: {deck.repo}")
+            return 0
+        print(f"\n이미 기록되어 있습니다: {deck.repo} ({args.date})")
+        return 0
+
+    posts.append(
+        {
+            "repo": deck.repo,
+            "date": args.date,
+            "card_count": len(deck.payload.cards),
+            "permalink": args.permalink,
+            "published_at": datetime.now(KST).isoformat(),
+        }
+    )
+    paths.write_json(paths.PUBLISHED, data)
+
+    print(f"\n발행 기록: {deck.repo} ({args.date}, 카드 {len(deck.payload.cards)}장)")
+    print(f"  이 레포는 앞으로 90일간 다시 선정되지 않습니다.")
+    print(f"  총 발행 {len(posts)}건")
+    print("\n  커밋하는 것을 잊지 마세요: git add data/ posts/ && git commit && git push")
+    return 0
+
+
 def cmd_status(_: argparse.Namespace) -> int:
     snapshots = sorted(p.stem for p in paths.SNAPSHOTS.glob("*.json"))
     watchlist = paths.read_json(paths.WATCHLIST, default={}) or {}
@@ -342,6 +386,13 @@ def main(argv: list[str] | None = None) -> int:
     )
     p_sync.add_argument("--dry-run", action="store_true", help="파일을 쓰지 않는다")
     p_sync.set_defaults(func=cmd_design_sync)
+
+    p_mark = sub.add_parser(
+        "mark-published", help="인스타그램에 올린 뒤 발행 이력에 기록한다"
+    )
+    p_mark.add_argument("--date", default=_today_kst(), help="기준일 (KST, 기본: 오늘)")
+    p_mark.add_argument("--permalink", default=None, help="게시물 URL (선택)")
+    p_mark.set_defaults(func=cmd_mark_published)
 
     p_status = sub.add_parser("status", help="스냅샷 축적 현황을 확인한다")
     p_status.set_defaults(func=cmd_status)

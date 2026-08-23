@@ -20,10 +20,13 @@
 
 ## 설치
 
+새 PC 에서 처음 시작한다면 **[SETUP.md](SETUP.md)** 를 따라가면 된다.
+
 ```bash
 py -3.12 -m venv .venv
 .venv\Scripts\python.exe -m pip install -e .
-copy .env.example .env      # GITHUB_TOKEN 을 채운다
+.venv\Scripts\python.exe -m playwright install chromium
+copy .env.example .env      # GITHUB_TOKEN 만 채운다
 ```
 
 `GITHUB_TOKEN` 은 없어도 동작하지만 **축소 모드**가 된다. GraphQL 배치 조회를
@@ -41,6 +44,7 @@ python -m agent compose     # 조사 결과로 카드 10장 원고 생성
 python -m agent illustrate  # GitHub OG·아바타로 카드 상단 이미지 생성
 python -m agent render      # 원고를 1080×1350 JPEG 카드로 렌더
 python -m agent design-sync # 피그마 토큰으로 카드 CSS 재생성 (수동, 일일 실행 아님)
+python -m agent mark-published  # 올린 뒤 발행 이력에 기록
 ```
 
 `render` 는 Playwright/Chromium 이 필요하다: `python -m playwright install chromium`
