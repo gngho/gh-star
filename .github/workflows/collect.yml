@@ -1,8 +1,15 @@
-# 워크플로 A(일부) — 일일 수집.
+# 워크플로 A — 일일 수집·선정.
 #
-# SPEC.md 9.1 의 워크플로 A 중 collect/select 단계만 먼저 띄운 것이다.
-# star velocity 는 스냅샷이 쌓여야 계산되므로(Δ1d 2일, Δ7d 7일),
-# research/compose/render 를 만들기 전에 이 잡부터 돌려 데이터를 모은다.
+# 여기까지가 무인 자동화의 전부다. 조사·원고·렌더는 로컬에서 사람이 돌린다.
+#
+# 왜 여기서 끊는가: research/compose 는 LLM 호출이라 CI 에서 돌리려면 API 키가
+# 필요하다. 무료 대안을 조사했으나 GitHub Models 는 2026-07 종료, Groq 는 단일
+# 요청 8K TPM 벽, Actions 로컬 추론은 16GB RAM 초과로 전부 막혔고, 남은 Gemini
+# 무료 티어는 한국어 리더보드에 근거가 없다. 반면 로컬은 Claude Code 구독으로
+# 이미 무과금이다 — 발행물의 한국어 품질을 지키면서 돈도 안 드는 쪽을 택했다.
+#
+# 매일 아침 이 잡이 "오늘의 레포"를 골라 커밋해두면,
+# 사람은 편할 때 `python -m agent run` 만 돌리면 된다.
 
 name: collect
 
@@ -47,13 +54,13 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: python -m agent collect
 
-      - name: 선정 (카나리)
-        # 아직 research/compose 가 없어 결과를 소비하지 않는다.
-        # 파이프라인이 실제로 끝까지 도는지 매일 확인하는 용도다.
+      - name: 선정
+        # 오늘의 레포를 고른다. 사람이 로컬에서 `agent run` 을 돌릴 때
+        # 이 결과(data/selection/{date}.json)를 입력으로 쓴다.
         # 후보 0개는 정상 종료(exit 0)이므로 실패로 잡히지 않는다.
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run: python -m agent select
+        run: python -m agent select | tee -a "$GITHUB_STEP_SUMMARY"
 
       - name: 상태 출력
         run: python -m agent status

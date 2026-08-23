@@ -1,119 +1,127 @@
 {
   "repo": "NousResearch/hermes-agent",
   "date": "2026-08-23",
-  "generated_at": "2026-08-23T10:18:19.040419Z",
+  "generated_at": "2026-08-23T12:37:55.884890Z",
   "payload": {
     "cards": [
       {
         "index": 1,
         "role": "cover",
         "title": "hermes-agent",
-        "body": "모델을 갈아끼우는 MIT 라이선스 파이썬 CLI 에이전트. 스타 23만, 오늘만 +443.",
+        "body": "경험을 스킬로 남기는 Nous Research의 오픈소스 에이전트. 터미널·메신저·클라우드에서 같은 에이전트를 이어 쓴다.",
         "code": [],
-        "footnote": "NousResearch/hermes-agent"
+        "footnote": "NousResearch/hermes-agent · Python · MIT",
+        "image": null
       },
       {
         "index": 2,
         "role": "problem",
-        "title": "세션 끝나면 맥락도 끝",
-        "body": "코딩 에이전트는 대개 노트북 터미널에 묶인다. 창을 닫으면 쌓인 맥락도 같이 사라진다.",
+        "title": "세션 끝나면 다 사라진다",
+        "body": "배운 절차는 휘발되고, 에이전트는 노트북에 묶이고, 모델 제공자도 갈아끼우기 어렵다.",
         "code": [],
-        "footnote": null
+        "footnote": "Hermes는 이 셋을 각각 코드 레벨에서 건드린다",
+        "image": null
       },
       {
         "index": 3,
         "role": "why_now",
-        "title": "패치 하나에 PR 323개",
-        "body": "v0.20.4→v0.20.5 한 구간에 746커밋, +111,500/−20,701줄. 스타 급증은 이 속도와 맞물린다.",
+        "title": "하루 만에 746 커밋",
+        "body": "v2026.8.19 릴리스 노트 기준, 전날 태그 이후 약 746 커밋 · 1,250 파일 · 323개 PR.",
         "code": [],
-        "footnote": "직전 v0.20.3 구간도 약 250커밋·125 PR"
+        "footnote": "이 구간에 키 없는 웹 검색 티어(5개 벤더 무료 로테이션), 퍼지 /model, Ctrl+P 팔레트, 파일 첨부, Bot Mode가 들어왔다",
+        "image": null
       },
       {
         "index": 4,
         "role": "feature",
-        "title": "학습 루프는 실제 모듈",
-        "body": "learning_graph.py가 SKILL.md와 사용 기록으로 스킬 노드를, MEMORY.md를 잘라 메모리 노드를 만든다.",
+        "title": "/learn — 대화를 스킬로",
+        "body": "별도 distillation 엔진 없이 프롬프트 하나로. 에이전트가 기존 툴로 자료를 모아 SKILL.md를 쓴다.",
         "code": [],
-        "footnote": "created_by=agent 또는 use_count>0만 '학습된 것'"
+        "footnote": "agent/learn_prompt.py — description 60자 제한, 섹션 순서, 소스는 명령이 아닌 데이터로 취급하는 인젝션 방어 문구까지 프롬프트에 하드코딩",
+        "image": null
       },
       {
         "index": 5,
         "role": "feature",
-        "title": "실행 백엔드 7종",
-        "body": "local·docker·ssh·singularity·modal·daytona·vercel에서 같은 에이전트를 돌린다.",
+        "title": "학습 그래프",
+        "body": "에이전트가 만들었거나 실제 쓰인 스킬만 노드로 올리고, MEMORY.md·USER.md를 메모리 카드로 쪼갠다.",
         "code": [],
-        "footnote": "docker 91KB·local 85KB, 원격은 10~21KB로 얇다"
+        "footnote": "agent/learning_graph.py — 메모리↔스킬 간선은 임베딩이 아니라 3글자 이상 토큰 겹침 점수 상위 4개. 휴리스틱임을 알고 쓰는 게 좋다",
+        "image": null
       },
       {
         "index": 6,
         "role": "feature",
-        "title": "CLI 밖으로 나가는 세션",
-        "body": "gateway로 텔레그램·디스코드까지. AIAgent 객체 하나가 CLI 세션과 메신저 세션을 공유한다.",
+        "title": "WSL 없는 윈도우 지원",
+        "body": "모든 진입점이 최상단에서 import하는 부트스트랩이 UTF-8 강제와 콘솔 깜빡임 우회를 처리한다.",
         "code": [],
-        "footnote": "cron, 데스크톱 앱, acp_adapter도 같은 저장소"
+        "footnote": "hermes_bootstrap.py — cmd /c ver 호출로 인한 디코드 크래시 우회, 현재 디렉터리의 utils/·proxy/가 Hermes 모듈을 가리는 문제 차단",
+        "image": null
       },
       {
         "index": 7,
         "role": "architecture",
-        "title": "동작 원리 3줄",
-        "body": "Python 3.11 고정, uv로 설치. 루프·프롬프트·압축·툴 실행이 별도 모듈. 모델은 어댑터로 교체.",
+        "title": "어떻게 동작하나",
+        "body": "진입점은 최상위, 런타임은 agent/(대화 루프·컨텍스트 압축·툴 실행). gateway·cron·apps는 별도 디렉터리.",
         "code": [],
-        "footnote": "단, conversation_loop.py 471KB — 파일이 매우 크다"
+        "footnote": "제공자별 어댑터(anthropic·bedrock·gemini·vertex·azure·codex)가 파일 단위로 분리돼 모델 교체에 코드 변경이 필요 없다. 다만 agent/ 개별 파일이 수십만 바이트라 읽기 쉬운 구조는 아니다",
+        "image": null
       },
       {
         "index": 8,
         "role": "quickstart",
         "title": "설치와 첫 실행",
-        "body": "공식 install.sh 원라이너로 설치한 뒤, 첫 실행·모델 선택·상태 점검 순서.",
+        "body": "공식 install.sh 원라이너로 설치하고 셸을 다시 연 뒤, 아래를 순서대로 실행하면 된다.",
         "code": [
           "hermes",
           "hermes model",
           "hermes doctor"
         ],
-        "footnote": "윈도우는 번들 uv.exe 백신 오탐 사례가 문서화돼 있다"
+        "footnote": "메신저 연동은 hermes gateway",
+        "image": null
       },
       {
         "index": 9,
         "role": "fit",
         "title": "이럴 때 / 아닐 때",
-        "body": "자체 호스팅과 모델 교체엔 맞다. 안정 릴리스가 필요하면 v0.21.0 전까진 회귀를 각오해라.",
+        "body": "메신저·크론까지 한 에이전트로 묶고 싶다면 맞다. 안정성이 최우선이면 아직 이르다.",
         "code": [],
-        "footnote": "#92832 Bot Mode 무한 스피너, #92814 한글 볼드 깨짐"
+        "footnote": "열린 이슈가 데스크톱 앱·설치 경로에 몰려 있다(업데이트 후 IPC 브리지 사망, 리눅스 .desktop 실행 실패, npm high 취약점 7건). 릴리스도 하루 간격 대량 패치라 변경 추적이 어렵다",
+        "image": null
       },
       {
         "index": 10,
         "role": "outro",
-        "title": "hermes-agent · MIT",
-        "body": "github.com/NousResearch/hermes-agent — 스타 234,515. 설치 전 열린 이슈부터 훑어보길.",
+        "title": "레포 & 라이선스",
+        "body": "github.com/NousResearch/hermes-agent · MIT · 스타 234,523(+443 오늘)",
         "code": [],
-        "footnote": "Nous Portal 경로는 자사 유료 구독 유도이기도 하다"
+        "footnote": "README의 self-improving은 대부분 프롬프트와 파일 저장으로 구현된 것. 직접 열어보고 판단하길",
+        "image": null
       }
     ],
-    "caption": "모델 비종속 CLI 에이전트 hermes-agent. 스킬·메모리를 파일로 남기는 학습 루프(agent/learning_graph.py)와 텔레그램·디스코드 게이트웨이, 7종 실행 백엔드(local·docker·ssh·singularity·modal·daytona·vercel)가 한 저장소에 들어 있습니다.\n\n주목할 건 개발 속도입니다. v0.20.4→v0.20.5 한 구간에서만 약 746 커밋, 1,250여 개 파일, +111,500/−20,701 라인, 약 323개 PR이 병합됐습니다. 대신 회귀도 태그에 실립니다. 데스크톱 Bot Mode 무한 스피너(#92832), 한글에서 볼드 뒤 조사가 붙으면 `**`가 그대로 보이는 렌더링 문제(#92814) 등이 열려 있고, v0.21.0 전까지는 정리된 릴리스 노트도 없습니다. 도입 전에 이슈 목록부터 확인하세요.\n\nhttps://github.com/NousResearch/hermes-agent\n스타 234,515 · 라이선스 MIT · Python",
+    "caption": "경험을 스킬 파일로 남기고 다시 꺼내 쓰는 오픈소스 에이전트. 게이트웨이 프로세스 하나로 Telegram·Discord·Slack·WhatsApp·Signal·CLI를 함께 받고, cron 스케줄러로 무인 작업을 돌린 뒤 결과를 각 플랫폼으로 배달한다. 제공자별 어댑터가 파일 단위로 분리돼 있어 모델 교체에 코드 변경이 필요 없다.\n\n/learn은 별도 엔진 없이 프롬프트 하나로 동작하고, 학습 그래프는 실제로 쓰인 스킬만 보여주되 메모리 연결은 토큰 겹침 휴리스틱이다. 최근 릴리스는 하루 간격으로 수백 개 PR을 묶는 속도라 변경 추적이 쉽지 않고, 열린 이슈는 데스크톱 앱과 설치 경로에 몰려 있다.\n\nhttps://github.com/NousResearch/hermes-agent\n스타 234,523 (오늘 +443) · 라이선스 MIT · Python",
     "hashtags": [
       "개발자",
       "오픈소스",
-      "github",
       "깃허브",
-      "hermesagent",
-      "NousResearch",
       "AI에이전트",
-      "코딩에이전트",
-      "python",
+      "hermes",
+      "NousResearch",
       "파이썬",
-      "CLI",
-      "MIT라이선스",
+      "python",
       "LLM",
-      "MCP",
-      "docker",
-      "devtools",
-      "개발도구",
+      "CLI",
       "자동화",
-      "텔레그램봇",
-      "디스코드봇"
+      "MCP",
+      "devtools",
+      "github",
+      "opensource",
+      "aiagent",
+      "코딩툴",
+      "개발도구"
     ]
   },
   "dropped_roles": [],
-  "cost_usd": 0.180561,
+  "cost_usd": 0.357601,
   "attempts": 1
 }

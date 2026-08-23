@@ -41,12 +41,17 @@ class AgentRun:
     raw: Any
 
 
-def _require_api_key() -> None:
-    if not os.environ.get("ANTHROPIC_API_KEY"):
-        log.warning(
-            "ANTHROPIC_API_KEY 가 없습니다. Claude Code CLI 의 기존 로그인으로 "
-            "동작할 수 있지만, CI 무인 실행에는 키가 필요합니다."
-        )
+def _note_auth_source() -> None:
+    """어떤 인증으로 도는지 한 번 알려준다.
+
+    API 키가 없는 것은 오류가 아니라 기본 상태다 — 이 단계는 로컬에서 Claude
+    Code 구독 로그인으로 돌리기로 했다(SPEC 9.0). 키를 넣으면 API 과금으로
+    바뀌고 CI 에서도 돌릴 수 있다.
+    """
+    if os.environ.get("ANTHROPIC_API_KEY"):
+        log.info("인증: ANTHROPIC_API_KEY (API 과금)")
+    else:
+        log.info("인증: Claude Code 로그인 (구독 한도 사용, API 과금 없음)")
 
 
 async def run_structured(
@@ -61,7 +66,7 @@ async def run_structured(
     effort: str = "high",
 ) -> AgentRun:
     """에이전트를 돌려 schema_model 로 검증된 결과를 받는다."""
-    _require_api_key()
+    _note_auth_source()
 
     options = ClaudeAgentOptions(
         model=MODEL,
@@ -104,8 +109,10 @@ async def run_structured(
     except ValidationError as exc:
         raise AgentRunError(f"구조적 출력이 스키마와 맞지 않습니다: {exc}") from exc
 
+    # 구독 로그인으로 돌 때 total_cost_usd 는 실제 청구액이 아니라
+    # "API 로 돌렸다면" 기준의 환산 비용이다. 구독 한도만 소진된다.
     log.info(
-        "에이전트 완료: %d턴, $%.4f",
+        "에이전트 완료: %d턴, 환산 $%.4f",
         result.num_turns,
         result.total_cost_usd or 0.0,
     )

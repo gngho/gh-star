@@ -1,8 +1,8 @@
-모델 비종속 CLI 에이전트 hermes-agent. 스킬·메모리를 파일로 남기는 학습 루프(agent/learning_graph.py)와 텔레그램·디스코드 게이트웨이, 7종 실행 백엔드(local·docker·ssh·singularity·modal·daytona·vercel)가 한 저장소에 들어 있습니다.
+경험을 스킬 파일로 남기고 다시 꺼내 쓰는 오픈소스 에이전트. 게이트웨이 프로세스 하나로 Telegram·Discord·Slack·WhatsApp·Signal·CLI를 함께 받고, cron 스케줄러로 무인 작업을 돌린 뒤 결과를 각 플랫폼으로 배달한다. 제공자별 어댑터가 파일 단위로 분리돼 있어 모델 교체에 코드 변경이 필요 없다.
 
-주목할 건 개발 속도입니다. v0.20.4→v0.20.5 한 구간에서만 약 746 커밋, 1,250여 개 파일, +111,500/−20,701 라인, 약 323개 PR이 병합됐습니다. 대신 회귀도 태그에 실립니다. 데스크톱 Bot Mode 무한 스피너(#92832), 한글에서 볼드 뒤 조사가 붙으면 `**`가 그대로 보이는 렌더링 문제(#92814) 등이 열려 있고, v0.21.0 전까지는 정리된 릴리스 노트도 없습니다. 도입 전에 이슈 목록부터 확인하세요.
+/learn은 별도 엔진 없이 프롬프트 하나로 동작하고, 학습 그래프는 실제로 쓰인 스킬만 보여주되 메모리 연결은 토큰 겹침 휴리스틱이다. 최근 릴리스는 하루 간격으로 수백 개 PR을 묶는 속도라 변경 추적이 쉽지 않고, 열린 이슈는 데스크톱 앱과 설치 경로에 몰려 있다.
 
 https://github.com/NousResearch/hermes-agent
-스타 234,515 · 라이선스 MIT · Python
+스타 234,523 (오늘 +443) · 라이선스 MIT · Python
 
-#개발자 #오픈소스 #github #깃허브 #hermesagent #NousResearch #AI에이전트 #코딩에이전트 #python #파이썬 #CLI #MIT라이선스 #LLM #MCP #docker #devtools #개발도구 #자동화 #텔레그램봇 #디스코드봇
+#개발자 #오픈소스 #깃허브 #AI에이전트 #hermes #NousResearch #파이썬 #python #LLM #CLI #자동화 #MCP #devtools #github #opensource #aiagent #코딩툴 #개발도구

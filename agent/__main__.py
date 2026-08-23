@@ -15,6 +15,7 @@ import argparse
 import logging
 import sys
 from datetime import datetime, timedelta, timezone
+from typing import Any
 
 from . import collect as collect_mod
 from . import paths
@@ -208,6 +209,57 @@ def cmd_design_sync(args: argparse.Namespace) -> int:
     return 0
 
 
+def cmd_run(args: argparse.Namespace) -> int:
+    """로컬에서 한 번에 돌린다.
+
+    수집·선정은 Actions 가 매일 알아서 하므로 기본값은 조사부터다.
+    --full 을 주면 수집부터 전부 로컬에서 돌린다.
+    """
+    from . import compose as compose_mod
+    from . import imagery
+    from . import render as render_mod
+    from . import research as research_mod
+
+    config = load_config()
+    date = args.date
+
+    stages: list[tuple[str, Any]] = []
+    if args.full:
+        stages += [("수집", lambda: collect_mod.run(config, date)),
+                   ("선정", lambda: select_mod.run(config, date))]
+    stages += [
+        ("조사", lambda: research_mod.run(config, date)),
+        ("원고", lambda: compose_mod.run(config, date)),
+    ]
+    if not args.no_images:
+        def _illustrate():
+            deck, post_dir = imagery.load_deck(date)
+            return imagery.run(deck, post_dir)
+        stages.append(("이미지", _illustrate))
+    stages.append(("렌더", lambda: render_mod.run(config, date)))
+
+    for i, (label, fn) in enumerate(stages, 1):
+        print(f"\n─── [{i}/{len(stages)}] {label} " + "─" * 40)
+        try:
+            fn()
+        except select_mod.NoCandidateError as exc:
+            print(f"\n[skip] {exc}")
+            return 0
+        except imagery.ImageryError as exc:
+            # 이미지는 없어도 카드가 나온다. 여기서 멈출 이유가 없다.
+            print(f"\n[warn] 이미지 생략: {exc}", file=sys.stderr)
+            continue
+        except (FileNotFoundError, RuntimeError) as exc:
+            print(f"\n[error] {label} 실패: {exc}", file=sys.stderr)
+            return 1
+
+    post_dirs = sorted(paths.POSTS.glob(f"{date}-*"))
+    print("\n" + "═" * 52)
+    print(f"완료. 카드를 확인하세요: {post_dirs[-1] if post_dirs else paths.POSTS}")
+    print("고칠 게 있으면 content.json 을 수정하고 `python -m agent render` 만 다시 돌리면 됩니다.")
+    return 0
+
+
 def cmd_status(_: argparse.Namespace) -> int:
     snapshots = sorted(p.stem for p in paths.SNAPSHOTS.glob("*.json"))
     watchlist = paths.read_json(paths.WATCHLIST, default={}) or {}
@@ -245,6 +297,14 @@ def main(argv: list[str] | None = None) -> int:
         p.add_argument("--date", default=_today_kst(), help="기준일 (KST, 기본: 오늘)")
         p.add_argument("--dry-run", action="store_true", help="파일을 쓰지 않는다")
         p.set_defaults(func=handler)
+
+    p_run = sub.add_parser(
+        "run", help="조사→원고→이미지→렌더를 한 번에 돌린다 (로컬 실행용)"
+    )
+    p_run.add_argument("--date", default=_today_kst(), help="기준일 (KST, 기본: 오늘)")
+    p_run.add_argument("--full", action="store_true", help="수집·선정도 로컬에서 함께 실행")
+    p_run.add_argument("--no-images", action="store_true", help="상단 이미지 생략")
+    p_run.set_defaults(func=cmd_run)
 
     p_sync = sub.add_parser(
         "design-sync", help="피그마 토큰으로 카드 CSS 를 다시 생성한다"
