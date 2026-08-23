@@ -4,6 +4,7 @@
     python -m agent select   [--date YYYY-MM-DD] [--dry-run]
     python -m agent research [--date YYYY-MM-DD] [--dry-run]
     python -m agent compose  [--date YYYY-MM-DD] [--dry-run]
+    python -m agent render   [--date YYYY-MM-DD] [--dry-run]
     python -m agent status
 """
 
@@ -141,6 +142,32 @@ def cmd_compose(args: argparse.Namespace) -> int:
     return 0
 
 
+def cmd_render(args: argparse.Namespace) -> int:
+    from . import render as render_mod
+
+    config = load_config()
+    try:
+        meta = render_mod.run(config, args.date, dry_run=args.dry_run)
+    except (FileNotFoundError, render_mod.RenderError) as exc:
+        print(f"\n[error] {exc}", file=sys.stderr)
+        return 1
+
+    print(f"\n[{meta['date']}] 렌더 완료: {meta['repo']}")
+    print(f"  {meta['width']}×{meta['height']} {meta['format'].upper()} · 토큰 출처 {meta['tokens_source']}")
+    for card in meta["cards"]:
+        note = ""
+        if card["overflow_px"]:
+            note = f"  ⚠ {card['overflow_px']}px 초과"
+        elif card["scale"] < 1.0:
+            note = f"  ({card['scale']:.0%} 축소)"
+        print(f"  {card['file']}  [{card['role']}]{note}")
+    if meta["warnings"]:
+        print(f"\n  ⚠ 경고 {len(meta['warnings'])}건 — 원고를 줄여야 합니다:")
+        for w in meta["warnings"]:
+            print(f"    - {w}")
+    return 0
+
+
 def cmd_status(_: argparse.Namespace) -> int:
     snapshots = sorted(p.stem for p in paths.SNAPSHOTS.glob("*.json"))
     watchlist = paths.read_json(paths.WATCHLIST, default={}) or {}
@@ -171,6 +198,7 @@ def main(argv: list[str] | None = None) -> int:
         ("select", cmd_select, "후보 중 심층 리뷰 대상 1개 + 예비 2개를 선정한다"),
         ("research", cmd_research, "선정된 레포를 에이전트가 심층 조사한다"),
         ("compose", cmd_compose, "조사 결과로 카드 원고를 생성한다"),
+        ("render", cmd_render, "원고를 카드 이미지(JPEG)로 렌더한다"),
     ):
         p = sub.add_parser(name, help=help_text)
         p.add_argument("--date", default=_today_kst(), help="기준일 (KST, 기본: 오늘)")

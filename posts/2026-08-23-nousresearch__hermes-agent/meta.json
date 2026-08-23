@@ -1,0 +1,82 @@
+{
+  "repo": "NousResearch/hermes-agent",
+  "date": "2026-08-23",
+  "rendered_at": "2026-08-23T10:21:28.765280+00:00",
+  "width": 1080,
+  "height": 1350,
+  "format": "jpeg",
+  "tokens_source": "default",
+  "cards": [
+    {
+      "index": 1,
+      "role": "cover",
+      "file": "01.jpg",
+      "scale": 1.0,
+      "overflow_px": 0
+    },
+    {
+      "index": 2,
+      "role": "problem",
+      "file": "02.jpg",
+      "scale": 1.0,
+      "overflow_px": 0
+    },
+    {
+      "index": 3,
+      "role": "why_now",
+      "file": "03.jpg",
+      "scale": 1.0,
+      "overflow_px": 0
+    },
+    {
+      "index": 4,
+      "role": "feature",
+      "file": "04.jpg",
+      "scale": 1.0,
+      "overflow_px": 0
+    },
+    {
+      "index": 5,
+      "role": "feature",
+      "file": "05.jpg",
+      "scale": 1.0,
+      "overflow_px": 0
+    },
+    {
+      "index": 6,
+      "role": "feature",
+      "file": "06.jpg",
+      "scale": 1.0,
+      "overflow_px": 0
+    },
+    {
+      "index": 7,
+      "role": "architecture",
+      "file": "07.jpg",
+      "scale": 1.0,
+      "overflow_px": 0
+    },
+    {
+      "index": 8,
+      "role": "quickstart",
+      "file": "08.jpg",
+      "scale": 1.0,
+      "overflow_px": 0
+    },
+    {
+      "index": 9,
+      "role": "fit",
+      "file": "09.jpg",
+      "scale": 1.0,
+      "overflow_px": 0
+    },
+    {
+      "index": 10,
+      "role": "outro",
+      "file": "10.jpg",
+      "scale": 1.0,
+      "overflow_px": 0
+    }
+  ],
+  "warnings": []
+}

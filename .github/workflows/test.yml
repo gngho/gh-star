@@ -25,4 +25,15 @@ jobs:
 
       - run: python -m pip install --upgrade pip && python -m pip install -e ".[dev]"
 
+      # Chromium 은 ~150MB 다. 매 실행마다 내려받지 않도록 캐시한다.
+      - name: Playwright 브라우저 캐시
+        id: pw-cache
+        uses: actions/cache@v4
+        with:
+          path: ~/.cache/ms-playwright
+          key: playwright-${{ runner.os }}-${{ hashFiles('pyproject.toml') }}
+
+      - name: Chromium 설치
+        run: python -m playwright install --with-deps chromium
+
       - run: python -m pytest tests -q

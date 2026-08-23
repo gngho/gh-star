@@ -34,6 +34,8 @@ compose:
   max_title_chars: 24
   max_body_chars: 90
   max_hashtags: 30
+  max_code_lines: 3
+  max_code_line_chars: 52       # 27px 모노스페이스 기준 실측 여유 (기존 42는 과했다)
   tone: "실무 개발자에게 말하듯, 과장 없이"
 
 render:

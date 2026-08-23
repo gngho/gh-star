@@ -129,8 +129,13 @@ class TestValidate:
 
     def test_long_code_line_is_rejected(self):
         deck = self._deck()
-        deck.cards[2].code = ["x" * 43]
-        assert any("42자" in p for p in self._check(deck))
+        deck.cards[2].code = ["x" * 60]
+        assert any("52자" in p for p in self._check(deck))
+
+    def test_too_many_code_lines(self):
+        deck = self._deck()
+        deck.cards[2].code = ["echo a", "echo b", "echo c", "echo d"]
+        assert any("줄입니다" in p for p in self._check(deck))
 
     def test_too_many_hashtags(self):
         deck = self._deck(hashtags=[f"t{i}" for i in range(MAX_TAGS + 1)])
@@ -148,6 +153,58 @@ class TestValidate:
     def test_caption_over_limit(self):
         deck = self._deck(caption="가" * (compose_mod.CAPTION_LIMIT + 1))
         assert any(str(compose_mod.CAPTION_LIMIT) in p for p in self._check(deck))
+
+
+class TestContinuationDetection:
+    """한 명령을 쪼갠 조각은 내용 오류다.
+
+    카드는 code 줄마다 '$' 프롬프트를 붙이므로, URL 중간에서 끊긴 조각이 들어가면
+    별개의 명령 두 개처럼 읽힌다. 실제로 첫 렌더에서 이 문제가 나왔다.
+    """
+
+    @pytest.mark.parametrize(
+        "line",
+        [
+            ".nousresearch.com/install.sh | bash",  # 실제로 발생한 사례
+            "| bash",
+            "&& hermes doctor",
+            "--verbose --model opus",
+            "/usr/local/bin/tool",
+            "example.com/install.sh",
+        ],
+    )
+    def test_fragments_are_detected(self, line):
+        assert compose_mod._looks_like_continuation(line) is True
+
+    @pytest.mark.parametrize(
+        "line",
+        [
+            "pip install hermes-agent",
+            "curl -fsSL https://x.sh | bash",  # 완전한 한 줄이면 파이프도 정상
+            "hermes && hermes model",
+            "npx create-app my-app",
+            "docker run -it ubuntu",
+            "uv pip install -e '.[all]'",
+        ],
+    )
+    def test_complete_commands_pass(self, line):
+        assert compose_mod._looks_like_continuation(line) is False
+
+    def test_fragment_is_reported_as_violation(self):
+        deck = CardDeckPayload(
+            cards=[
+                Card(index=1, role="quickstart", title="설치", body="",
+                     code=["curl -fsSL https://hermes-agent",
+                           ".nousresearch.com/install.sh | bash"]),
+            ],
+            caption="요약",
+            hashtags=[],
+        )
+        problems = compose_mod._validate(
+            deck, ["quickstart"], MAX_TITLE, MAX_BODY, MAX_TAGS
+        )
+        assert any("완전한 명령" in p for p in problems)
+
 
 
 class TestRepair:

@@ -1,22 +1,22 @@
 {
   "repo": "NousResearch/hermes-agent",
   "date": "2026-08-23",
-  "generated_at": "2026-08-23T09:44:25.657041Z",
+  "generated_at": "2026-08-23T10:18:19.040419Z",
   "payload": {
     "cards": [
       {
         "index": 1,
         "role": "cover",
         "title": "hermes-agent",
-        "body": "모델을 갈아끼울 수 있는 MIT 파이썬 CLI 에이전트. 스킬·메모리를 스스로 쌓고, 노트북 밖에서도 돈다.",
+        "body": "모델을 갈아끼우는 MIT 라이선스 파이썬 CLI 에이전트. 스타 23만, 오늘만 +443.",
         "code": [],
-        "footnote": "NousResearch/hermes-agent · Python · MIT"
+        "footnote": "NousResearch/hermes-agent"
       },
       {
         "index": 2,
         "role": "problem",
-        "title": "세션이 닫히면 맥락도 끝",
-        "body": "코딩 에이전트는 대개 노트북 터미널 세션에 묶인다. 세션이 끝나면 그동안 쌓인 맥락도 같이 사라진다.",
+        "title": "세션 끝나면 맥락도 끝",
+        "body": "코딩 에이전트는 대개 노트북 터미널에 묶인다. 창을 닫으면 쌓인 맥락도 같이 사라진다.",
         "code": [],
         "footnote": null
       },
@@ -24,96 +24,96 @@
         "index": 3,
         "role": "why_now",
         "title": "패치 하나에 PR 323개",
-        "body": "v0.20.4→v0.20.5 한 구간에 746 커밋, +111,500/−20,701 라인. 스타는 오늘만 +443.",
+        "body": "v0.20.4→v0.20.5 한 구간에 746커밋, +111,500/−20,701줄. 스타 급증은 이 속도와 맞물린다.",
         "code": [],
-        "footnote": "8/18→8/19 태그 기준, 릴리스 노트 집계"
+        "footnote": "직전 v0.20.3 구간도 약 250커밋·125 PR"
       },
       {
         "index": 4,
         "role": "feature",
         "title": "학습 루프는 실제 모듈",
-        "body": "learning_graph.py가 SKILL.md 프론트매터와 use_count 기록을 읽어 스킬·메모리를 노드로 잇는다.",
+        "body": "learning_graph.py가 SKILL.md와 사용 기록으로 스킬 노드를, MEMORY.md를 잘라 메모리 노드를 만든다.",
         "code": [],
-        "footnote": "agent/learning_graph.py, tools/skill_usage.py"
+        "footnote": "created_by=agent 또는 use_count>0만 '학습된 것'"
       },
       {
         "index": 5,
         "role": "feature",
         "title": "실행 백엔드 7종",
-        "body": "local·docker·ssh·singularity·modal·daytona·vercel. 다만 원격 쪽은 10~21KB로 아직 얇다.",
+        "body": "local·docker·ssh·singularity·modal·daytona·vercel에서 같은 에이전트를 돌린다.",
         "code": [],
-        "footnote": "tools/environments/*.py (docker 91KB, local 85KB)"
+        "footnote": "docker 91KB·local 85KB, 원격은 10~21KB로 얇다"
       },
       {
         "index": 6,
         "role": "feature",
         "title": "CLI 밖으로 나가는 세션",
-        "body": "gateway·cron·데스크톱이 한 레포에. 텔레그램/디스코드 세션이 CLI와 같은 AIAgent 객체를 쓴다.",
+        "body": "gateway로 텔레그램·디스코드까지. AIAgent 객체 하나가 CLI 세션과 메신저 세션을 공유한다.",
         "code": [],
-        "footnote": "run_agent.py의 AIAgent __init__ 시그니처"
+        "footnote": "cron, 데스크톱 앱, acp_adapter도 같은 저장소"
       },
       {
         "index": 7,
         "role": "architecture",
         "title": "동작 원리 3줄",
-        "body": "Python 3.11 고정, uv 설치. 루프·프롬프트·압축·툴 실행이 별도 모듈. 프로바이더별 어댑터로 모델 교체.",
+        "body": "Python 3.11 고정, uv로 설치. 루프·프롬프트·압축·툴 실행이 별도 모듈. 모델은 어댑터로 교체.",
         "code": [],
-        "footnote": "단, conversation_loop.py 471KB — 파일 하나가 수천 줄이다"
+        "footnote": "단, conversation_loop.py 471KB — 파일이 매우 크다"
       },
       {
         "index": 8,
         "role": "quickstart",
         "title": "설치와 첫 실행",
-        "body": "원라이너 설치 뒤 모델 고르고 진단까지. 소스 개발은 uv pip install -e \".[all,dev]\".",
+        "body": "공식 install.sh 원라이너로 설치한 뒤, 첫 실행·모델 선택·상태 점검 순서.",
         "code": [
-          "curl -fsSL https://hermes-agent",
-          ".nousresearch.com/install.sh | bash",
-          "hermes && hermes model && hermes doctor"
+          "hermes",
+          "hermes model",
+          "hermes doctor"
         ],
-        "footnote": "Termux는 .[all] 대신 .[termux]만 설치된다"
+        "footnote": "윈도우는 번들 uv.exe 백신 오탐 사례가 문서화돼 있다"
       },
       {
         "index": 9,
         "role": "fit",
-        "title": "이럴 때 쓰고, 이럴 땐 말고",
-        "body": "원격·메신저에서 돌릴 팀엔 맞다. 회귀는 잦다 — Bot Mode 무한 스피너가 정식 태그에 실렸다.",
+        "title": "이럴 때 / 아닐 때",
+        "body": "자체 호스팅과 모델 교체엔 맞다. 안정 릴리스가 필요하면 v0.21.0 전까진 회귀를 각오해라.",
         "code": [],
-        "footnote": "#92832 #92830 · 한글 볼드 뒤 조사 렌더링 이슈 #92814"
+        "footnote": "#92832 Bot Mode 무한 스피너, #92814 한글 볼드 깨짐"
       },
       {
         "index": 10,
         "role": "outro",
-        "title": "MIT · Python · 스타 23만",
-        "body": "github.com/NousResearch/hermes-agent · curl|bash가 기본 설치 경로인 건 감안하고 열어보자.",
+        "title": "hermes-agent · MIT",
+        "body": "github.com/NousResearch/hermes-agent — 스타 234,515. 설치 전 열린 이슈부터 훑어보길.",
         "code": [],
-        "footnote": null
+        "footnote": "Nous Portal 경로는 자사 유료 구독 유도이기도 하다"
       }
     ],
-    "caption": "모델을 갈아끼울 수 있는 MIT 라이선스 파이썬 CLI 에이전트. 스킬·메모리를 파일로 남기는 학습 루프(agent/learning_graph.py)와 텔레그램·디스코드 게이트웨이, 7종 실행 백엔드(local·docker·ssh·singularity·modal·daytona·vercel)를 한 저장소에 담았습니다.\n\n스타가 튄 건 기능 하나 때문이 아니라 릴리스 속도 자체로 보입니다. v0.20.4→v0.20.5 한 구간에서만 746 커밋, +111,500/−20,701 라인, PR 약 323개가 병합됐습니다. 대신 대가도 명확합니다. 데스크톱 Bot Mode 무한 스피너 회귀가 정식 태그에 실렸고(#92832), 한글 볼드 뒤 조사가 리터럴 **로 렌더링되는 이슈(#92814)도 열려 있습니다. v0.21.0 전까지 정리된 릴리스 노트는 없습니다.\n\ngithub.com/NousResearch/hermes-agent\n스타 234,515 (오늘 +443) · Python · MIT",
+    "caption": "모델 비종속 CLI 에이전트 hermes-agent. 스킬·메모리를 파일로 남기는 학습 루프(agent/learning_graph.py)와 텔레그램·디스코드 게이트웨이, 7종 실행 백엔드(local·docker·ssh·singularity·modal·daytona·vercel)가 한 저장소에 들어 있습니다.\n\n주목할 건 개발 속도입니다. v0.20.4→v0.20.5 한 구간에서만 약 746 커밋, 1,250여 개 파일, +111,500/−20,701 라인, 약 323개 PR이 병합됐습니다. 대신 회귀도 태그에 실립니다. 데스크톱 Bot Mode 무한 스피너(#92832), 한글에서 볼드 뒤 조사가 붙으면 `**`가 그대로 보이는 렌더링 문제(#92814) 등이 열려 있고, v0.21.0 전까지는 정리된 릴리스 노트도 없습니다. 도입 전에 이슈 목록부터 확인하세요.\n\nhttps://github.com/NousResearch/hermes-agent\n스타 234,515 · 라이선스 MIT · Python",
     "hashtags": [
       "개발자",
       "오픈소스",
+      "github",
       "깃허브",
-      "hermes",
+      "hermesagent",
       "NousResearch",
       "AI에이전트",
       "코딩에이전트",
-      "파이썬",
       "python",
+      "파이썬",
       "CLI",
       "MIT라이선스",
       "LLM",
-      "도커",
       "MCP",
-      "개발도구",
+      "docker",
       "devtools",
-      "github",
-      "opensource",
-      "aiagent",
-      "코딩공부"
+      "개발도구",
+      "자동화",
+      "텔레그램봇",
+      "디스코드봇"
     ]
   },
   "dropped_roles": [],
-  "cost_usd": 0.198443,
+  "cost_usd": 0.180561,
   "attempts": 1
 }

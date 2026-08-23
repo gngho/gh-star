@@ -1,0 +1,45 @@
+/* 기본 디자인 토큰.
+ *
+ * 이 파일은 design-sync 가 피그마에서 추출한 값으로 덮어쓴다 (SPEC 7.2).
+ * 피그마 파일이 아직 없어도 렌더링이 돌아야 하므로 기본 팔레트를 여기 둔다.
+ * 직접 손으로 고쳐도 되지만, design-sync 를 돌리면 덮어써진다.
+ */
+
+:root {
+  /* 배경 */
+  --bg: #0b0d10;
+  --bg-elevated: #14171c;
+  --bg-code: #0f1216;
+
+  /* 전경 */
+  --fg: #e9ecf1;
+  --fg-muted: #98a1ae;
+  --fg-faint: #5c6672;
+
+  /* 강조 */
+  --accent: #7c5cff;
+  --accent-soft: #a68dff;
+  --accent-2: #22d3ee;
+  --warn: #f5a524;
+
+  --border: #232830;
+
+  /* 타이포 */
+  --font-sans: "Pretendard Variable", system-ui, -apple-system, sans-serif;
+  --font-mono: ui-monospace, "Cascadia Mono", Consolas, monospace;
+
+  --size-eyebrow: 26px;
+  --size-title: 64px;
+  --size-title-cover: 82px;
+  --size-body: 34px;
+  --size-code: 27px;
+  --size-meta: 24px;
+
+  --leading-title: 1.22;
+  --leading-body: 1.62;
+
+  /* 여백 */
+  --pad-x: 88px;
+  --pad-y: 96px;
+  --gap: 32px;
+}

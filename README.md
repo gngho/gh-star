@@ -6,13 +6,14 @@
 
 ## 현재 상태
 
-**M1 (수집 + 선정) · M2 (조사 + 원고) 구현 완료.** 나머지는 미구현.
+**M1(수집·선정) · M2(조사·원고) · M3의 렌더링 구현 완료.** `design-sync` 와 M4·M5 는 미구현.
 
 | 마일스톤 | 단계 | 상태 |
 |---|---|---|
 | M1 | `collect`, `select` | ✅ 동작 |
 | M2 | `research`, `compose` | ✅ 동작 (실측 $1.10/건) |
-| M3 | `design-sync`, `render` | 미착수 |
+| M3 | `render` | ✅ 동작 (1080×1350 JPEG) |
+| M3 | `design-sync` | 미착수 (피그마 파일 필요) |
 | M4 | GitHub Actions 초안 PR | 미착수 |
 | M5 | `publish`, 토큰 갱신 | 미착수 |
 
@@ -36,7 +37,10 @@ python -m agent collect     # 후보 수집 + 점수화
 python -m agent select      # 심층 리뷰 대상 1개 + 예비 2개 선정
 python -m agent research    # 에이전트가 저장소를 직접 읽고 근거 수집
 python -m agent compose     # 조사 결과로 카드 10장 원고 생성
+python -m agent render      # 원고를 1080×1350 JPEG 카드로 렌더
 ```
+
+`render` 는 Playwright/Chromium 이 필요하다: `python -m playwright install chromium`
 
 `research` 와 `compose` 는 Claude 인증이 필요하다. 로컬에서는 Claude Code CLI 의
 기존 로그인으로도 동작하지만, **CI 무인 실행에는 `ANTHROPIC_API_KEY` 가 필요하다.**
@@ -77,5 +81,18 @@ agent/
 ├── llm.py          Agent SDK 래퍼 (구조적 출력 + 비용 상한)
 ├── research.py     선행 로딩 + 근거 강제 조사
 ├── compose.py      카드 원고 생성 (자동 보정 + 재생성)
+├── render.py       Jinja2 → Playwright → JPEG (오버플로 자동 축소)
 └── tools/          에이전트에 노출하는 읽기 전용 GitHub 툴 6종
+
+templates/
+├── card.html.j2    카드 레이아웃 (role 별 분기)
+└── tokens.css      디자인 토큰 — design-sync 가 덮어쓴다
+assets/fonts/       Pretendard (OFL, 번들 — CI 에 한글 폰트가 없다)
 ```
+
+## 디자인
+
+현재는 기본 다크 테마다. 피그마 파일을 만들고 `design-sync` 를 붙이면
+`templates/tokens.css` 가 피그마 값으로 교체된다. 토큰 파일이 없거나 피그마
+연결이 실패해도 렌더는 기본 팔레트로 계속 돈다 — 일일 실행이 디자인 도구에
+발목 잡히지 않게 하기 위해서다.

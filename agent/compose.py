@@ -44,6 +44,10 @@ SYSTEM_PROMPT = """\
 - feature: 기능 하나씩. title 에 기능명, body 에 그게 왜 좋은지.
 - architecture: 어떻게 동작하는지 3줄 요약.
 - quickstart: 설치·실행 커맨드. code 배열에 넣고 body 는 짧게.
+  **code 의 각 줄은 그 자체로 완전한 명령이어야 한다.** 한 명령을 길이 때문에
+  여러 줄로 쪼개지 마라 — 카드에는 줄마다 `$` 프롬프트가 붙어서, 쪼개면 별개의
+  명령 두 개처럼 읽힌다. 길면 더 짧은 대표 명령을 골라라
+  (예: 긴 curl 원라이너 대신 `pip install x`).
 - fit: 이럴 때 쓰면 좋고 이럴 땐 아니다. 단점을 숨기지 마라.
 - outro: 레포 URL 과 라이선스, 그리고 행동 유도.
 
@@ -70,6 +74,8 @@ async def _run_async(config: Config, run_date: str, dry_run: bool) -> CardDeckFi
     max_title = int(cfg.get("max_title_chars", 24))
     max_body = int(cfg.get("max_body_chars", 90))
     max_tags = int(cfg.get("max_hashtags", 30))
+    max_code_lines = int(cfg.get("max_code_lines", 3))
+    max_code_chars = int(cfg.get("max_code_line_chars", 52))
     tone = cfg.get("tone", "")
 
     roles, dropped = _plan_roles(research)
@@ -77,7 +83,9 @@ async def _run_async(config: Config, run_date: str, dry_run: bool) -> CardDeckFi
     if dropped:
         log.warning("근거 부족으로 제외된 카드: %s", ", ".join(dropped))
 
-    base_prompt = _build_prompt(research, roles, max_title, max_body, max_tags, tone)
+    base_prompt = _build_prompt(
+        research, roles, max_title, max_body, max_tags, max_code_lines, max_code_chars, tone
+    )
 
     feedback = ""
     total_cost = 0.0
@@ -96,7 +104,9 @@ async def _run_async(config: Config, run_date: str, dry_run: bool) -> CardDeckFi
         for note in repair(payload, max_tags):
             log.info("자동 보정: %s", note)
 
-        violations = _validate(payload, roles, max_title, max_body, max_tags)
+        violations = _validate(
+            payload, roles, max_title, max_body, max_tags, max_code_lines, max_code_chars
+        )
         if not violations:
             log.info("원고 검증 통과 (시도 %d회, $%.4f)", attempt, total_cost)
             break
@@ -175,6 +185,8 @@ def _build_prompt(
     max_title: int,
     max_body: int,
     max_tags: int,
+    max_code_lines: int,
+    max_code_chars: int,
     tone: str,
 ) -> str:
     p = research.payload
@@ -214,7 +226,8 @@ def _build_prompt(
 ## 하드 제약
 - title: {max_title}자 이하 (공백 포함)
 - body: {max_body}자 이하 (공백 포함)
-- code 는 quickstart 카드에만. 3줄 이하, 줄당 42자 이하
+- code 는 quickstart 카드에만. {max_code_lines}줄 이하, 줄당 {max_code_chars}자 이하
+  각 줄은 그 자체로 완전한 명령이어야 한다. 한 명령을 쪼개지 마라.
 - caption: {CAPTION_LIMIT}자 이하, 해시태그 미포함
 - hashtags: {max_tags}개 이하, '#' 없이 단어만
 - 톤: {tone}
@@ -270,12 +283,32 @@ def repair(payload: CardDeckPayload, max_tags: int) -> list[str]:
 # -------------------------------------------------------------- 검증
 
 
+# 한 명령을 길이 때문에 쪼갠 흔적. 카드는 줄마다 '$' 를 붙이므로 이런 조각이
+# 들어가면 별개의 명령 두 개처럼 읽힌다 — 내용 오류다.
+_CONTINUATION = re.compile(
+    r"""^\s*(
+        [./]              # URL·경로 조각으로 시작: ".nousresearch.com/..."
+      | \|                # 파이프로 시작
+      | &&                # 연결자로 시작
+      | -{1,2}[a-zA-Z]    # 옵션 플래그로 시작
+      | [a-z0-9-]+\.(com|org|net|io|sh|dev)/   # 도메인 조각으로 시작
+    )""",
+    re.VERBOSE,
+)
+
+
+def _looks_like_continuation(line: str) -> bool:
+    return bool(line.strip()) and bool(_CONTINUATION.match(line))
+
+
 def _validate(
     payload: CardDeckPayload,
     roles: list[str],
     max_title: int,
     max_body: int,
     max_tags: int,
+    max_code_lines: int = 3,
+    max_code_line_chars: int = 52,
 ) -> list[str]:
     """위반을 사람이 읽을 수 있는 문장으로 모은다. 그대로 모델에 되돌려준다."""
     problems: list[str] = []
@@ -301,9 +334,21 @@ def _validate(
             problems.append(f"{where} title 이 비어 있습니다.")
         if card.code and expected_role != "quickstart":
             problems.append(f"{where} 에 code 가 있습니다. quickstart 카드에만 넣으세요.")
+        if len(card.code) > max_code_lines:
+            problems.append(
+                f"{where} code 가 {len(card.code)}줄입니다 ({max_code_lines}줄 이하)."
+            )
         for line in card.code:
-            if len(line) > 42:
-                problems.append(f"{where} code 줄이 {len(line)}자입니다 (42자 이하).")
+            if len(line) > max_code_line_chars:
+                problems.append(
+                    f"{where} code 줄이 {len(line)}자입니다 "
+                    f"({max_code_line_chars}자 이하). 쪼개지 말고 더 짧은 명령을 쓰세요: \"{line}\""
+                )
+            if _looks_like_continuation(line):
+                problems.append(
+                    f"{where} code 줄이 이어붙인 조각으로 보입니다. 각 줄은 그 자체로 "
+                    f"실행 가능한 완전한 명령이어야 합니다: \"{line}\""
+                )
 
     if len(payload.caption) > CAPTION_LIMIT:
         problems.append(
