@@ -1,0 +1,159 @@
+{
+  "date": "2026-08-24",
+  "generated_at": "2026-08-24T02:18:38.672070Z",
+  "primary": {
+    "full_name": "calesthio/OpenMontage",
+    "score": 0.868468,
+    "reason": "score=0.868, Δ1d=+242(snapshot), recency=1.00, topic=1.00",
+    "flags": [],
+    "repo": {
+      "full_name": "calesthio/OpenMontage",
+      "owner": "calesthio",
+      "name": "OpenMontage",
+      "description": "World's first open-source, agentic video production system. 12 production pipelines, 100+ tools, 700+ agent skill and production-knowledge files. Turn your AI coding assistant into a full video production studio.",
+      "language": "Python",
+      "topics": [
+        "agent",
+        "agentic-ai",
+        "ai",
+        "claude",
+        "copilot",
+        "cursor",
+        "elevenlabs",
+        "ffmpeg",
+        "flux",
+        "image-generation",
+        "open-source",
+        "openai",
+        "python",
+        "remotion",
+        "stable-diffusion",
+        "text-to-speech",
+        "text-to-video",
+        "video-generation",
+        "video-production"
+      ],
+      "stars": 49818,
+      "forks": 6260,
+      "open_issues": 234,
+      "archived": false,
+      "fork": false,
+      "license_spdx": "AGPL-3.0",
+      "created_at": "2026-03-29T15:23:22Z",
+      "pushed_at": "2026-08-22T18:22:24Z",
+      "html_url": "https://github.com/calesthio/OpenMontage"
+    }
+  },
+  "backups": [
+    {
+      "full_name": "Leonxlnx/taste-skill",
+      "score": 0.868343,
+      "reason": "score=0.868, Δ1d=+247(snapshot), recency=0.99, topic=1.00",
+      "flags": [],
+      "repo": {
+        "full_name": "Leonxlnx/taste-skill",
+        "owner": "Leonxlnx",
+        "name": "taste-skill",
+        "description": "Taste-Skill - gives your AI good taste. stops the AI from generating boring, generic slop ",
+        "language": "JavaScript",
+        "topics": [
+          "agent",
+          "ai",
+          "claude",
+          "claude-code",
+          "codex",
+          "coding",
+          "design",
+          "frontend",
+          "lowcode",
+          "nocode",
+          "skill",
+          "skills",
+          "vibecoding"
+        ],
+        "stars": 79714,
+        "forks": 5459,
+        "open_issues": 57,
+        "archived": false,
+        "fork": false,
+        "license_spdx": "MIT",
+        "created_at": "2026-02-19T21:44:05Z",
+        "pushed_at": "2026-08-22T15:27:49Z",
+        "html_url": "https://github.com/Leonxlnx/taste-skill"
+      }
+    },
+    {
+      "full_name": "herdrdev/herdr",
+      "score": 0.858306,
+      "reason": "score=0.858, Δ1d=+149(snapshot), recency=1.00, topic=1.00",
+      "flags": [],
+      "repo": {
+        "full_name": "herdrdev/herdr",
+        "owner": "herdrdev",
+        "name": "herdr",
+        "description": "the runtime your coding agents live on",
+        "language": "Rust",
+        "topics": [
+          "agent",
+          "agent-orchestration",
+          "ai",
+          "ai-agents",
+          "claude-code",
+          "cli",
+          "codex",
+          "coding-agents",
+          "developer-tools",
+          "devtools",
+          "multiplexer",
+          "rust",
+          "terminal",
+          "terminal-multiplexer",
+          "terminal-ui",
+          "tmux",
+          "tui",
+          "workspace-manager"
+        ],
+        "stars": 31815,
+        "forks": 2275,
+        "open_issues": 222,
+        "archived": false,
+        "fork": false,
+        "license_spdx": "Apache-2.0",
+        "created_at": "2026-03-27T17:54:33Z",
+        "pushed_at": "2026-08-24T01:52:38Z",
+        "html_url": "https://github.com/herdrdev/herdr"
+      }
+    }
+  ],
+  "validation_calls": 3,
+  "rejected": [
+    {
+      "full_name": "rohitg00/ai-engineering-from-scratch",
+      "rule": "excluded_topic"
+    },
+    {
+      "full_name": "TencentCloud/TencentDB-Agent-Memory",
+      "rule": "no_license"
+    },
+    {
+      "full_name": "JuliusBrussee/caveman",
+      "rule": "no_license"
+    },
+    {
+      "full_name": "holaboss-ai/holaOS",
+      "rule": "no_license"
+    },
+    {
+      "full_name": "datawhalechina/hello-agents",
+      "rule": "no_license"
+    },
+    {
+      "full_name": "Tencent/WeKnora",
+      "rule": "no_license"
+    },
+    {
+      "full_name": "shareAI-lab/learn-claude-code",
+      "rule": "excluded_topic"
+    }
+  ]
+}
