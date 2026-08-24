@@ -4,6 +4,7 @@ import pytest
 
 from agent import compose as compose_mod
 from agent.models import (
+    AudioPick,
     Card,
     CardDeckPayload,
     Claim,
@@ -16,6 +17,22 @@ from agent.models import (
 from agent.schema import json_schema_for
 
 MAX_TITLE, MAX_BODY, MAX_TAGS = 24, 90, 30
+
+
+def _audio(
+    mood="차분한 배경음",
+    search=("lo-fi beat", "chill study"),
+    why="담담한 도구 소개라 배경음이 맞습니다",
+) -> AudioPick:
+    return AudioPick(mood=mood, search=list(search), why=why)
+
+
+def _three_audio() -> list[AudioPick]:
+    return [
+        _audio("차분한 배경음"),
+        _audio("가볍고 통통 튀는", ("bright synth", "upbeat pop")),
+        _audio("담백한 신스", ("minimal synth", "ambient loop")),
+    ]
 
 
 def _claim(text="본문", evidence=("README.md",)) -> Claim:
@@ -98,7 +115,9 @@ class TestValidate:
             for i, role in enumerate(self.ROLES, 1)
         ]
         cards[2].code = ["pip install x"]
-        deck = CardDeckPayload(cards=cards, caption="요약", hashtags=["깃허브"])
+        deck = CardDeckPayload(
+            cards=cards, caption="요약", hashtags=["깃허브"], audio=_three_audio()
+        )
         for key, value in overrides.items():
             setattr(deck, key, value)
         return deck
@@ -259,6 +278,7 @@ class TestRepair:
             cards=[Card(index=1, role="cover", title="제목", body="본문")],
             caption="요약입니다.\n\n#깃허브 #ai #AI",
             hashtags=[],
+            audio=_three_audio(),
         )
         compose_mod.repair(deck, MAX_TAGS)
         assert compose_mod._validate(deck, ["cover"], MAX_TITLE, MAX_BODY, MAX_TAGS) == []
@@ -272,6 +292,90 @@ class TestRenderCaption:
     def test_hashtags_are_appended_with_hash(self):
         deck = CardDeckPayload(cards=[], caption="요약", hashtags=["깃허브", "오픈소스"])
         assert compose_mod._render_caption(deck) == "요약\n\n#깃허브 #오픈소스\n"
+
+
+class TestAudioInCaption:
+    """오디오 메모는 캡션 파일에 들어가지만 캡션의 일부는 아니다."""
+
+    def _rendered(self):
+        deck = CardDeckPayload(
+            cards=[], caption="요약", hashtags=["깃허브"], audio=_three_audio()
+        )
+        return compose_mod._render_caption(deck)
+
+    def test_old_posts_without_audio_stay_fully_pasteable(self):
+        """audio 가 없던 시절의 content.json 은 파일 전체가 캡션이었다."""
+        deck = CardDeckPayload(cards=[], caption="요약", hashtags=["깃허브"])
+        assert compose_mod.CAPTION_CUT not in compose_mod._render_caption(deck)
+
+    def test_audio_sits_below_the_cut_line(self):
+        # 구분선 위만 붙여넣으면 캡션만 발행된다. 이게 이 기능의 안전장치다.
+        caption, _, memo = self._rendered().partition(compose_mod.CAPTION_CUT)
+        assert caption.strip() == "요약\n\n#깃허브"
+        assert "추천 오디오" in memo
+
+    def test_cut_line_warns_in_words_too(self):
+        """구분선만으로는 통째로 복사하는 것을 못 막는다."""
+        assert "붙여넣지 마세요" in self._rendered()
+
+    def test_every_pick_is_listed_with_terms_and_reason(self):
+        memo = self._rendered()
+        for pick in _three_audio():
+            assert pick.mood in memo
+            assert pick.why in memo
+            for term in pick.search:
+                assert term in memo
+
+
+class TestAudioValidation:
+    """확인할 수 없는 것은 쓰지 않는다 — 인스타 오디오 목록이 그렇다."""
+
+    def test_three_well_formed_picks_pass(self):
+        assert compose_mod._audio_problems(_three_audio()) == []
+
+    def test_wrong_count_is_caught(self):
+        problems = compose_mod._audio_problems(_three_audio()[:2])
+        assert any("2건" in p for p in problems)
+
+    @pytest.mark.parametrize(
+        "term",
+        [
+            "가수 - 노래제목",       # 곡명 - 아티스트
+            "someone – title",     # 엔 대시
+            "someone feat. other",  # 피처링 표기
+        ],
+    )
+    def test_specific_tracks_are_rejected(self, term):
+        """오디오 목록을 조회할 수 없으니, 특정 곡 지목은 없는 사실을 만드는 것이다."""
+        picks = _three_audio()
+        picks[0] = _audio(search=(term, "lo-fi beat"))
+        assert any("특정 곡" in p for p in compose_mod._audio_problems(picks))
+
+    def test_plain_genre_terms_are_allowed(self):
+        picks = _three_audio()
+        picks[0] = _audio(search=("lo-fi hip hop", "차분한 브이로그"))
+        assert compose_mod._audio_problems(picks) == []
+
+    def test_duplicate_moods_are_caught(self):
+        picks = _three_audio()
+        picks[1] = _audio(picks[0].mood, ("bright synth", "upbeat pop"))
+        assert any("겹칩니다" in p for p in compose_mod._audio_problems(picks))
+
+    def test_too_few_search_terms_is_caught(self):
+        picks = _three_audio()
+        picks[0] = _audio(search=("lo-fi beat",))
+        assert any("search" in p for p in compose_mod._audio_problems(picks))
+
+    def test_empty_reason_is_caught(self):
+        picks = _three_audio()
+        picks[0] = _audio(why="  ")
+        assert any("why" in p for p in compose_mod._audio_problems(picks))
+
+    def test_audio_is_required_by_the_schema(self):
+        """스키마가 강제해야 모델이 조용히 빼먹지 않는다."""
+        schema = json_schema_for(CardDeckPayload)
+        assert "audio" in schema["required"]
+        assert set(schema["$defs"]["AudioPick"]["required"]) == {"mood", "search", "why"}
 
 
 class TestSchema:

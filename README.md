@@ -23,7 +23,8 @@
 새 PC 에서 처음 시작한다면 **[SETUP.md](SETUP.md)** 를 따라가면 된다.
 
 ```bash
-py -3.12 -m venv .venv
+py -0p                      # 설치된 파이썬 확인 (3.12 이상이면 된다)
+py -3.14 -m venv .venv      # 위에서 본 버전으로 바꿔서
 .venv\Scripts\python.exe -m pip install -e .
 .venv\Scripts\python.exe -m playwright install chromium
 copy .env.example .env      # GITHUB_TOKEN 만 채운다
@@ -47,7 +48,18 @@ python -m agent compose     # 조사 결과로 카드 10장 원고 생성
 python -m agent illustrate  # 역할별 내용 기반 그래픽 생성
 python -m agent render      # 원고를 1080×1350 JPEG 카드로 렌더
 python -m agent design-sync # 피그마 토큰으로 카드 CSS 재생성 (수동, 일일 실행 아님)
+python -m agent avatar      # 계정 프로필 사진 후보 생성 (수동, 일일 실행 아님)
 ```
+
+### 올릴 때
+
+`caption.md` 는 두 부분이다. `====` 구분선 **위까지만** 인스타 캡션에 붙여넣는다.
+구분선 아래는 **추천 오디오 3건**이고, 발행할 때 보는 메모다 — 같이 붙이면
+캡션에 그대로 실린다. `agent run` 이 끝날 때 터미널에도 같이 찍어준다.
+
+오디오는 곡명이 아니라 **앱 검색창에 넣을 검색어**로 준다. 인스타 오디오 목록은
+지역·계정 유형에 따라 다르고(비즈니스 계정은 상업용 음원이 많이 막힌다) 에이전트가
+조회할 수 없어서, 없는 곡을 지목하지 않기 위한 선택이다. 고르는 건 사람이 한다.
 
 `render` 와 `illustrate` 는 Playwright/Chromium 이 필요하다:
 `python -m playwright install chromium`
@@ -93,6 +105,7 @@ agent/
 ├── compose.py      카드 원고 생성 (자동 보정 + 재생성)
 ├── render.py       Jinja2 → Playwright → JPEG (오버플로 자동 축소)
 ├── imagery.py      역할별 카드 상단 그래픽
+├── avatar.py       계정 프로필 사진 (Gemini 이미지 모델)
 ├── design_sync.py  피그마 토큰 → CSS (순수 함수, 네트워크 없음)
 └── tools/          에이전트에 노출하는 읽기 전용 GitHub 툴 6종
 
@@ -101,7 +114,44 @@ templates/
 ├── imagery.html.j2 상단 그래픽 (수치·터미널·번호·이모지)
 └── tokens.css      디자인 토큰 — design-sync 가 덮어쓴다
 assets/fonts/       Pretendard (OFL, 번들 — CI 에 한글 폰트가 없다)
+assets/profile/     계정 프로필 사진 후보 (avatar 가 생성)
 ```
+
+## 프로필 사진
+
+계정 아이콘은 Gemini 이미지 모델(Nano Banana)로 만든다.
+
+```bash
+python -m agent avatar --dry-run   # 호출 없이 프롬프트만 확인
+python -m agent avatar             # 컨셉 3종을 1080×1080 JPEG 로 생성
+python -m agent avatar --pro       # 더 비싸고 더 정확한 모델
+```
+
+`GEMINI_API_KEY` 가 필요하다 (<https://aistudio.google.com/apikey>). **이 키는
+프로필 사진에만 쓰인다** — 일일 파이프라인은 키가 없어도 전부 돈다.
+
+### 무료 등급이면 API 로는 안 나온다
+
+Gemini 이미지 모델은 **무료 등급 쿼터가 `limit: 0`** 이라, 결제를 연결하지 않으면
+첫 호출부터 429 가 난다. 기다려도 풀리지 않는다 (`agent avatar` 가 이 429 를
+진짜 레이트리밋과 구분해 안내한다). 결제 없이 만들려면 웹 경로를 쓴다:
+
+```bash
+python -m agent avatar --prompts            # assets/profile/prompts.md 생성
+#   → AI Studio(https://aistudio.google.com) 에 붙여넣고 1:1 로 생성, 내려받기
+python -m agent avatar --import 받은파일.png  # 1080×1080 정사각 JPEG 로 다듬기
+```
+
+`--import` 는 파일명을 유지하므로 컨셉 키(`star-surge.png` 등)로 저장해두면
+나중에 비교하기 쉽다.
+
+색은 카드와 같은 `design/tokens.json` 에서 읽는다. 피그마에서 브랜드 색을 바꿨다면
+프로필도 다시 뽑아야 피드에서 어긋나지 않는다.
+
+프로필 사진은 피드에서 **지름 40px 원**으로 잘린다. 그래서 프롬프트가 글자·얼굴·
+가는 선·질감을 전부 금지하고 여백을 60% 확보하도록 강제한다. 나온 결과가
+마음에 안 들면 `agent/avatar.py` 의 `CONCEPTS` 에서 `subject` 한 줄만 고치면 된다 —
+나머지 제약은 컨셉과 무관하게 공유된다.
 
 ## 디자인
 

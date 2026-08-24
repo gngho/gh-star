@@ -17,6 +17,7 @@ from . import paths
 from .config import Config
 from .llm import AgentRunError, run_structured
 from .models import (
+    AudioPick,
     CardDeckFile,
     CardDeckPayload,
     ResearchFile,
@@ -26,6 +27,12 @@ log = logging.getLogger(__name__)
 
 MAX_ATTEMPTS = 3
 CAPTION_LIMIT = 2200
+
+# 오디오 추천. 셋이면 고를 여지가 생기고, 그 이상은 캡션 파일이 지저분해진다.
+AUDIO_PICKS = 3
+AUDIO_TERM_LIMIT = 24
+AUDIO_MOOD_LIMIT = 30
+AUDIO_WHY_LIMIT = 70
 
 # 카드 한 장에 허용할 전문용어 개수. 0 은 비현실적이라(고유명사·언어명이 걸린다)
 # 소량은 통과시키되 나열 수준이면 잡는다.
@@ -120,6 +127,23 @@ SYSTEM_PROMPT = """\
 마라. 요약 3~4줄 + 레포 링크 + 별 개수 + 라이선스.
 해시태그는 hashtags 배열에 따로 넣어라 (# 없이 단어만).
 캡션 본문에는 해시태그를 넣지 마라.
+
+## 추천 오디오
+
+게시물에 얹을 오디오를 3건 제안한다 (audio 배열).
+
+**곡명과 아티스트를 절대 쓰지 마라.** 인스타그램 오디오 목록은 지역과 계정
+유형에 따라 다르고 너는 그 목록을 볼 수 없다. 특정 곡을 지목하면 있는지 없는지
+모르는 것을 있다고 단정하는 셈이다. 대신 앱 검색창에 넣을 검색어를 줘라.
+
+- mood: 어떤 분위기여야 하는지 한마디 (예: "차분한 배경음", "가볍고 통통 튀는")
+- search: 인스타 오디오 검색창에 넣을 검색어 2~3개. 장르·악기·템포 같은
+  일반 명사만 쓴다 (예: "lo-fi beat", "minimal synth", "차분한 브이로그").
+  사람 이름, 곡 제목, 앨범명, 밴드명은 넣지 마라.
+- why: 이 게시물의 내용·톤과 왜 맞는지 한 문장
+
+셋은 서로 달라야 한다. 다 비슷하면 고를 이유가 없다.
+카드가 담담한 도구 소개라면 훅이 센 음악은 내용과 어긋난다 — 내용에 맞춰라.
 """
 
 
@@ -299,6 +323,9 @@ def _build_prompt(
   각 줄은 그 자체로 완전한 명령이어야 한다. 한 명령을 쪼개지 마라.
 - caption: {CAPTION_LIMIT}자 이하, 해시태그 미포함
 - hashtags: {max_tags}개 이하, '#' 없이 단어만
+- audio: {AUDIO_PICKS}건. 각 건의 search 는 2~3개, 검색어 하나는 {AUDIO_TERM_LIMIT}자 이하.
+  mood 는 {AUDIO_MOOD_LIMIT}자 이하, why 는 {AUDIO_WHY_LIMIT}자 이하.
+  곡명·아티스트명 금지 (장르·악기·템포 같은 일반 명사만)
 - 톤: {tone}
 """
 
@@ -401,6 +428,59 @@ def _looks_like_continuation(line: str) -> bool:
     return bool(line.strip()) and bool(_CONTINUATION.match(line))
 
 
+# "곡명 - 아티스트" 나 "Artist – Title" 꼴. 모델이 구체적인 곡을 적으려 할 때
+# 가장 흔히 나오는 모양이라, 이것만 잡아도 대부분 걸러진다.
+_TRACK_LIKE = re.compile(r"\s[-–—]\s|\bfeat\.?\b|\bft\.\s", re.IGNORECASE)
+
+
+def _audio_problems(picks: list[AudioPick]) -> list[str]:
+    """오디오 추천의 형식과 '없는 곡을 지목하지 않았는가'를 본다.
+
+    검색어는 앱에 넣는 지시라 틀릴 수 없지만, 곡명은 있는지 없는지 확인할 방법이
+    없다. 확인 못 하는 것은 애초에 쓰지 않는다 — 이 프로젝트가 근거 없는 필드를
+    버리는 것과 같은 이유다.
+    """
+    problems: list[str] = []
+
+    if len(picks) != AUDIO_PICKS:
+        problems.append(f"audio 가 {len(picks)}건입니다. 정확히 {AUDIO_PICKS}건이어야 합니다.")
+
+    for i, pick in enumerate(picks, 1):
+        if not pick.mood.strip():
+            problems.append(f"audio {i}: mood 가 비어 있습니다.")
+        elif len(pick.mood) > AUDIO_MOOD_LIMIT:
+            problems.append(
+                f"audio {i}: mood 가 {len(pick.mood)}자입니다 ({AUDIO_MOOD_LIMIT}자 이하)."
+            )
+
+        if not pick.why.strip():
+            problems.append(f"audio {i}: why 가 비어 있습니다.")
+        elif len(pick.why) > AUDIO_WHY_LIMIT:
+            problems.append(
+                f"audio {i}: why 가 {len(pick.why)}자입니다 ({AUDIO_WHY_LIMIT}자 이하)."
+            )
+
+        if not 2 <= len(pick.search) <= 3:
+            problems.append(f"audio {i}: search 가 {len(pick.search)}개입니다 (2~3개).")
+        for term in pick.search:
+            if len(term) > AUDIO_TERM_LIMIT:
+                problems.append(
+                    f"audio {i}: 검색어 '{term}' 이 {len(term)}자입니다 "
+                    f"({AUDIO_TERM_LIMIT}자 이하)."
+                )
+            if _TRACK_LIKE.search(term):
+                problems.append(
+                    f"audio {i}: 검색어 '{term}' 이 특정 곡·아티스트처럼 보입니다. "
+                    "장르·악기·템포 같은 일반 명사로 바꾸세요."
+                )
+
+    moods = [p.mood.strip() for p in picks if p.mood.strip()]
+    if len(set(moods)) < len(moods):
+        problems.append("audio 의 mood 가 겹칩니다. 셋은 서로 다른 분위기여야 합니다.")
+
+    return problems
+
+
 def _validate(
     payload: CardDeckPayload,
     roles: list[str],
@@ -500,6 +580,8 @@ def _jargon_problems(payload: CardDeckPayload, roles: list[str]) -> list[str]:
                 "무엇을 하는지 쉬운 말로 바꾸거나 괄호로 뜻을 풀어주세요."
             )
 
+    problems += _audio_problems(payload.audio)
+
     caption_hits = jargon_hits(payload.caption)
     if len(caption_hits) > MAX_JARGON_IN_CAPTION:
         problems.append(
@@ -513,9 +595,44 @@ def _jargon_problems(payload: CardDeckPayload, roles: list[str]) -> list[str]:
 # ------------------------------------------------------------------ 출력
 
 
+# 이 줄 위까지가 인스타에 붙여넣는 캡션이다. 아래는 발행할 때 보는 메모다.
+# 파일 하나에 둘을 같이 두면 통째로 복사해서 오디오 메모까지 발행될 수 있다.
+# 그래서 구분선을 눈에 띄게 만들고 문구로도 한 번 더 막는다.
+CAPTION_CUT = "=" * 60
+
+
 def _render_caption(payload: CardDeckPayload) -> str:
     tags = " ".join(f"#{t.lstrip('#')}" for t in payload.hashtags)
-    return f"{payload.caption.rstrip()}\n\n{tags}\n"
+    body = f"{payload.caption.rstrip()}\n\n{tags}\n"
+    if not payload.audio:
+        # 옛 게시물에는 audio 가 없다. 그때는 파일 전체가 캡션이던 옛 모양을 지킨다.
+        return body
+    return body + _render_audio(payload.audio)
+
+
+def _render_audio(picks: list[AudioPick]) -> str:
+    lines = [
+        "",
+        CAPTION_CUT,
+        "↑ 여기까지가 캡션입니다. 아래는 붙여넣지 마세요 (발행할 때 보는 메모)",
+        CAPTION_CUT,
+        "",
+        "## 추천 오디오",
+        "",
+        "인스타그램 앱 > 오디오 검색창에 검색어를 넣어 고르세요.",
+        "곡을 지정하지 않는 이유: 오디오 목록은 지역과 계정 유형(비즈니스 계정은",
+        "상업용 음원이 상당 부분 막힙니다)에 따라 달라서, 앱에서 직접 확인해야",
+        "합니다. 아래는 '무엇을 찾을지'까지만 좁혀둔 것입니다.",
+        "",
+    ]
+    for i, pick in enumerate(picks, 1):
+        lines += [
+            f"{i}. {pick.mood}",
+            f"   검색어: {' / '.join(pick.search)}",
+            f"   이유: {pick.why}",
+            "",
+        ]
+    return "\n".join(lines)
 
 
 def _load_research(run_date: str) -> ResearchFile:

@@ -6,6 +6,7 @@
     python -m agent compose  [--date YYYY-MM-DD] [--dry-run]
     python -m agent render   [--date YYYY-MM-DD] [--dry-run]
     python -m agent design-sync [--dry-run]
+    python -m agent avatar   [--pro] [--dry-run]
     python -m agent status
 """
 
@@ -141,6 +142,8 @@ def cmd_compose(args: argparse.Namespace) -> int:
     if result.dropped_roles:
         print(f"  ⚠ 근거 부족으로 제외: {', '.join(result.dropped_roles)}")
     print(f"  해시태그 {len(result.payload.hashtags)}개")
+    for i, pick in enumerate(result.payload.audio, 1):
+        print(f"  오디오 {i}. {pick.mood} — {' / '.join(pick.search)}")
     return 0
 
 
@@ -160,6 +163,66 @@ def cmd_illustrate(args: argparse.Namespace) -> int:
     if not args.dry_run:
         print(f"\n  → {result['dir']}")
         print("  카드를 다시 렌더하세요: python -m agent render")
+    return 0
+
+
+def cmd_avatar(args: argparse.Namespace) -> int:
+    """인스타 프로필 사진을 Gemini 이미지 모델로 만든다. 일일 실행이 아니다."""
+    from . import avatar as avatar_mod
+    from .config import gemini_api_key
+
+    if args.import_files:
+        from pathlib import Path
+
+        try:
+            results = avatar_mod.import_files([Path(p) for p in args.import_files])
+        except avatar_mod.AvatarError as exc:
+            print(f"\n[error] {exc}", file=sys.stderr)
+            return 1
+        print(f"\n{len(results)}장을 {avatar_mod.CANVAS}×{avatar_mod.CANVAS} 정사각으로 다듬었습니다")
+        for item in results:
+            print(f"  {item['file']}")
+        print(f"\n  → {avatar_mod.OUT_DIR}")
+        return 0
+
+    if args.prompts:
+        target = avatar_mod.write_prompts()
+        print(f"\n프롬프트 {len(avatar_mod.CONCEPTS)}종 → {target}")
+        print("  AI Studio 에 붙여넣고, 받은 파일은:")
+        print("      python -m agent avatar --import 파일.png")
+        return 0
+
+    key = gemini_api_key()
+    if not key and not args.dry_run:
+        print(
+            "\n[error] GEMINI_API_KEY 가 없습니다."
+            "\n  https://aistudio.google.com/apikey 에서 키를 발급받아 .env 에 넣으세요:"
+            "\n      GEMINI_API_KEY=...."
+            "\n  키 없이 프롬프트만 보려면: python -m agent avatar --dry-run",
+            file=sys.stderr,
+        )
+        return 1
+
+    model = args.model or (avatar_mod.PRO_MODEL if args.pro else avatar_mod.DEFAULT_MODEL)
+    try:
+        result = avatar_mod.run(key or "", model=model, dry_run=args.dry_run)
+    except avatar_mod.AvatarError as exc:
+        print(f"\n[error] {exc}", file=sys.stderr)
+        return 1
+
+    print(f"\n프로필 사진 {len(result['images'])}종 ({result['model']})")
+    for item in result["images"]:
+        if args.dry_run:
+            print(f"\n  [{item['key']}] {item['label']}")
+            print("  " + item["prompt"].replace("\n", "\n  "))
+        else:
+            print(f"  {item['file']:<20} {item['label']}")
+    for failure in result.get("failures") or []:
+        print(f"  ⚠ {failure['key']}: {failure['error']}", file=sys.stderr)
+
+    if not args.dry_run:
+        print(f"\n  → {result['dir']}")
+        print("  셋 중 하나를 골라 인스타그램 앱 > 프로필 편집 > 사진 변경 에서 올리세요.")
     return 0
 
 
@@ -276,10 +339,19 @@ def cmd_run(args: argparse.Namespace) -> int:
         head = caption.read_text(encoding="utf-8").strip().split("\n")[0]
         print(f"\n  캡션: {caption.name}  \"{head[:52]}{'…' if len(head) > 52 else ''}\"")
 
+    content = paths.read_json(post_dir / "content.json", default={}) or {}
+    audio = (content.get("payload") or {}).get("audio") or []
+    if audio:
+        print("\n  추천 오디오 (앱에서 검색해 고르세요)")
+        for i, pick in enumerate(audio, 1):
+            print(f"   {i}. {pick.get('mood', '')} — {' / '.join(pick.get('search') or [])}")
+
     print("\n  올리는 법")
     print("   1. cards/ 를 01 부터 순서대로 인스타그램 캐러셀에 업로드")
-    print("   2. caption.md 내용을 그대로 붙여넣기")
-    print("   3. 올린 뒤 data/published.json 에 기록 (재발행 차단 기준)")
+    print("   2. caption.md 의 '=====' 구분선 **위까지만** 붙여넣기")
+    print("      (구분선 아래는 오디오 메모다. 같이 붙이면 캡션에 그대로 실린다)")
+    print("   3. 위 오디오 중 하나를 골라 얹기")
+    print("   4. 올린 뒤 data/published.json 에 기록 (재발행 차단 기준)")
     print("\n  문구를 고치려면 content.json 수정 후 `python -m agent render`")
 
     if args.open:
@@ -384,6 +456,24 @@ def main(argv: list[str] | None = None) -> int:
     )
     p_sync.add_argument("--dry-run", action="store_true", help="파일을 쓰지 않는다")
     p_sync.set_defaults(func=cmd_design_sync)
+
+    p_avatar = sub.add_parser(
+        "avatar", help="인스타 프로필 사진 후보를 Gemini 로 생성한다 (수동, 일일 실행 아님)"
+    )
+    p_avatar.add_argument(
+        "--pro", action="store_true", help="Nano Banana Pro (gemini-3-pro-image) 사용"
+    )
+    p_avatar.add_argument("--model", default=None, help="모델 직접 지정 (--pro 보다 우선)")
+    p_avatar.add_argument(
+        "--prompts", action="store_true",
+        help="붙여넣기용 프롬프트 시트를 파일로 쓴다 (AI Studio 웹에서 만들 때)",
+    )
+    p_avatar.add_argument(
+        "--import", dest="import_files", nargs="+", metavar="파일",
+        help="웹에서 받은 이미지를 1080×1080 정사각 JPEG 로 다듬는다",
+    )
+    p_avatar.add_argument("--dry-run", action="store_true", help="호출 없이 프롬프트만 출력")
+    p_avatar.set_defaults(func=cmd_avatar)
 
     p_mark = sub.add_parser(
         "mark-published", help="인스타그램에 올린 뒤 발행 이력에 기록한다"

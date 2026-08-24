@@ -14,7 +14,6 @@ from __future__ import annotations
 import base64
 import io
 import logging
-import re
 from datetime import datetime, timezone
 from pathlib import Path
 from typing import Any
@@ -59,24 +58,6 @@ OVERFLOW_JS = """
 
 class RenderError(RuntimeError):
     pass
-
-
-# 문장 경계: 마침표·물음표·느낌표 뒤 공백, 다만 **앞 글자가 숫자면 자르지 않는다.**
-# "v0.20.4 이후" 나 "23.4만 개" 의 소수점에서 끊기는 것을 막기 위해서다.
-# 뒤 글자는 한글·대문자·여는 따옴표여야 한다 — 문장이 실제로 시작하는 모양.
-_SENTENCE_BREAK = re.compile(r'(?<=[^0-9\s][.!?])\s+(?=[가-힣A-Z"\'(])')
-
-
-def split_sentences(text: str) -> list[str]:
-    """본문을 문장 단위로 나눈다.
-
-    한 줄에 두 문장이 걸치면 뒤 문장이 줄 끝에서 시작해 어정쩡하게 잘린다.
-    문장마다 블록을 주면 그 일이 생기지 않는다 — 긴 문장은 자기 블록 안에서
-    자연스럽게 줄바꿈되고, 다음 문장은 항상 새 줄에서 시작한다.
-    """
-    if not text.strip():
-        return []
-    return [s.strip() for s in _SENTENCE_BREAK.split(text.strip()) if s.strip()]
 
 
 def eyebrow_for(role: str, title: str) -> str:
@@ -218,7 +199,6 @@ def _render_card(
             tokens_css=tokens_css,
             font_uri=font_uri,
             eyebrow=eyebrow_for(card.role, card.title),
-            body_sentences=split_sentences(card.body),
             star_badge=star_badge,
             outro=outro,
         )

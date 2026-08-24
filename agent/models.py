@@ -183,12 +183,29 @@ class Card(BaseModel):
     image: str | None = None
 
 
+class AudioPick(BaseModel):
+    """게시물에 얹을 오디오 추천 한 건.
+
+    **곡명과 아티스트를 적지 않는다.** 인스타그램 오디오 라이브러리는 지역과
+    계정 유형(비즈니스 계정은 상업용 음원이 상당 부분 막힌다)에 따라 목록이
+    다르고, 에이전트는 그 목록을 조회할 방법이 없다. 그래서 "이 곡을 쓰라"는
+    없는 사실을 만드는 일이 된다. 대신 앱 검색창에 넣을 검색어를 준다 —
+    이건 지시라서 틀릴 여지가 없고, 고르는 건 사람이 한다.
+    """
+
+    mood: str = ""
+    search: list[str] = Field(default_factory=list)
+    why: str = ""
+
+
 class CardDeckPayload(BaseModel):
     """에이전트가 생성하는 카드 원고."""
 
     cards: list[Card] = Field(default_factory=list)
     caption: str = ""
     hashtags: list[str] = Field(default_factory=list)
+    # 기존 content.json 에는 없는 필드다. 기본값이 있어야 옛 게시물이 그대로 읽힌다.
+    audio: list[AudioPick] = Field(default_factory=list)
 
 
 class CardDeckFile(BaseModel):

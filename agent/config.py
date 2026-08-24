@@ -47,3 +47,11 @@ def load_config(path: Path | None = None) -> Config:
 def github_token() -> str | None:
     """GITHUB_TOKEN 우선, 없으면 GH_TOKEN 도 허용한다."""
     return os.environ.get("GITHUB_TOKEN") or os.environ.get("GH_TOKEN") or None
+
+
+def gemini_api_key() -> str | None:
+    """프로필 사진(avatar) 전용. 일일 파이프라인은 이 키 없이도 전부 돈다.
+
+    구글 SDK 관례를 따라 GOOGLE_API_KEY 도 받는다.
+    """
+    return os.environ.get("GEMINI_API_KEY") or os.environ.get("GOOGLE_API_KEY") or None

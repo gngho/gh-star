@@ -124,11 +124,6 @@ body {
   line-height: var(--leading-body);
   color: var(--fg-muted);
 }
-/* 문장마다 블록. 한 줄에 두 문장이 걸치면 뒤 문장이 줄 끝에서 시작해
-   어정쩡하게 잘린다. 블록을 주면 다음 문장은 항상 새 줄에서 시작한다. */
-.body .s { display: block; }
-.body .s + .s { margin-top: calc(6px * {{ scale }}); }
-
 .code {
   background: var(--bg-code);
   border: 1px solid var(--border);
@@ -221,9 +216,8 @@ body {
         <div class="badge">⭐ {{ star_badge }}</div>
       {% endif %}
 
-      {% if body_sentences %}
-        <p class="body">{% for s in body_sentences %}<span class="s">{{ s }}</span>{% endfor %}</p>
-      {% endif %}
+      {# 본문은 문장을 끊지 않고 한 문단으로 흘린다 #}
+      {% if card.body %}<p class="body">{{ card.body }}</p>{% endif %}
 
       {# 상단 그래픽이 이미 터미널 창으로 같은 명령을 보여주면 중복이다 #}
       {% if card.code and not card.image %}
