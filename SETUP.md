@@ -19,7 +19,7 @@ git push            # 원격과 동기화
 
 | 항목 | 확인 | 없으면 |
 |---|---|---|
-| Python 3.12 | `py -3.12 --version` | [python.org](https://www.python.org/downloads/) |
+| Python 3.12 이상 | `py -0p` (설치된 목록) | [python.org](https://www.python.org/downloads/) |
 | Git | `git --version` | [git-scm.com](https://git-scm.com/) |
 | Claude Code (로그인 상태) | `claude --version` | [설치 안내](https://code.claude.com/docs) 후 로그인 |
 
@@ -32,10 +32,14 @@ git push            # 원격과 동기화
 git clone https://github.com/gngho/gh-star.git
 cd gh-star
 
-py -3.12 -m venv .venv
+py -3.14 -m venv .venv
 .venv\Scripts\python.exe -m pip install -e .
 .venv\Scripts\python.exe -m playwright install chromium
 ```
+
+버전 번호는 `py -0p` 에 나온 것으로 바꾼다. **3.12 이상이면 아무거나 된다** —
+PC 마다 깔린 버전이 다르므로 특정 버전을 고집할 필요가 없다. 없으면
+`winget install Python.Python.3.12` 로 깔아도 되고.
 
 마지막 줄은 Chromium 을 내려받는다(약 150MB). 카드 렌더링에 쓰이며 한 번만 하면 된다.
 
@@ -102,3 +106,25 @@ cd gh-star
 `data/` 와 `posts/` 가 Git 에 들어 있으므로 **작업 전 `git pull`, 작업 후 `git push`**
 만 지키면 된다. GitHub Actions 도 매일 `data/` 에 커밋하므로, pull 을 건너뛰면
 충돌한다.
+
+## 막히면
+
+**`GITHUB_TOKEN` 은 새로 발급하지 않아도 된다.** PAT 은 계정에 묶인 것이지
+기기에 묶인 게 아니라, 노트북 `.env` 의 값을 그대로 복사해 쓰면 된다. 값을
+잃어버렸거나(생성 직후 한 번만 보여준다) 만료됐을 때만 재발급한다.
+`.env` 는 Git 에 안 올라가므로 PC 마다 따로 만들어야 하는 게 정상이다.
+
+**`CLIConnectionError: Refusing to execute batch script ... claude.CMD`** —
+npm 전역 설치가 PATH 에 올리는 건 셸 심이고, SDK 는 배치 스크립트 실행을
+거부한다. `agent/llm.py` 가 네이티브 `claude.exe` 를 알아서 찾지만, 경로가
+특이하면 못 찾는다. 그럴 땐 직접 지정한다:
+
+```bash
+set CLAUDE_CLI_PATH=C:\...\claude.exe
+```
+
+`where claude` 로 심 위치를 찾은 뒤, 그 근처
+`node_modules\@anthropic-ai\claude-code\bin\claude.exe` 를 쓰면 된다.
+
+**인스타에 올린 뒤 `mark-published` 를 잊지 말 것.** `data/published.json` 이
+90일 재선정 차단의 기준이라, 기록이 없으면 같은 레포가 다시 뽑힐 수 있다.
