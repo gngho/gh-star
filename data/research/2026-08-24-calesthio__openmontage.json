@@ -1,0 +1,101 @@
+{
+  "repo": "calesthio/OpenMontage",
+  "researched_at": "2026-08-24T02:59:28.607584Z",
+  "payload": {
+    "one_liner": "AI 코딩 어시스턴트를 오케스트레이터로 삼아, YAML 파이프라인 매니페스트와 마크다운 스킬 파일로 영상 제작 전 과정을 진행시키는 오픈소스 시스템.",
+    "problem": {
+      "text": "대부분의 AI 영상 도구는 프롬프트 하나에 클립 하나를 돌려주고 끝난다. 리서치 → 기획안 → 대본 → 씬 플랜 → 에셋 생성 → 편집 → 합성으로 이어지는 실제 제작 공정, 그리고 그 사이의 승인·예산·품질 검증은 사람이 손으로 이어붙여야 했다. OpenMontage는 이 공정 자체를 YAML 매니페스트로 명시하고, 각 스테이지마다 '디렉터 스킬' 마크다운을 붙여 에이전트가 따라 실행하게 만든다. 예컨대 documentary-montage 파이프라인은 idea → scene_plan → assets → edit → compose 5단계 각각에 담당 스킬, 산출 아티팩트, review_focus, success_criteria, 사람 승인 여부(human_approval_default)를 전부 선언해 둔다.",
+      "evidence": [
+        "pipeline_defs/documentary-montage.yaml",
+        "README.md (research -> proposal -> script -> scene_plan -> assets -> edit -> compose)",
+        "pipeline_defs/ 디렉터리 목록"
+      ]
+    },
+    "why_now": {
+      "text": "저장소에 릴리스 태그가 하나도 없어서 스타 급증을 특정 버전 변화로 설명할 근거는 찾지 못했다. 확인 가능한 사실은 README 상단에 'GitHub Trending #1 Repository of the Day' 배지가 걸려 있다는 점, 그리고 이슈 번호가 이미 #543까지 올라갔고 컨트리뷰터가 30명이라는 점이다. 즉 릴리스 이벤트가 아니라 트렌딩 노출과 그에 따른 유입이 급증의 직접적인 맥락으로 보인다. 그 이상은 근거가 없어 단정하지 않는다.",
+      "evidence": [
+        "README.md (repo-of-the-day 배지, .github/assets/repo-of-the-day-light.svg)",
+        "이슈 #543 (최신 이슈 번호)",
+        "컨트리뷰터 30명 / calesthio 310 커밋"
+      ]
+    },
+    "key_features": [
+      {
+        "title": "코드 오케스트레이터가 없는 '에이전트 우선' 구조",
+        "text": "파이프라인을 도는 실행기 코드가 없다. Python 쪽은 도구 레지스트리와 영속성만 제공하고, 어떤 순서로 무엇을 할지는 YAML 매니페스트와 마크다운 스킬이 규정한다. tool_registry.py는 pkgutil.walk_packages 로 tools/ 하위를 전부 임포트해 BaseTool 서브클래스를 자동 등록하고, support_envelope()/provider_menu()/provider_menu_summary() 로 '지금 이 머신에서 무엇이 가능한가'를 JSON으로 뱉는다. 에이전트는 이 출력을 읽고 스스로 판단한다. tools/ 에 파일 하나 추가하면 별도 등록 없이 메뉴에 잡히는 구조다.",
+        "evidence": [
+          "tools/tool_registry.py (discover, provider_menu, provider_menu_summary)",
+          "Makefile (preflight 타깃이 registry.provider_menu() 를 직접 호출)",
+          "README.md 'How It Works' 섹션"
+        ]
+      },
+      {
+        "title": "생성 API 없이도 '진짜 영상'을 만드는 검색 우선 몽타주 경로",
+        "text": "이미지에 켄번즈 효과를 주는 흔한 우회가 아니라, Pexels·Archive.org·NASA·Wikimedia Commons·Unsplash에서 실제 모션 클립 코퍼스를 만들고 CLIP 기반 검색으로 슬롯을 채운 뒤 타임라인으로 편집한다. 매니페스트는 '슬롯당 정확히 클립 1개', '같은 clip_id 를 두 슬롯에 재사용 금지', '모든 에셋에 provider·original_url·license 명시', '코퍼스 크기 ≥ 슬롯 수의 8배, 스코어 ≥ 0.22' 같은 검수 기준까지 못박아 둔다. 다만 이 파이프라인의 stability 는 beta 로 표기돼 있다.",
+        "evidence": [
+          "pipeline_defs/documentary-montage.yaml (stability: beta, assets 스테이지 review_focus/success_criteria)",
+          "tools/video/corpus_builder.py, tools/video/clip_search.py, tools/video/direct_clip_search.py"
+        ]
+      },
+      {
+        "title": "매니페스트에 박혀 있는 승인 게이트와 거버넌스 규칙",
+        "text": "품질 규칙이 문서상의 권고가 아니라 파이프라인 정의 안에 들어 있다. documentary-montage 의 경우 idea·scene_plan·assets·edit 네 스테이지 모두 checkpoint_required: true, human_approval_default: true 이고, compose 스테이지에는 'proposal 에서 고정된 render_runtime 을 hyperframes/ffmpeg 로 조용히 바꾸는 것은 CRITICAL 거버넌스 위반'이라고 명시돼 있다. 출력 검증도 'ffprobe 통과', '오버레이 영역 프레임을 뽑아 텍스트가 검은 화면이 아니라 푸티지 위에 보이는지 확인' 수준으로 구체적이다.",
+        "evidence": [
+          "pipeline_defs/documentary-montage.yaml (compose 스테이지 review_focus, success_criteria)",
+          "README.md 'Production Governance' 섹션"
+        ]
+      }
+    ],
+    "architecture": {
+      "text": "세 층으로 나뉜다. (1) tools/ — 실제 실행 가능한 Python 도구. video/ 하위만 해도 40여 개 모듈이 있고 veo, kling, runway, seedance, wan, hunyuan, cogvideo, ltx 등 클라우드·로컬 제공자와 pexels/pixabay 스톡, video_compose(약 130KB), hyperframes_compose(약 57KB) 같은 합성 엔진이 섞여 있다. (2) pipeline_defs/ — 12개 프로덕션 매니페스트(animated-explainer, animation, avatar-spokesperson, character-animation, cinematic, clip-factory, documentary-montage, hybrid, localization-dub, podcast-repurpose, screen-demo, talking-head) + 테스트용 framework-smoke. (3) skills/ — 스테이지별 디렉터 스킬 마크다운. 도구 등록은 클래스 상속 기반 자동 발견이고, 각 도구는 status(available/unavailable), tier, stability, fallback_tools, resource_profile(vram_mb, network_required)을 선언해 레지스트리가 '키 없으면 무엇이 빠지는지'를 계산한다. 참고로 registry 는 .env 를 직접 파싱해 os.environ 에 주입하는 자체 로더를 갖고 있다(python-dotenv 의존 없이).",
+      "evidence": [
+        "tools/tool_registry.py (_load_dotenv, get_by_tier, gpu_required_tools, network_required_tools)",
+        "tools/video/ 파일 목록 (video_compose.py 132,630B, hyperframes_compose.py 56,973B)",
+        "pipeline_defs/ 디렉터리 목록 (13개 yaml)"
+      ]
+    },
+    "quickstart": {
+      "commands": [
+        "git clone https://github.com/calesthio/OpenMontage.git",
+        "cd OpenMontage",
+        "make setup",
+        "make preflight   # 현재 머신에서 쓸 수 있는 제공자 메뉴를 JSON 으로 출력",
+        "make demo       # API 키 없이 Remotion 데모 영상 렌더"
+      ],
+      "evidence": [
+        "Makefile (setup, preflight, demo, hyperframes-doctor 타깃)",
+        "README.md Quick Start"
+      ]
+    },
+    "differentiators": {
+      "text": "첫째, 오케스트레이션 로직이 코드가 아니라 읽고 고칠 수 있는 YAML/마크다운에 있다. 파이프라인을 바꾸려면 파이썬을 고치는 게 아니라 매니페스트의 review_focus 한 줄을 고친다. 둘째, 특정 벤더에 묶이지 않는다. 같은 capability 에 클라우드 API·로컬 GPU·무료 스톡이 나란히 등록되고 레지스트리가 상태별로 갈라 보여준다(예: seedance 만 해도 seedance_video / seedance_ark / seedance_replicate 세 경로). 셋째, Makefile 의 preflight 타깃이 registry.provider_menu() 를 그대로 출력해, 설치 직후 '내 환경에서 실제로 무엇이 되는지'를 문서가 아니라 런타임이 답한다.",
+      "evidence": [
+        "tools/tool_registry.py (provider_menu, find_fallback)",
+        "tools/video/seedance_video.py, seedance_ark.py, seedance_replicate.py",
+        "Makefile (preflight)"
+      ]
+    },
+    "limitations": {
+      "text": "1) README 가 내세우는 품질 게이트가 실제로는 새는 지점이 이슈로 보고돼 있다. #542 는 영상/이미지/음악 제공자가 하나도 없는 머신에서 cinematic 파이프라인 preflight 가 passed 로 나온다고 지적한다 — 검사가 required_tools 만 보는데 생성 제공자들은 optional_tools 에 선언돼 있어서다. #528 은 video_compose 가 요청한 프레임레이트를 무시하고 항상 30fps 로 인코딩하며, 스키마가 '프로젝트 디렉터리 기준 상대 경로'라고 정의한 에셋 경로를 프로세스 작업 디렉터리 기준으로 열어 해석이 어긋난다고 보고한다. #526 은 번들된 wan22-t2v 워크플로가 비디오 잠재 대신 이미지 잠재를 써서, ffprobe 는 통과하지만 프레임이 서로 무관해 깜빡이는 MP4 가 나온다고 지적한다. 세 건 모두 '조용히 실패한다'는 공통점이 있다. 2) 릴리스 태그가 하나도 없어 버전·체인지로그 기준으로 업그레이드를 관리할 수 없다. 3) 커밋이 메인테이너 1인(calesthio 310커밋)에 크게 집중돼 있고, 2위 기여자는 28커밋이다. 4) 라이선스가 AGPL-3.0 이므로 서비스로 제공할 계획이라면 네트워크 배포 조항을 먼저 검토해야 한다. 5) README 표는 파이프라인 11개만 나열하지만 pipeline_defs/ 에는 character-animation 을 포함해 12개가 있다 — 문서와 실제가 어긋난 사소한 예다.",
+      "evidence": [
+        "이슈 #542",
+        "이슈 #528",
+        "이슈 #526",
+        "릴리스 없음 (recent_releases 조회 결과)",
+        "컨트리뷰터 통계: calesthio(310), 0xDevNinja(28)",
+        "LICENSE (AGPL-3.0)",
+        "pipeline_defs/character-animation.yaml vs README.md Pipelines 표"
+      ]
+    }
+  },
+  "meta": {
+    "license": "AGPL-3.0",
+    "language": "Python",
+    "stars": 49818,
+    "delta_1d": 242,
+    "html_url": "https://github.com/calesthio/OpenMontage"
+  },
+  "ungrounded_fields": [],
+  "cost_usd": 0.9232050000000002,
+  "num_turns": 11
+}

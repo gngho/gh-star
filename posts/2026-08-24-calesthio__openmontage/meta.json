@@ -1,0 +1,92 @@
+{
+  "repo": "calesthio/OpenMontage",
+  "date": "2026-08-24",
+  "rendered_at": "2026-08-24T05:23:51.906235+00:00",
+  "width": 1080,
+  "height": 1350,
+  "format": "jpeg",
+  "tokens_source": "figma",
+  "cards": [
+    {
+      "index": 1,
+      "role": "cover",
+      "file": "01.jpg",
+      "scale": 1.0,
+      "overflow_px": 0,
+      "has_image": false
+    },
+    {
+      "index": 2,
+      "role": "what_is_it",
+      "file": "02.jpg",
+      "scale": 1.0,
+      "overflow_px": 0,
+      "has_image": true
+    },
+    {
+      "index": 3,
+      "role": "problem",
+      "file": "03.jpg",
+      "scale": 1.0,
+      "overflow_px": 0,
+      "has_image": true
+    },
+    {
+      "index": 4,
+      "role": "why_now",
+      "file": "04.jpg",
+      "scale": 1.0,
+      "overflow_px": 0,
+      "has_image": true
+    },
+    {
+      "index": 5,
+      "role": "feature",
+      "file": "05.jpg",
+      "scale": 1.0,
+      "overflow_px": 0,
+      "has_image": true
+    },
+    {
+      "index": 6,
+      "role": "feature",
+      "file": "06.jpg",
+      "scale": 1.0,
+      "overflow_px": 0,
+      "has_image": true
+    },
+    {
+      "index": 7,
+      "role": "feature",
+      "file": "07.jpg",
+      "scale": 1.0,
+      "overflow_px": 0,
+      "has_image": true
+    },
+    {
+      "index": 8,
+      "role": "quickstart",
+      "file": "08.jpg",
+      "scale": 1.0,
+      "overflow_px": 0,
+      "has_image": true
+    },
+    {
+      "index": 9,
+      "role": "fit",
+      "file": "09.jpg",
+      "scale": 1.0,
+      "overflow_px": 0,
+      "has_image": true
+    },
+    {
+      "index": 10,
+      "role": "outro",
+      "file": "10.jpg",
+      "scale": 1.0,
+      "overflow_px": 0,
+      "has_image": false
+    }
+  ],
+  "warnings": []
+}

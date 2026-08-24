@@ -1,0 +1,150 @@
+{
+  "repo": "calesthio/OpenMontage",
+  "date": "2026-08-24",
+  "generated_at": "2026-08-24T03:00:29.074098Z",
+  "payload": {
+    "cards": [
+      {
+        "index": 1,
+        "role": "cover",
+        "title": "OpenMontage",
+        "body": "AI가 영상 한 편을 기획부터 편집까지 혼자 진행합니다.",
+        "code": [],
+        "footnote": null,
+        "image": null
+      },
+      {
+        "index": 2,
+        "role": "what_is_it",
+        "title": "한마디로 뭐냐면",
+        "body": "영상 만드는 순서를 미리 표로 적어두고, AI 비서가 그 표를 읽어가며 아이디어부터 편집까지 차례로 진행하는 도구예요. 요리사에게 레시피 카드를 쥐여주는 것과 비슷합니다.",
+        "code": [],
+        "footnote": null,
+        "image": null
+      },
+      {
+        "index": 3,
+        "role": "problem",
+        "title": "이런 적 있죠?",
+        "body": "AI에 문장 한 줄 넣으면 짧은 클립 하나만 툭 나오고 끝나요. 기획안, 대본, 장면 구성, 편집, 그리고 중간 확인까지는 결국 사람이 손으로 이어붙여야 했습니다.",
+        "code": [],
+        "footnote": null,
+        "image": null
+      },
+      {
+        "index": 4,
+        "role": "why_now",
+        "title": "왜 지금 뜰까",
+        "body": "깃허브 '오늘의 인기 저장소 1위' 배지가 붙으면서 사람들이 몰렸어요. 오늘 하루에만 별이 242개 늘었고, 올라온 제보·문의는 543건, 참여자는 30명입니다. 정식 버전 표시는 아직 없어요.",
+        "code": [],
+        "footnote": null,
+        "image": null
+      },
+      {
+        "index": 5,
+        "role": "feature",
+        "title": "코드 대신 설명서로",
+        "body": "무엇을 어떤 순서로 할지가 프로그램 코드가 아니라, 사람이 읽을 수 있는 설정 파일과 메모에 적혀 있어요. 순서를 바꾸고 싶으면 프로그래밍 대신 그 문장 한 줄만 고치면 됩니다.",
+        "code": [],
+        "footnote": null,
+        "image": null
+      },
+      {
+        "index": 6,
+        "role": "feature",
+        "title": "없으면 찾아서 붙인다",
+        "body": "영상 생성 AI가 없어도 진짜 영상이 나와요. 무료로 공개된 영상 창고(픽셀스, NASA, 위키미디어 등)에서 장면을 잔뜩 모은 뒤, 자리마다 어울리는 클립을 골라 이어붙입니다. 아직 시험 단계로 표시돼 있어요.",
+        "code": [],
+        "footnote": null,
+        "image": null
+      },
+      {
+        "index": 7,
+        "role": "feature",
+        "title": "중간중간 사람 확인",
+        "body": "아이디어, 장면 구성, 소재 모으기, 편집 네 단계마다 사람이 보고 넘어가도록 정해져 있어요. 자막이 검은 화면이 아니라 영상 위에 제대로 얹혔는지까지 확인 항목으로 적혀 있습니다.",
+        "code": [],
+        "footnote": null,
+        "image": null
+      },
+      {
+        "index": 8,
+        "role": "quickstart",
+        "title": "이렇게 시작해요",
+        "body": "터미널(글자로 명령하는 검은 창)에 한 줄씩 붙여넣으면 돼요. 마지막 명령은 유료 키 없이도 데모 영상 하나를 만들어 줍니다. 그 전에 make preflight를 치면 내 컴퓨터에서 뭐가 되는지 목록으로 보여줘요.",
+        "code": [
+          "git clone https://github.com/calesthio/OpenMontage",
+          "cd OpenMontage && make setup",
+          "make demo"
+        ],
+        "footnote": null,
+        "image": null
+      },
+      {
+        "index": 9,
+        "role": "fit",
+        "title": "나한테 맞을까",
+        "body": "영상 제작 과정을 직접 설계해보고 싶은 사람에겐 재밌어요. 다만 점검이 잘못 통과되거나 화면이 깜빡이는 문제가 제보돼 있고, 서비스로 팔 계획이라면 라이선스 조건을 먼저 확인해야 합니다.",
+        "code": [],
+        "footnote": null,
+        "image": null
+      },
+      {
+        "index": 10,
+        "role": "outro",
+        "title": "오늘은 여기까지",
+        "body": "오늘은 구경만 해도 충분해요, 마음에 들면 별 하나 눌러두세요.",
+        "code": [],
+        "footnote": null,
+        "image": null
+      }
+    ],
+    "caption": "AI에게 \"영상 만들어줘\" 하면 보통 짧은 클립 하나로 끝나죠. OpenMontage는 아이디어 → 장면 구성 → 소재 모으기 → 편집 → 합치기까지, 실제 영상 제작 순서를 미리 표로 적어두고 AI 비서가 그 순서대로 일하게 만드는 오픈소스 프로젝트예요.\n\n재밌는 점은 \"어떤 순서로 무엇을 할지\"가 프로그램 코드가 아니라 사람이 읽을 수 있는 설정 파일과 메모에 적혀 있다는 거예요. 그래서 흐름을 바꾸고 싶으면 프로그래밍 대신 문장 한 줄을 고칩니다. 영상 생성 AI가 없어도, 무료로 공개된 영상 창고(픽셀스, NASA, 위키미디어 등)에서 클립을 모아 붙이는 길도 있어요. 중간중간 사람이 확인하고 넘어가는 단계도 정해져 있고요.\n\n솔직한 단점도 있습니다. 쓸 수 있는 도구가 하나도 없는데 사전 점검이 \"통과\"로 뜨거나, 화면이 깜빡이는 영상이 나오는 문제가 제보돼 있어요. 정식 버전 태그가 없어서 업그레이드 기준을 잡기 어렵고, 커밋 대부분이 만든 사람 한 명에게 몰려 있습니다. 라이선스가 AGPL-3.0이라 서비스로 제공할 계획이면 조건을 먼저 봐야 해요.\n\n링크: https://github.com/calesthio/OpenMontage\n별 약 49,818개 (오늘 +242) · Python · AGPL-3.0",
+    "hashtags": [
+      "오픈소스",
+      "깃허브",
+      "AI영상",
+      "영상편집",
+      "파이썬",
+      "코딩입문",
+      "개발자",
+      "AI도구",
+      "자동화",
+      "AI에이전트",
+      "영상제작",
+      "비개발자",
+      "코딩공부",
+      "깃허브트렌딩",
+      "OpenMontage"
+    ],
+    "audio": [
+      {
+        "mood": "차분한 배경음",
+        "search": [
+          "lo-fi beat",
+          "chill instrumental"
+        ],
+        "why": "도구를 담담히 소개하는 톤이라 훅보다 배경음이 맞습니다"
+      },
+      {
+        "mood": "가볍고 통통 튀는",
+        "search": [
+          "upbeat synth",
+          "bright pop loop"
+        ],
+        "why": "영상 편집이 주제라 리듬감이 카드 넘김과 잘 붙습니다"
+      },
+      {
+        "mood": "절제된 미니멀 신스",
+        "search": [
+          "minimal synth",
+          "ambient tech"
+        ],
+        "why": "자동화 파이프라인 이야기라 과하지 않은 전자음이 어울립니다"
+      }
+    ]
+  },
+  "dropped_roles": [],
+  "cost_usd": 0.364913,
+  "attempts": 1
+}
