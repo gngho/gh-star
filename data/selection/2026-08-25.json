@@ -1,0 +1,168 @@
+{
+  "date": "2026-08-25",
+  "generated_at": "2026-08-25T02:13:45.616180Z",
+  "primary": {
+    "full_name": "Leonxlnx/taste-skill",
+    "score": 0.866704,
+    "reason": "score=0.867, Δ1d=+407(snapshot), recency=0.99, topic=1.00",
+    "flags": [],
+    "repo": {
+      "full_name": "Leonxlnx/taste-skill",
+      "owner": "Leonxlnx",
+      "name": "taste-skill",
+      "description": "Taste-Skill - gives your AI good taste. stops the AI from generating boring, generic slop ",
+      "language": "JavaScript",
+      "topics": [
+        "agent",
+        "ai",
+        "claude",
+        "claude-code",
+        "codex",
+        "coding",
+        "design",
+        "frontend",
+        "lowcode",
+        "nocode",
+        "skill",
+        "skills",
+        "vibecoding"
+      ],
+      "stars": 80121,
+      "forks": 5487,
+      "open_issues": 57,
+      "archived": false,
+      "fork": false,
+      "license_spdx": "MIT",
+      "created_at": "2026-02-19T21:44:05Z",
+      "pushed_at": "2026-08-24T15:23:56Z",
+      "html_url": "https://github.com/Leonxlnx/taste-skill"
+    }
+  },
+  "backups": [
+    {
+      "full_name": "herdrdev/herdr",
+      "score": 0.86335,
+      "reason": "score=0.863, Δ1d=+284(snapshot), recency=1.00, topic=1.00",
+      "flags": [],
+      "repo": {
+        "full_name": "herdrdev/herdr",
+        "owner": "herdrdev",
+        "name": "herdr",
+        "description": "the runtime your coding agents live on",
+        "language": "Rust",
+        "topics": [
+          "agent",
+          "agent-orchestration",
+          "ai",
+          "ai-agents",
+          "claude-code",
+          "cli",
+          "codex",
+          "coding-agents",
+          "developer-tools",
+          "devtools",
+          "multiplexer",
+          "rust",
+          "terminal",
+          "terminal-multiplexer",
+          "terminal-ui",
+          "tmux",
+          "tui",
+          "workspace-manager"
+        ],
+        "stars": 32099,
+        "forks": 2302,
+        "open_issues": 225,
+        "archived": false,
+        "fork": false,
+        "license_spdx": "Apache-2.0",
+        "created_at": "2026-03-27T17:54:33Z",
+        "pushed_at": "2026-08-24T23:59:57Z",
+        "html_url": "https://github.com/herdrdev/herdr"
+      }
+    },
+    {
+      "full_name": "walkinglabs/learn-harness-engineering",
+      "score": 0.848058,
+      "reason": "score=0.848, Δ1d=+138(snapshot), recency=1.00, topic=1.00",
+      "flags": [],
+      "repo": {
+        "full_name": "walkinglabs/learn-harness-engineering",
+        "owner": "walkinglabs",
+        "name": "learn-harness-engineering",
+        "description": "Harness engineering beginner tutorial, from 0 to 1",
+        "language": "TypeScript",
+        "topics": [
+          "agent",
+          "agentic",
+          "agentic-ai",
+          "ai",
+          "ai-agent",
+          "ai-agents",
+          "dsh",
+          "dsh-plugin",
+          "harness",
+          "harness-engineering",
+          "harness-framework",
+          "llm"
+        ],
+        "stars": 14034,
+        "forks": 1397,
+        "open_issues": 8,
+        "archived": false,
+        "fork": false,
+        "license_spdx": "MIT",
+        "created_at": "2026-03-29T12:28:19Z",
+        "pushed_at": "2026-08-21T10:31:08Z",
+        "html_url": "https://github.com/walkinglabs/learn-harness-engineering"
+      }
+    }
+  ],
+  "validation_calls": 3,
+  "rejected": [
+    {
+      "full_name": "rohitg00/ai-engineering-from-scratch",
+      "rule": "excluded_topic"
+    },
+    {
+      "full_name": "calesthio/OpenMontage",
+      "rule": "recently_published"
+    },
+    {
+      "full_name": "TencentCloud/TencentDB-Agent-Memory",
+      "rule": "no_license"
+    },
+    {
+      "full_name": "JuliusBrussee/caveman",
+      "rule": "no_license"
+    },
+    {
+      "full_name": "NousResearch/hermes-agent",
+      "rule": "recently_published"
+    },
+    {
+      "full_name": "datawhalechina/hello-agents",
+      "rule": "no_license"
+    },
+    {
+      "full_name": "fuxicodex/Fuxi",
+      "rule": "no_license"
+    },
+    {
+      "full_name": "shareAI-lab/learn-claude-code",
+      "rule": "excluded_topic"
+    },
+    {
+      "full_name": "Tencent/WeKnora",
+      "rule": "no_license"
+    },
+    {
+      "full_name": "holaboss-ai/holaOS",
+      "rule": "no_license"
+    },
+    {
+      "full_name": "EKKOLearnAI/hermes-studio",
+      "rule": "no_license"
+    }
+  ]
+}
