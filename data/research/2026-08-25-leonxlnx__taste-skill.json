@@ -1,0 +1,104 @@
+{
+  "repo": "Leonxlnx/taste-skill",
+  "researched_at": "2026-08-25T03:24:53.634038Z",
+  "payload": {
+    "one_liner": "AI 코딩 에이전트가 만드는 프론트엔드가 '뻔한 템플릿'처럼 보이지 않도록, 금지 규칙과 체크리스트를 Markdown 한 장에 눌러담은 Agent Skill 모음.",
+    "problem": {
+      "text": "LLM에게 랜딩페이지를 시키면 매번 같은 결과가 나온다 - 보라색 그라디언트, 가운데 정렬 히어로, 똑같은 피처 카드 3개, Inter + slate-900. SKILL.md는 이걸 'LLM 기본값'이라 부르며 명시적으로 금지한다(§0.D: \"Do not default to: AI-purple gradients, centered hero over dark mesh, three equal feature cards... Inter + slate-900\"). CHANGELOG는 더 구체적이다 - v2 이전 실제 프로덕션 테스트에서 em-dash 남용, 섹션 번호 eyebrow, 가짜 대시보드를 div로 그리기, 깨진 GSAP 스크롤 트리거 같은 동일한 '티(Tells)'가 빌드마다 반복해서 나타났다고 적혀 있다. 이 저장소는 그 반복 패턴을 하나씩 이름 붙여 금지하는 방식으로 접근한다.",
+      "evidence": [
+        "skills/taste-skill/SKILL.md §0.D (L39)",
+        "skills/taste-skill/SKILL.md §9 AI TELLS (L595-701)",
+        "CHANGELOG.md - 'Why we made v2 (experimental) the new default'"
+      ]
+    },
+    "why_now": {
+      "text": "GitHub 릴리스 태그가 하나도 없어서 스타 급증을 설명할 릴리스 노트는 존재하지 않는다. 기록으로 확인되는 최근 변화는 CHANGELOG의 v2(experimental) 전환뿐이다 - 기본 스킬이 v1에서 v2로 통째로 재작성되었고, 설치 이름(design-taste-frontend)은 그대로 두고 v1은 별도 스킬로 보존했다. 성장 속도의 방증은 이슈에서 나온다: 2026-07-13자 이슈 #78 본문이 '4.6만 Star'라고 적고 있는데 현재 스냅샷은 8만이다. 커뮤니티 확산 정황도 같이 보인다 - 15개 파일 약 6,800줄 전체를 번체/간체 중국어로 옮긴 포크(#87), 커뮤니티 프리셋 섹션 요구(#78)가 올라와 있다.",
+      "evidence": [
+        "최근 릴리스: 없음 (릴리스 태그 0)",
+        "CHANGELOG.md - 'v2 (experimental) - the new default for taste-skill'",
+        "이슈 #78 (2026-07-13, 본문에 '4.6万 Star')",
+        "이슈 #87 (전체 15개 스킬 중국어 번역)"
+      ]
+    },
+    "key_features": [
+      {
+        "title": "세 개의 다이얼로 톤을 조절한다",
+        "text": "DESIGN_VARIANCE / MOTION_INTENSITY / VISUAL_DENSITY를 1-10으로 두고 기본값 8/6/4를 준다. 사용자가 파일을 고치는 게 아니라 대화로 덮어쓰는 구조이고(\"Do not ask the user to edit this file - overrides happen conversationally\"), '미니멀/차분/Linear풍'이면 5-6/3-4/2-3, '공공기관/규제 산업/접근성 중요'면 3-4/2-3/4-5 식으로 브리프 신호를 다이얼 값에 매핑하는 표(§1.A)와 용도별 프리셋 표(§1.B)가 들어 있다. 코드를 쓰기 전에 '이 브리프를 무엇으로 읽었는지' 한 줄로 선언하게 하는 §0 Brief Inference가 앞에 붙는다.",
+        "evidence": [
+          "skills/taste-skill/SKILL.md §1 (L47-51)",
+          "skills/taste-skill/SKILL.md §1.A/§1.B (L53-75)",
+          "skills/taste-skill/SKILL.md §0.B (L26-31)"
+        ]
+      },
+      {
+        "title": "62개짜리 출고 전 체크리스트와 금지 목록",
+        "text": "§14 Final Pre-Flight Check는 62개 체크박스이고 '선택이 아니다, 하나라도 통과 못 하면 끝난 게 아니다'라고 못박는다. 항목은 대부분 매우 구체적이다 - em-dash(—) 페이지 전체 0개, CTA 버튼 WCAG AA 4.5:1 대비, 네비게이션 1줄·높이 80px 이하, 8개 섹션에 레이아웃 패밀리 4종 이상, 벤토 셀 개수 = 아이템 개수, h-screen 대신 min-h-[100dvh], window.addEventListener('scroll') 금지. §9 AI TELLS(107줄)는 스크롤 유도 문구, 섹션 번호 eyebrow, 장식용 상태 점, div로 만든 가짜 제품 UI 같은 걸 이름 단위로 금지한다. 다만 검사는 전적으로 모델의 자기 신고이고 린터나 스크립트는 제공되지 않는다.",
+        "evidence": [
+          "skills/taste-skill/SKILL.md §14 (L910-979, 체크박스 62개)",
+          "skills/taste-skill/SKILL.md §9 (L595-701)",
+          "CHANGELOG.md - 'Hardened bans (Section 9, AI Tells)'"
+        ]
+      },
+      {
+        "title": "13개 스킬을 한 CLI로 설치, 이미지 생성 스킬도 포함",
+        "text": "skills/ 아래에 13개 스킬 디렉터리가 있고 코드 산출형(taste-skill, taste-skill-v1, gpt-tasteskill, redesign, soft, minimalist, brutalist, output, stitch, image-to-code)과 이미지 산출형(imagegen-frontend-web/mobile, brandkit)이 섞여 있다. 설치는 vercel-labs/agent-skills의 `npx skills add`가 skills/ 폴더를 스캔하는 방식이라 종류에 상관없이 동일하다. Claude Code 플러그인 매니페스트(.claude-plugin/plugin.json, marketplace.json)도 함께 들어 있다.",
+        "evidence": [
+          "skills/ 트리 (13개 디렉터리 + llms.txt)",
+          "README.md - Installing / Skills 표",
+          "skill.sh (로컬 스킬 레지스트리 13개 항목)",
+          ".claude-plugin/plugin.json (name: taste-skill, version 1.0.0)"
+        ]
+      }
+    ],
+    "architecture": {
+      "text": "언어가 JavaScript로 잡혀 있지만 실행되는 애플리케이션 코드는 사실상 없다. 저장소의 실체는 프롬프트 파일이다 - 진입점은 skills/taste-skill/SKILL.md 한 개 파일(87KB, 1,206줄)이고, YAML 프론트매터에 name: design-taste-frontend와 description만 있다(version, allowed-tools 없음). 본문은 §0 Brief Inference부터 §14 Final Pre-Flight Check까지 15개 섹션 + 부록 A/B/C 구조다. 실행 가능한 코드는 §5의 GSAP/Motion 스켈레톤 3개(sticky-stack, horizontal-pan, scroll-reveal stagger, 총 127줄 tsx)와 부록 C의 CSS 한 블록(59줄)이 전부다. 나머지 로직은 bash 26줄짜리 skill.sh(스킬 이름 → SKILL.md 경로 매핑)와 .claude-plugin의 JSON 매니페스트 두 개뿐이다. 즉 '프레임워크'라기보다 에이전트에게 읽히는 규칙 문서에 가깝다.",
+      "evidence": [
+        "skills/taste-skill/SKILL.md (87,253B, 1,206줄, 프론트매터 L1-4)",
+        "skills/taste-skill/SKILL.md §5.A/5.B/5.C (L367-505, tsx 스켈레톤 3개)",
+        "skill.sh (bash, SKILLS 연관배열 13개)",
+        ".claude-plugin/plugin.json"
+      ]
+    },
+    "quickstart": {
+      "commands": [
+        "npx skills add https://github.com/Leonxlnx/taste-skill",
+        "npx skills add https://github.com/Leonxlnx/taste-skill --skill \"design-taste-frontend\"",
+        "npx skills add https://github.com/Leonxlnx/taste-skill --skill \"design-taste-frontend-v1\""
+      ],
+      "evidence": [
+        "README.md - Installing 섹션",
+        "CHANGELOG.md - 'How to pin to v1 if you need it'"
+      ]
+    },
+    "differentiators": {
+      "text": "비슷한 'AI 디자인 프롬프트' 모음과 갈리는 지점은 두 가지다. 첫째, 취향을 문장이 아니라 숫자 다이얼과 매핑 표로 다뤄서 브리프 신호가 값으로 떨어지게 만들었다. 둘째, 규칙을 권고가 아니라 실패 게이트로 걸었다 - 62개 체크박스를 통과하지 못하면 출력이 끝난 게 아니라고 규정하고, §13에서 대시보드/데이터 테이블/멀티스텝 폼/네이티브 모바일은 대놓고 범위 밖이라고 선언한다(적용 범위를 좁혀서 규칙을 세게 거는 방식). 또 §2는 브리프가 Material/Fluent/Carbon/GOV.UK처럼 읽히면 공식 패키지를 설치해서 쓰고 CSS를 손으로 흉내내지 말라는 '정직성 규칙'을 둔다. 반대로 자동 검증 도구, 예제 프로젝트, 테스트는 저장소에 없다 - 강제력은 전부 모델이 문서를 따르느냐에 달려 있다.",
+      "evidence": [
+        "skills/taste-skill/SKILL.md §2.A (L86-104, 'Honesty rule')",
+        "skills/taste-skill/SKILL.md §13 OUT OF SCOPE (L896-908)",
+        "skills/taste-skill/SKILL.md §14 (L912-914, 'THIS IS NOT OPTIONAL')",
+        "README.md - Common Questions"
+      ]
+    },
+    "limitations": {
+      "text": "1) '프레임워크 무관' 주장과 구현이 어긋난다. README FAQ는 React/Vue/Svelte 모두 된다고 하지만 SKILL.md 1,206줄에 Vue·Svelte·Angular·Nuxt·Astro는 단 한 번도 등장하지 않는다. §3.A는 'Framework: React or Next.js, RSC 기본', 'use client' 격리, Tailwind v4, next/font, motion/react를 못박고, §5의 유일한 실행 코드도 전부 tsx이며, §12 블록 스키마의 stack 필드는 [\"react\",\"next\",\"tailwind\",\"motion\"]로 고정되어 있고, §14 체크박스에도 'use client' 항목이 들어 있다. 즉 Vue/Svelte 사용자는 프리플라이트를 통과할 수 없다. 이슈 #86이 정확히 이 문제를 제기했다. 2) §12 Block Library는 계약(스키마)만 있고 구현이 0개다 - 디렉터리 목록과 YAML 템플릿만 있고 §10이 이름 붙인 약 50개 패턴에 대응하는 코드는 없다. 이슈 #84가 이 채워넣기와 프리플라이트 자동화(ESLint/CLI)를 제안하고 있다. 3) skill.sh의 키가 README 설치 이름과 다르다 - 파일을 직접 확인하니 [taste-skill]=..., [redesign-skill]=... 처럼 폴더명 기반이라 README에 적힌 design-taste-frontend, redesign-existing-projects로는 매칭되지 않는다(이슈 #76). 4) 기본 스킬은 여전히 v2 experimental이고 릴리스 태그가 하나도 없어 버전 고정 수단이 install name 두 개(v2/v1)뿐이다. 5) README 상단 상당 부분이 스폰서와 제휴 링크(Kimi 어필리에이트, 크레딧 보너스)로 채워져 있다는 점은 감안하고 읽는 게 좋다. 6) 미확인 사항: 설치 후 클라이언트가 외부 URL(aisle.wedding)에 접근하려 했다는 사용자 보고(#80)가 열려 있다 - 검증하지 않았고 사실 여부는 확인되지 않았다.",
+      "evidence": [
+        "skills/taste-skill/SKILL.md §3.A (L127-133)",
+        "skills/taste-skill/SKILL.md §12 (L835-890, 'Status: schema defined here. Blocks will be added iteratively')",
+        "skill.sh (SKILLS 키 = 폴더명)",
+        "이슈 #86, #84, #76, #80",
+        "CHANGELOG.md - 'Stability note'",
+        "README.md - 스폰서/Kimi 어필리에이트 섹션"
+      ]
+    }
+  },
+  "meta": {
+    "license": "MIT",
+    "language": "JavaScript",
+    "stars": 80121,
+    "delta_1d": 407,
+    "html_url": "https://github.com/Leonxlnx/taste-skill"
+  },
+  "ungrounded_fields": [],
+  "cost_usd": 1.6349702500000003,
+  "num_turns": 13
+}
