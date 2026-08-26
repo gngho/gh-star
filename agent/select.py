@@ -70,7 +70,7 @@ def run(config: Config, run_date: str, dry_run: bool = False) -> SelectionFile:
         )
     candidates_file = CandidatesFile.model_validate(raw)
 
-    published = _recently_published(int(select_cfg.get("republish_block_days", 90)))
+    published = recently_published(int(select_cfg.get("republish_block_days", 90)))
     blocklist = set(paths.read_json(paths.BLOCKLIST, default={}).get("repos", []))
 
     rejected: list[RejectionSummary] = []
@@ -211,7 +211,12 @@ def _is_link_list(readme: str) -> bool:
 # ------------------------------------------------------------------ 유틸
 
 
-def _recently_published(block_days: int) -> set[str]:
+def recently_published(block_days: int) -> set[str]:
+    """최근 block_days 안에 발행한 레포 full_name 집합.
+
+    select 뿐 아니라 research 도 쓴다. CI 가 만든 선정 파일이 낡은 이력으로
+    골랐을 수 있어, 로컬 파이프라인이 조사 직전에 한 번 더 대조한다.
+    """
     data = paths.read_json(paths.PUBLISHED, default={}) or {}
     cutoff = (date_cls.today() - timedelta(days=block_days)).isoformat()
     out: set[str] = set()

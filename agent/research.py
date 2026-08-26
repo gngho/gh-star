@@ -14,6 +14,7 @@ import logging
 from datetime import datetime, timezone
 
 from . import paths
+from . import select as select_mod
 from .config import Config, github_token
 from .github_api import API_ROOT, GitHubClient
 from .llm import AgentRunError, run_structured
@@ -74,13 +75,14 @@ async def _run_async(config: Config, run_date: str, dry_run: bool) -> ResearchFi
     if selection.primary is None:
         raise RuntimeError(f"{run_date}: primary 가 없습니다.")
 
-    targets = [selection.primary, *selection.backups]
+    labeled = [("primary", selection.primary)]
+    labeled += [(f"backup{i}", b) for i, b in enumerate(selection.backups, 1)]
+    targets = _drop_recently_published(config, labeled)
     last_error: Exception | None = None
 
     with GitHubClient(github_token()) as client:
         server = build_github_server(client)
-        for attempt, target in enumerate(targets, 1):
-            label = "primary" if attempt == 1 else f"backup{attempt - 1}"
+        for label, target in targets:
             log.info("[%s] 조사 시작: %s", label, target.full_name)
             try:
                 result = await _research_one(client, server, target, run_date)
@@ -99,6 +101,41 @@ async def _run_async(config: Config, run_date: str, dry_run: bool) -> ResearchFi
     raise RuntimeError(
         f"{run_date}: primary 와 backup 전부 조사에 실패했습니다. 마지막 오류: {last_error}"
     )
+
+
+def _drop_recently_published(
+    config: Config, labeled: list[tuple[str, SelectedRepo]]
+) -> list[tuple[str, SelectedRepo]]:
+    """이미 발행한 레포를 조사 대상에서 뺀다.
+
+    선정은 Actions 가 돌리고 조사는 로컬이 돌린다. Actions 는 원격에 올라온
+    published.json 만 보므로, 발행 기록이 아직 푸시되지 않았으면 어제 올린
+    레포를 오늘 또 primary 로 고를 수 있다 (2026-08-26 taste-skill 사고).
+    로컬은 최신 이력을 갖고 있으니 여기서 한 번 더 거른다.
+    """
+    block_days = int(config.select.get("republish_block_days", 90))
+    published = select_mod.recently_published(block_days)
+
+    kept: list[tuple[str, SelectedRepo]] = []
+    for label, target in labeled:
+        if target.full_name in published:
+            log.warning(
+                "[%s] %s 는 최근 %d일 안에 발행한 레포입니다 — 건너뜁니다. "
+                "선정 파일이 낡은 발행 이력으로 만들어졌을 수 있습니다.",
+                label,
+                target.full_name,
+                block_days,
+            )
+            continue
+        kept.append((label, target))
+
+    if not kept:
+        names = ", ".join(t.full_name for _, t in labeled)
+        raise RuntimeError(
+            f"primary·backup 이 전부 최근 발행분입니다 ({names}). "
+            "`python -m agent select` 로 선정을 다시 돌리세요."
+        )
+    return kept
 
 
 class InsufficientResearch(RuntimeError):

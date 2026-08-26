@@ -54,6 +54,37 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: python -m agent collect
 
+      - name: 발행 이력 신선도 확인
+        # 재발행 차단은 원격의 data/published.json 하나에 걸려 있다. 로컬에서
+        # mark-published 를 돌린 뒤 푸시하지 않으면 이 러너는 낡은 이력으로
+        # 선정하고, 어제 올린 레포를 오늘 또 고른다 (2026-08-26 taste-skill).
+        # 조용히 지나가지 않도록 이력이 오래되면 요약에 경고를 남긴다.
+        run: |
+          python - <<'PY' | tee -a "$GITHUB_STEP_SUMMARY"
+          import json, pathlib, sys
+          from datetime import date, timedelta
+
+          sys.stdout.reconfigure(encoding="utf-8")  # 로케일과 무관하게 한글·이모지를 낸다
+          STALE_DAYS = 3
+          p = pathlib.Path("data/published.json")
+          posts = json.loads(p.read_text(encoding="utf-8")).get("posts", []) if p.exists() else []
+          latest = max((str(x.get("date", "")) for x in posts), default="")
+          cutoff = (date.today() - timedelta(days=STALE_DAYS)).isoformat()
+
+          if not latest:
+              print(f"> ⚠️ **발행 이력이 비어 있습니다** — `{p}` 에 기록이 없어 재발행 차단이 동작하지 않습니다.")
+          elif latest < cutoff:
+              print(
+                  f"> ⚠️ **발행 이력이 낡았습니다** — 원격의 마지막 기록이 `{latest}` 로 "
+                  f"{STALE_DAYS}일 넘게 갱신되지 않았습니다.\n>\n"
+                  "> 로컬에서 발행한 뒤 `data/published.json` 을 푸시하지 않았다면, "
+                  "오늘 선정이 이미 올린 레포를 다시 고를 수 있습니다. "
+                  "`python -m agent mark-published` 는 이제 커밋·푸시까지 합니다."
+              )
+          else:
+              print(f"발행 이력 최신: {latest} (총 {len(posts)}건)")
+          PY
+
       - name: 선정
         # 오늘의 레포를 고른다. 사람이 로컬에서 `agent run` 을 돌릴 때
         # 이 결과(data/selection/{date}.json)를 입력으로 쓴다.

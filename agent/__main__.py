@@ -351,7 +351,7 @@ def cmd_run(args: argparse.Namespace) -> int:
     print("   2. caption.md 의 '=====' 구분선 **위까지만** 붙여넣기")
     print("      (구분선 아래는 오디오 메모다. 같이 붙이면 캡션에 그대로 실린다)")
     print("   3. 위 오디오 중 하나를 골라 얹기")
-    print("   4. 올린 뒤 data/published.json 에 기록 (재발행 차단 기준)")
+    print("   4. 올린 뒤 `python -m agent mark-published` (기록·커밋·푸시까지 한다)")
     print("\n  문구를 고치려면 content.json 수정 후 `python -m agent render`")
 
     if args.open:
@@ -382,7 +382,9 @@ def cmd_mark_published(args: argparse.Namespace) -> int:
             already["permalink"] = args.permalink
             paths.write_json(paths.PUBLISHED, data)
             print(f"\n기존 기록의 permalink 를 갱신했습니다: {deck.repo}")
-            return 0
+            if args.no_commit:
+                return 0
+            return _commit_publication(deck.repo, args.date, push=not args.no_push)
         print(f"\n이미 기록되어 있습니다: {deck.repo} ({args.date})")
         return 0
 
@@ -400,7 +402,77 @@ def cmd_mark_published(args: argparse.Namespace) -> int:
     print(f"\n발행 기록: {deck.repo} ({args.date}, 카드 {len(deck.payload.cards)}장)")
     print(f"  이 레포는 앞으로 90일간 다시 선정되지 않습니다.")
     print(f"  총 발행 {len(posts)}건")
-    print("\n  커밋하는 것을 잊지 마세요: git add data/ posts/ && git commit && git push")
+
+    if args.no_commit:
+        print("\n  [--no-commit] 커밋하지 않았습니다.")
+        print("  직접 올리세요: git add data/ posts/ && git commit && git push")
+        return 0
+    return _commit_publication(deck.repo, args.date, push=not args.no_push)
+
+
+def _git(*argv: str) -> tuple[int, str]:
+    """저장소 루트에서 git 을 돌리고 (반환코드, 출력) 을 준다."""
+    import subprocess
+
+    proc = subprocess.run(
+        ["git", *argv],
+        cwd=paths.ROOT,
+        capture_output=True,
+        text=True,
+        encoding="utf-8",
+        errors="replace",
+    )
+    return proc.returncode, (proc.stdout + proc.stderr).strip()
+
+
+def _commit_publication(repo: str, date: str, push: bool) -> int:
+    """발행 이력을 커밋하고 밀어 올린다.
+
+    published.json 은 CI 의 재발행 차단 기준이다. 원격에 올라가지 않으면
+    Actions 는 낡은 이력으로 선정하고 같은 레포가 다음 날 또 뽑힌다. 실제로
+    2026-08-26 에 taste-skill 이 이틀 연속 선정된 원인이 이것이었다. 그래서
+    기록과 커밋을 한 명령으로 묶는다 — 사람 기억에 맡기지 않는다.
+    """
+    code, _ = _git("rev-parse", "--is-inside-work-tree")
+    if code != 0:
+        print("\n  [warn] git 저장소가 아닙니다. 커밋을 건너뜁니다.", file=sys.stderr)
+        return 0
+
+    targets = [
+        "data/published.json",
+        f"data/selection/{date}.json",
+        "data/research",
+        "posts",
+    ]
+    code, out = _git("add", "--", *targets)
+    if code != 0:
+        print(f"\n  [error] git add 실패:\n{out}", file=sys.stderr)
+        return 1
+
+    code, _ = _git("diff", "--cached", "--quiet")
+    if code == 0:
+        print("\n  스테이지에 변경이 없습니다 — 이미 커밋된 상태입니다.")
+        return 0
+
+    message = f"chore(post): {date} {repo} 발행"
+    code, out = _git("commit", "-m", message)
+    if code != 0:
+        print(f"\n  [error] git commit 실패:\n{out}", file=sys.stderr)
+        return 1
+    print(f"\n  커밋됨: {message}")
+
+    if not push:
+        print("  [--no-push] 푸시하지 않았습니다. 잊지 말고 직접 올리세요: git push")
+        return 0
+
+    code, out = _git("push")
+    if code != 0:
+        # 푸시 실패는 기록 자체를 무르지 않는다. 커밋은 남아 있으므로
+        # 사람이 pull --rebase 후 다시 밀면 된다.
+        print(f"\n  [warn] git push 실패 — 커밋은 남아 있습니다:\n{out}", file=sys.stderr)
+        print("  원격을 반영한 뒤 다시 미세요: git pull --rebase && git push", file=sys.stderr)
+        return 1
+    print("  푸시 완료 — 내일 Actions 가 이 이력을 보고 선정합니다.")
     return 0
 
 
@@ -480,6 +552,14 @@ def main(argv: list[str] | None = None) -> int:
     )
     p_mark.add_argument("--date", default=_today_kst(), help="기준일 (KST, 기본: 오늘)")
     p_mark.add_argument("--permalink", default=None, help="게시물 URL (선택)")
+    p_mark.add_argument(
+        "--no-commit",
+        action="store_true",
+        help="published.json 만 쓰고 커밋하지 않는다 (기본은 커밋 후 푸시)",
+    )
+    p_mark.add_argument(
+        "--no-push", action="store_true", help="커밋만 하고 푸시하지 않는다"
+    )
     p_mark.set_defaults(func=cmd_mark_published)
 
     p_status = sub.add_parser("status", help="스냅샷 축적 현황을 확인한다")

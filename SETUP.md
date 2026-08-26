@@ -128,3 +128,8 @@ set CLAUDE_CLI_PATH=C:\...\claude.exe
 
 **인스타에 올린 뒤 `mark-published` 를 잊지 말 것.** `data/published.json` 이
 90일 재선정 차단의 기준이라, 기록이 없으면 같은 레포가 다시 뽑힐 수 있다.
+
+선정은 Actions 가 원격의 `published.json` 만 보고 돌린다. 그래서 기록을 로컬에
+써두고 푸시하지 않으면 차단이 걸리지 않는다 — 2026-08-26 에 같은 레포가 이틀
+연속 뽑힌 게 이 경로였다. 지금은 `mark-published` 가 기록·커밋·푸시를 한 번에
+한다. 커밋만 하려면 `--no-push`, 기록만 남기려면 `--no-commit` 을 준다.

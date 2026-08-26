@@ -38,7 +38,7 @@ star velocity 정확도가 떨어진다. 토큰은 `public_repo` 읽기 권한�
 
 ```bash
 python -m agent run --open  # 조사→원고→그래픽→렌더를 한 번에 (매일 쓰는 명령)
-python -m agent mark-published   # 올린 뒤 발행 이력에 기록
+python -m agent mark-published   # 올린 뒤 발행 이력에 기록 + 커밋·푸시
 
 python -m agent status      # 스냅샷 축적 현황
 python -m agent collect     # 후보 수집 + 점수화
