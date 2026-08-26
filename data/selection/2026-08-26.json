@@ -1,0 +1,180 @@
+{
+  "date": "2026-08-26",
+  "generated_at": "2026-08-26T02:20:06.762638Z",
+  "primary": {
+    "full_name": "Leonxlnx/taste-skill",
+    "score": 0.870174,
+    "reason": "score=0.870, Δ1d=+468(snapshot), recency=0.99, topic=1.00",
+    "flags": [],
+    "repo": {
+      "full_name": "Leonxlnx/taste-skill",
+      "owner": "Leonxlnx",
+      "name": "taste-skill",
+      "description": "Taste-Skill - gives your AI good taste. stops the AI from generating boring, generic slop ",
+      "language": "JavaScript",
+      "topics": [
+        "agent",
+        "ai",
+        "claude",
+        "claude-code",
+        "codex",
+        "coding",
+        "design",
+        "frontend",
+        "lowcode",
+        "nocode",
+        "skill",
+        "skills",
+        "vibecoding"
+      ],
+      "stars": 80589,
+      "forks": 5520,
+      "open_issues": 58,
+      "archived": false,
+      "fork": false,
+      "license_spdx": "MIT",
+      "created_at": "2026-02-19T21:44:05Z",
+      "pushed_at": "2026-08-24T15:23:56Z",
+      "html_url": "https://github.com/Leonxlnx/taste-skill"
+    }
+  },
+  "backups": [
+    {
+      "full_name": "herdrdev/herdr",
+      "score": 0.862601,
+      "reason": "score=0.863, Δ1d=+261(snapshot), recency=1.00, topic=1.00",
+      "flags": [],
+      "repo": {
+        "full_name": "herdrdev/herdr",
+        "owner": "herdrdev",
+        "name": "herdr",
+        "description": "the runtime your coding agents live on",
+        "language": "Rust",
+        "topics": [
+          "agent",
+          "agent-orchestration",
+          "ai",
+          "ai-agents",
+          "claude-code",
+          "cli",
+          "codex",
+          "coding-agents",
+          "developer-tools",
+          "devtools",
+          "multiplexer",
+          "rust",
+          "terminal",
+          "terminal-multiplexer",
+          "terminal-ui",
+          "tmux",
+          "tui",
+          "workspace-manager"
+        ],
+        "stars": 32360,
+        "forks": 2325,
+        "open_issues": 225,
+        "archived": false,
+        "fork": false,
+        "license_spdx": "Apache-2.0",
+        "created_at": "2026-03-27T17:54:33Z",
+        "pushed_at": "2026-08-25T20:44:57Z",
+        "html_url": "https://github.com/herdrdev/herdr"
+      }
+    },
+    {
+      "full_name": "wanshuiyin/Auto-claude-code-research-in-sleep",
+      "score": 0.85312,
+      "reason": "score=0.853, Δ1d=+141(snapshot), recency=1.00, topic=1.00",
+      "flags": [],
+      "repo": {
+        "full_name": "wanshuiyin/Auto-claude-code-research-in-sleep",
+        "owner": "wanshuiyin",
+        "name": "Auto-claude-code-research-in-sleep",
+        "description": "ARIS ⚔️ (Auto-Research-In-Sleep) — Lightweight Markdown-only skills for autonomous ML research: cross-model review loops, idea discovery, and experiment automation. No framework, no lock-in — works with Claude Code, Codex, OpenClaw, or any LLM agent.",
+        "language": "Python",
+        "topics": [
+          "ai-research",
+          "ai-tools",
+          "aris",
+          "autonomous-agent",
+          "claude",
+          "claude-code",
+          "claude-code-skills",
+          "codex",
+          "deep-learning",
+          "gpt",
+          "idea-generation",
+          "llm",
+          "machine-learning",
+          "mcp",
+          "mcp-server",
+          "ml-research",
+          "openai",
+          "paper-review",
+          "paper-writing",
+          "research-automation"
+        ],
+        "stars": 15241,
+        "forks": 1337,
+        "open_issues": 63,
+        "archived": false,
+        "fork": false,
+        "license_spdx": "MIT",
+        "created_at": "2026-03-10T07:31:45Z",
+        "pushed_at": "2026-08-24T04:19:41Z",
+        "html_url": "https://github.com/wanshuiyin/Auto-claude-code-research-in-sleep"
+      }
+    }
+  ],
+  "validation_calls": 3,
+  "rejected": [
+    {
+      "full_name": "rohitg00/ai-engineering-from-scratch",
+      "rule": "excluded_topic"
+    },
+    {
+      "full_name": "JuliusBrussee/caveman",
+      "rule": "no_license"
+    },
+    {
+      "full_name": "TencentCloud/TencentDB-Agent-Memory",
+      "rule": "no_license"
+    },
+    {
+      "full_name": "calesthio/OpenMontage",
+      "rule": "recently_published"
+    },
+    {
+      "full_name": "NousResearch/hermes-agent",
+      "rule": "recently_published"
+    },
+    {
+      "full_name": "datawhalechina/hello-agents",
+      "rule": "no_license"
+    },
+    {
+      "full_name": "holaboss-ai/holaOS",
+      "rule": "no_license"
+    },
+    {
+      "full_name": "fuxicodex/Fuxi",
+      "rule": "no_license"
+    },
+    {
+      "full_name": "shareAI-lab/learn-claude-code",
+      "rule": "excluded_topic"
+    },
+    {
+      "full_name": "Tencent/WeKnora",
+      "rule": "no_license"
+    },
+    {
+      "full_name": "openclaw/openclaw",
+      "rule": "no_license"
+    },
+    {
+      "full_name": "EKKOLearnAI/hermes-studio",
+      "rule": "no_license"
+    }
+  ]
+}
