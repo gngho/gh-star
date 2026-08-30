@@ -1,2505 +1,2505 @@
 {
-  "updated_at": "2026-08-29T07:33:02.201785Z",
+  "updated_at": "2026-08-30T06:05:43.848288Z",
   "entries": {
     "openclaw/openclaw": {
       "first_seen": "2026-08-23",
-      "last_seen": "2026-08-29",
-      "stars": 387952
+      "last_seen": "2026-08-30",
+      "stars": 388030
     },
     "obra/superpowers": {
       "first_seen": "2026-08-23",
-      "last_seen": "2026-08-29",
-      "stars": 279150
+      "last_seen": "2026-08-30",
+      "stars": 279439
     },
     "affaan-m/ECC": {
       "first_seen": "2026-08-23",
-      "last_seen": "2026-08-29",
-      "stars": 244019
+      "last_seen": "2026-08-30",
+      "stars": 244351
     },
     "NousResearch/hermes-agent": {
       "first_seen": "2026-08-23",
-      "last_seen": "2026-08-29",
-      "stars": 237847
+      "last_seen": "2026-08-30",
+      "stars": 238214
     },
     "n8n-io/n8n": {
       "first_seen": "2026-08-23",
-      "last_seen": "2026-08-29",
-      "stars": 202749
+      "last_seen": "2026-08-30",
+      "stars": 202830
     },
     "tensorflow/tensorflow": {
       "first_seen": "2026-08-23",
-      "last_seen": "2026-08-29",
-      "stars": 197766
+      "last_seen": "2026-08-30",
+      "stars": 198022
     },
     "Significant-Gravitas/AutoGPT": {
       "first_seen": "2026-08-23",
-      "last_seen": "2026-08-29",
-      "stars": 186967
+      "last_seen": "2026-08-30",
+      "stars": 186994
     },
     "ollama/ollama": {
       "first_seen": "2026-08-23",
-      "last_seen": "2026-08-29",
-      "stars": 179681
+      "last_seen": "2026-08-30",
+      "stars": 179759
     },
     "firecrawl/firecrawl": {
       "first_seen": "2026-08-23",
-      "last_seen": "2026-08-29",
-      "stars": 173745
+      "last_seen": "2026-08-30",
+      "stars": 174155
     },
     "f/prompts.chat": {
       "first_seen": "2026-08-23",
-      "last_seen": "2026-08-29",
-      "stars": 168136
+      "last_seen": "2026-08-30",
+      "stars": 168185
     },
     "huggingface/transformers": {
       "first_seen": "2026-08-23",
-      "last_seen": "2026-08-29",
-      "stars": 164591
+      "last_seen": "2026-08-30",
+      "stars": 164621
     },
     "Snailclimb/JavaGuide": {
       "first_seen": "2026-08-23",
-      "last_seen": "2026-08-29",
-      "stars": 158105
+      "last_seen": "2026-08-30",
+      "stars": 158123
     },
     "langgenius/dify": {
       "first_seen": "2026-08-23",
-      "last_seen": "2026-08-29",
-      "stars": 153793
+      "last_seen": "2026-08-30",
+      "stars": 153861
     },
     "open-webui/open-webui": {
       "first_seen": "2026-08-23",
-      "last_seen": "2026-08-29",
-      "stars": 150272
+      "last_seen": "2026-08-30",
+      "stars": 150370
     },
     "langchain-ai/langchain": {
       "first_seen": "2026-08-23",
-      "last_seen": "2026-08-29",
-      "stars": 145222
+      "last_seen": "2026-08-30",
+      "stars": 145260
     },
     "github/spec-kit": {
       "first_seen": "2026-08-23",
-      "last_seen": "2026-08-29",
-      "stars": 132093
+      "last_seen": "2026-08-30",
+      "stars": 132215
     },
     "Comfy-Org/ComfyUI": {
       "first_seen": "2026-08-23",
-      "last_seen": "2026-08-29",
-      "stars": 130511
+      "last_seen": "2026-08-30",
+      "stars": 130659
     },
     "microsoft/generative-ai-for-beginners": {
       "first_seen": "2026-08-23",
-      "last_seen": "2026-08-29",
-      "stars": 118723
+      "last_seen": "2026-08-30",
+      "stars": 118767
     },
     "harry0703/MoneyPrinterTurbo": {
       "first_seen": "2026-08-23",
-      "last_seen": "2026-08-29",
-      "stars": 118264
+      "last_seen": "2026-08-30",
+      "stars": 118582
     },
     "Graphify-Labs/graphify": {
       "first_seen": "2026-08-23",
-      "last_seen": "2026-08-29",
-      "stars": 112099
+      "last_seen": "2026-08-30",
+      "stars": 112368
     },
     "browser-use/browser-use": {
       "first_seen": "2026-08-23",
-      "last_seen": "2026-08-29",
-      "stars": 111600
+      "last_seen": "2026-08-30",
+      "stars": 111686
     },
     "supabase/supabase": {
       "first_seen": "2026-08-23",
-      "last_seen": "2026-08-29",
-      "stars": 108549
+      "last_seen": "2026-08-30",
+      "stars": 108590
     },
     "google-gemini/gemini-cli": {
       "first_seen": "2026-08-23",
-      "last_seen": "2026-08-29",
-      "stars": 106734
+      "last_seen": "2026-08-30",
+      "stars": 106742
     },
     "rasbt/LLMs-from-scratch": {
       "first_seen": "2026-08-25",
-      "last_seen": "2026-08-29",
-      "stars": 103970
+      "last_seen": "2026-08-30",
+      "stars": 104026
     },
     "pytorch/pytorch": {
       "first_seen": "2026-08-23",
-      "last_seen": "2026-08-29",
-      "stars": 102653
+      "last_seen": "2026-08-30",
+      "stars": 102663
     },
     "JuliusBrussee/caveman": {
       "first_seen": "2026-08-23",
-      "last_seen": "2026-08-29",
-      "stars": 101668
+      "last_seen": "2026-08-30",
+      "stars": 101782
     },
     "hacksider/Deep-Live-Cam": {
       "first_seen": "2026-08-23",
-      "last_seen": "2026-08-29",
-      "stars": 96186
+      "last_seen": "2026-08-30",
+      "stars": 96199
     },
     "punkpeye/awesome-mcp-servers": {
       "first_seen": "2026-08-23",
-      "last_seen": "2026-08-29",
-      "stars": 93014
+      "last_seen": "2026-08-30",
+      "stars": 93072
     },
     "thedotmack/claude-mem": {
       "first_seen": "2026-08-23",
-      "last_seen": "2026-08-29",
-      "stars": 92529
+      "last_seen": "2026-08-30",
+      "stars": 92602
     },
     "vllm-project/vllm": {
       "first_seen": "2026-08-23",
-      "last_seen": "2026-08-29",
-      "stars": 90369
+      "last_seen": "2026-08-30",
+      "stars": 90445
     },
     "microsoft/ML-For-Beginners": {
       "first_seen": "2026-08-23",
-      "last_seen": "2026-08-29",
-      "stars": 89876
+      "last_seen": "2026-08-30",
+      "stars": 89912
     },
     "infiniflow/ragflow": {
       "first_seen": "2026-08-23",
-      "last_seen": "2026-08-29",
-      "stars": 89558
+      "last_seen": "2026-08-30",
+      "stars": 89606
     },
     "OpenHands/OpenHands": {
       "first_seen": "2026-08-23",
-      "last_seen": "2026-08-29",
-      "stars": 85495
+      "last_seen": "2026-08-30",
+      "stars": 85594
     },
     "koala73/worldmonitor": {
       "first_seen": "2026-08-23",
-      "last_seen": "2026-08-29",
-      "stars": 84718
+      "last_seen": "2026-08-30",
+      "stars": 84956
     },
     "Developer-Y/cs-video-courses": {
       "first_seen": "2026-08-26",
-      "last_seen": "2026-08-29",
-      "stars": 83198
-    },
-    "lobehub/lobehub": {
-      "first_seen": "2026-08-23",
-      "last_seen": "2026-08-29",
-      "stars": 82078
+      "last_seen": "2026-08-30",
+      "stars": 83250
     },
     "Leonxlnx/taste-skill": {
       "first_seen": "2026-08-23",
-      "last_seen": "2026-08-29",
-      "stars": 81980
+      "last_seen": "2026-08-30",
+      "stars": 82234
+    },
+    "lobehub/lobehub": {
+      "first_seen": "2026-08-23",
+      "last_seen": "2026-08-30",
+      "stars": 82092
     },
     "bytedance/deer-flow": {
       "first_seen": "2026-08-23",
-      "last_seen": "2026-08-29",
-      "stars": 81068
+      "last_seen": "2026-08-30",
+      "stars": 81112
     },
     "netdata/netdata": {
       "first_seen": "2026-08-23",
-      "last_seen": "2026-08-29",
-      "stars": 80342
+      "last_seen": "2026-08-30",
+      "stars": 80355
     },
     "rtk-ai/rtk": {
       "first_seen": "2026-08-23",
-      "last_seen": "2026-08-29",
-      "stars": 77760
+      "last_seen": "2026-08-30",
+      "stars": 77842
     },
     "D4Vinci/Scrapling": {
       "first_seen": "2026-08-23",
-      "last_seen": "2026-08-29",
-      "stars": 77003
+      "last_seen": "2026-08-30",
+      "stars": 77235
     },
     "tesseract-ocr/tesseract": {
       "first_seen": "2026-08-23",
-      "last_seen": "2026-08-29",
-      "stars": 76241
+      "last_seen": "2026-08-30",
+      "stars": 76249
     },
     "shareAI-lab/learn-claude-code": {
       "first_seen": "2026-08-23",
-      "last_seen": "2026-08-29",
-      "stars": 75572
+      "last_seen": "2026-08-30",
+      "stars": 75620
     },
     "datawhalechina/hello-agents": {
       "first_seen": "2026-08-23",
-      "last_seen": "2026-08-29",
-      "stars": 75436
+      "last_seen": "2026-08-30",
+      "stars": 75511
     },
     "unslothai/unsloth": {
       "first_seen": "2026-08-23",
-      "last_seen": "2026-08-29",
-      "stars": 75095
+      "last_seen": "2026-08-30",
+      "stars": 75200
     },
     "hiyouga/LlamaFactory": {
       "first_seen": "2026-08-23",
-      "last_seen": "2026-08-29",
-      "stars": 74432
+      "last_seen": "2026-08-30",
+      "stars": 74443
     },
     "santifer/career-ops": {
       "first_seen": "2026-08-23",
-      "last_seen": "2026-08-29",
-      "stars": 69126
+      "last_seen": "2026-08-30",
+      "stars": 69313
     },
     "code-yeongyu/oh-my-openagent": {
       "first_seen": "2026-08-23",
-      "last_seen": "2026-08-29",
-      "stars": 68490
+      "last_seen": "2026-08-30",
+      "stars": 68514
     },
     "headroomlabs-ai/headroom": {
       "first_seen": "2026-08-23",
-      "last_seen": "2026-08-29",
-      "stars": 67950
+      "last_seen": "2026-08-30",
+      "stars": 68032
     },
     "scikit-learn/scikit-learn": {
       "first_seen": "2026-08-23",
-      "last_seen": "2026-08-29",
-      "stars": 67091
+      "last_seen": "2026-08-30",
+      "stars": 67098
     },
     "Fission-AI/OpenSpec": {
       "first_seen": "2026-08-23",
-      "last_seen": "2026-08-29",
-      "stars": 66596
+      "last_seen": "2026-08-30",
+      "stars": 66656
     },
     "docling-project/docling": {
       "first_seen": "2026-08-23",
-      "last_seen": "2026-08-29",
-      "stars": 65715
+      "last_seen": "2026-08-30",
+      "stars": 65732
     },
     "Mintplex-Labs/anything-llm": {
       "first_seen": "2026-08-23",
-      "last_seen": "2026-08-29",
-      "stars": 65352
+      "last_seen": "2026-08-30",
+      "stars": 65372
     },
     "shanraisshan/claude-code-best-practice": {
       "first_seen": "2026-08-23",
-      "last_seen": "2026-08-29",
-      "stars": 65315
+      "last_seen": "2026-08-30",
+      "stars": 65366
     },
     "mem0ai/mem0": {
       "first_seen": "2026-08-23",
-      "last_seen": "2026-08-29",
-      "stars": 64290
-    },
-    "keras-team/keras": {
-      "first_seen": "2026-08-23",
-      "last_seen": "2026-08-29",
-      "stars": 64266
+      "last_seen": "2026-08-30",
+      "stars": 64336
     },
     "ZhuLinsen/daily_stock_analysis": {
       "first_seen": "2026-08-23",
-      "last_seen": "2026-08-29",
-      "stars": 64230
+      "last_seen": "2026-08-30",
+      "stars": 64283
+    },
+    "keras-team/keras": {
+      "first_seen": "2026-08-23",
+      "last_seen": "2026-08-30",
+      "stars": 64269
     },
     "asgeirtj/system_prompts_leaks": {
       "first_seen": "2026-08-23",
-      "last_seen": "2026-08-29",
-      "stars": 63770
+      "last_seen": "2026-08-30",
+      "stars": 63813
     },
     "upstash/context7": {
       "first_seen": "2026-08-23",
-      "last_seen": "2026-08-29",
-      "stars": 61366
+      "last_seen": "2026-08-30",
+      "stars": 61400
     },
     "ultralytics/ultralytics": {
       "first_seen": "2026-08-23",
-      "last_seen": "2026-08-29",
-      "stars": 61059
+      "last_seen": "2026-08-30",
+      "stars": 61080
     },
     "meilisearch/meilisearch": {
       "first_seen": "2026-08-23",
-      "last_seen": "2026-08-29",
-      "stars": 59118
+      "last_seen": "2026-08-30",
+      "stars": 59128
     },
     "MemPalace/mempalace": {
       "first_seen": "2026-08-23",
-      "last_seen": "2026-08-29",
-      "stars": 58712
+      "last_seen": "2026-08-30",
+      "stars": 58732
     },
     "crewAIInc/crewAI": {
       "first_seen": "2026-08-23",
-      "last_seen": "2026-08-29",
-      "stars": 57774
+      "last_seen": "2026-08-30",
+      "stars": 57810
     },
     "BerriAI/litellm": {
       "first_seen": "2026-08-23",
-      "last_seen": "2026-08-29",
-      "stars": 57511
+      "last_seen": "2026-08-30",
+      "stars": 57566
     },
     "zylon-ai/private-gpt": {
       "first_seen": "2026-08-23",
-      "last_seen": "2026-08-29",
-      "stars": 57482
-    },
-    "aaif-goose/goose": {
-      "first_seen": "2026-08-23",
-      "last_seen": "2026-08-29",
-      "stars": 53633
+      "last_seen": "2026-08-30",
+      "stars": 57490
     },
     "calesthio/OpenMontage": {
       "first_seen": "2026-08-23",
-      "last_seen": "2026-08-29",
-      "stars": 53507
+      "last_seen": "2026-08-30",
+      "stars": 54215
+    },
+    "aaif-goose/goose": {
+      "first_seen": "2026-08-23",
+      "last_seen": "2026-08-30",
+      "stars": 53674
     },
     "hesreallyhim/awesome-claude-code": {
       "first_seen": "2026-08-23",
-      "last_seen": "2026-08-29",
-      "stars": 53156
+      "last_seen": "2026-08-30",
+      "stars": 53206
     },
     "run-llama/llama_index": {
       "first_seen": "2026-08-23",
-      "last_seen": "2026-08-29",
-      "stars": 51911
+      "last_seen": "2026-08-30",
+      "stars": 51917
     },
     "dbeaver/dbeaver": {
       "first_seen": "2026-08-23",
-      "last_seen": "2026-08-29",
-      "stars": 51577
+      "last_seen": "2026-08-30",
+      "stars": 51588
     },
     "rohitg00/ai-engineering-from-scratch": {
       "first_seen": "2026-08-23",
-      "last_seen": "2026-08-29",
-      "stars": 50723
+      "last_seen": "2026-08-30",
+      "stars": 51034
     },
     "huginn/huginn": {
       "first_seen": "2026-08-23",
-      "last_seen": "2026-08-29",
-      "stars": 49865
+      "last_seen": "2026-08-30",
+      "stars": 49874
     },
     "roboflow/supervision": {
       "first_seen": "2026-08-23",
-      "last_seen": "2026-08-29",
-      "stars": 49781
+      "last_seen": "2026-08-30",
+      "stars": 49795
     },
     "ClickHouse/ClickHouse": {
       "first_seen": "2026-08-23",
-      "last_seen": "2026-08-29",
-      "stars": 49517
+      "last_seen": "2026-08-30",
+      "stars": 49530
     },
     "JuliaLang/julia": {
       "first_seen": "2026-08-23",
-      "last_seen": "2026-08-29",
-      "stars": 49042
+      "last_seen": "2026-08-30",
+      "stars": 49043
     },
     "upscayl/upscayl": {
       "first_seen": "2026-08-23",
-      "last_seen": "2026-08-29",
-      "stars": 48813
+      "last_seen": "2026-08-30",
+      "stars": 48835
     },
     "mudler/LocalAI": {
       "first_seen": "2026-08-23",
-      "last_seen": "2026-08-29",
-      "stars": 48729
+      "last_seen": "2026-08-30",
+      "stars": 48756
     },
     "jeecgboot/JeecgBoot": {
       "first_seen": "2026-08-23",
-      "last_seen": "2026-08-29",
-      "stars": 47528
+      "last_seen": "2026-08-30",
+      "stars": 47544
     },
     "zhayujie/CowAgent": {
       "first_seen": "2026-08-23",
-      "last_seen": "2026-08-29",
-      "stars": 46713
+      "last_seen": "2026-08-30",
+      "stars": 46722
     },
     "apache/airflow": {
       "first_seen": "2026-08-23",
-      "last_seen": "2026-08-29",
-      "stars": 46630
+      "last_seen": "2026-08-30",
+      "stars": 46643
     },
     "milvus-io/milvus": {
       "first_seen": "2026-08-23",
-      "last_seen": "2026-08-29",
-      "stars": 45863
+      "last_seen": "2026-08-30",
+      "stars": 45876
     },
     "streamlit/streamlit": {
       "first_seen": "2026-08-23",
-      "last_seen": "2026-08-29",
-      "stars": 45632
+      "last_seen": "2026-08-30",
+      "stars": 45640
     },
     "paperless-ngx/paperless-ngx": {
       "first_seen": "2026-08-23",
-      "last_seen": "2026-08-29",
-      "stars": 44682
+      "last_seen": "2026-08-30",
+      "stars": 44705
     },
     "janhq/jan": {
       "first_seen": "2026-08-23",
-      "last_seen": "2026-08-29",
-      "stars": 44235
-    },
-    "Kong/kong": {
-      "first_seen": "2026-08-23",
-      "last_seen": "2026-08-29",
-      "stars": 44055
+      "last_seen": "2026-08-30",
+      "stars": 44254
     },
     "ray-project/ray": {
       "first_seen": "2026-08-23",
-      "last_seen": "2026-08-29",
-      "stars": 43640
+      "last_seen": "2026-08-30",
+      "stars": 43648
     },
     "danielmiessler/Fabric": {
       "first_seen": "2026-08-28",
-      "last_seen": "2026-08-29",
-      "stars": 43549
-    },
-    "gradio-app/gradio": {
-      "first_seen": "2026-08-23",
-      "last_seen": "2026-08-29",
-      "stars": 43440
+      "last_seen": "2026-08-30",
+      "stars": 43562
     },
     "bojieli/ai-agent-book": {
       "first_seen": "2026-08-23",
-      "last_seen": "2026-08-29",
-      "stars": 43063
+      "last_seen": "2026-08-30",
+      "stars": 43463
     },
-    "deepspeedai/DeepSpeed": {
+    "gradio-app/gradio": {
       "first_seen": "2026-08-23",
-      "last_seen": "2026-08-29",
-      "stars": 43020
+      "last_seen": "2026-08-30",
+      "stars": 43439
     },
     "heygen-com/hyperframes": {
       "first_seen": "2026-08-23",
-      "last_seen": "2026-08-29",
-      "stars": 43018
+      "last_seen": "2026-08-30",
+      "stars": 43097
+    },
+    "deepspeedai/DeepSpeed": {
+      "first_seen": "2026-08-23",
+      "last_seen": "2026-08-30",
+      "stars": 43022
     },
     "danny-avila/LibreChat": {
       "first_seen": "2026-08-23",
-      "last_seen": "2026-08-29",
-      "stars": 42580
+      "last_seen": "2026-08-30",
+      "stars": 42606
     },
     "agno-agi/agno": {
       "first_seen": "2026-08-23",
-      "last_seen": "2026-08-29",
-      "stars": 41959
+      "last_seen": "2026-08-30",
+      "stars": 41969
     },
     "amruthpillai/reactive-resume": {
       "first_seen": "2026-08-23",
-      "last_seen": "2026-08-29",
-      "stars": 41903
+      "last_seen": "2026-08-30",
+      "stars": 41932
     },
     "hpcaitech/ColossalAI": {
       "first_seen": "2026-08-23",
-      "last_seen": "2026-08-29",
-      "stars": 41443
+      "last_seen": "2026-08-30",
+      "stars": 41446
     },
     "langchain-ai/langgraph": {
       "first_seen": "2026-08-23",
-      "last_seen": "2026-08-29",
-      "stars": 40648
+      "last_seen": "2026-08-30",
+      "stars": 40688
     },
     "pingcap/tidb": {
       "first_seen": "2026-08-23",
-      "last_seen": "2026-08-29",
+      "last_seen": "2026-08-30",
       "stars": 40478
     },
     "photoprism/photoprism": {
       "first_seen": "2026-08-23",
-      "last_seen": "2026-08-29",
-      "stars": 40117
+      "last_seen": "2026-08-30",
+      "stars": 40124
     },
     "AstrBotDevs/AstrBot": {
       "first_seen": "2026-08-23",
-      "last_seen": "2026-08-29",
-      "stars": 39748
+      "last_seen": "2026-08-30",
+      "stars": 39783
     },
     "mindsdb/mindshub": {
       "first_seen": "2026-08-23",
-      "last_seen": "2026-08-29",
-      "stars": 39656
+      "last_seen": "2026-08-30",
+      "stars": 39660
     },
     "HKUDS/LightRAG": {
       "first_seen": "2026-08-23",
-      "last_seen": "2026-08-29",
-      "stars": 39259
+      "last_seen": "2026-08-30",
+      "stars": 39261
     },
     "RSSNext/Folo": {
       "first_seen": "2026-08-23",
-      "last_seen": "2026-08-29",
-      "stars": 38886
+      "last_seen": "2026-08-30",
+      "stars": 38889
     },
     "google-research/google-research": {
       "first_seen": "2026-08-23",
-      "last_seen": "2026-08-29",
-      "stars": 38643
+      "last_seen": "2026-08-30",
+      "stars": 38651
     },
     "google/langextract": {
       "first_seen": "2026-08-23",
-      "last_seen": "2026-08-29",
-      "stars": 38501
+      "last_seen": "2026-08-30",
+      "stars": 38508
     },
     "github/awesome-copilot": {
       "first_seen": "2026-08-23",
-      "last_seen": "2026-08-29",
-      "stars": 38394
+      "last_seen": "2026-08-30",
+      "stars": 38428
     },
     "MadsLorentzen/ai-job-search": {
       "first_seen": "2026-08-23",
-      "last_seen": "2026-08-29",
-      "stars": 37840
+      "last_seen": "2026-08-30",
+      "stars": 38184
     },
     "alibaba/arthas": {
       "first_seen": "2026-08-23",
-      "last_seen": "2026-08-29",
-      "stars": 37503
+      "last_seen": "2026-08-30",
+      "stars": 37502
     },
     "patchy631/ai-engineering-hub": {
       "first_seen": "2026-08-27",
-      "last_seen": "2026-08-29",
-      "stars": 37218
+      "last_seen": "2026-08-30",
+      "stars": 37234
     },
     "CopilotKit/CopilotKit": {
       "first_seen": "2026-08-23",
-      "last_seen": "2026-08-29",
-      "stars": 37095
+      "last_seen": "2026-08-30",
+      "stars": 37111
     },
     "Dokploy/dokploy": {
       "first_seen": "2026-08-23",
-      "last_seen": "2026-08-29",
-      "stars": 36938
+      "last_seen": "2026-08-30",
+      "stars": 36962
     },
     "google-ai-edge/mediapipe": {
       "first_seen": "2026-08-23",
-      "last_seen": "2026-08-29",
-      "stars": 36764
+      "last_seen": "2026-08-30",
+      "stars": 36773
     },
     "1Panel-dev/1Panel": {
       "first_seen": "2026-08-23",
-      "last_seen": "2026-08-29",
-      "stars": 36689
+      "last_seen": "2026-08-30",
+      "stars": 36717
     },
     "microsoft/graphrag": {
       "first_seen": "2026-08-23",
-      "last_seen": "2026-08-29",
-      "stars": 35730
+      "last_seen": "2026-08-30",
+      "stars": 35739
     },
     "continuedev/continue": {
       "first_seen": "2026-08-23",
-      "last_seen": "2026-08-29",
-      "stars": 35670
+      "last_seen": "2026-08-30",
+      "stars": 35696
     },
     "blakeblackshear/frigate": {
       "first_seen": "2026-08-23",
-      "last_seen": "2026-08-29",
-      "stars": 35475
+      "last_seen": "2026-08-30",
+      "stars": 35493
     },
     "VectifyAI/PageIndex": {
       "first_seen": "2026-08-23",
-      "last_seen": "2026-08-29",
-      "stars": 35390
+      "last_seen": "2026-08-30",
+      "stars": 35411
     },
     "DayuanJiang/next-ai-draw-io": {
       "first_seen": "2026-08-23",
-      "last_seen": "2026-08-29",
-      "stars": 35385
+      "last_seen": "2026-08-30",
+      "stars": 35411
     },
     "esengine/DeepSeek-Reasonix": {
       "first_seen": "2026-08-23",
-      "last_seen": "2026-08-29",
-      "stars": 35234
+      "last_seen": "2026-08-30",
+      "stars": 35248
     },
     "agentscope-ai/QwenPaw": {
       "first_seen": "2026-08-23",
-      "last_seen": "2026-08-29",
-      "stars": 34627
+      "last_seen": "2026-08-30",
+      "stars": 34672
     },
     "AlexsJones/llmfit": {
       "first_seen": "2026-08-23",
-      "last_seen": "2026-08-29",
-      "stars": 34473
+      "last_seen": "2026-08-30",
+      "stars": 34512
     },
     "qdrant/qdrant": {
       "first_seen": "2026-08-23",
-      "last_seen": "2026-08-29",
-      "stars": 34252
+      "last_seen": "2026-08-30",
+      "stars": 34262
     },
     "langfuse/langfuse": {
       "first_seen": "2026-08-23",
-      "last_seen": "2026-08-29",
-      "stars": 33880
+      "last_seen": "2026-08-30",
+      "stars": 33915
     },
     "explosion/spaCy": {
       "first_seen": "2026-08-25",
-      "last_seen": "2026-08-29",
-      "stars": 33860
+      "last_seen": "2026-08-30",
+      "stars": 33865
     },
     "linshenkx/prompt-optimizer": {
       "first_seen": "2026-08-23",
-      "last_seen": "2026-08-29",
-      "stars": 33597
-    },
-    "lutzroeder/netron": {
-      "first_seen": "2026-08-23",
-      "last_seen": "2026-08-29",
-      "stars": 33422
-    },
-    "alibaba/nacos": {
-      "first_seen": "2026-08-23",
-      "last_seen": "2026-08-29",
-      "stars": 33317
+      "last_seen": "2026-08-30",
+      "stars": 33686
     },
     "herdrdev/herdr": {
       "first_seen": "2026-08-23",
-      "last_seen": "2026-08-29",
-      "stars": 33250
+      "last_seen": "2026-08-30",
+      "stars": 33455
+    },
+    "lutzroeder/netron": {
+      "first_seen": "2026-08-23",
+      "last_seen": "2026-08-30",
+      "stars": 33427
+    },
+    "alibaba/nacos": {
+      "first_seen": "2026-08-23",
+      "last_seen": "2026-08-30",
+      "stars": 33321
     },
     "lyogavin/airllm": {
       "first_seen": "2026-08-23",
-      "last_seen": "2026-08-29",
-      "stars": 32984
+      "last_seen": "2026-08-30",
+      "stars": 33080
     },
     "SillyTavern/SillyTavern": {
       "first_seen": "2026-08-23",
-      "last_seen": "2026-08-29",
-      "stars": 32773
-    },
-    "zeroclaw-labs/zeroclaw": {
-      "first_seen": "2026-08-23",
-      "last_seen": "2026-08-29",
-      "stars": 32669
+      "last_seen": "2026-08-30",
+      "stars": 32804
     },
     "sgl-project/sglang": {
       "first_seen": "2026-08-23",
-      "last_seen": "2026-08-29",
-      "stars": 32647
+      "last_seen": "2026-08-30",
+      "stars": 32793
+    },
+    "zeroclaw-labs/zeroclaw": {
+      "first_seen": "2026-08-23",
+      "last_seen": "2026-08-30",
+      "stars": 32677
     },
     "iOfficeAI/AionUi": {
       "first_seen": "2026-08-23",
-      "last_seen": "2026-08-29",
-      "stars": 32386
+      "last_seen": "2026-08-30",
+      "stars": 32415
     },
     "HKUDS/Vibe-Trading": {
       "first_seen": "2026-08-23",
-      "last_seen": "2026-08-29",
-      "stars": 31998
+      "last_seen": "2026-08-30",
+      "stars": 32075
     },
     "datawhalechina/self-llm": {
       "first_seen": "2026-08-27",
-      "last_seen": "2026-08-29",
-      "stars": 31967
+      "last_seen": "2026-08-30",
+      "stars": 31975
     },
     "onyx-dot-app/onyx": {
       "first_seen": "2026-08-23",
-      "last_seen": "2026-08-29",
-      "stars": 31815
+      "last_seen": "2026-08-30",
+      "stars": 31830
     },
     "mukul975/Anthropic-Cybersecurity-Skills": {
       "first_seen": "2026-08-23",
-      "last_seen": "2026-08-29",
-      "stars": 31546
+      "last_seen": "2026-08-30",
+      "stars": 31646
     },
     "Lightning-AI/pytorch-lightning": {
       "first_seen": "2026-08-26",
-      "last_seen": "2026-08-29",
+      "last_seen": "2026-08-30",
       "stars": 31315
     },
     "tirth8205/code-review-graph": {
       "first_seen": "2026-08-23",
-      "last_seen": "2026-08-29",
-      "stars": 30975
+      "last_seen": "2026-08-30",
+      "stars": 31003
     },
     "Gitlawb/openclaude": {
       "first_seen": "2026-08-23",
-      "last_seen": "2026-08-29",
-      "stars": 30871
+      "last_seen": "2026-08-30",
+      "stars": 30889
     },
     "Fincept-Corporation/FinceptTerminal": {
       "first_seen": "2026-08-23",
-      "last_seen": "2026-08-29",
-      "stars": 30757
+      "last_seen": "2026-08-30",
+      "stars": 30805
     },
     "topoteretes/cognee": {
       "first_seen": "2026-08-23",
-      "last_seen": "2026-08-29",
-      "stars": 30331
-    },
-    "Zackriya-Solutions/meetily": {
-      "first_seen": "2026-08-26",
-      "last_seen": "2026-08-29",
-      "stars": 30034
-    },
-    "ScrapeGraphAI/Scrapegraph-ai": {
-      "first_seen": "2026-08-23",
-      "last_seen": "2026-08-29",
-      "stars": 30026
+      "last_seen": "2026-08-30",
+      "stars": 30343
     },
     "agentscope-ai/agentscope": {
       "first_seen": "2026-08-23",
-      "last_seen": "2026-08-29",
-      "stars": 29983
+      "last_seen": "2026-08-30",
+      "stars": 30072
+    },
+    "Zackriya-Solutions/meetily": {
+      "first_seen": "2026-08-26",
+      "last_seen": "2026-08-30",
+      "stars": 30066
+    },
+    "ScrapeGraphAI/Scrapegraph-ai": {
+      "first_seen": "2026-08-23",
+      "last_seen": "2026-08-30",
+      "stars": 30053
     },
     "ComposioHQ/composio": {
       "first_seen": "2026-08-23",
-      "last_seen": "2026-08-29",
-      "stars": 29925
+      "last_seen": "2026-08-30",
+      "stars": 29941
     },
     "academic/awesome-datascience": {
       "first_seen": "2026-08-23",
-      "last_seen": "2026-08-29",
-      "stars": 29887
+      "last_seen": "2026-08-30",
+      "stars": 29892
     },
     "e2b-dev/awesome-ai-agents": {
       "first_seen": "2026-08-23",
-      "last_seen": "2026-08-29",
-      "stars": 29735
+      "last_seen": "2026-08-30",
+      "stars": 29749
     },
     "facefusion/facefusion": {
       "first_seen": "2026-08-23",
-      "last_seen": "2026-08-29",
-      "stars": 29724
-    },
-    "labring/FastGPT": {
-      "first_seen": "2026-08-23",
-      "last_seen": "2026-08-29",
-      "stars": 29497
-    },
-    "simstudioai/sim": {
-      "first_seen": "2026-08-23",
-      "last_seen": "2026-08-29",
-      "stars": 29489
+      "last_seen": "2026-08-30",
+      "stars": 29732
     },
     "iOfficeAI/OfficeCLI": {
       "first_seen": "2026-08-23",
-      "last_seen": "2026-08-29",
-      "stars": 29466
+      "last_seen": "2026-08-30",
+      "stars": 29508
+    },
+    "labring/FastGPT": {
+      "first_seen": "2026-08-23",
+      "last_seen": "2026-08-30",
+      "stars": 29496
+    },
+    "simstudioai/sim": {
+      "first_seen": "2026-08-23",
+      "last_seen": "2026-08-30",
+      "stars": 29491
     },
     "modular/modular": {
       "first_seen": "2026-08-23",
-      "last_seen": "2026-08-29",
-      "stars": 29314
+      "last_seen": "2026-08-30",
+      "stars": 29343
     },
     "NirDiamant/RAG_Techniques": {
       "first_seen": "2026-08-23",
-      "last_seen": "2026-08-29",
-      "stars": 29264
+      "last_seen": "2026-08-30",
+      "stars": 29272
     },
     "assafelovic/gpt-researcher": {
       "first_seen": "2026-08-24",
-      "last_seen": "2026-08-29",
-      "stars": 29192
+      "last_seen": "2026-08-30",
+      "stars": 29203
     },
     "chroma-core/chroma": {
       "first_seen": "2026-08-23",
-      "last_seen": "2026-08-29",
-      "stars": 29178
+      "last_seen": "2026-08-30",
+      "stars": 29183
     },
     "openai/openai-agents-python": {
       "first_seen": "2026-08-23",
-      "last_seen": "2026-08-29",
-      "stars": 29048
+      "last_seen": "2026-08-30",
+      "stars": 29065
     },
     "gitleaks/gitleaks": {
       "first_seen": "2026-08-23",
-      "last_seen": "2026-08-29",
-      "stars": 29003
+      "last_seen": "2026-08-30",
+      "stars": 29012
     },
     "alibaba/page-agent": {
       "first_seen": "2026-08-23",
-      "last_seen": "2026-08-29",
-      "stars": 28894
+      "last_seen": "2026-08-30",
+      "stars": 28903
     },
     "opendataloader-project/opendataloader-pdf": {
       "first_seen": "2026-08-23",
-      "last_seen": "2026-08-29",
-      "stars": 28854
-    },
-    "dmlc/xgboost": {
-      "first_seen": "2026-08-23",
-      "last_seen": "2026-08-29",
-      "stars": 28706
-    },
-    "langchain-ai/deepagents": {
-      "first_seen": "2026-08-23",
-      "last_seen": "2026-08-29",
-      "stars": 28678
-    },
-    "oraios/serena": {
-      "first_seen": "2026-08-23",
-      "last_seen": "2026-08-29",
-      "stars": 28591
+      "last_seen": "2026-08-30",
+      "stars": 28860
     },
     "p-e-w/heretic": {
       "first_seen": "2026-08-23",
-      "last_seen": "2026-08-29",
-      "stars": 28543
+      "last_seen": "2026-08-30",
+      "stars": 28785
+    },
+    "langchain-ai/deepagents": {
+      "first_seen": "2026-08-23",
+      "last_seen": "2026-08-30",
+      "stars": 28713
+    },
+    "dmlc/xgboost": {
+      "first_seen": "2026-08-23",
+      "last_seen": "2026-08-30",
+      "stars": 28710
+    },
+    "oraios/serena": {
+      "first_seen": "2026-08-23",
+      "last_seen": "2026-08-30",
+      "stars": 28627
     },
     "microsoft/semantic-kernel": {
       "first_seen": "2026-08-23",
-      "last_seen": "2026-08-29",
-      "stars": 28512
+      "last_seen": "2026-08-30",
+      "stars": 28519
     },
     "can1357/oh-my-pi": {
       "first_seen": "2026-08-23",
-      "last_seen": "2026-08-29",
-      "stars": 28180
+      "last_seen": "2026-08-30",
+      "stars": 28341
+    },
+    "fastai/fastai": {
+      "first_seen": "2026-08-30",
+      "last_seen": "2026-08-30",
+      "stars": 28127
     },
     "yamadashy/repomix": {
       "first_seen": "2026-08-23",
-      "last_seen": "2026-08-29",
-      "stars": 28107
-    },
-    "harvard-edge/cs249r_book": {
-      "first_seen": "2026-08-23",
-      "last_seen": "2026-08-29",
-      "stars": 28051
-    },
-    "OtterMind/Chat2DB": {
-      "first_seen": "2026-08-23",
-      "last_seen": "2026-08-29",
-      "stars": 28050
+      "last_seen": "2026-08-30",
+      "stars": 28119
     },
     "nautechsystems/nautilus_trader": {
       "first_seen": "2026-08-23",
-      "last_seen": "2026-08-29",
-      "stars": 28046
+      "last_seen": "2026-08-30",
+      "stars": 28114
+    },
+    "harvard-edge/cs249r_book": {
+      "first_seen": "2026-08-23",
+      "last_seen": "2026-08-30",
+      "stars": 28056
+    },
+    "OtterMind/Chat2DB": {
+      "first_seen": "2026-08-23",
+      "last_seen": "2026-08-30",
+      "stars": 28052
     },
     "charmbracelet/crush": {
       "first_seen": "2026-08-23",
-      "last_seen": "2026-08-29",
-      "stars": 27770
-    },
-    "mlflow/mlflow": {
-      "first_seen": "2026-08-23",
-      "last_seen": "2026-08-29",
-      "stars": 27719
+      "last_seen": "2026-08-30",
+      "stars": 27795
     },
     "rohitg00/agentmemory": {
       "first_seen": "2026-08-23",
-      "last_seen": "2026-08-29",
-      "stars": 27697
+      "last_seen": "2026-08-30",
+      "stars": 27747
+    },
+    "mlflow/mlflow": {
+      "first_seen": "2026-08-23",
+      "last_seen": "2026-08-30",
+      "stars": 27731
     },
     "mastra-ai/mastra": {
       "first_seen": "2026-08-23",
-      "last_seen": "2026-08-29",
-      "stars": 27549
+      "last_seen": "2026-08-30",
+      "stars": 27563
     },
     "QwenLM/qwen-code": {
       "first_seen": "2026-08-23",
-      "last_seen": "2026-08-29",
-      "stars": 27471
-    },
-    "Kilo-Org/kilocode": {
-      "first_seen": "2026-08-23",
-      "last_seen": "2026-08-29",
-      "stars": 27056
+      "last_seen": "2026-08-30",
+      "stars": 27492
     },
     "virgiliojr94/book-to-skill": {
       "first_seen": "2026-08-23",
-      "last_seen": "2026-08-29",
-      "stars": 26784
+      "last_seen": "2026-08-30",
+      "stars": 27108
+    },
+    "Kilo-Org/kilocode": {
+      "first_seen": "2026-08-23",
+      "last_seen": "2026-08-30",
+      "stars": 27070
+    },
+    "decolua/9router": {
+      "first_seen": "2026-08-30",
+      "last_seen": "2026-08-30",
+      "stars": 26652
     },
     "onlook-dev/onlook": {
       "first_seen": "2026-08-26",
-      "last_seen": "2026-08-29",
-      "stars": 26586
+      "last_seen": "2026-08-30",
+      "stars": 26596
     },
     "vercel/ai": {
       "first_seen": "2026-08-23",
-      "last_seen": "2026-08-29",
-      "stars": 26478
+      "last_seen": "2026-08-30",
+      "stars": 26492
     },
     "ahujasid/blender-mcp": {
       "first_seen": "2026-08-23",
-      "last_seen": "2026-08-29",
-      "stars": 26445
+      "last_seen": "2026-08-30",
+      "stars": 26489
     },
     "deepset-ai/haystack": {
       "first_seen": "2026-08-23",
-      "last_seen": "2026-08-29",
-      "stars": 26354
+      "last_seen": "2026-08-30",
+      "stars": 26362
     },
     "go-kratos/kratos": {
       "first_seen": "2026-08-23",
-      "last_seen": "2026-08-29",
+      "last_seen": "2026-08-30",
       "stars": 25901
     },
     "shap/shap": {
       "first_seen": "2026-08-23",
-      "last_seen": "2026-08-29",
-      "stars": 25709
+      "last_seen": "2026-08-30",
+      "stars": 25711
     },
     "toon-format/toon": {
       "first_seen": "2026-08-23",
-      "last_seen": "2026-08-29",
-      "stars": 25270
+      "last_seen": "2026-08-30",
+      "stars": 25275
     },
     "TencentCloud/TencentDB-Agent-Memory": {
       "first_seen": "2026-08-23",
-      "last_seen": "2026-08-29",
-      "stars": 25076
+      "last_seen": "2026-08-30",
+      "stars": 25193
     },
     "flipped-aurora/gin-vue-admin": {
       "first_seen": "2026-08-23",
-      "last_seen": "2026-08-29",
-      "stars": 24976
+      "last_seen": "2026-08-30",
+      "stars": 24977
     },
     "promptfoo/promptfoo": {
       "first_seen": "2026-08-23",
-      "last_seen": "2026-08-29",
-      "stars": 24651
+      "last_seen": "2026-08-30",
+      "stars": 24668
     },
     "Max-Eee/NeoPass": {
       "first_seen": "2026-08-23",
-      "last_seen": "2026-08-29",
-      "stars": 24568
+      "last_seen": "2026-08-30",
+      "stars": 24567
     },
     "letta-ai/letta": {
       "first_seen": "2026-08-23",
-      "last_seen": "2026-08-29",
-      "stars": 24485
+      "last_seen": "2026-08-30",
+      "stars": 24489
     },
     "plotly/dash": {
       "first_seen": "2026-08-23",
-      "last_seen": "2026-08-29",
-      "stars": 24392
+      "last_seen": "2026-08-30",
+      "stars": 24389
     },
     "browserbase/stagehand": {
       "first_seen": "2026-08-23",
-      "last_seen": "2026-08-29",
-      "stars": 24092
+      "last_seen": "2026-08-30",
+      "stars": 24096
     },
     "PaddlePaddle/Paddle": {
       "first_seen": "2026-08-23",
-      "last_seen": "2026-08-29",
+      "last_seen": "2026-08-30",
       "stars": 24062
     },
     "NirDiamant/GenAI_Agents": {
       "first_seen": "2026-08-23",
-      "last_seen": "2026-08-29",
-      "stars": 24025
+      "last_seen": "2026-08-30",
+      "stars": 24036
     },
     "lukasmasuch/best-of-ml-python": {
       "first_seen": "2026-08-23",
-      "last_seen": "2026-08-29",
-      "stars": 23733
+      "last_seen": "2026-08-30",
+      "stars": 23738
     },
     "serengil/deepface": {
       "first_seen": "2026-08-23",
-      "last_seen": "2026-08-29",
-      "stars": 23350
+      "last_seen": "2026-08-30",
+      "stars": 23353
     },
     "coleam00/Archon": {
       "first_seen": "2026-08-23",
-      "last_seen": "2026-08-29",
-      "stars": 23297
+      "last_seen": "2026-08-30",
+      "stars": 23309
     },
     "mlc-ai/mlc-llm": {
       "first_seen": "2026-08-23",
-      "last_seen": "2026-08-29",
-      "stars": 23107
+      "last_seen": "2026-08-30",
+      "stars": 23111
     },
     "spmallick/learnopencv": {
       "first_seen": "2026-08-23",
-      "last_seen": "2026-08-29",
+      "last_seen": "2026-08-30",
       "stars": 23095
     },
     "micro/go-micro": {
       "first_seen": "2026-08-23",
-      "last_seen": "2026-08-29",
+      "last_seen": "2026-08-30",
       "stars": 23047
     },
     "Skyvern-AI/skyvern": {
       "first_seen": "2026-08-23",
-      "last_seen": "2026-08-29",
-      "stars": 22876
+      "last_seen": "2026-08-30",
+      "stars": 22879
     },
     "1Panel-dev/MaxKB": {
       "first_seen": "2026-08-23",
-      "last_seen": "2026-08-29",
-      "stars": 22642
+      "last_seen": "2026-08-30",
+      "stars": 22648
     },
     "marimo-team/marimo": {
       "first_seen": "2026-08-23",
-      "last_seen": "2026-08-29",
-      "stars": 22534
+      "last_seen": "2026-08-30",
+      "stars": 22542
     },
     "wandb/openui": {
       "first_seen": "2026-08-23",
-      "last_seen": "2026-08-29",
-      "stars": 22519
+      "last_seen": "2026-08-30",
+      "stars": 22522
     },
     "vectordotdev/vector": {
       "first_seen": "2026-08-23",
-      "last_seen": "2026-08-29",
-      "stars": 22480
+      "last_seen": "2026-08-30",
+      "stars": 22487
     },
     "microsoft/unilm": {
       "first_seen": "2026-08-27",
-      "last_seen": "2026-08-29",
+      "last_seen": "2026-08-30",
       "stars": 22196
     },
     "trycua/cua": {
       "first_seen": "2026-08-23",
-      "last_seen": "2026-08-29",
-      "stars": 21999
+      "last_seen": "2026-08-30",
+      "stars": 22016
     },
     "huggingface/datasets": {
       "first_seen": "2026-08-23",
-      "last_seen": "2026-08-29",
-      "stars": 21875
+      "last_seen": "2026-08-30",
+      "stars": 21878
     },
     "recommenders-team/recommenders": {
       "first_seen": "2026-08-23",
-      "last_seen": "2026-08-29",
+      "last_seen": "2026-08-30",
       "stars": 21863
     },
     "microsoft/onnxruntime": {
       "first_seen": "2026-08-23",
-      "last_seen": "2026-08-29",
-      "stars": 21670
+      "last_seen": "2026-08-30",
+      "stars": 21680
     },
     "comet-ml/opik": {
       "first_seen": "2026-08-23",
-      "last_seen": "2026-08-29",
-      "stars": 21661
-    },
-    "huggingface/peft": {
-      "first_seen": "2026-08-23",
-      "last_seen": "2026-08-29",
-      "stars": 21604
+      "last_seen": "2026-08-30",
+      "stars": 21676
     },
     "alibaba/open-code-review": {
       "first_seen": "2026-08-23",
-      "last_seen": "2026-08-29",
-      "stars": 21588
+      "last_seen": "2026-08-30",
+      "stars": 21633
+    },
+    "huggingface/peft": {
+      "first_seen": "2026-08-23",
+      "last_seen": "2026-08-30",
+      "stars": 21607
     },
     "onnx/onnx": {
       "first_seen": "2026-08-23",
-      "last_seen": "2026-08-29",
-      "stars": 21376
+      "last_seen": "2026-08-30",
+      "stars": 21378
     },
     "NirDiamant/agents-towards-production": {
       "first_seen": "2026-08-23",
-      "last_seen": "2026-08-29",
-      "stars": 21345
+      "last_seen": "2026-08-30",
+      "stars": 21349
     },
     "dyad-sh/dyad": {
       "first_seen": "2026-08-23",
-      "last_seen": "2026-08-29",
-      "stars": 21330
+      "last_seen": "2026-08-30",
+      "stars": 21337
     },
     "google/adk-python": {
       "first_seen": "2026-08-23",
-      "last_seen": "2026-08-29",
-      "stars": 21319
+      "last_seen": "2026-08-30",
+      "stars": 21328
     },
     "screenpipe/screenpipe": {
       "first_seen": "2026-08-23",
-      "last_seen": "2026-08-29",
-      "stars": 21283
+      "last_seen": "2026-08-30",
+      "stars": 21299
     },
     "jundot/omlx": {
       "first_seen": "2026-08-23",
-      "last_seen": "2026-08-29",
-      "stars": 20912
+      "last_seen": "2026-08-30",
+      "stars": 20974
     },
     "Tencent/WeKnora": {
       "first_seen": "2026-08-23",
-      "last_seen": "2026-08-29",
-      "stars": 20879
+      "last_seen": "2026-08-30",
+      "stars": 20911
     },
     "EthicalML/awesome-production-machine-learning": {
       "first_seen": "2026-08-27",
-      "last_seen": "2026-08-29",
-      "stars": 20877
+      "last_seen": "2026-08-30",
+      "stars": 20878
     },
     "qax-os/excelize": {
       "first_seen": "2026-08-23",
-      "last_seen": "2026-08-29",
-      "stars": 20872
+      "last_seen": "2026-08-30",
+      "stars": 20874
     },
     "cube-js/cube": {
       "first_seen": "2026-08-23",
-      "last_seen": "2026-08-29",
-      "stars": 20733
+      "last_seen": "2026-08-30",
+      "stars": 20738
     },
     "stefan-jansen/machine-learning-for-trading": {
       "first_seen": "2026-08-23",
-      "last_seen": "2026-08-29",
-      "stars": 20711
+      "last_seen": "2026-08-30",
+      "stars": 20726
     },
     "steipete/CodexBar": {
       "first_seen": "2026-08-23",
-      "last_seen": "2026-08-29",
-      "stars": 20692
-    },
-    "KKKKhazix/khazix-skills": {
-      "first_seen": "2026-08-23",
-      "last_seen": "2026-08-29",
-      "stars": 20224
+      "last_seen": "2026-08-30",
+      "stars": 20713
     },
     "SWE-agent/SWE-agent": {
       "first_seen": "2026-08-23",
-      "last_seen": "2026-08-29",
-      "stars": 20169
+      "last_seen": "2026-08-30",
+      "stars": 20171
     },
     "kortix-ai/suna": {
       "first_seen": "2026-08-23",
-      "last_seen": "2026-08-29",
-      "stars": 20153
+      "last_seen": "2026-08-30",
+      "stars": 20157
     },
     "camel-ai/owl": {
       "first_seen": "2026-08-23",
-      "last_seen": "2026-08-29",
-      "stars": 20110
+      "last_seen": "2026-08-30",
+      "stars": 20112
     },
     "jnMetaCode/agency-agents-zh": {
       "first_seen": "2026-08-23",
-      "last_seen": "2026-08-29",
-      "stars": 20057
+      "last_seen": "2026-08-30",
+      "stars": 20092
     },
     "dailydotdev/daily": {
       "first_seen": "2026-08-23",
-      "last_seen": "2026-08-29",
-      "stars": 20044
+      "last_seen": "2026-08-30",
+      "stars": 20045
     },
     "eosphoros-ai/DB-GPT": {
       "first_seen": "2026-08-23",
-      "last_seen": "2026-08-29",
-      "stars": 19823
+      "last_seen": "2026-08-30",
+      "stars": 19825
     },
     "Unity-Technologies/ml-agents": {
       "first_seen": "2026-08-23",
-      "last_seen": "2026-08-29",
+      "last_seen": "2026-08-30",
       "stars": 19653
     },
     "pydantic/pydantic-ai": {
       "first_seen": "2026-08-23",
-      "last_seen": "2026-08-29",
-      "stars": 19567
+      "last_seen": "2026-08-30",
+      "stars": 19581
+    },
+    "tanweai/pua": {
+      "first_seen": "2026-08-30",
+      "last_seen": "2026-08-30",
+      "stars": 19550
     },
     "liyupi/ai-guide": {
       "first_seen": "2026-08-23",
-      "last_seen": "2026-08-29",
-      "stars": 19273
-    },
-    "elizaOS/eliza": {
-      "first_seen": "2026-08-23",
-      "last_seen": "2026-08-29",
-      "stars": 19202
-    },
-    "datawhalechina/easy-vibe": {
-      "first_seen": "2026-08-23",
-      "last_seen": "2026-08-29",
-      "stars": 19169
+      "last_seen": "2026-08-30",
+      "stars": 19297
     },
     "guillaumemeyer/watermarks-remover": {
       "first_seen": "2026-08-23",
-      "last_seen": "2026-08-29",
-      "stars": 19118
+      "last_seen": "2026-08-30",
+      "stars": 19287
+    },
+    "elizaOS/eliza": {
+      "first_seen": "2026-08-23",
+      "last_seen": "2026-08-30",
+      "stars": 19209
+    },
+    "datawhalechina/easy-vibe": {
+      "first_seen": "2026-08-23",
+      "last_seen": "2026-08-30",
+      "stars": 19177
     },
     "agent0ai/agent-zero": {
       "first_seen": "2026-08-23",
-      "last_seen": "2026-08-29",
-      "stars": 19008
+      "last_seen": "2026-08-30",
+      "stars": 19019
     },
     "keon/awesome-nlp": {
       "first_seen": "2026-08-23",
-      "last_seen": "2026-08-29",
-      "stars": 18940
+      "last_seen": "2026-08-30",
+      "stars": 18945
     },
     "stas00/ml-engineering": {
       "first_seen": "2026-08-23",
-      "last_seen": "2026-08-29",
-      "stars": 18830
+      "last_seen": "2026-08-30",
+      "stars": 18839
     },
     "1jehuang/jcode": {
       "first_seen": "2026-08-23",
-      "last_seen": "2026-08-29",
-      "stars": 18762
+      "last_seen": "2026-08-30",
+      "stars": 18796
     },
     "lightgbm-org/LightGBM": {
       "first_seen": "2026-08-23",
-      "last_seen": "2026-08-29",
-      "stars": 18724
+      "last_seen": "2026-08-30",
+      "stars": 18729
     },
     "iii-hq/iii": {
       "first_seen": "2026-08-23",
-      "last_seen": "2026-08-29",
-      "stars": 18638
+      "last_seen": "2026-08-30",
+      "stars": 18641
     },
     "teambit/bit": {
       "first_seen": "2026-08-23",
-      "last_seen": "2026-08-29",
+      "last_seen": "2026-08-30",
       "stars": 18466
     },
     "nukeop/nuclear": {
       "first_seen": "2026-08-23",
-      "last_seen": "2026-08-29",
-      "stars": 18359
+      "last_seen": "2026-08-30",
+      "stars": 18362
     },
     "arc53/DocsGPT": {
       "first_seen": "2026-08-23",
-      "last_seen": "2026-08-29",
+      "last_seen": "2026-08-30",
       "stars": 18231
     },
     "xming521/WeClone": {
       "first_seen": "2026-08-23",
-      "last_seen": "2026-08-29",
-      "stars": 18172
+      "last_seen": "2026-08-30",
+      "stars": 18173
     },
     "google/magika": {
       "first_seen": "2026-08-23",
-      "last_seen": "2026-08-29",
+      "last_seen": "2026-08-30",
       "stars": 17982
     },
     "microsoft/agent-lightning": {
       "first_seen": "2026-08-23",
-      "last_seen": "2026-08-29",
-      "stars": 17897
+      "last_seen": "2026-08-30",
+      "stars": 17914
     },
     "pytorch/vision": {
       "first_seen": "2026-08-23",
-      "last_seen": "2026-08-29",
-      "stars": 17889
+      "last_seen": "2026-08-30",
+      "stars": 17892
     },
     "nesquena/hermes-webui": {
       "first_seen": "2026-08-23",
-      "last_seen": "2026-08-29",
-      "stars": 17849
-    },
-    "AsyncFuncAI/deepwiki-open": {
-      "first_seen": "2026-08-23",
-      "last_seen": "2026-08-29",
-      "stars": 17813
+      "last_seen": "2026-08-30",
+      "stars": 17880
     },
     "camel-ai/camel": {
       "first_seen": "2026-08-23",
-      "last_seen": "2026-08-29",
-      "stars": 17652
+      "last_seen": "2026-08-30",
+      "stars": 17651
     },
     "GoogleCloudPlatform/generative-ai": {
       "first_seen": "2026-08-23",
-      "last_seen": "2026-08-29",
-      "stars": 17635
+      "last_seen": "2026-08-30",
+      "stars": 17641
     },
     "langbot-app/LangBot": {
       "first_seen": "2026-08-23",
-      "last_seen": "2026-08-29",
-      "stars": 17603
+      "last_seen": "2026-08-30",
+      "stars": 17613
     },
     "leon-ai/leon": {
       "first_seen": "2026-08-23",
-      "last_seen": "2026-08-29",
-      "stars": 17470
+      "last_seen": "2026-08-30",
+      "stars": 17476
     },
     "rowboatlabs/rowboat": {
       "first_seen": "2026-08-23",
-      "last_seen": "2026-08-29",
+      "last_seen": "2026-08-30",
       "stars": 17436
-    },
-    "Canner/WrenAI": {
-      "first_seen": "2026-08-23",
-      "last_seen": "2026-08-29",
-      "stars": 17419
     },
     "t8y2/dbx": {
       "first_seen": "2026-08-23",
-      "last_seen": "2026-08-29",
-      "stars": 17310
+      "last_seen": "2026-08-30",
+      "stars": 17430
+    },
+    "Canner/WrenAI": {
+      "first_seen": "2026-08-23",
+      "last_seen": "2026-08-30",
+      "stars": 17425
     },
     "browser-use/browser-harness": {
       "first_seen": "2026-08-23",
-      "last_seen": "2026-08-29",
-      "stars": 17218
+      "last_seen": "2026-08-30",
+      "stars": 17234
     },
     "argoproj/argo-workflows": {
       "first_seen": "2026-08-23",
-      "last_seen": "2026-08-29",
-      "stars": 16945
+      "last_seen": "2026-08-30",
+      "stars": 16944
     },
     "jlcodes99/cockpit-tools": {
       "first_seen": "2026-08-23",
-      "last_seen": "2026-08-29",
-      "stars": 16710
+      "last_seen": "2026-08-30",
+      "stars": 16753
     },
     "udecode/plate": {
       "first_seen": "2026-08-23",
-      "last_seen": "2026-08-29",
-      "stars": 16541
+      "last_seen": "2026-08-30",
+      "stars": 16543
     },
     "googleapis/mcp-toolbox": {
       "first_seen": "2026-08-23",
-      "last_seen": "2026-08-29",
-      "stars": 16274
+      "last_seen": "2026-08-30",
+      "stars": 16275
     },
     "MemoriLabs/Memori": {
       "first_seen": "2026-08-23",
-      "last_seen": "2026-08-29",
-      "stars": 16262
+      "last_seen": "2026-08-30",
+      "stars": 16270
     },
     "triggerdotdev/trigger.dev": {
       "first_seen": "2026-08-23",
-      "last_seen": "2026-08-29",
-      "stars": 16155
+      "last_seen": "2026-08-30",
+      "stars": 16159
     },
     "MODSetter/SurfSense": {
       "first_seen": "2026-08-23",
-      "last_seen": "2026-08-29",
-      "stars": 16030
+      "last_seen": "2026-08-30",
+      "stars": 16031
     },
     "alibaba/MNN": {
       "first_seen": "2026-08-23",
-      "last_seen": "2026-08-29",
-      "stars": 15990
+      "last_seen": "2026-08-30",
+      "stars": 15993
     },
     "xbtlin/ai-berkshire": {
       "first_seen": "2026-08-23",
-      "last_seen": "2026-08-29",
-      "stars": 15961
+      "last_seen": "2026-08-30",
+      "stars": 15987
     },
     "ahmedkhaleel2004/gitdiagram": {
       "first_seen": "2026-08-23",
-      "last_seen": "2026-08-29",
+      "last_seen": "2026-08-30",
       "stars": 15927
     },
     "treeverse/dvc": {
       "first_seen": "2026-08-23",
-      "last_seen": "2026-08-29",
-      "stars": 15850
+      "last_seen": "2026-08-30",
+      "stars": 15849
     },
     "kubeflow/kubeflow": {
       "first_seen": "2026-08-23",
-      "last_seen": "2026-08-29",
+      "last_seen": "2026-08-30",
       "stars": 15841
     },
     "tracel-ai/burn": {
       "first_seen": "2026-08-23",
-      "last_seen": "2026-08-29",
-      "stars": 15830
+      "last_seen": "2026-08-30",
+      "stars": 15832
     },
     "apache/doris": {
       "first_seen": "2026-08-23",
-      "last_seen": "2026-08-29",
-      "stars": 15829
+      "last_seen": "2026-08-30",
+      "stars": 15831
     },
     "AgriciDaniel/claude-seo": {
       "first_seen": "2026-08-23",
-      "last_seen": "2026-08-29",
-      "stars": 15736
+      "last_seen": "2026-08-30",
+      "stars": 15807
     },
     "Anionex/banana-slides": {
       "first_seen": "2026-08-23",
-      "last_seen": "2026-08-29",
-      "stars": 15514
+      "last_seen": "2026-08-30",
+      "stars": 15518
     },
     "wanshuiyin/Auto-claude-code-research-in-sleep": {
       "first_seen": "2026-08-23",
-      "last_seen": "2026-08-29",
-      "stars": 15406
+      "last_seen": "2026-08-30",
+      "stars": 15448
     },
     "modelscope/ms-swift": {
       "first_seen": "2026-08-23",
-      "last_seen": "2026-08-29",
-      "stars": 15398
+      "last_seen": "2026-08-30",
+      "stars": 15401
     },
     "Unstructured-IO/unstructured": {
       "first_seen": "2026-08-23",
-      "last_seen": "2026-08-29",
-      "stars": 15361
+      "last_seen": "2026-08-30",
+      "stars": 15364
     },
     "coderamp-labs/gitingest": {
       "first_seen": "2026-08-23",
-      "last_seen": "2026-08-29",
-      "stars": 15357
+      "last_seen": "2026-08-30",
+      "stars": 15359
     },
     "ggml-org/ggml": {
       "first_seen": "2026-08-23",
-      "last_seen": "2026-08-29",
-      "stars": 15254
+      "last_seen": "2026-08-30",
+      "stars": 15258
     },
     "theonedev/onedev": {
       "first_seen": "2026-08-23",
-      "last_seen": "2026-08-29",
-      "stars": 15196
+      "last_seen": "2026-08-30",
+      "stars": 15198
     },
     "DataTalksClub/mlops-zoomcamp": {
       "first_seen": "2026-08-26",
-      "last_seen": "2026-08-29",
-      "stars": 15193
+      "last_seen": "2026-08-30",
+      "stars": 15194
     },
     "electerm/electerm": {
       "first_seen": "2026-08-23",
-      "last_seen": "2026-08-29",
-      "stars": 14951
+      "last_seen": "2026-08-30",
+      "stars": 14956
     },
     "pipecat-ai/pipecat": {
       "first_seen": "2026-08-23",
-      "last_seen": "2026-08-29",
-      "stars": 14922
+      "last_seen": "2026-08-30",
+      "stars": 14954
     },
     "botpress/botpress": {
       "first_seen": "2026-08-23",
-      "last_seen": "2026-08-29",
-      "stars": 14883
+      "last_seen": "2026-08-30",
+      "stars": 14882
     },
     "HBAI-Ltd/Toonflow-app": {
       "first_seen": "2026-08-23",
-      "last_seen": "2026-08-29",
-      "stars": 14812
+      "last_seen": "2026-08-30",
+      "stars": 14858
     },
     "opensandbox-group/OpenSandbox": {
       "first_seen": "2026-08-23",
-      "last_seen": "2026-08-29",
-      "stars": 14802
+      "last_seen": "2026-08-30",
+      "stars": 14824
     },
     "optuna/optuna": {
       "first_seen": "2026-08-23",
-      "last_seen": "2026-08-29",
-      "stars": 14723
+      "last_seen": "2026-08-30",
+      "stars": 14727
     },
     "nltk/nltk": {
       "first_seen": "2026-08-23",
-      "last_seen": "2026-08-29",
-      "stars": 14706
+      "last_seen": "2026-08-30",
+      "stars": 14708
     },
     "gunthercox/ChatterBot": {
       "first_seen": "2026-08-23",
-      "last_seen": "2026-08-29",
+      "last_seen": "2026-08-30",
       "stars": 14508
     },
     "walkinglabs/learn-harness-engineering": {
       "first_seen": "2026-08-23",
-      "last_seen": "2026-08-29",
-      "stars": 14470
+      "last_seen": "2026-08-30",
+      "stars": 14506
     },
     "T8RIN/ImageToolbox": {
       "first_seen": "2026-08-23",
-      "last_seen": "2026-08-29",
-      "stars": 14390
-    },
-    "carla-simulator/carla": {
-      "first_seen": "2026-08-23",
-      "last_seen": "2026-08-29",
-      "stars": 14336
+      "last_seen": "2026-08-30",
+      "stars": 14405
     },
     "yc-software/qm": {
       "first_seen": "2026-08-23",
-      "last_seen": "2026-08-29",
-      "stars": 14313
+      "last_seen": "2026-08-30",
+      "stars": 14339
+    },
+    "carla-simulator/carla": {
+      "first_seen": "2026-08-23",
+      "last_seen": "2026-08-30",
+      "stars": 14337
     },
     "casdoor/casdoor": {
       "first_seen": "2026-08-23",
-      "last_seen": "2026-08-29",
-      "stars": 14288
+      "last_seen": "2026-08-30",
+      "stars": 14293
     },
     "NanmiCoder/cc-haha": {
       "first_seen": "2026-08-23",
-      "last_seen": "2026-08-29",
-      "stars": 14243
+      "last_seen": "2026-08-30",
+      "stars": 14246
     },
     "fathah/hermes-desktop": {
       "first_seen": "2026-08-25",
-      "last_seen": "2026-08-29",
-      "stars": 14063
+      "last_seen": "2026-08-30",
+      "stars": 14071
     },
     "DataTalksClub/machine-learning-zoomcamp": {
       "first_seen": "2026-08-25",
-      "last_seen": "2026-08-29",
-      "stars": 14041
+      "last_seen": "2026-08-30",
+      "stars": 14048
     },
     "isl-org/Open3D": {
       "first_seen": "2026-08-23",
-      "last_seen": "2026-08-29",
-      "stars": 13925
+      "last_seen": "2026-08-30",
+      "stars": 13926
     },
     "pinpoint-apm/pinpoint": {
       "first_seen": "2026-08-23",
-      "last_seen": "2026-08-29",
+      "last_seen": "2026-08-30",
       "stars": 13861
     },
     "DLR-RM/stable-baselines3": {
       "first_seen": "2026-08-23",
-      "last_seen": "2026-08-29",
-      "stars": 13734
+      "last_seen": "2026-08-30",
+      "stars": 13737
     },
     "apache/tvm": {
       "first_seen": "2026-08-23",
-      "last_seen": "2026-08-29",
-      "stars": 13699
+      "last_seen": "2026-08-30",
+      "stars": 13701
     },
     "nanobrowser/nanobrowser": {
       "first_seen": "2026-08-23",
-      "last_seen": "2026-08-29",
-      "stars": 13694
+      "last_seen": "2026-08-30",
+      "stars": 13699
     },
     "Lightning-AI/litgpt": {
       "first_seen": "2026-08-23",
-      "last_seen": "2026-08-29",
-      "stars": 13635
+      "last_seen": "2026-08-30",
+      "stars": 13637
     },
     "e2b-dev/E2B": {
       "first_seen": "2026-08-23",
-      "last_seen": "2026-08-29",
-      "stars": 13579
-    },
-    "Arindam200/awesome-ai-apps": {
-      "first_seen": "2026-08-23",
-      "last_seen": "2026-08-29",
-      "stars": 13524
-    },
-    "nmap/nmap": {
-      "first_seen": "2026-08-23",
-      "last_seen": "2026-08-29",
-      "stars": 13478
-    },
-    "superset-sh/superset": {
-      "first_seen": "2026-08-23",
-      "last_seen": "2026-08-29",
-      "stars": 13471
+      "last_seen": "2026-08-30",
+      "stars": 13589
     },
     "livekit/agents": {
       "first_seen": "2026-08-23",
-      "last_seen": "2026-08-29",
-      "stars": 13412
+      "last_seen": "2026-08-30",
+      "stars": 13567
+    },
+    "Arindam200/awesome-ai-apps": {
+      "first_seen": "2026-08-23",
+      "last_seen": "2026-08-30",
+      "stars": 13530
+    },
+    "superset-sh/superset": {
+      "first_seen": "2026-08-23",
+      "last_seen": "2026-08-30",
+      "stars": 13498
+    },
+    "nmap/nmap": {
+      "first_seen": "2026-08-23",
+      "last_seen": "2026-08-30",
+      "stars": 13485
     },
     "browseros-ai/BrowserOS": {
       "first_seen": "2026-08-23",
-      "last_seen": "2026-08-29",
-      "stars": 13390
+      "last_seen": "2026-08-30",
+      "stars": 13399
     },
     "BasedHardware/omi": {
       "first_seen": "2026-08-23",
-      "last_seen": "2026-08-29",
-      "stars": 13322
+      "last_seen": "2026-08-30",
+      "stars": 13334
     },
     "doocs/md": {
       "first_seen": "2026-08-23",
-      "last_seen": "2026-08-29",
-      "stars": 13252
+      "last_seen": "2026-08-30",
+      "stars": 13253
     },
     "puckeditor/puck": {
       "first_seen": "2026-08-23",
-      "last_seen": "2026-08-29",
-      "stars": 13222
+      "last_seen": "2026-08-30",
+      "stars": 13227
     },
     "microsoft/agent-framework": {
       "first_seen": "2026-08-23",
-      "last_seen": "2026-08-29",
-      "stars": 13192
+      "last_seen": "2026-08-30",
+      "stars": 13210
     },
     "dair-ai/AI-Papers-of-the-Week": {
       "first_seen": "2026-08-23",
-      "last_seen": "2026-08-29",
-      "stars": 13122
+      "last_seen": "2026-08-30",
+      "stars": 13127
     },
     "langchain4j/langchain4j": {
       "first_seen": "2026-08-23",
-      "last_seen": "2026-08-29",
-      "stars": 12975
-    },
-    "kmario23/deep-learning-drizzle": {
-      "first_seen": "2026-08-23",
-      "last_seen": "2026-08-29",
-      "stars": 12937
+      "last_seen": "2026-08-30",
+      "stars": 12973
     },
     "huggingface/speech-to-speech": {
       "first_seen": "2026-08-23",
-      "last_seen": "2026-08-29",
-      "stars": 12919
+      "last_seen": "2026-08-30",
+      "stars": 12941
+    },
+    "kmario23/deep-learning-drizzle": {
+      "first_seen": "2026-08-23",
+      "last_seen": "2026-08-30",
+      "stars": 12936
     },
     "zoicware/RemoveWindowsAI": {
       "first_seen": "2026-08-23",
-      "last_seen": "2026-08-29",
-      "stars": 12919
+      "last_seen": "2026-08-30",
+      "stars": 12931
     },
     "neuml/txtai": {
       "first_seen": "2026-08-23",
-      "last_seen": "2026-08-29",
-      "stars": 12912
+      "last_seen": "2026-08-30",
+      "stars": 12914
     },
     "XiaomiMiMo/MiMo-Code": {
       "first_seen": "2026-08-23",
-      "last_seen": "2026-08-29",
-      "stars": 12892
+      "last_seen": "2026-08-30",
+      "stars": 12902
     },
     "cloudwego/eino": {
       "first_seen": "2026-08-23",
-      "last_seen": "2026-08-29",
-      "stars": 12866
+      "last_seen": "2026-08-30",
+      "stars": 12875
     },
     "StarTrail-org/LEANN": {
       "first_seen": "2026-08-23",
-      "last_seen": "2026-08-29",
-      "stars": 12844
+      "last_seen": "2026-08-30",
+      "stars": 12846
     },
     "InsForge/InsForge": {
       "first_seen": "2026-08-23",
-      "last_seen": "2026-08-29",
-      "stars": 12799
+      "last_seen": "2026-08-30",
+      "stars": 12822
     },
     "NoFxAiOS/nofx": {
       "first_seen": "2026-08-23",
-      "last_seen": "2026-08-29",
-      "stars": 12776
+      "last_seen": "2026-08-30",
+      "stars": 12780
     },
     "The-PR-Agent/pr-agent": {
       "first_seen": "2026-08-23",
-      "last_seen": "2026-08-29",
-      "stars": 12752
+      "last_seen": "2026-08-30",
+      "stars": 12764
     },
     "codexu/note-gen": {
       "first_seen": "2026-08-23",
-      "last_seen": "2026-08-29",
-      "stars": 12699
+      "last_seen": "2026-08-30",
+      "stars": 12700
     },
     "EverMind-AI/EverOS": {
       "first_seen": "2026-08-23",
-      "last_seen": "2026-08-29",
-      "stars": 12524
-    },
-    "bentoml/OpenLLM": {
-      "first_seen": "2026-08-23",
-      "last_seen": "2026-08-29",
-      "stars": 12523
+      "last_seen": "2026-08-30",
+      "stars": 12552
     },
     "lidge-jun/opencodex": {
       "first_seen": "2026-08-23",
-      "last_seen": "2026-08-29",
-      "stars": 12472
+      "last_seen": "2026-08-30",
+      "stars": 12551
+    },
+    "bentoml/OpenLLM": {
+      "first_seen": "2026-08-23",
+      "last_seen": "2026-08-30",
+      "stars": 12523
     },
     "simonw/llm": {
       "first_seen": "2026-08-23",
-      "last_seen": "2026-08-29",
-      "stars": 12423
+      "last_seen": "2026-08-30",
+      "stars": 12425
     },
     "axolotl-ai-cloud/axolotl": {
       "first_seen": "2026-08-23",
-      "last_seen": "2026-08-29",
-      "stars": 12418
+      "last_seen": "2026-08-30",
+      "stars": 12424
     },
     "Chainlit/chainlit": {
       "first_seen": "2026-08-23",
-      "last_seen": "2026-08-29",
-      "stars": 12409
+      "last_seen": "2026-08-30",
+      "stars": 12411
     },
     "elie222/inbox-zero": {
       "first_seen": "2026-08-23",
-      "last_seen": "2026-08-29",
-      "stars": 12108
+      "last_seen": "2026-08-30",
+      "stars": 12116
     },
     "FlagOpen/FlagEmbedding": {
       "first_seen": "2026-08-23",
-      "last_seen": "2026-08-29",
-      "stars": 12099
-    },
-    "debpalash/VoiceStudio": {
-      "first_seen": "2026-08-29",
-      "last_seen": "2026-08-29",
-      "stars": 11932
+      "last_seen": "2026-08-30",
+      "stars": 12102
     },
     "nidhinjs/prompt-master": {
       "first_seen": "2026-08-25",
-      "last_seen": "2026-08-29",
-      "stars": 11927
+      "last_seen": "2026-08-30",
+      "stars": 12011
+    },
+    "debpalash/VoiceStudio": {
+      "first_seen": "2026-08-29",
+      "last_seen": "2026-08-30",
+      "stars": 11974
     },
     "dataelement/bisheng": {
       "first_seen": "2026-08-23",
-      "last_seen": "2026-08-29",
-      "stars": 11915
+      "last_seen": "2026-08-30",
+      "stars": 11917
     },
     "oblien/openship": {
       "first_seen": "2026-08-29",
-      "last_seen": "2026-08-29",
-      "stars": 11778
+      "last_seen": "2026-08-30",
+      "stars": 11790
     },
     "ludwig-ai/ludwig": {
       "first_seen": "2026-08-23",
-      "last_seen": "2026-08-29",
-      "stars": 11745
+      "last_seen": "2026-08-30",
+      "stars": 11747
     },
     "mrexodia/ida-pro-mcp": {
       "first_seen": "2026-08-29",
-      "last_seen": "2026-08-29",
-      "stars": 11672
+      "last_seen": "2026-08-30",
+      "stars": 11690
+    },
+    "EmbraceAGI/awesome-chatgpt-zh": {
+      "first_seen": "2026-08-30",
+      "last_seen": "2026-08-30",
+      "stars": 11669
     },
     "LMCache/LMCache": {
       "first_seen": "2026-08-23",
-      "last_seen": "2026-08-29",
-      "stars": 11553
+      "last_seen": "2026-08-30",
+      "stars": 11565
+    },
+    "ifixai-ai/iFixAi": {
+      "first_seen": "2026-08-30",
+      "last_seen": "2026-08-30",
+      "stars": 11435
     },
     "cocoindex-io/cocoindex": {
       "first_seen": "2026-08-23",
-      "last_seen": "2026-08-29",
-      "stars": 11429
+      "last_seen": "2026-08-30",
+      "stars": 11432
     },
     "kornia/kornia": {
       "first_seen": "2026-08-23",
-      "last_seen": "2026-08-29",
+      "last_seen": "2026-08-30",
       "stars": 11334
-    },
-    "wandb/wandb": {
-      "first_seen": "2026-08-23",
-      "last_seen": "2026-08-29",
-      "stars": 11245
-    },
-    "microsoft/promptflow": {
-      "first_seen": "2026-08-27",
-      "last_seen": "2026-08-29",
-      "stars": 11230
-    },
-    "OpenByteInc/QuantDinger": {
-      "first_seen": "2026-08-23",
-      "last_seen": "2026-08-29",
-      "stars": 11178
-    },
-    "tambo-ai/tambo": {
-      "first_seen": "2026-08-23",
-      "last_seen": "2026-08-29",
-      "stars": 11170
     },
     "semantica-agi/semantica": {
       "first_seen": "2026-08-23",
-      "last_seen": "2026-08-29",
-      "stars": 11159
+      "last_seen": "2026-08-30",
+      "stars": 11280
+    },
+    "wandb/wandb": {
+      "first_seen": "2026-08-23",
+      "last_seen": "2026-08-30",
+      "stars": 11244
+    },
+    "microsoft/promptflow": {
+      "first_seen": "2026-08-27",
+      "last_seen": "2026-08-30",
+      "stars": 11231
+    },
+    "OpenByteInc/QuantDinger": {
+      "first_seen": "2026-08-23",
+      "last_seen": "2026-08-30",
+      "stars": 11217
+    },
+    "tambo-ai/tambo": {
+      "first_seen": "2026-08-23",
+      "last_seen": "2026-08-30",
+      "stars": 11170
     },
     "MemTensor/MemOS": {
       "first_seen": "2026-08-23",
-      "last_seen": "2026-08-29",
-      "stars": 11072
+      "last_seen": "2026-08-30",
+      "stars": 11083
     },
     "voxel51/fiftyone": {
       "first_seen": "2026-08-23",
-      "last_seen": "2026-08-29",
-      "stars": 11048
+      "last_seen": "2026-08-30",
+      "stars": 11047
     },
     "holaboss-ai/holaOS": {
       "first_seen": "2026-08-23",
-      "last_seen": "2026-08-29",
-      "stars": 11010
+      "last_seen": "2026-08-30",
+      "stars": 11039
     },
     "aden-hive/hive": {
       "first_seen": "2026-08-23",
-      "last_seen": "2026-08-29",
-      "stars": 10987
+      "last_seen": "2026-08-30",
+      "stars": 10988
     },
     "kedro-org/kedro": {
       "first_seen": "2026-08-23",
-      "last_seen": "2026-08-29",
-      "stars": 10975
+      "last_seen": "2026-08-30",
+      "stars": 10978
     },
     "triton-inference-server/server": {
       "first_seen": "2026-08-23",
-      "last_seen": "2026-08-29",
-      "stars": 10949
+      "last_seen": "2026-08-30",
+      "stars": 10950
     },
     "huggingface/chat-ui": {
       "first_seen": "2026-08-23",
-      "last_seen": "2026-08-29",
-      "stars": 10918
+      "last_seen": "2026-08-30",
+      "stars": 10920
     },
     "linyqh/NarratoAI": {
       "first_seen": "2026-08-27",
-      "last_seen": "2026-08-29",
-      "stars": 10907
+      "last_seen": "2026-08-30",
+      "stars": 10915
     },
     "cobusgreyling/loop-engineering": {
       "first_seen": "2026-08-23",
-      "last_seen": "2026-08-29",
-      "stars": 10727
-    },
-    "OpenPipe/ART": {
-      "first_seen": "2026-08-23",
-      "last_seen": "2026-08-29",
-      "stars": 10679
+      "last_seen": "2026-08-30",
+      "stars": 10733
     },
     "EKKOLearnAI/hermes-studio": {
       "first_seen": "2026-08-23",
-      "last_seen": "2026-08-29",
-      "stars": 10668
+      "last_seen": "2026-08-30",
+      "stars": 10688
+    },
+    "OpenPipe/ART": {
+      "first_seen": "2026-08-23",
+      "last_seen": "2026-08-30",
+      "stars": 10682
     },
     "langchain-ai/open-swe": {
       "first_seen": "2026-08-23",
-      "last_seen": "2026-08-29",
-      "stars": 10627
+      "last_seen": "2026-08-30",
+      "stars": 10633
     },
     "autogluon/autogluon": {
       "first_seen": "2026-08-23",
-      "last_seen": "2026-08-29",
+      "last_seen": "2026-08-30",
       "stars": 10623
     },
     "skypilot-org/skypilot": {
       "first_seen": "2026-08-23",
-      "last_seen": "2026-08-29",
-      "stars": 10534
+      "last_seen": "2026-08-30",
+      "stars": 10536
     },
     "VoltAgent/voltagent": {
       "first_seen": "2026-08-28",
-      "last_seen": "2026-08-29",
-      "stars": 10445
+      "last_seen": "2026-08-30",
+      "stars": 10453
     },
     "electric-sql/electric": {
       "first_seen": "2026-08-23",
-      "last_seen": "2026-08-29",
-      "stars": 10343
+      "last_seen": "2026-08-30",
+      "stars": 10346
     },
     "RunanywhereAI/runanywhere-sdks": {
       "first_seen": "2026-08-23",
-      "last_seen": "2026-08-29",
-      "stars": 10280
+      "last_seen": "2026-08-30",
+      "stars": 10282
     },
     "astrid-runtime/astrid": {
       "first_seen": "2026-08-23",
-      "last_seen": "2026-08-29",
-      "stars": 10273
-    },
-    "Netflix/metaflow": {
-      "first_seen": "2026-08-23",
-      "last_seen": "2026-08-29",
-      "stars": 10250
+      "last_seen": "2026-08-30",
+      "stars": 10274
     },
     "CVHub520/X-AnyLabeling": {
       "first_seen": "2026-08-23",
-      "last_seen": "2026-08-29",
-      "stars": 10247
+      "last_seen": "2026-08-30",
+      "stars": 10257
+    },
+    "Netflix/metaflow": {
+      "first_seen": "2026-08-23",
+      "last_seen": "2026-08-30",
+      "stars": 10251
     },
     "chaitin/PandaWiki": {
       "first_seen": "2026-08-23",
-      "last_seen": "2026-08-29",
-      "stars": 10164
+      "last_seen": "2026-08-30",
+      "stars": 10168
     },
     "alexeygrigorev/data-science-interviews": {
       "first_seen": "2026-08-23",
-      "last_seen": "2026-08-29",
+      "last_seen": "2026-08-30",
       "stars": 10133
     },
     "yzhao062/pyod": {
       "first_seen": "2026-08-23",
-      "last_seen": "2026-08-29",
+      "last_seen": "2026-08-30",
       "stars": 9977
     },
     "sktime/sktime": {
       "first_seen": "2026-08-23",
-      "last_seen": "2026-08-29",
-      "stars": 9972
+      "last_seen": "2026-08-30",
+      "stars": 9975
     },
     "aliasrobotics/cai": {
       "first_seen": "2026-08-23",
-      "last_seen": "2026-08-29",
-      "stars": 9813
+      "last_seen": "2026-08-30",
+      "stars": 9816
     },
     "gorse-io/gorse": {
       "first_seen": "2026-08-23",
-      "last_seen": "2026-08-29",
-      "stars": 9812
+      "last_seen": "2026-08-30",
+      "stars": 9813
     },
     "StarTrail-org/PixelRAG": {
       "first_seen": "2026-08-29",
-      "last_seen": "2026-08-29",
-      "stars": 9781
-    },
-    "apache/seatunnel": {
-      "first_seen": "2026-08-23",
-      "last_seen": "2026-08-29",
-      "stars": 9600
+      "last_seen": "2026-08-30",
+      "stars": 9791
     },
     "cactus-compute/needle": {
       "first_seen": "2026-08-23",
-      "last_seen": "2026-08-29",
-      "stars": 9600
+      "last_seen": "2026-08-30",
+      "stars": 9690
+    },
+    "apache/seatunnel": {
+      "first_seen": "2026-08-23",
+      "last_seen": "2026-08-30",
+      "stars": 9601
     },
     "microsoft/UFO": {
       "first_seen": "2026-08-25",
-      "last_seen": "2026-08-29",
-      "stars": 9584
+      "last_seen": "2026-08-30",
+      "stars": 9588
     },
     "xorbitsai/inference": {
       "first_seen": "2026-08-23",
-      "last_seen": "2026-08-29",
+      "last_seen": "2026-08-30",
       "stars": 9528
     },
     "unit8co/darts": {
       "first_seen": "2026-08-23",
-      "last_seen": "2026-08-29",
-      "stars": 9510
-    },
-    "alirezadir/AIMLInterviews": {
-      "first_seen": "2026-08-23",
-      "last_seen": "2026-08-29",
-      "stars": 9483
-    },
-    "FareedKhan-dev/train-llm-from-scratch": {
-      "first_seen": "2026-08-23",
-      "last_seen": "2026-08-29",
-      "stars": 9473
-    },
-    "replicate/cog": {
-      "first_seen": "2026-08-23",
-      "last_seen": "2026-08-29",
-      "stars": 9464
+      "last_seen": "2026-08-30",
+      "stars": 9511
     },
     "omnigent-ai/omnigent": {
       "first_seen": "2026-08-23",
-      "last_seen": "2026-08-29",
-      "stars": 9454
+      "last_seen": "2026-08-30",
+      "stars": 9496
+    },
+    "alirezadir/AIMLInterviews": {
+      "first_seen": "2026-08-23",
+      "last_seen": "2026-08-30",
+      "stars": 9490
+    },
+    "FareedKhan-dev/train-llm-from-scratch": {
+      "first_seen": "2026-08-23",
+      "last_seen": "2026-08-30",
+      "stars": 9486
+    },
+    "replicate/cog": {
+      "first_seen": "2026-08-23",
+      "last_seen": "2026-08-30",
+      "stars": 9464
     },
     "wonderwhy-er/DesktopCommanderMCP": {
       "first_seen": "2026-08-23",
-      "last_seen": "2026-08-29",
-      "stars": 9427
+      "last_seen": "2026-08-30",
+      "stars": 9438
     },
     "mengxi-ream/read-frog": {
       "first_seen": "2026-08-23",
-      "last_seen": "2026-08-29",
-      "stars": 9374
+      "last_seen": "2026-08-30",
+      "stars": 9383
     },
     "dotnet/machinelearning": {
       "first_seen": "2026-08-23",
-      "last_seen": "2026-08-29",
+      "last_seen": "2026-08-30",
       "stars": 9352
     },
     "GetBindu/Bindu": {
       "first_seen": "2026-08-23",
-      "last_seen": "2026-08-29",
-      "stars": 9287
+      "last_seen": "2026-08-30",
+      "stars": 9339
     },
     "modelscope/modelscope": {
       "first_seen": "2026-08-23",
-      "last_seen": "2026-08-29",
-      "stars": 9116
-    },
-    "roboflow/rf-detr": {
-      "first_seen": "2026-08-23",
-      "last_seen": "2026-08-29",
-      "stars": 9090
-    },
-    "BoundaryML/baml": {
-      "first_seen": "2026-08-23",
-      "last_seen": "2026-08-29",
-      "stars": 9089
-    },
-    "catboost/catboost": {
-      "first_seen": "2026-08-23",
-      "last_seen": "2026-08-29",
-      "stars": 9082
+      "last_seen": "2026-08-30",
+      "stars": 9120
     },
     "Thysrael/Horizon": {
       "first_seen": "2026-08-23",
-      "last_seen": "2026-08-29",
-      "stars": 9070
+      "last_seen": "2026-08-30",
+      "stars": 9118
+    },
+    "roboflow/rf-detr": {
+      "first_seen": "2026-08-23",
+      "last_seen": "2026-08-30",
+      "stars": 9099
+    },
+    "BoundaryML/baml": {
+      "first_seen": "2026-08-23",
+      "last_seen": "2026-08-30",
+      "stars": 9097
+    },
+    "catboost/catboost": {
+      "first_seen": "2026-08-23",
+      "last_seen": "2026-08-30",
+      "stars": 9085
     },
     "pyro-ppl/pyro": {
       "first_seen": "2026-08-28",
-      "last_seen": "2026-08-29",
+      "last_seen": "2026-08-30",
       "stars": 9045
     },
     "adongwanai/AgentGuide": {
       "first_seen": "2026-08-26",
-      "last_seen": "2026-08-29",
-      "stars": 8933
+      "last_seen": "2026-08-30",
+      "stars": 8957
     },
     "iflytek/astron-agent": {
       "first_seen": "2026-08-23",
-      "last_seen": "2026-08-29",
-      "stars": 8903
+      "last_seen": "2026-08-30",
+      "stars": 8905
     },
     "WangRongsheng/awesome-LLM-resources": {
       "first_seen": "2026-08-23",
-      "last_seen": "2026-08-29",
-      "stars": 8882
+      "last_seen": "2026-08-30",
+      "stars": 8885
     },
     "bentoml/BentoML": {
       "first_seen": "2026-08-23",
-      "last_seen": "2026-08-29",
+      "last_seen": "2026-08-30",
       "stars": 8813
     },
     "fishaudio/Bert-VITS2": {
       "first_seen": "2026-08-23",
-      "last_seen": "2026-08-29",
-      "stars": 8796
+      "last_seen": "2026-08-30",
+      "stars": 8797
     },
     "google/adk-go": {
       "first_seen": "2026-08-23",
-      "last_seen": "2026-08-29",
-      "stars": 8720
+      "last_seen": "2026-08-30",
+      "stars": 8722
     },
     "VowpalWabbit/vowpal_wabbit": {
       "first_seen": "2026-08-23",
-      "last_seen": "2026-08-29",
+      "last_seen": "2026-08-30",
       "stars": 8706
     },
     "microsoft/TypeChat": {
       "first_seen": "2026-08-23",
-      "last_seen": "2026-08-29",
-      "stars": 8680
+      "last_seen": "2026-08-30",
+      "stars": 8681
     },
     "thesysdev/openui": {
       "first_seen": "2026-08-23",
-      "last_seen": "2026-08-29",
-      "stars": 8481
-    },
-    "bitsandbytes-foundation/bitsandbytes": {
-      "first_seen": "2026-08-23",
-      "last_seen": "2026-08-29",
-      "stars": 8446
+      "last_seen": "2026-08-30",
+      "stars": 8485
     },
     "0xPlaygrounds/rig": {
       "first_seen": "2026-08-23",
-      "last_seen": "2026-08-29",
-      "stars": 8444
+      "last_seen": "2026-08-30",
+      "stars": 8449
+    },
+    "bitsandbytes-foundation/bitsandbytes": {
+      "first_seen": "2026-08-23",
+      "last_seen": "2026-08-30",
+      "stars": 8447
     },
     "qualcomm/GenieX": {
       "first_seen": "2026-08-23",
-      "last_seen": "2026-08-29",
-      "stars": 8336
+      "last_seen": "2026-08-30",
+      "stars": 8338
     },
     "py-why/dowhy": {
       "first_seen": "2026-08-23",
-      "last_seen": "2026-08-29",
-      "stars": 8290
+      "last_seen": "2026-08-30",
+      "stars": 8292
     },
     "mikel-brostrom/boxmot": {
       "first_seen": "2026-08-23",
-      "last_seen": "2026-08-29",
-      "stars": 8285
+      "last_seen": "2026-08-30",
+      "stars": 8284
     },
     "lmcinnes/umap": {
       "first_seen": "2026-08-23",
-      "last_seen": "2026-08-29",
-      "stars": 8256
+      "last_seen": "2026-08-30",
+      "stars": 8257
     },
     "LibrePhotos/librephotos": {
       "first_seen": "2026-08-23",
-      "last_seen": "2026-08-29",
+      "last_seen": "2026-08-30",
       "stars": 8054
     },
     "InternLM/lmdeploy": {
       "first_seen": "2026-08-23",
-      "last_seen": "2026-08-29",
-      "stars": 8032
+      "last_seen": "2026-08-30",
+      "stars": 8033
     },
     "stanfordnlp/stanza": {
       "first_seen": "2026-08-23",
-      "last_seen": "2026-08-29",
-      "stars": 7868
+      "last_seen": "2026-08-30",
+      "stars": 7869
     },
     "PriorLabs/TabPFN": {
       "first_seen": "2026-08-23",
-      "last_seen": "2026-08-29",
-      "stars": 7860
+      "last_seen": "2026-08-30",
+      "stars": 7861
     },
     "NirDiamant/Prompt_Engineering": {
       "first_seen": "2026-08-23",
-      "last_seen": "2026-08-29",
-      "stars": 7821
+      "last_seen": "2026-08-30",
+      "stars": 7822
     },
     "MaartenGr/BERTopic": {
       "first_seen": "2026-08-23",
-      "last_seen": "2026-08-29",
+      "last_seen": "2026-08-30",
       "stars": 7808
     },
     "2FastLabs/agent-squad": {
       "first_seen": "2026-08-23",
-      "last_seen": "2026-08-29",
-      "stars": 7751
+      "last_seen": "2026-08-30",
+      "stars": 7752
     },
     "osaurus-ai/osaurus": {
       "first_seen": "2026-08-23",
-      "last_seen": "2026-08-29",
-      "stars": 7719
-    },
-    "EricLBuehler/mistral.rs": {
-      "first_seen": "2026-08-23",
-      "last_seen": "2026-08-29",
-      "stars": 7634
+      "last_seen": "2026-08-30",
+      "stars": 7738
     },
     "maximhq/bifrost": {
       "first_seen": "2026-08-23",
-      "last_seen": "2026-08-29",
-      "stars": 7634
+      "last_seen": "2026-08-30",
+      "stars": 7648
+    },
+    "EricLBuehler/mistral.rs": {
+      "first_seen": "2026-08-23",
+      "last_seen": "2026-08-30",
+      "stars": 7636
     },
     "ValueCell-ai/ClawX": {
       "first_seen": "2026-08-23",
-      "last_seen": "2026-08-29",
-      "stars": 7597
+      "last_seen": "2026-08-30",
+      "stars": 7600
     },
     "tailcallhq/forgecode": {
       "first_seen": "2026-08-23",
-      "last_seen": "2026-08-29",
-      "stars": 7583
+      "last_seen": "2026-08-30",
+      "stars": 7593
     },
     "steel-dev/steel-browser": {
       "first_seen": "2026-08-23",
-      "last_seen": "2026-08-29",
-      "stars": 7556
+      "last_seen": "2026-08-30",
+      "stars": 7564
     },
     "HIPS/autograd": {
       "first_seen": "2026-08-23",
-      "last_seen": "2026-08-29",
+      "last_seen": "2026-08-30",
       "stars": 7524
     },
     "h2oai/h2o-3": {
       "first_seen": "2026-08-23",
-      "last_seen": "2026-08-29",
-      "stars": 7496
+      "last_seen": "2026-08-30",
+      "stars": 7497
+    },
+    "AAswordman/Operit": {
+      "first_seen": "2026-08-23",
+      "last_seen": "2026-08-30",
+      "stars": 7385
     },
     "apache/hertzbeat": {
       "first_seen": "2026-08-23",
-      "last_seen": "2026-08-29",
+      "last_seen": "2026-08-30",
       "stars": 7380
     },
     "open-compass/opencompass": {
       "first_seen": "2026-08-23",
-      "last_seen": "2026-08-29",
-      "stars": 7374
+      "last_seen": "2026-08-30",
+      "stars": 7376
     },
     "rocketride-org/rocketride-server": {
       "first_seen": "2026-08-23",
-      "last_seen": "2026-08-29",
-      "stars": 7363
+      "last_seen": "2026-08-30",
+      "stars": 7373
     },
     "Col-E/Recaf": {
       "first_seen": "2026-08-23",
-      "last_seen": "2026-08-29",
-      "stars": 7360
-    },
-    "AAswordman/Operit": {
-      "first_seen": "2026-08-23",
-      "last_seen": "2026-08-29",
-      "stars": 7359
+      "last_seen": "2026-08-30",
+      "stars": 7362
     },
     "guardrails-ai/guardrails": {
       "first_seen": "2026-08-23",
-      "last_seen": "2026-08-29",
-      "stars": 7334
+      "last_seen": "2026-08-30",
+      "stars": 7333
     },
     "flyteorg/flyte": {
       "first_seen": "2026-08-23",
-      "last_seen": "2026-08-29",
-      "stars": 7308
+      "last_seen": "2026-08-30",
+      "stars": 7322
     },
     "1weiho/open-slide": {
       "first_seen": "2026-08-23",
-      "last_seen": "2026-08-29",
-      "stars": 7257
+      "last_seen": "2026-08-30",
+      "stars": 7298
     },
     "rikkahub/rikkahub": {
       "first_seen": "2026-08-23",
-      "last_seen": "2026-08-29",
-      "stars": 7241
+      "last_seen": "2026-08-30",
+      "stars": 7264
     },
     "feast-dev/feast": {
       "first_seen": "2026-08-23",
-      "last_seen": "2026-08-29",
+      "last_seen": "2026-08-30",
       "stars": 7238
     },
     "luhengshiwo/LLMForEverybody": {
       "first_seen": "2026-08-23",
-      "last_seen": "2026-08-29",
-      "stars": 7227
+      "last_seen": "2026-08-30",
+      "stars": 7228
     },
     "mnfst/awesome-free-llm-apis": {
       "first_seen": "2026-08-23",
-      "last_seen": "2026-08-29",
-      "stars": 7180
+      "last_seen": "2026-08-30",
+      "stars": 7210
     },
     "Zipstack/unstract": {
       "first_seen": "2026-08-23",
-      "last_seen": "2026-08-29",
-      "stars": 7179
+      "last_seen": "2026-08-30",
+      "stars": 7183
     },
     "guess-js/guess": {
       "first_seen": "2026-08-29",
-      "last_seen": "2026-08-29",
+      "last_seen": "2026-08-30",
       "stars": 7119
     },
     "kyegomez/swarms": {
       "first_seen": "2026-08-23",
-      "last_seen": "2026-08-29",
-      "stars": 7103
+      "last_seen": "2026-08-30",
+      "stars": 7105
     },
     "flwrlabs/flower": {
       "first_seen": "2026-08-23",
-      "last_seen": "2026-08-29",
+      "last_seen": "2026-08-30",
       "stars": 7091
     },
     "vespa-engine/vespa": {
       "first_seen": "2026-08-23",
-      "last_seen": "2026-08-29",
-      "stars": 7073
+      "last_seen": "2026-08-30",
+      "stars": 7072
     },
     "lance-format/lance": {
       "first_seen": "2026-08-23",
-      "last_seen": "2026-08-29",
-      "stars": 6992
+      "last_seen": "2026-08-30",
+      "stars": 6999
     },
     "interpretml/interpret": {
       "first_seen": "2026-08-23",
-      "last_seen": "2026-08-29",
-      "stars": 6929
+      "last_seen": "2026-08-30",
+      "stars": 6930
     },
     "SWE-agent/mini-swe-agent": {
       "first_seen": "2026-08-23",
-      "last_seen": "2026-08-29",
-      "stars": 6846
+      "last_seen": "2026-08-30",
+      "stars": 6853
     },
     "clearml/clearml": {
       "first_seen": "2026-08-23",
-      "last_seen": "2026-08-29",
-      "stars": 6844
+      "last_seen": "2026-08-30",
+      "stars": 6846
     },
     "olimorris/codecompanion.nvim": {
       "first_seen": "2026-08-23",
-      "last_seen": "2026-08-29",
-      "stars": 6827
+      "last_seen": "2026-08-30",
+      "stars": 6826
     },
     "stagewise-io/stagewise": {
       "first_seen": "2026-08-23",
-      "last_seen": "2026-08-29",
-      "stars": 6791
+      "last_seen": "2026-08-30",
+      "stars": 6799
     },
     "opensquilla/opensquilla": {
       "first_seen": "2026-08-23",
-      "last_seen": "2026-08-29",
-      "stars": 6760
+      "last_seen": "2026-08-30",
+      "stars": 6781
     },
     "FareedKhan-dev/kimi-k3-in-c": {
       "first_seen": "2026-08-27",
-      "last_seen": "2026-08-29",
-      "stars": 6695
+      "last_seen": "2026-08-30",
+      "stars": 6732
     },
     "MrLesk/Backlog.md": {
       "first_seen": "2026-08-23",
-      "last_seen": "2026-08-29",
-      "stars": 6565
+      "last_seen": "2026-08-30",
+      "stars": 6571
     },
     "haifengl/smile": {
       "first_seen": "2026-08-23",
-      "last_seen": "2026-08-29",
+      "last_seen": "2026-08-30",
       "stars": 6414
     },
     "tensorflow/serving": {
       "first_seen": "2026-08-23",
-      "last_seen": "2026-08-29",
+      "last_seen": "2026-08-30",
       "stars": 6360
     },
     "promptslab/Awesome-Prompt-Engineering": {
       "first_seen": "2026-08-23",
-      "last_seen": "2026-08-29",
-      "stars": 6298
+      "last_seen": "2026-08-30",
+      "stars": 6300
     },
     "ThinkInAIXYZ/deepchat": {
       "first_seen": "2026-08-23",
-      "last_seen": "2026-08-29",
-      "stars": 6291
+      "last_seen": "2026-08-30",
+      "stars": 6293
     },
     "spotify/pedalboard": {
       "first_seen": "2026-08-25",
-      "last_seen": "2026-08-29",
+      "last_seen": "2026-08-30",
       "stars": 6284
     },
     "aimhubio/aim": {
       "first_seen": "2026-08-23",
-      "last_seen": "2026-08-29",
-      "stars": 6246
+      "last_seen": "2026-08-30",
+      "stars": 6247
     },
     "speedyapply/2027-AI-College-Jobs": {
       "first_seen": "2026-08-23",
-      "last_seen": "2026-08-29",
-      "stars": 6231
-    },
-    "skorch-dev/skorch": {
-      "first_seen": "2026-08-28",
-      "last_seen": "2026-08-29",
-      "stars": 6174
+      "last_seen": "2026-08-30",
+      "stars": 6237
     },
     "mobile-next/mobile-mcp": {
       "first_seen": "2026-08-23",
-      "last_seen": "2026-08-29",
-      "stars": 6111
+      "last_seen": "2026-08-30",
+      "stars": 6198
+    },
+    "skorch-dev/skorch": {
+      "first_seen": "2026-08-28",
+      "last_seen": "2026-08-30",
+      "stars": 6174
     },
     "UfoMiao/zcf": {
       "first_seen": "2026-08-23",
-      "last_seen": "2026-08-29",
-      "stars": 6079
+      "last_seen": "2026-08-30",
+      "stars": 6080
     },
     "shimat/opencvsharp": {
       "first_seen": "2026-08-23",
-      "last_seen": "2026-08-29",
+      "last_seen": "2026-08-30",
       "stars": 6075
     },
     "Tencent/AI-Infra-Guard": {
       "first_seen": "2026-08-23",
-      "last_seen": "2026-08-29",
-      "stars": 6041
+      "last_seen": "2026-08-30",
+      "stars": 6075
     },
     "uber/causalml": {
       "first_seen": "2026-08-23",
-      "last_seen": "2026-08-29",
-      "stars": 5976
+      "last_seen": "2026-08-30",
+      "stars": 5978
     },
     "netease-youdao/LobsterAI": {
       "first_seen": "2026-08-23",
-      "last_seen": "2026-08-29",
-      "stars": 5960
+      "last_seen": "2026-08-30",
+      "stars": 5961
     },
     "online-ml/river": {
       "first_seen": "2026-08-23",
-      "last_seen": "2026-08-29",
-      "stars": 5925
+      "last_seen": "2026-08-30",
+      "stars": 5961
     },
     "volcano-sh/volcano": {
       "first_seen": "2026-08-23",
-      "last_seen": "2026-08-29",
-      "stars": 5907
-    },
-    "ModelEngine-Group/nexent": {
-      "first_seen": "2026-08-23",
-      "last_seen": "2026-08-29",
-      "stars": 5841
+      "last_seen": "2026-08-30",
+      "stars": 5908
     },
     "Mai-with-u/MaiBot": {
       "first_seen": "2026-08-23",
-      "last_seen": "2026-08-29",
-      "stars": 5841
+      "last_seen": "2026-08-30",
+      "stars": 5852
+    },
+    "ModelEngine-Group/nexent": {
+      "first_seen": "2026-08-23",
+      "last_seen": "2026-08-30",
+      "stars": 5842
     },
     "kserve/kserve": {
       "first_seen": "2026-08-23",
-      "last_seen": "2026-08-29",
+      "last_seen": "2026-08-30",
       "stars": 5841
     },
     "ghuntley/how-to-build-a-coding-agent": {
       "first_seen": "2026-08-23",
-      "last_seen": "2026-08-29",
-      "stars": 5815
+      "last_seen": "2026-08-30",
+      "stars": 5814
     },
     "Michael-A-Kuykendall/shimmy": {
       "first_seen": "2026-08-23",
-      "last_seen": "2026-08-29",
+      "last_seen": "2026-08-30",
       "stars": 5810
     },
     "rllm-org/rllm": {
       "first_seen": "2026-08-23",
-      "last_seen": "2026-08-29",
+      "last_seen": "2026-08-30",
       "stars": 5808
     },
     "agent-infra/sandbox": {
       "first_seen": "2026-08-23",
-      "last_seen": "2026-08-29",
-      "stars": 5799
+      "last_seen": "2026-08-30",
+      "stars": 5806
     },
     "vercel-labs/open-agents": {
       "first_seen": "2026-08-23",
-      "last_seen": "2026-08-29",
-      "stars": 5794
+      "last_seen": "2026-08-30",
+      "stars": 5795
     },
     "NVIDIA/DALI": {
       "first_seen": "2026-08-23",
-      "last_seen": "2026-08-29",
+      "last_seen": "2026-08-30",
       "stars": 5738
     },
     "Eventual-Inc/Daft": {
       "first_seen": "2026-08-23",
-      "last_seen": "2026-08-29",
-      "stars": 5731
+      "last_seen": "2026-08-30",
+      "stars": 5732
     },
     "ZSeven-W/openpencil": {
       "first_seen": "2026-08-23",
-      "last_seen": "2026-08-29",
-      "stars": 5714
+      "last_seen": "2026-08-30",
+      "stars": 5726
     },
     "coze-dev/coze-loop": {
       "first_seen": "2026-08-23",
-      "last_seen": "2026-08-29",
-      "stars": 5705
+      "last_seen": "2026-08-30",
+      "stars": 5706
     },
     "mlpack/mlpack": {
       "first_seen": "2026-08-24",
-      "last_seen": "2026-08-29",
+      "last_seen": "2026-08-30",
       "stars": 5705
     },
     "areal-project/AReaL": {
       "first_seen": "2026-08-23",
-      "last_seen": "2026-08-29",
-      "stars": 5702
-    },
-    "ageerle/ruoyi-ai": {
-      "first_seen": "2026-08-23",
-      "last_seen": "2026-08-29",
-      "stars": 5672
+      "last_seen": "2026-08-30",
+      "stars": 5703
     },
     "thuquant/awesome-quant": {
       "first_seen": "2026-08-25",
-      "last_seen": "2026-08-29",
-      "stars": 5588
+      "last_seen": "2026-08-30",
+      "stars": 5590
     },
     "the-open-agent/openagent": {
       "first_seen": "2026-08-23",
-      "last_seen": "2026-08-29",
-      "stars": 5581
+      "last_seen": "2026-08-30",
+      "stars": 5584
     },
     "zenml-io/zenml": {
       "first_seen": "2026-08-23",
-      "last_seen": "2026-08-29",
+      "last_seen": "2026-08-30",
       "stars": 5568
     },
     "iflytek/astron-rpa": {
       "first_seen": "2026-08-23",
-      "last_seen": "2026-08-29",
+      "last_seen": "2026-08-30",
       "stars": 5529
     },
     "obss/sahi": {
       "first_seen": "2026-08-23",
-      "last_seen": "2026-08-29",
+      "last_seen": "2026-08-30",
       "stars": 5482
     },
     "LaurentMazare/tch-rs": {
       "first_seen": "2026-08-24",
-      "last_seen": "2026-08-29",
+      "last_seen": "2026-08-30",
       "stars": 5480
     },
     "apple/coremltools": {
       "first_seen": "2026-08-23",
-      "last_seen": "2026-08-29",
-      "stars": 5404
+      "last_seen": "2026-08-30",
+      "stars": 5406
     },
     "PurpleAILAB/Decepticon": {
       "first_seen": "2026-08-23",
-      "last_seen": "2026-08-29",
-      "stars": 5355
+      "last_seen": "2026-08-30",
+      "stars": 5361
     },
     "agentscope-ai/agentscope-java": {
       "first_seen": "2026-08-23",
-      "last_seen": "2026-08-29",
-      "stars": 5340
+      "last_seen": "2026-08-30",
+      "stars": 5345
     },
     "sacridini/Awesome-Geospatial": {
       "first_seen": "2026-08-23",
-      "last_seen": "2026-08-29",
+      "last_seen": "2026-08-30",
       "stars": 5271
     },
     "NVIDIA/cuml": {
       "first_seen": "2026-08-23",
-      "last_seen": "2026-08-29",
-      "stars": 5269
+      "last_seen": "2026-08-30",
+      "stars": 5271
     },
     "kelvins/awesome-mlops": {
       "first_seen": "2026-08-23",
-      "last_seen": "2026-08-29",
+      "last_seen": "2026-08-30",
       "stars": 5260
     },
     "microsoft/SynapseML": {
       "first_seen": "2026-08-23",
-      "last_seen": "2026-08-29",
+      "last_seen": "2026-08-30",
       "stars": 5242
     },
     "apachecn/sklearn-doc-zh": {
       "first_seen": "2026-08-23",
-      "last_seen": "2026-08-29",
+      "last_seen": "2026-08-30",
       "stars": 5228
     },
     "InternLM/xtuner": {
       "first_seen": "2026-08-23",
-      "last_seen": "2026-08-29",
-      "stars": 5185
+      "last_seen": "2026-08-30",
+      "stars": 5186
     },
     "OpenSenseNova/SenseNova-Skills": {
       "first_seen": "2026-08-28",
-      "last_seen": "2026-08-29",
-      "stars": 5151
+      "last_seen": "2026-08-30",
+      "stars": 5181
     },
     "looplj/axonhub": {
       "first_seen": "2026-08-28",
-      "last_seen": "2026-08-29",
-      "stars": 5122
-    },
-    "grobidOrg/grobid": {
-      "first_seen": "2026-08-28",
-      "last_seen": "2026-08-29",
-      "stars": 5109
+      "last_seen": "2026-08-30",
+      "stars": 5124
     }
   }
 }
