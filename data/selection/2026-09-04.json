@@ -1,0 +1,182 @@
+{
+  "date": "2026-09-04",
+  "generated_at": "2026-09-04T05:15:11.407801Z",
+  "primary": {
+    "full_name": "MakazhanAlpamys/Soup",
+    "score": 0.978814,
+    "reason": "score=0.979, Δ1d=+238(trending), Δ7d=+1760, recency=0.98, topic=1.00",
+    "flags": [],
+    "repo": {
+      "full_name": "MakazhanAlpamys/Soup",
+      "owner": "MakazhanAlpamys",
+      "name": "Soup",
+      "description": "Fine-tune LLMs from one YAML. Layer streaming trains an 8B model on a 4 GB laptop GPU.",
+      "language": "Python",
+      "topics": [
+        "cli",
+        "consumer-gpu",
+        "dpo",
+        "fine-tuning",
+        "gguf",
+        "huggingface",
+        "llm",
+        "llmops",
+        "local-ai",
+        "local-llm",
+        "lora",
+        "low-vram",
+        "machine-learning",
+        "ollama",
+        "peft",
+        "python",
+        "pytorch",
+        "qlora",
+        "sft",
+        "transformers"
+      ],
+      "stars": 5165,
+      "forks": 767,
+      "open_issues": 44,
+      "archived": false,
+      "fork": false,
+      "license_spdx": "Apache-2.0",
+      "created_at": "2026-02-20T11:05:01Z",
+      "pushed_at": "2026-09-04T04:29:10Z",
+      "html_url": "https://github.com/MakazhanAlpamys/Soup"
+    }
+  },
+  "backups": [
+    {
+      "full_name": "headroomlabs-ai/headroom",
+      "score": 0.961053,
+      "reason": "score=0.961, Δ1d=+194(snapshot), Δ7d=+956, recency=0.94, topic=1.00",
+      "flags": [],
+      "repo": {
+        "full_name": "headroomlabs-ai/headroom",
+        "owner": "headroomlabs-ai",
+        "name": "headroom",
+        "description": "Compress tool outputs, logs, files, and RAG chunks before they reach the LLM. 20% fewer tokens for coding agents, 60-95% fewer tokens for JSON, same answers. Library, proxy, MCP server.",
+        "language": "Python",
+        "topics": [
+          "agent",
+          "ai",
+          "anthropic",
+          "claude-code",
+          "compression",
+          "context-engineering",
+          "context-window",
+          "cursor",
+          "fastapi",
+          "langchain",
+          "llm",
+          "mcp",
+          "openai",
+          "prompt-engineering",
+          "proxy",
+          "python",
+          "rag",
+          "token-optimization",
+          "tokens",
+          "typescript"
+        ],
+        "stars": 68838,
+        "forks": 5334,
+        "open_issues": 624,
+        "archived": false,
+        "fork": false,
+        "license_spdx": "Apache-2.0",
+        "created_at": "2026-01-07T19:58:51Z",
+        "pushed_at": "2026-09-04T05:01:51Z",
+        "html_url": "https://github.com/headroomlabs-ai/headroom"
+      }
+    },
+    {
+      "full_name": "bojieli/ai-agent-book",
+      "score": 0.94576,
+      "reason": "score=0.946, Δ1d=+189(snapshot), Δ7d=+1624, recency=0.80, topic=1.00",
+      "flags": [],
+      "repo": {
+        "full_name": "bojieli/ai-agent-book",
+        "owner": "bojieli",
+        "name": "ai-agent-book",
+        "description": "《深入理解 AI Agent：设计原理与工程实践》（李博杰 著）开源主仓库：全书正文、编译版 PDF 与按章配套代码",
+        "language": "Python",
+        "topics": [
+          "agent",
+          "agent-memory",
+          "ai-agent",
+          "book",
+          "coding-agent",
+          "context-engineering",
+          "large-language-models",
+          "llm",
+          "mcp",
+          "multi-agent",
+          "multimodal",
+          "rag",
+          "reinforcement-learning"
+        ],
+        "stars": 44592,
+        "forks": 4931,
+        "open_issues": 10,
+        "archived": false,
+        "fork": false,
+        "license_spdx": "Apache-2.0",
+        "created_at": "2025-09-09T02:41:44Z",
+        "pushed_at": "2026-09-04T03:02:34Z",
+        "html_url": "https://github.com/bojieli/ai-agent-book"
+      }
+    }
+  ],
+  "validation_calls": 3,
+  "rejected": [
+    {
+      "full_name": "JuliusBrussee/caveman",
+      "rule": "no_license"
+    },
+    {
+      "full_name": "calesthio/OpenMontage",
+      "rule": "recently_published"
+    },
+    {
+      "full_name": "herdrdev/herdr",
+      "rule": "recently_published"
+    },
+    {
+      "full_name": "Leonxlnx/taste-skill",
+      "rule": "recently_published"
+    },
+    {
+      "full_name": "rohitg00/ai-engineering-from-scratch",
+      "rule": "excluded_topic"
+    },
+    {
+      "full_name": "NousResearch/hermes-agent",
+      "rule": "recently_published"
+    },
+    {
+      "full_name": "TencentCloud/TencentDB-Agent-Memory",
+      "rule": "no_license"
+    },
+    {
+      "full_name": "Gitlawb/openclaude",
+      "rule": "no_license"
+    },
+    {
+      "full_name": "fuxicodex/Fuxi",
+      "rule": "no_license"
+    },
+    {
+      "full_name": "Tencent/WeKnora",
+      "rule": "no_license"
+    },
+    {
+      "full_name": "shareAI-lab/learn-claude-code",
+      "rule": "excluded_topic"
+    },
+    {
+      "full_name": "openclaw/openclaw",
+      "rule": "no_license"
+    }
+  ]
+}
