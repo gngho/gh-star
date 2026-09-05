@@ -1,0 +1,183 @@
+{
+  "date": "2026-09-05",
+  "generated_at": "2026-09-05T05:04:43.059525Z",
+  "primary": {
+    "full_name": "MakazhanAlpamys/Soup",
+    "score": 0.973894,
+    "reason": "score=0.974, Δ1d=+151(snapshot), Δ7d=+1810, recency=0.98, topic=1.00",
+    "flags": [],
+    "repo": {
+      "full_name": "MakazhanAlpamys/Soup",
+      "owner": "MakazhanAlpamys",
+      "name": "Soup",
+      "description": "Fine-tune LLMs from one YAML. Layer streaming trains an 8B model on a 4 GB laptop GPU.",
+      "language": "Python",
+      "topics": [
+        "cli",
+        "consumer-gpu",
+        "dpo",
+        "fine-tuning",
+        "gguf",
+        "huggingface",
+        "llm",
+        "llmops",
+        "local-ai",
+        "local-llm",
+        "lora",
+        "low-vram",
+        "machine-learning",
+        "ollama",
+        "peft",
+        "python",
+        "pytorch",
+        "qlora",
+        "sft",
+        "transformers"
+      ],
+      "stars": 5316,
+      "forks": 792,
+      "open_issues": 58,
+      "archived": false,
+      "fork": false,
+      "license_spdx": "Apache-2.0",
+      "created_at": "2026-02-20T11:05:01Z",
+      "pushed_at": "2026-09-04T20:38:41Z",
+      "html_url": "https://github.com/MakazhanAlpamys/Soup"
+    }
+  },
+  "backups": [
+    {
+      "full_name": "rocketride-org/rocketride-server",
+      "score": 0.964484,
+      "reason": "score=0.964, Δ1d=+265(snapshot), Δ7d=+604, recency=0.97, topic=1.00",
+      "flags": [],
+      "repo": {
+        "full_name": "rocketride-org/rocketride-server",
+        "owner": "rocketride-org",
+        "name": "rocketride-server",
+        "description": "High-performance AI pipeline engine with a C++ core and 50+ Python-extensible nodes. Build, debug, and scale LLM workflows with 13+ model providers, 8+ vector databases, and agent orchestration, all from your IDE. Includes VS Code extension, TypeScript/Python SDKs, and Docker deployment.",
+        "language": "Python",
+        "topics": [
+          "ai",
+          "cpp",
+          "data-pipeline",
+          "data-processing",
+          "machine-learning",
+          "mcp",
+          "python",
+          "sdk",
+          "typescript",
+          "vscode-extension"
+        ],
+        "stars": 7967,
+        "forks": 2755,
+        "open_issues": 391,
+        "archived": false,
+        "fork": false,
+        "license_spdx": "MIT",
+        "created_at": "2026-02-11T17:02:53Z",
+        "pushed_at": "2026-09-05T00:09:21Z",
+        "html_url": "https://github.com/rocketride-org/rocketride-server"
+      }
+    },
+    {
+      "full_name": "headroomlabs-ai/headroom",
+      "score": 0.954243,
+      "reason": "score=0.954, Δ1d=+118(snapshot), Δ7d=+1006, recency=0.93, topic=1.00",
+      "flags": [],
+      "repo": {
+        "full_name": "headroomlabs-ai/headroom",
+        "owner": "headroomlabs-ai",
+        "name": "headroom",
+        "description": "Compress tool outputs, logs, files, and RAG chunks before they reach the LLM. 20% fewer tokens for coding agents, 60-95% fewer tokens for JSON, same answers. Library, proxy, MCP server.",
+        "language": "Python",
+        "topics": [
+          "agent",
+          "ai",
+          "anthropic",
+          "claude-code",
+          "compression",
+          "context-engineering",
+          "context-window",
+          "cursor",
+          "fastapi",
+          "langchain",
+          "llm",
+          "mcp",
+          "openai",
+          "prompt-engineering",
+          "proxy",
+          "python",
+          "rag",
+          "token-optimization",
+          "tokens",
+          "typescript"
+        ],
+        "stars": 68956,
+        "forks": 5344,
+        "open_issues": 629,
+        "archived": false,
+        "fork": false,
+        "license_spdx": "Apache-2.0",
+        "created_at": "2026-01-07T19:58:51Z",
+        "pushed_at": "2026-09-05T04:50:34Z",
+        "html_url": "https://github.com/headroomlabs-ai/headroom"
+      }
+    }
+  ],
+  "validation_calls": 3,
+  "rejected": [
+    {
+      "full_name": "JuliusBrussee/caveman",
+      "rule": "no_license"
+    },
+    {
+      "full_name": "Leonxlnx/taste-skill",
+      "rule": "recently_published"
+    },
+    {
+      "full_name": "herdrdev/herdr",
+      "rule": "recently_published"
+    },
+    {
+      "full_name": "rohitg00/ai-engineering-from-scratch",
+      "rule": "excluded_topic"
+    },
+    {
+      "full_name": "NousResearch/hermes-agent",
+      "rule": "recently_published"
+    },
+    {
+      "full_name": "datawhalechina/hello-agents",
+      "rule": "no_license"
+    },
+    {
+      "full_name": "TencentCloud/TencentDB-Agent-Memory",
+      "rule": "no_license"
+    },
+    {
+      "full_name": "Gitlawb/openclaude",
+      "rule": "no_license"
+    },
+    {
+      "full_name": "Tencent/WeKnora",
+      "rule": "no_license"
+    },
+    {
+      "full_name": "shareAI-lab/learn-claude-code",
+      "rule": "excluded_topic"
+    },
+    {
+      "full_name": "KnockOutEZ/wigolo",
+      "rule": "no_license"
+    },
+    {
+      "full_name": "fuxicodex/Fuxi",
+      "rule": "no_license"
+    },
+    {
+      "full_name": "openclaw/openclaw",
+      "rule": "no_license"
+    }
+  ]
+}
