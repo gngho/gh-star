@@ -1,0 +1,183 @@
+{
+  "date": "2026-09-07",
+  "generated_at": "2026-09-07T05:27:53.843429Z",
+  "primary": {
+    "full_name": "MakazhanAlpamys/Soup",
+    "score": 0.9666,
+    "reason": "score=0.967, Δ1d=+128(snapshot), Δ7d=+1542, recency=0.98, topic=1.00",
+    "flags": [],
+    "repo": {
+      "full_name": "MakazhanAlpamys/Soup",
+      "owner": "MakazhanAlpamys",
+      "name": "Soup",
+      "description": "Fine-tune LLMs from one YAML. Layer streaming trains an 8B model on a 4 GB laptop GPU.",
+      "language": "Python",
+      "topics": [
+        "cli",
+        "consumer-gpu",
+        "dpo",
+        "fine-tuning",
+        "gguf",
+        "huggingface",
+        "llm",
+        "llmops",
+        "local-ai",
+        "local-llm",
+        "lora",
+        "low-vram",
+        "machine-learning",
+        "ollama",
+        "peft",
+        "python",
+        "pytorch",
+        "qlora",
+        "sft",
+        "transformers"
+      ],
+      "stars": 5559,
+      "forks": 831,
+      "open_issues": 78,
+      "archived": false,
+      "fork": false,
+      "license_spdx": "Apache-2.0",
+      "created_at": "2026-02-20T11:05:01Z",
+      "pushed_at": "2026-09-07T04:30:36Z",
+      "html_url": "https://github.com/MakazhanAlpamys/Soup"
+    }
+  },
+  "backups": [
+    {
+      "full_name": "headroomlabs-ai/headroom",
+      "score": 0.949578,
+      "reason": "score=0.950, Δ1d=+118(snapshot), Δ7d=+1039, recency=0.93, topic=1.00",
+      "flags": [],
+      "repo": {
+        "full_name": "headroomlabs-ai/headroom",
+        "owner": "headroomlabs-ai",
+        "name": "headroom",
+        "description": "Compress tool outputs, logs, files, and RAG chunks before they reach the LLM. 20% fewer tokens for coding agents, 60-95% fewer tokens for JSON, same answers. Library, proxy, MCP server.",
+        "language": "Python",
+        "topics": [
+          "agent",
+          "ai",
+          "anthropic",
+          "claude-code",
+          "compression",
+          "context-engineering",
+          "context-window",
+          "cursor",
+          "fastapi",
+          "langchain",
+          "llm",
+          "mcp",
+          "openai",
+          "prompt-engineering",
+          "proxy",
+          "python",
+          "rag",
+          "token-optimization",
+          "tokens",
+          "typescript"
+        ],
+        "stars": 69172,
+        "forks": 5363,
+        "open_issues": 644,
+        "archived": false,
+        "fork": false,
+        "license_spdx": "Apache-2.0",
+        "created_at": "2026-01-07T19:58:51Z",
+        "pushed_at": "2026-09-07T01:49:13Z",
+        "html_url": "https://github.com/headroomlabs-ai/headroom"
+      }
+    },
+    {
+      "full_name": "iOfficeAI/OfficeCLI",
+      "score": 0.943463,
+      "reason": "score=0.943, Δ1d=+97(snapshot), Δ7d=+607, recency=1.00, topic=1.00",
+      "flags": [],
+      "repo": {
+        "full_name": "iOfficeAI/OfficeCLI",
+        "owner": "iOfficeAI",
+        "name": "OfficeCLI",
+        "description": "OfficeCLI is the first and best Office suite  purpose-built for AI agents to read, edit, and automate Word, Excel, and PowerPoint files. Free, open-source, single binary, no Office installation required.",
+        "language": "C#",
+        "topics": [
+          "agent",
+          "ai",
+          "claude-code",
+          "cli",
+          "codex",
+          "docx",
+          "excel",
+          "office",
+          "openclaw",
+          "pptx",
+          "presentation",
+          "skills",
+          "word",
+          "xlsx"
+        ],
+        "stars": 30160,
+        "forks": 2061,
+        "open_issues": 89,
+        "archived": false,
+        "fork": false,
+        "license_spdx": "Apache-2.0",
+        "created_at": "2026-03-15T07:39:12Z",
+        "pushed_at": "2026-09-03T07:16:42Z",
+        "html_url": "https://github.com/iOfficeAI/OfficeCLI"
+      }
+    }
+  ],
+  "validation_calls": 3,
+  "rejected": [
+    {
+      "full_name": "herdrdev/herdr",
+      "rule": "recently_published"
+    },
+    {
+      "full_name": "calesthio/OpenMontage",
+      "rule": "recently_published"
+    },
+    {
+      "full_name": "JuliusBrussee/caveman",
+      "rule": "no_license"
+    },
+    {
+      "full_name": "rohitg00/ai-engineering-from-scratch",
+      "rule": "excluded_topic"
+    },
+    {
+      "full_name": "NousResearch/hermes-agent",
+      "rule": "recently_published"
+    },
+    {
+      "full_name": "datawhalechina/hello-agents",
+      "rule": "no_license"
+    },
+    {
+      "full_name": "KnockOutEZ/wigolo",
+      "rule": "no_license"
+    },
+    {
+      "full_name": "TencentCloud/TencentDB-Agent-Memory",
+      "rule": "no_license"
+    },
+    {
+      "full_name": "Tencent/WeKnora",
+      "rule": "no_license"
+    },
+    {
+      "full_name": "Gitlawb/openclaude",
+      "rule": "no_license"
+    },
+    {
+      "full_name": "openclaw/openclaw",
+      "rule": "no_license"
+    },
+    {
+      "full_name": "shareAI-lab/learn-claude-code",
+      "rule": "excluded_topic"
+    }
+  ]
+}
