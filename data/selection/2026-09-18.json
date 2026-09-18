@@ -1,0 +1,168 @@
+{
+  "date": "2026-09-18",
+  "generated_at": "2026-09-18T05:24:55.846530Z",
+  "primary": {
+    "full_name": "headroomlabs-ai/headroom",
+    "score": 0.9633,
+    "reason": "score=0.963, Δ1d=+278(snapshot), Δ7d=+1394, recency=0.92, topic=1.00",
+    "flags": [],
+    "repo": {
+      "full_name": "headroomlabs-ai/headroom",
+      "owner": "headroomlabs-ai",
+      "name": "headroom",
+      "description": "Compress tool outputs, logs, files, and RAG chunks before they reach the LLM. 20% fewer tokens for coding agents, 60-95% fewer tokens for JSON, same answers. Library, proxy, MCP server.",
+      "language": "Python",
+      "topics": [
+        "agent",
+        "ai",
+        "anthropic",
+        "claude-code",
+        "compression",
+        "context-engineering",
+        "context-window",
+        "cursor",
+        "fastapi",
+        "langchain",
+        "llm",
+        "mcp",
+        "openai",
+        "prompt-engineering",
+        "proxy",
+        "python",
+        "rag",
+        "token-optimization",
+        "tokens",
+        "typescript"
+      ],
+      "stars": 72813,
+      "forks": 5598,
+      "open_issues": 671,
+      "archived": false,
+      "fork": false,
+      "license_spdx": "Apache-2.0",
+      "created_at": "2026-01-07T19:58:51Z",
+      "pushed_at": "2026-09-17T23:57:28Z",
+      "html_url": "https://github.com/headroomlabs-ai/headroom"
+    }
+  },
+  "backups": [
+    {
+      "full_name": "bojieli/ai-agent-book",
+      "score": 0.947911,
+      "reason": "score=0.948, Δ1d=+263(snapshot), Δ7d=+2614, recency=0.79, topic=1.00",
+      "flags": [],
+      "repo": {
+        "full_name": "bojieli/ai-agent-book",
+        "owner": "bojieli",
+        "name": "ai-agent-book",
+        "description": "《深入理解 AI Agent：设计原理与工程实践》（李博杰 著）开源主仓库：全书正文、编译版 PDF 与按章配套代码",
+        "language": "Python",
+        "topics": [
+          "agent",
+          "agent-memory",
+          "ai-agent",
+          "book",
+          "coding-agent",
+          "context-engineering",
+          "large-language-models",
+          "llm",
+          "mcp",
+          "multi-agent",
+          "multimodal",
+          "rag",
+          "reinforcement-learning"
+        ],
+        "stars": 48372,
+        "forks": 5405,
+        "open_issues": 37,
+        "archived": false,
+        "fork": false,
+        "license_spdx": "Apache-2.0",
+        "created_at": "2025-09-09T02:41:44Z",
+        "pushed_at": "2026-09-18T03:02:27Z",
+        "html_url": "https://github.com/bojieli/ai-agent-book"
+      }
+    },
+    {
+      "full_name": "alibaba/open-code-review",
+      "score": 0.925,
+      "reason": "score=0.925, Δ1d=+3286(trending), Δ7d=+13142, recency=1.00, topic=0.50",
+      "flags": [],
+      "repo": {
+        "full_name": "alibaba/open-code-review",
+        "owner": "alibaba",
+        "name": "open-code-review",
+        "description": "Fast, efficient, battle-tested at Alibaba's scale. Hybrid architecture code review tool: deterministic pipelines + LLM Agent, precise line-level comments, built-in multi-language ruleset (NPE, thread-safety, XSS, SQL injection), OpenAI & Anthropic compatible.",
+        "language": "Go",
+        "topics": [
+          "agent",
+          "agent-skills",
+          "code-review",
+          "code-review-assistant",
+          "harness",
+          "repository-level-context"
+        ],
+        "stars": 35372,
+        "forks": 2508,
+        "open_issues": 207,
+        "archived": false,
+        "fork": false,
+        "license_spdx": "Apache-2.0",
+        "created_at": "2026-05-18T02:16:36Z",
+        "pushed_at": "2026-09-18T04:45:09Z",
+        "html_url": "https://github.com/alibaba/open-code-review"
+      }
+    }
+  ],
+  "validation_calls": 3,
+  "rejected": [
+    {
+      "full_name": "JuliusBrussee/caveman",
+      "rule": "no_license"
+    },
+    {
+      "full_name": "herdrdev/herdr",
+      "rule": "recently_published"
+    },
+    {
+      "full_name": "calesthio/OpenMontage",
+      "rule": "recently_published"
+    },
+    {
+      "full_name": "Tencent/WeKnora",
+      "rule": "no_license"
+    },
+    {
+      "full_name": "NousResearch/hermes-agent",
+      "rule": "recently_published"
+    },
+    {
+      "full_name": "rohitg00/ai-engineering-from-scratch",
+      "rule": "excluded_topic"
+    },
+    {
+      "full_name": "datawhalechina/hello-agents",
+      "rule": "no_license"
+    },
+    {
+      "full_name": "TencentCloud/TencentDB-Agent-Memory",
+      "rule": "no_license"
+    },
+    {
+      "full_name": "Arindam200/awesome-ai-apps",
+      "rule": "excluded_name"
+    },
+    {
+      "full_name": "ChenLiu-1996/figures4papers",
+      "rule": "no_license"
+    },
+    {
+      "full_name": "Leonxlnx/taste-skill",
+      "rule": "recently_published"
+    },
+    {
+      "full_name": "openclaw/openclaw",
+      "rule": "no_license"
+    }
+  ]
+}
