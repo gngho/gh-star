@@ -1,0 +1,178 @@
+{
+  "date": "2026-09-21",
+  "generated_at": "2026-09-21T05:40:52.199526Z",
+  "primary": {
+    "full_name": "bojieli/ai-agent-book",
+    "score": 0.959153,
+    "reason": "score=0.959, Δ1d=+564(snapshot), Δ7d=+2819, recency=0.78, topic=1.00",
+    "flags": [],
+    "repo": {
+      "full_name": "bojieli/ai-agent-book",
+      "owner": "bojieli",
+      "name": "ai-agent-book",
+      "description": "《深入理解 AI Agent：设计原理与工程实践》（李博杰 著）开源主仓库：全书正文、编译版 PDF 与按章配套代码",
+      "language": "Python",
+      "topics": [
+        "agent",
+        "agent-memory",
+        "ai-agent",
+        "book",
+        "coding-agent",
+        "context-engineering",
+        "large-language-models",
+        "llm",
+        "mcp",
+        "multi-agent",
+        "multimodal",
+        "rag",
+        "reinforcement-learning"
+      ],
+      "stars": 49300,
+      "forks": 5529,
+      "open_issues": 9,
+      "archived": false,
+      "fork": false,
+      "license_spdx": "Apache-2.0",
+      "created_at": "2025-09-09T02:41:44Z",
+      "pushed_at": "2026-09-21T03:02:39Z",
+      "html_url": "https://github.com/bojieli/ai-agent-book"
+    }
+  },
+  "backups": [
+    {
+      "full_name": "headroomlabs-ai/headroom",
+      "score": 0.953157,
+      "reason": "score=0.953, Δ1d=+157(snapshot), Δ7d=+1340, recency=0.92, topic=1.00",
+      "flags": [],
+      "repo": {
+        "full_name": "headroomlabs-ai/headroom",
+        "owner": "headroomlabs-ai",
+        "name": "headroom",
+        "description": "Compress tool outputs, logs, files, and RAG chunks before they reach the LLM. 20% fewer tokens for coding agents, 60-95% fewer tokens for JSON, same answers. Library, proxy, MCP server.",
+        "language": "Python",
+        "topics": [
+          "agent",
+          "ai",
+          "anthropic",
+          "claude-code",
+          "compression",
+          "context-engineering",
+          "context-window",
+          "cursor",
+          "fastapi",
+          "langchain",
+          "llm",
+          "mcp",
+          "openai",
+          "prompt-engineering",
+          "proxy",
+          "python",
+          "rag",
+          "token-optimization",
+          "tokens",
+          "typescript"
+        ],
+        "stars": 73290,
+        "forks": 5636,
+        "open_issues": 703,
+        "archived": false,
+        "fork": false,
+        "license_spdx": "Apache-2.0",
+        "created_at": "2026-01-07T19:58:51Z",
+        "pushed_at": "2026-09-19T19:07:21Z",
+        "html_url": "https://github.com/headroomlabs-ai/headroom"
+      }
+    },
+    {
+      "full_name": "koala73/worldmonitor",
+      "score": 0.928111,
+      "reason": "score=0.928, Δ1d=+75(snapshot), Δ7d=+899, recency=0.92, topic=1.00",
+      "flags": [],
+      "repo": {
+        "full_name": "koala73/worldmonitor",
+        "owner": "koala73",
+        "name": "worldmonitor",
+        "description": "Real-time global intelligence dashboard. AI-powered news aggregation, geopolitical monitoring, and infrastructure tracking in a unified situational awareness interface",
+        "language": "TypeScript",
+        "topics": [
+          "agent",
+          "ai",
+          "dashboard",
+          "geopolitics",
+          "mcp",
+          "mcp-server",
+          "monitoring",
+          "news",
+          "opensource",
+          "osint",
+          "palantir",
+          "situation"
+        ],
+        "stars": 87108,
+        "forks": 13243,
+        "open_issues": 409,
+        "archived": false,
+        "fork": false,
+        "license_spdx": "AGPL-3.0",
+        "created_at": "2026-01-08T17:26:06Z",
+        "pushed_at": "2026-09-21T05:38:07Z",
+        "html_url": "https://github.com/koala73/worldmonitor"
+      }
+    }
+  ],
+  "validation_calls": 3,
+  "rejected": [
+    {
+      "full_name": "herdrdev/herdr",
+      "rule": "recently_published"
+    },
+    {
+      "full_name": "JuliusBrussee/caveman",
+      "rule": "no_license"
+    },
+    {
+      "full_name": "Tencent/WeKnora",
+      "rule": "no_license"
+    },
+    {
+      "full_name": "NousResearch/hermes-agent",
+      "rule": "recently_published"
+    },
+    {
+      "full_name": "datawhalechina/hello-agents",
+      "rule": "no_license"
+    },
+    {
+      "full_name": "tech-leads-club/agent-skills",
+      "rule": "no_license"
+    },
+    {
+      "full_name": "TencentCloud/TencentDB-Agent-Memory",
+      "rule": "no_license"
+    },
+    {
+      "full_name": "Arindam200/awesome-ai-apps",
+      "rule": "excluded_name"
+    },
+    {
+      "full_name": "hypit-ai/hypit",
+      "rule": "no_license"
+    },
+    {
+      "full_name": "Leonxlnx/taste-skill",
+      "rule": "recently_published"
+    },
+    {
+      "full_name": "jihe520/MathModelAgent",
+      "rule": "no_license"
+    },
+    {
+      "full_name": "didilili/ai-agents-from-zero",
+      "rule": "excluded_topic"
+    },
+    {
+      "full_name": "jlcodes99/cockpit-tools",
+      "rule": "no_license"
+    }
+  ]
+}
