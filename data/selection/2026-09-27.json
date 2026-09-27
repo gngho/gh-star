@@ -1,0 +1,167 @@
+{
+  "date": "2026-09-27",
+  "generated_at": "2026-09-27T06:00:34.515396Z",
+  "primary": {
+    "full_name": "rocketride-org/rocketride-server",
+    "score": 0.991488,
+    "reason": "score=0.991, Δ1d=+1577(snapshot), Δ7d=+5412, recency=0.95, topic=1.00",
+    "flags": [],
+    "repo": {
+      "full_name": "rocketride-org/rocketride-server",
+      "owner": "rocketride-org",
+      "name": "rocketride-server",
+      "description": "High-performance AI pipeline engine with a C++ core and 50+ Python-extensible nodes. Build, debug, and scale LLM workflows with 13+ model providers, 8+ vector databases, and agent orchestration, all from your IDE. Includes VS Code extension, TypeScript/Python SDKs, and Docker deployment.",
+      "language": "Python",
+      "topics": [
+        "ai",
+        "cpp",
+        "data-pipeline",
+        "data-processing",
+        "machine-learning",
+        "mcp",
+        "python",
+        "sdk",
+        "typescript",
+        "vscode-extension"
+      ],
+      "stars": 13855,
+      "forks": 5672,
+      "open_issues": 321,
+      "archived": false,
+      "fork": false,
+      "license_spdx": "MIT",
+      "created_at": "2026-02-11T17:02:53Z",
+      "pushed_at": "2026-09-25T21:20:00Z",
+      "html_url": "https://github.com/rocketride-org/rocketride-server"
+    }
+  },
+  "backups": [
+    {
+      "full_name": "TencentCloud/Octop",
+      "score": 0.972062,
+      "reason": "score=0.972, Δ1d=+173(snapshot), Δ7d=+906, recency=1.00, topic=1.00",
+      "flags": [],
+      "repo": {
+        "full_name": "TencentCloud/Octop",
+        "owner": "TencentCloud",
+        "name": "Octop",
+        "description": "A smarter, self-hosted AI assistant — multi-user, multi-agent.",
+        "language": "Python",
+        "topics": [
+          "agent",
+          "agentic-ai",
+          "ai",
+          "ai-agent",
+          "ai-agents",
+          "local-first",
+          "long-term-memory"
+        ],
+        "stars": 5154,
+        "forks": 610,
+        "open_issues": 498,
+        "archived": false,
+        "fork": false,
+        "license_spdx": "MIT",
+        "created_at": "2026-07-08T12:54:20Z",
+        "pushed_at": "2026-09-27T03:19:15Z",
+        "html_url": "https://github.com/TencentCloud/Octop"
+      }
+    },
+    {
+      "full_name": "bojieli/ai-agent-book",
+      "score": 0.948041,
+      "reason": "score=0.948, Δ1d=+175(snapshot), Δ7d=+2480, recency=0.78, topic=1.00",
+      "flags": [],
+      "repo": {
+        "full_name": "bojieli/ai-agent-book",
+        "owner": "bojieli",
+        "name": "ai-agent-book",
+        "description": "《深入理解 AI Agent：设计原理与工程实践》（李博杰 著）开源主仓库：全书正文、编译版 PDF 与按章配套代码",
+        "language": "Python",
+        "topics": [
+          "agent",
+          "agent-memory",
+          "ai-agent",
+          "book",
+          "coding-agent",
+          "context-engineering",
+          "large-language-models",
+          "llm",
+          "mcp",
+          "multi-agent",
+          "multimodal",
+          "rag",
+          "reinforcement-learning"
+        ],
+        "stars": 51216,
+        "forks": 5753,
+        "open_issues": 12,
+        "archived": false,
+        "fork": false,
+        "license_spdx": "Apache-2.0",
+        "created_at": "2025-09-09T02:41:44Z",
+        "pushed_at": "2026-09-27T03:02:18Z",
+        "html_url": "https://github.com/bojieli/ai-agent-book"
+      }
+    }
+  ],
+  "validation_calls": 3,
+  "rejected": [
+    {
+      "full_name": "rohitg00/ai-engineering-from-scratch",
+      "rule": "excluded_topic"
+    },
+    {
+      "full_name": "hypit-ai/hypit",
+      "rule": "no_license"
+    },
+    {
+      "full_name": "Leonxlnx/taste-skill",
+      "rule": "recently_published"
+    },
+    {
+      "full_name": "herdrdev/herdr",
+      "rule": "recently_published"
+    },
+    {
+      "full_name": "JuliusBrussee/caveman",
+      "rule": "no_license"
+    },
+    {
+      "full_name": "corsairdev/corsair",
+      "rule": "no_license"
+    },
+    {
+      "full_name": "NousResearch/hermes-agent",
+      "rule": "recently_published"
+    },
+    {
+      "full_name": "Tencent/WeKnora",
+      "rule": "no_license"
+    },
+    {
+      "full_name": "datawhalechina/hello-agents",
+      "rule": "no_license"
+    },
+    {
+      "full_name": "tech-leads-club/agent-skills",
+      "rule": "no_license"
+    },
+    {
+      "full_name": "openclaw/openclaw",
+      "rule": "no_license"
+    },
+    {
+      "full_name": "TencentCloud/TencentDB-Agent-Memory",
+      "rule": "no_license"
+    },
+    {
+      "full_name": "tradecatlabs/vibe-coding-cn",
+      "rule": "excluded_topic"
+    },
+    {
+      "full_name": "code-yeongyu/oh-my-openagent",
+      "rule": "no_license"
+    }
+  ]
+}
