@@ -1,0 +1,148 @@
+{
+  "date": "2026-10-01",
+  "generated_at": "2026-10-01T06:42:22.255813Z",
+  "primary": {
+    "full_name": "TencentCloud/Octop",
+    "score": 0.977728,
+    "reason": "score=0.978, Δ1d=+285(trending), Δ7d=+1347, recency=1.00, topic=1.00",
+    "flags": [],
+    "repo": {
+      "full_name": "TencentCloud/Octop",
+      "owner": "TencentCloud",
+      "name": "Octop",
+      "description": "A smarter, self-hosted AI assistant — multi-user, multi-agent.",
+      "language": "Python",
+      "topics": [
+        "agent",
+        "agentic-ai",
+        "ai",
+        "ai-agent",
+        "ai-agents",
+        "local-first",
+        "long-term-memory"
+      ],
+      "stars": 6139,
+      "forks": 777,
+      "open_issues": 650,
+      "archived": false,
+      "fork": false,
+      "license_spdx": "MIT",
+      "created_at": "2026-07-08T12:54:20Z",
+      "pushed_at": "2026-09-30T07:13:09Z",
+      "html_url": "https://github.com/TencentCloud/Octop"
+    }
+  },
+  "backups": [
+    {
+      "full_name": "rocketride-org/rocketride-server",
+      "score": 0.974395,
+      "reason": "score=0.974, Δ1d=+224(snapshot), Δ7d=+7467, recency=0.94, topic=1.00",
+      "flags": [],
+      "repo": {
+        "full_name": "rocketride-org/rocketride-server",
+        "owner": "rocketride-org",
+        "name": "rocketride-server",
+        "description": "High-performance AI pipeline engine with a C++ core and 50+ Python-extensible nodes. Build, debug, and scale LLM workflows with 13+ model providers, 8+ vector databases, and agent orchestration, all from your IDE. Includes VS Code extension, TypeScript/Python SDKs, and Docker deployment.",
+        "language": "Python",
+        "topics": [
+          "ai",
+          "cpp",
+          "data-pipeline",
+          "data-processing",
+          "machine-learning",
+          "mcp",
+          "python",
+          "sdk",
+          "typescript",
+          "vscode-extension"
+        ],
+        "stars": 18029,
+        "forks": 7761,
+        "open_issues": 360,
+        "archived": false,
+        "fork": false,
+        "license_spdx": "MIT",
+        "created_at": "2026-02-11T17:02:53Z",
+        "pushed_at": "2026-09-30T23:54:15Z",
+        "html_url": "https://github.com/rocketride-org/rocketride-server"
+      }
+    },
+    {
+      "full_name": "JuliusBrussee/caveman",
+      "score": 0.969892,
+      "reason": "score=0.970, Δ1d=+182(snapshot), Δ7d=+1031, recency=1.00, topic=1.00",
+      "flags": [],
+      "repo": {
+        "full_name": "JuliusBrussee/caveman",
+        "owner": "JuliusBrussee",
+        "name": "caveman",
+        "description": "🪨 why use many token when few token do trick. Viral skill + proxy for coding agents that cuts 65% of tokens by talking like a caveman.",
+        "language": "Go",
+        "topics": [
+          "ai",
+          "anthropic",
+          "caveman",
+          "claude",
+          "claude-code",
+          "llm",
+          "meme",
+          "prompt-engineering",
+          "skill",
+          "tokens"
+        ],
+        "stars": 108622,
+        "forks": 6296,
+        "open_issues": 156,
+        "archived": false,
+        "fork": false,
+        "license_spdx": "Apache-2.0",
+        "created_at": "2026-04-04T10:03:00Z",
+        "pushed_at": "2026-10-01T03:43:47Z",
+        "html_url": "https://github.com/JuliusBrussee/caveman"
+      }
+    }
+  ],
+  "validation_calls": 3,
+  "rejected": [
+    {
+      "full_name": "rohitg00/ai-engineering-from-scratch",
+      "rule": "excluded_topic"
+    },
+    {
+      "full_name": "hypit-ai/hypit",
+      "rule": "no_license"
+    },
+    {
+      "full_name": "Leonxlnx/taste-skill",
+      "rule": "recently_published"
+    },
+    {
+      "full_name": "herdrdev/herdr",
+      "rule": "recently_published"
+    },
+    {
+      "full_name": "corsairdev/corsair",
+      "rule": "no_license"
+    },
+    {
+      "full_name": "NousResearch/hermes-agent",
+      "rule": "recently_published"
+    },
+    {
+      "full_name": "Tencent/WeKnora",
+      "rule": "no_license"
+    },
+    {
+      "full_name": "datawhalechina/hello-agents",
+      "rule": "no_license"
+    },
+    {
+      "full_name": "TencentCloud/TencentDB-Agent-Memory",
+      "rule": "no_license"
+    },
+    {
+      "full_name": "openclaw/openclaw",
+      "rule": "no_license"
+    }
+  ]
+}
