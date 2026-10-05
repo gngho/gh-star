@@ -1,0 +1,150 @@
+{
+  "date": "2026-10-05",
+  "generated_at": "2026-10-05T06:26:02.445223Z",
+  "primary": {
+    "full_name": "JuliusBrussee/caveman",
+    "score": 0.989268,
+    "reason": "score=0.989, Δ1d=+433(trending), Δ7d=+1772, recency=1.00, topic=1.00",
+    "flags": [],
+    "repo": {
+      "full_name": "JuliusBrussee/caveman",
+      "owner": "JuliusBrussee",
+      "name": "caveman",
+      "description": "🪨 why use many token when few token do trick. Viral skill + proxy for coding agents that cuts 65% of tokens by talking like a caveman.",
+      "language": "Go",
+      "topics": [
+        "ai",
+        "anthropic",
+        "caveman",
+        "claude",
+        "claude-code",
+        "llm",
+        "meme",
+        "prompt-engineering",
+        "skill",
+        "tokens"
+      ],
+      "stars": 109869,
+      "forks": 6357,
+      "open_issues": 118,
+      "archived": false,
+      "fork": false,
+      "license_spdx": "Apache-2.0",
+      "created_at": "2026-04-04T10:03:00Z",
+      "pushed_at": "2026-10-04T07:51:14Z",
+      "html_url": "https://github.com/JuliusBrussee/caveman"
+    }
+  },
+  "backups": [
+    {
+      "full_name": "TencentCloud/Octop",
+      "score": 0.9723,
+      "reason": "score=0.972, Δ1d=+165(snapshot), Δ7d=+1432, recency=1.00, topic=1.00",
+      "flags": [],
+      "repo": {
+        "full_name": "TencentCloud/Octop",
+        "owner": "TencentCloud",
+        "name": "Octop",
+        "description": "A smarter, self-hosted AI assistant — multi-user, multi-agent.",
+        "language": "Python",
+        "topics": [
+          "agent",
+          "agentic-ai",
+          "ai",
+          "ai-agent",
+          "ai-agents",
+          "local-first",
+          "long-term-memory"
+        ],
+        "stars": 6789,
+        "forks": 839,
+        "open_issues": 806,
+        "archived": false,
+        "fork": false,
+        "license_spdx": "MIT",
+        "created_at": "2026-07-08T12:54:20Z",
+        "pushed_at": "2026-10-05T05:58:13Z",
+        "html_url": "https://github.com/TencentCloud/Octop"
+      }
+    },
+    {
+      "full_name": "MakazhanAlpamys/Soup",
+      "score": 0.935629,
+      "reason": "score=0.936, Δ1d=+64(snapshot), Δ7d=+720, recency=0.95, topic=1.00",
+      "flags": [],
+      "repo": {
+        "full_name": "MakazhanAlpamys/Soup",
+        "owner": "MakazhanAlpamys",
+        "name": "Soup",
+        "description": "Fine-tune LLMs from one YAML. Layer streaming trains an 8B model on a 4 GB laptop GPU.",
+        "language": "Python",
+        "topics": [
+          "cli",
+          "consumer-gpu",
+          "dpo",
+          "fine-tuning",
+          "gguf",
+          "huggingface",
+          "llm",
+          "llmops",
+          "local-ai",
+          "local-llm",
+          "lora",
+          "low-vram",
+          "machine-learning",
+          "ollama",
+          "peft",
+          "python",
+          "pytorch",
+          "qlora",
+          "sft",
+          "transformers"
+        ],
+        "stars": 8144,
+        "forks": 1308,
+        "open_issues": 220,
+        "archived": false,
+        "fork": false,
+        "license_spdx": "Apache-2.0",
+        "created_at": "2026-02-20T11:05:01Z",
+        "pushed_at": "2026-10-04T16:53:48Z",
+        "html_url": "https://github.com/MakazhanAlpamys/Soup"
+      }
+    }
+  ],
+  "validation_calls": 3,
+  "rejected": [
+    {
+      "full_name": "rohitg00/ai-engineering-from-scratch",
+      "rule": "excluded_topic"
+    },
+    {
+      "full_name": "hypit-ai/hypit",
+      "rule": "no_license"
+    },
+    {
+      "full_name": "Leonxlnx/taste-skill",
+      "rule": "recently_published"
+    },
+    {
+      "full_name": "herdrdev/herdr",
+      "rule": "recently_published"
+    },
+    {
+      "full_name": "NousResearch/hermes-agent",
+      "rule": "recently_published"
+    },
+    {
+      "full_name": "Tencent/WeKnora",
+      "rule": "no_license"
+    },
+    {
+      "full_name": "datawhalechina/hello-agents",
+      "rule": "no_license"
+    },
+    {
+      "full_name": "calesthio/OpenMontage",
+      "rule": "recently_published"
+    }
+  ]
+}
