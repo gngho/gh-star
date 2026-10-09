@@ -1,0 +1,164 @@
+{
+  "date": "2026-10-09",
+  "generated_at": "2026-10-09T06:59:21.670558Z",
+  "primary": {
+    "full_name": "TencentCloud/Octop",
+    "score": 0.984479,
+    "reason": "score=0.984, Δ1d=+252(snapshot), Δ7d=+1810, recency=1.00, topic=1.00",
+    "flags": [],
+    "repo": {
+      "full_name": "TencentCloud/Octop",
+      "owner": "TencentCloud",
+      "name": "Octop",
+      "description": "A smarter, self-hosted AI assistant — multi-user, multi-agent.",
+      "language": "Python",
+      "topics": [
+        "agent",
+        "agentic-ai",
+        "ai",
+        "ai-agent",
+        "ai-agents",
+        "local-first",
+        "long-term-memory"
+      ],
+      "stars": 8093,
+      "forks": 978,
+      "open_issues": 691,
+      "archived": false,
+      "fork": false,
+      "license_spdx": "MIT",
+      "created_at": "2026-07-08T12:54:20Z",
+      "pushed_at": "2026-10-09T06:55:36Z",
+      "html_url": "https://github.com/TencentCloud/Octop"
+    }
+  },
+  "backups": [
+    {
+      "full_name": "JuliusBrussee/caveman",
+      "score": 0.975356,
+      "reason": "score=0.975, Δ1d=+171(snapshot), Δ7d=+1856, recency=0.99, topic=1.00",
+      "flags": [],
+      "repo": {
+        "full_name": "JuliusBrussee/caveman",
+        "owner": "JuliusBrussee",
+        "name": "caveman",
+        "description": "🪨 why use many token when few token do trick. Viral skill + proxy for coding agents that cuts 65% of tokens by talking like a caveman.",
+        "language": "Go",
+        "topics": [
+          "ai",
+          "anthropic",
+          "caveman",
+          "claude",
+          "claude-code",
+          "llm",
+          "meme",
+          "prompt-engineering",
+          "skill",
+          "tokens"
+        ],
+        "stars": 110629,
+        "forks": 6405,
+        "open_issues": 50,
+        "archived": false,
+        "fork": false,
+        "license_spdx": "Apache-2.0",
+        "created_at": "2026-04-04T10:03:00Z",
+        "pushed_at": "2026-10-08T13:28:29Z",
+        "html_url": "https://github.com/JuliusBrussee/caveman"
+      }
+    },
+    {
+      "full_name": "HBAI-Ltd/Toonflow-app",
+      "score": 0.959503,
+      "reason": "score=0.960, Δ1d=+234(snapshot), Δ7d=+553, recency=0.92, topic=1.00",
+      "flags": [],
+      "repo": {
+        "full_name": "HBAI-Ltd/Toonflow-app",
+        "owner": "HBAI-Ltd",
+        "name": "Toonflow-app",
+        "description": "Toonflow 是开源 AI 创作平台，融合无限画布、AI Agent 与可视化工作流，支持图像生成、视频生成、智能分镜及短剧创作。支持本地部署、自由接入模型，提供跨平台桌面端，并可通过 MCP 与插件扩展创作能力。Open-source AI creative platform with an infinite canvas, AI agents and visual workflows for image generation, video generation and filmmaking, with a canvas-based approach similar to LibTV and TapNow.",
+        "language": "Vue",
+        "topics": [
+          "ai",
+          "ai-agents",
+          "ai-content-creation",
+          "ai-filmmaking",
+          "generative-ai",
+          "image-generation",
+          "image-to-video",
+          "infinite-canvas",
+          "libtv",
+          "llm",
+          "node-based-editor",
+          "open-source",
+          "storyboarding",
+          "tapnow",
+          "text-to-image",
+          "text-to-video",
+          "video-generation",
+          "workflow-automation"
+        ],
+        "stars": 16884,
+        "forks": 2993,
+        "open_issues": 3,
+        "archived": false,
+        "fork": false,
+        "license_spdx": "MIT",
+        "created_at": "2026-01-29T10:25:45Z",
+        "pushed_at": "2026-10-05T13:18:34Z",
+        "html_url": "https://github.com/HBAI-Ltd/Toonflow-app"
+      }
+    }
+  ],
+  "validation_calls": 3,
+  "rejected": [
+    {
+      "full_name": "hypit-ai/hypit",
+      "rule": "no_license"
+    },
+    {
+      "full_name": "rohitg00/ai-engineering-from-scratch",
+      "rule": "excluded_topic"
+    },
+    {
+      "full_name": "Leonxlnx/taste-skill",
+      "rule": "recently_published"
+    },
+    {
+      "full_name": "herdrdev/herdr",
+      "rule": "recently_published"
+    },
+    {
+      "full_name": "Tencent/WeKnora",
+      "rule": "no_license"
+    },
+    {
+      "full_name": "datawhalechina/hello-agents",
+      "rule": "no_license"
+    },
+    {
+      "full_name": "NousResearch/hermes-agent",
+      "rule": "recently_published"
+    },
+    {
+      "full_name": "TencentCloud/TencentDB-Agent-Memory",
+      "rule": "no_license"
+    },
+    {
+      "full_name": "mnfst/awesome-free-llm-apis",
+      "rule": "excluded_topic"
+    },
+    {
+      "full_name": "calesthio/OpenMontage",
+      "rule": "recently_published"
+    },
+    {
+      "full_name": "shareAI-lab/learn-claude-code",
+      "rule": "excluded_topic"
+    },
+    {
+      "full_name": "corsairdev/corsair",
+      "rule": "no_license"
+    }
+  ]
+}
