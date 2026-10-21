@@ -1,0 +1,162 @@
+{
+  "date": "2026-10-21",
+  "generated_at": "2026-10-21T05:33:35.580085Z",
+  "primary": {
+    "full_name": "JuliusBrussee/caveman",
+    "score": 0.965896,
+    "reason": "score=0.966, Δ1d=+189(snapshot), Δ7d=+2357, recency=0.98, topic=1.00",
+    "flags": [],
+    "repo": {
+      "full_name": "JuliusBrussee/caveman",
+      "owner": "JuliusBrussee",
+      "name": "caveman",
+      "description": "🪨 why use many token when few token do trick. Viral skill + proxy for coding agents that cuts 65% of tokens by talking like a caveman.",
+      "language": "Go",
+      "topics": [
+        "ai",
+        "anthropic",
+        "caveman",
+        "claude",
+        "claude-code",
+        "llm",
+        "meme",
+        "prompt-engineering",
+        "skill",
+        "tokens"
+      ],
+      "stars": 113904,
+      "forks": 6571,
+      "open_issues": 72,
+      "archived": false,
+      "fork": false,
+      "license_spdx": "Apache-2.0",
+      "created_at": "2026-04-04T10:03:00Z",
+      "pushed_at": "2026-10-20T23:44:10Z",
+      "html_url": "https://github.com/JuliusBrussee/caveman"
+    }
+  },
+  "backups": [
+    {
+      "full_name": "TencentCloud/Octop",
+      "score": 0.961824,
+      "reason": "score=0.962, Δ1d=+180(snapshot), Δ7d=+1300, recency=1.00, topic=1.00",
+      "flags": [],
+      "repo": {
+        "full_name": "TencentCloud/Octop",
+        "owner": "TencentCloud",
+        "name": "Octop",
+        "description": "A smarter, self-hosted AI assistant — multi-user, multi-agent.",
+        "language": "Python",
+        "topics": [
+          "agent",
+          "agentic-ai",
+          "ai",
+          "ai-agent",
+          "ai-agents",
+          "local-first",
+          "long-term-memory"
+        ],
+        "stars": 10518,
+        "forks": 1318,
+        "open_issues": 880,
+        "archived": false,
+        "fork": false,
+        "license_spdx": "MIT",
+        "created_at": "2026-07-08T12:54:20Z",
+        "pushed_at": "2026-10-21T05:07:15Z",
+        "html_url": "https://github.com/TencentCloud/Octop"
+      }
+    },
+    {
+      "full_name": "headroomlabs-ai/headroom",
+      "score": 0.961483,
+      "reason": "score=0.961, Δ1d=+549(trending), Δ7d=+1568, recency=0.88, topic=1.00",
+      "flags": [],
+      "repo": {
+        "full_name": "headroomlabs-ai/headroom",
+        "owner": "headroomlabs-ai",
+        "name": "headroom",
+        "description": "Compress tool outputs, logs, files, and RAG chunks before they reach the LLM. 20% fewer tokens for coding agents, 60-95% fewer tokens for JSON, same answers. Library, proxy, MCP server.",
+        "language": "Python",
+        "topics": [
+          "agent",
+          "ai",
+          "anthropic",
+          "claude-code",
+          "compression",
+          "context-engineering",
+          "context-window",
+          "cursor",
+          "fastapi",
+          "langchain",
+          "llm",
+          "mcp",
+          "openai",
+          "prompt-engineering",
+          "proxy",
+          "python",
+          "rag",
+          "token-optimization",
+          "tokens",
+          "typescript"
+        ],
+        "stars": 76857,
+        "forks": 5967,
+        "open_issues": 502,
+        "archived": false,
+        "fork": false,
+        "license_spdx": "Apache-2.0",
+        "created_at": "2026-01-07T19:58:51Z",
+        "pushed_at": "2026-10-21T04:15:22Z",
+        "html_url": "https://github.com/headroomlabs-ai/headroom"
+      }
+    }
+  ],
+  "validation_calls": 3,
+  "rejected": [
+    {
+      "full_name": "hypit-ai/hypit",
+      "rule": "no_license"
+    },
+    {
+      "full_name": "rohitg00/ai-engineering-from-scratch",
+      "rule": "excluded_topic"
+    },
+    {
+      "full_name": "calesthio/OpenMontage",
+      "rule": "recently_published"
+    },
+    {
+      "full_name": "herdrdev/herdr",
+      "rule": "recently_published"
+    },
+    {
+      "full_name": "NousResearch/hermes-agent",
+      "rule": "recently_published"
+    },
+    {
+      "full_name": "datawhalechina/hello-agents",
+      "rule": "no_license"
+    },
+    {
+      "full_name": "TencentCloud/TencentDB-Agent-Memory",
+      "rule": "no_license"
+    },
+    {
+      "full_name": "Tencent/WeKnora",
+      "rule": "no_license"
+    },
+    {
+      "full_name": "corsairdev/corsair",
+      "rule": "no_license"
+    },
+    {
+      "full_name": "oraios/serena",
+      "rule": "no_license"
+    },
+    {
+      "full_name": "mnfst/awesome-free-llm-apis",
+      "rule": "excluded_topic"
+    }
+  ]
+}
