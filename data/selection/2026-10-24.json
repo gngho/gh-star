@@ -1,0 +1,151 @@
+{
+  "date": "2026-10-24",
+  "generated_at": "2026-10-24T05:13:41.038326Z",
+  "primary": {
+    "full_name": "JuliusBrussee/caveman",
+    "score": 0.961695,
+    "reason": "score=0.962, Δ1d=+203(snapshot), Δ7d=+1571, recency=0.98, topic=1.00",
+    "flags": [],
+    "repo": {
+      "full_name": "JuliusBrussee/caveman",
+      "owner": "JuliusBrussee",
+      "name": "caveman",
+      "description": "🪨 why use many token when few token do trick. Viral skill + proxy for coding agents that cuts 65% of tokens by talking like a caveman.",
+      "language": "Go",
+      "topics": [
+        "ai",
+        "anthropic",
+        "caveman",
+        "claude",
+        "claude-code",
+        "llm",
+        "meme",
+        "prompt-engineering",
+        "skill",
+        "tokens"
+      ],
+      "stars": 114663,
+      "forks": 6610,
+      "open_issues": 108,
+      "archived": false,
+      "fork": false,
+      "license_spdx": "Apache-2.0",
+      "created_at": "2026-04-04T10:03:00Z",
+      "pushed_at": "2026-10-24T01:00:14Z",
+      "html_url": "https://github.com/JuliusBrussee/caveman"
+    }
+  },
+  "backups": [
+    {
+      "full_name": "makecindy/cindy",
+      "score": 0.956625,
+      "reason": "score=0.957, Δ1d=+363(snapshot), Δ7d=+457, recency=1.00, topic=1.00",
+      "flags": [],
+      "repo": {
+        "full_name": "makecindy/cindy",
+        "owner": "makecindy",
+        "name": "cindy",
+        "description": "Consider it done. The open-source AI agent that works out of the box · 想到，就能做到。开源、开箱即用的 AI Agent。",
+        "language": "TypeScript",
+        "topics": [
+          "agent",
+          "ai-agent",
+          "ai-assistant",
+          "android",
+          "claude-code",
+          "codex",
+          "electron",
+          "ios",
+          "llm",
+          "macos",
+          "react-native",
+          "typescript",
+          "windows"
+        ],
+        "stars": 3620,
+        "forks": 549,
+        "open_issues": 1897,
+        "archived": false,
+        "fork": false,
+        "license_spdx": "Apache-2.0",
+        "created_at": "2026-07-22T17:49:34Z",
+        "pushed_at": "2026-10-24T05:12:06Z",
+        "html_url": "https://github.com/makecindy/cindy"
+      }
+    },
+    {
+      "full_name": "TencentCloud/Octop",
+      "score": 0.95572,
+      "reason": "score=0.956, Δ1d=+120(snapshot), Δ7d=+1178, recency=1.00, topic=1.00",
+      "flags": [],
+      "repo": {
+        "full_name": "TencentCloud/Octop",
+        "owner": "TencentCloud",
+        "name": "Octop",
+        "description": "A smarter, self-hosted AI assistant — multi-user, multi-agent.",
+        "language": "Python",
+        "topics": [
+          "agent",
+          "agentic-ai",
+          "ai",
+          "ai-agent",
+          "ai-agents",
+          "local-first",
+          "long-term-memory"
+        ],
+        "stars": 10880,
+        "forks": 1392,
+        "open_issues": 787,
+        "archived": false,
+        "fork": false,
+        "license_spdx": "MIT",
+        "created_at": "2026-07-08T12:54:20Z",
+        "pushed_at": "2026-10-24T01:08:57Z",
+        "html_url": "https://github.com/TencentCloud/Octop"
+      }
+    }
+  ],
+  "validation_calls": 3,
+  "rejected": [
+    {
+      "full_name": "rohitg00/ai-engineering-from-scratch",
+      "rule": "excluded_topic"
+    },
+    {
+      "full_name": "hypit-ai/hypit",
+      "rule": "no_license"
+    },
+    {
+      "full_name": "calesthio/OpenMontage",
+      "rule": "recently_published"
+    },
+    {
+      "full_name": "herdrdev/herdr",
+      "rule": "recently_published"
+    },
+    {
+      "full_name": "NousResearch/hermes-agent",
+      "rule": "recently_published"
+    },
+    {
+      "full_name": "datawhalechina/hello-agents",
+      "rule": "no_license"
+    },
+    {
+      "full_name": "Tencent/WeKnora",
+      "rule": "no_license"
+    },
+    {
+      "full_name": "TencentCloud/TencentDB-Agent-Memory",
+      "rule": "no_license"
+    },
+    {
+      "full_name": "mnfst/awesome-free-llm-apis",
+      "rule": "excluded_topic"
+    },
+    {
+      "full_name": "kuafuai/andee",
+      "rule": "no_license"
+    }
+  ]
+}
