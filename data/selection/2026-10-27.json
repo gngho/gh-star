@@ -1,0 +1,152 @@
+{
+  "date": "2026-10-27",
+  "generated_at": "2026-10-27T05:49:35.711777Z",
+  "primary": {
+    "full_name": "makecindy/cindy",
+    "score": 0.991621,
+    "reason": "score=0.992, Δ1d=+1296(trending), Δ7d=+3562, recency=1.00, topic=1.00",
+    "flags": [],
+    "repo": {
+      "full_name": "makecindy/cindy",
+      "owner": "makecindy",
+      "name": "cindy",
+      "description": "Consider it done. The open-source AI agent that works out of the box · 想到，就能做到。开源、开箱即用的 AI Agent。",
+      "language": "TypeScript",
+      "topics": [
+        "agent",
+        "ai-agent",
+        "ai-assistant",
+        "android",
+        "claude-code",
+        "codex",
+        "electron",
+        "ios",
+        "llm",
+        "macos",
+        "react-native",
+        "typescript",
+        "windows"
+      ],
+      "stars": 6783,
+      "forks": 817,
+      "open_issues": 2048,
+      "archived": false,
+      "fork": false,
+      "license_spdx": "Apache-2.0",
+      "created_at": "2026-07-22T17:49:34Z",
+      "pushed_at": "2026-10-27T05:46:39Z",
+      "html_url": "https://github.com/makecindy/cindy"
+    }
+  },
+  "backups": [
+    {
+      "full_name": "JuliusBrussee/caveman",
+      "score": 0.962766,
+      "reason": "score=0.963, Δ1d=+277(trending), Δ7d=+1647, recency=0.97, topic=1.00",
+      "flags": [],
+      "repo": {
+        "full_name": "JuliusBrussee/caveman",
+        "owner": "JuliusBrussee",
+        "name": "caveman",
+        "description": "🪨 why use many token when few token do trick. Viral skill + proxy for coding agents that cuts 65% of tokens by talking like a caveman.",
+        "language": "Go",
+        "topics": [
+          "ai",
+          "anthropic",
+          "caveman",
+          "claude",
+          "claude-code",
+          "llm",
+          "meme",
+          "prompt-engineering",
+          "skill",
+          "tokens"
+        ],
+        "stars": 115362,
+        "forks": 6654,
+        "open_issues": 112,
+        "archived": false,
+        "fork": false,
+        "license_spdx": "Apache-2.0",
+        "created_at": "2026-04-04T10:03:00Z",
+        "pushed_at": "2026-10-26T07:59:57Z",
+        "html_url": "https://github.com/JuliusBrussee/caveman"
+      }
+    },
+    {
+      "full_name": "walkinglabs/learn-harness-engineering",
+      "score": 0.945846,
+      "reason": "score=0.946, Δ1d=+155(snapshot), Δ7d=+740, recency=0.97, topic=1.00",
+      "flags": [],
+      "repo": {
+        "full_name": "walkinglabs/learn-harness-engineering",
+        "owner": "walkinglabs",
+        "name": "learn-harness-engineering",
+        "description": "Harness engineering beginner tutorial, from 0 to 1",
+        "language": "TypeScript",
+        "topics": [
+          "agent",
+          "agentic",
+          "agentic-ai",
+          "ai",
+          "ai-agent",
+          "ai-agents",
+          "dsh",
+          "dsh-plugin",
+          "harness",
+          "harness-engineering",
+          "harness-framework",
+          "llm"
+        ],
+        "stars": 21705,
+        "forks": 2431,
+        "open_issues": 18,
+        "archived": false,
+        "fork": false,
+        "license_spdx": "MIT",
+        "created_at": "2026-03-29T12:28:19Z",
+        "pushed_at": "2026-10-22T14:23:31Z",
+        "html_url": "https://github.com/walkinglabs/learn-harness-engineering"
+      }
+    }
+  ],
+  "validation_calls": 3,
+  "rejected": [
+    {
+      "full_name": "rohitg00/ai-engineering-from-scratch",
+      "rule": "excluded_topic"
+    },
+    {
+      "full_name": "hypit-ai/hypit",
+      "rule": "no_license"
+    },
+    {
+      "full_name": "calesthio/OpenMontage",
+      "rule": "recently_published"
+    },
+    {
+      "full_name": "herdrdev/herdr",
+      "rule": "recently_published"
+    },
+    {
+      "full_name": "NousResearch/hermes-agent",
+      "rule": "recently_published"
+    },
+    {
+      "full_name": "Tencent/WeKnora",
+      "rule": "no_license"
+    },
+    {
+      "full_name": "TencentCloud/TencentDB-Agent-Memory",
+      "rule": "no_license"
+    },
+    {
+      "full_name": "corsairdev/corsair",
+      "rule": "no_license"
+    },
+    {
+      "full_name": "kuafuai/andee",
+      "rule": "no_license"
+    }
+  ]
+}
