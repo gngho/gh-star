@@ -1,0 +1,147 @@
+{
+  "date": "2026-10-29",
+  "generated_at": "2026-10-29T06:39:02.165914Z",
+  "primary": {
+    "full_name": "makecindy/cindy",
+    "score": 0.9863,
+    "reason": "score=0.986, Δ1d=+728(trending), Δ7d=+5055, recency=1.00, topic=1.00",
+    "flags": [],
+    "repo": {
+      "full_name": "makecindy/cindy",
+      "owner": "makecindy",
+      "name": "cindy",
+      "description": "Consider it done. The open-source AI agent that works out of the box · 想到，就能做到。开源、开箱即用的 AI Agent。",
+      "language": "TypeScript",
+      "topics": [
+        "agent",
+        "ai-agent",
+        "ai-assistant",
+        "android",
+        "claude-code",
+        "codex",
+        "electron",
+        "ios",
+        "llm",
+        "macos",
+        "react-native",
+        "typescript",
+        "windows"
+      ],
+      "stars": 8300,
+      "forks": 971,
+      "open_issues": 2182,
+      "archived": false,
+      "fork": false,
+      "license_spdx": "Apache-2.0",
+      "created_at": "2026-07-22T17:49:34Z",
+      "pushed_at": "2026-10-29T06:30:03Z",
+      "html_url": "https://github.com/makecindy/cindy"
+    }
+  },
+  "backups": [
+    {
+      "full_name": "rlaope/oh-my-hermes",
+      "score": 0.966704,
+      "reason": "score=0.967, Δ1d=+320(snapshot), Δ7d=+1157, recency=1.00, topic=1.00",
+      "flags": [],
+      "repo": {
+        "full_name": "rlaope/oh-my-hermes",
+        "owner": "rlaope",
+        "name": "oh-my-hermes",
+        "description": "⚚ The coding harness with Hermes Agent, Just type 'dag-ulw'",
+        "language": "Python",
+        "topics": [
+          "agent",
+          "ai",
+          "ai-agent",
+          "ai-tools",
+          "claude-code",
+          "codex",
+          "hermes-agent",
+          "hermes-skill",
+          "skills"
+        ],
+        "stars": 4698,
+        "forks": 364,
+        "open_issues": 17,
+        "archived": false,
+        "fork": false,
+        "license_spdx": "MIT",
+        "created_at": "2026-06-03T13:00:34Z",
+        "pushed_at": "2026-10-29T06:28:14Z",
+        "html_url": "https://github.com/rlaope/oh-my-hermes"
+      }
+    },
+    {
+      "full_name": "walkinglabs/learn-harness-engineering",
+      "score": 0.963996,
+      "reason": "score=0.964, Δ1d=+419(snapshot), Δ7d=+1115, recency=0.96, topic=1.00",
+      "flags": [],
+      "repo": {
+        "full_name": "walkinglabs/learn-harness-engineering",
+        "owner": "walkinglabs",
+        "name": "learn-harness-engineering",
+        "description": "Harness engineering beginner tutorial, from 0 to 1",
+        "language": "TypeScript",
+        "topics": [
+          "agent",
+          "agentic",
+          "agentic-ai",
+          "ai",
+          "ai-agent",
+          "ai-agents",
+          "dsh",
+          "dsh-plugin",
+          "harness",
+          "harness-engineering",
+          "harness-framework",
+          "llm"
+        ],
+        "stars": 22239,
+        "forks": 2505,
+        "open_issues": 18,
+        "archived": false,
+        "fork": false,
+        "license_spdx": "MIT",
+        "created_at": "2026-03-29T12:28:19Z",
+        "pushed_at": "2026-10-22T14:23:31Z",
+        "html_url": "https://github.com/walkinglabs/learn-harness-engineering"
+      }
+    }
+  ],
+  "validation_calls": 3,
+  "rejected": [
+    {
+      "full_name": "rohitg00/ai-engineering-from-scratch",
+      "rule": "excluded_topic"
+    },
+    {
+      "full_name": "hypit-ai/hypit",
+      "rule": "no_license"
+    },
+    {
+      "full_name": "calesthio/OpenMontage",
+      "rule": "recently_published"
+    },
+    {
+      "full_name": "kuafuai/andee",
+      "rule": "no_license"
+    },
+    {
+      "full_name": "herdrdev/herdr",
+      "rule": "recently_published"
+    },
+    {
+      "full_name": "NousResearch/hermes-agent",
+      "rule": "recently_published"
+    },
+    {
+      "full_name": "Tencent/WeKnora",
+      "rule": "no_license"
+    },
+    {
+      "full_name": "TencentCloud/TencentDB-Agent-Memory",
+      "rule": "no_license"
+    }
+  ]
+}
