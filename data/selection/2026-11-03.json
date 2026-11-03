@@ -1,0 +1,152 @@
+{
+  "date": "2026-11-03",
+  "generated_at": "2026-11-03T07:24:40.600821Z",
+  "primary": {
+    "full_name": "JuliusBrussee/caveman",
+    "score": 0.958528,
+    "reason": "score=0.959, Δ1d=+239(snapshot), Δ7d=+1649, recency=0.96, topic=1.00",
+    "flags": [],
+    "repo": {
+      "full_name": "JuliusBrussee/caveman",
+      "owner": "JuliusBrussee",
+      "name": "caveman",
+      "description": "🪨 why use many token when few token do trick. Viral skill + proxy for coding agents that cuts 65% of tokens by talking like a caveman.",
+      "language": "Go",
+      "topics": [
+        "ai",
+        "anthropic",
+        "caveman",
+        "claude",
+        "claude-code",
+        "llm",
+        "meme",
+        "prompt-engineering",
+        "skill",
+        "tokens"
+      ],
+      "stars": 117011,
+      "forks": 6799,
+      "open_issues": 150,
+      "archived": false,
+      "fork": false,
+      "license_spdx": "Apache-2.0",
+      "created_at": "2026-04-04T10:03:00Z",
+      "pushed_at": "2026-11-03T07:21:24Z",
+      "html_url": "https://github.com/JuliusBrussee/caveman"
+    }
+  },
+  "backups": [
+    {
+      "full_name": "makecindy/cindy",
+      "score": 0.950733,
+      "reason": "score=0.951, Δ1d=+107(snapshot), Δ7d=+2278, recency=1.00, topic=1.00",
+      "flags": [],
+      "repo": {
+        "full_name": "makecindy/cindy",
+        "owner": "makecindy",
+        "name": "cindy",
+        "description": "Consider it done. The open-source AI agent that works out of the box · 想到，就能做到。开源、开箱即用的 AI Agent。",
+        "language": "TypeScript",
+        "topics": [
+          "agent",
+          "ai-agent",
+          "ai-assistant",
+          "android",
+          "claude-code",
+          "codex",
+          "electron",
+          "ios",
+          "llm",
+          "macos",
+          "react-native",
+          "typescript",
+          "windows"
+        ],
+        "stars": 9061,
+        "forks": 1099,
+        "open_issues": 2501,
+        "archived": false,
+        "fork": false,
+        "license_spdx": "Apache-2.0",
+        "created_at": "2026-07-22T17:49:34Z",
+        "pushed_at": "2026-11-03T07:22:41Z",
+        "html_url": "https://github.com/makecindy/cindy"
+      }
+    },
+    {
+      "full_name": "walkinglabs/learn-harness-engineering",
+      "score": 0.945104,
+      "reason": "score=0.945, Δ1d=+125(snapshot), Δ7d=+1305, recency=0.96, topic=1.00",
+      "flags": [],
+      "repo": {
+        "full_name": "walkinglabs/learn-harness-engineering",
+        "owner": "walkinglabs",
+        "name": "learn-harness-engineering",
+        "description": "Harness engineering beginner tutorial, from 0 to 1",
+        "language": "TypeScript",
+        "topics": [
+          "agent",
+          "agentic",
+          "agentic-ai",
+          "ai",
+          "ai-agent",
+          "ai-agents",
+          "dsh",
+          "dsh-plugin",
+          "harness",
+          "harness-engineering",
+          "harness-framework",
+          "llm"
+        ],
+        "stars": 23010,
+        "forks": 2627,
+        "open_issues": 21,
+        "archived": false,
+        "fork": false,
+        "license_spdx": "MIT",
+        "created_at": "2026-03-29T12:28:19Z",
+        "pushed_at": "2026-10-22T14:23:31Z",
+        "html_url": "https://github.com/walkinglabs/learn-harness-engineering"
+      }
+    }
+  ],
+  "validation_calls": 3,
+  "rejected": [
+    {
+      "full_name": "calesthio/OpenMontage",
+      "rule": "recently_published"
+    },
+    {
+      "full_name": "hypit-ai/hypit",
+      "rule": "no_license"
+    },
+    {
+      "full_name": "herdrdev/herdr",
+      "rule": "recently_published"
+    },
+    {
+      "full_name": "rohitg00/ai-engineering-from-scratch",
+      "rule": "excluded_topic"
+    },
+    {
+      "full_name": "NousResearch/hermes-agent",
+      "rule": "recently_published"
+    },
+    {
+      "full_name": "Fractal-Compute-Orchestrations/FractalWorkspace",
+      "rule": "no_license"
+    },
+    {
+      "full_name": "Tencent/WeKnora",
+      "rule": "no_license"
+    },
+    {
+      "full_name": "kuafuai/andee",
+      "rule": "no_license"
+    },
+    {
+      "full_name": "shareAI-lab/learn-claude-code",
+      "rule": "excluded_topic"
+    }
+  ]
+}
