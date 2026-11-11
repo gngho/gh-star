@@ -1,0 +1,148 @@
+{
+  "date": "2026-11-11",
+  "generated_at": "2026-11-11T07:22:36.577705Z",
+  "primary": {
+    "full_name": "JuliusBrussee/caveman",
+    "score": 0.96435,
+    "reason": "score=0.964, Δ1d=+270(trending), Δ7d=+1657, recency=0.96, topic=1.00",
+    "flags": [],
+    "repo": {
+      "full_name": "JuliusBrussee/caveman",
+      "owner": "JuliusBrussee",
+      "name": "caveman",
+      "description": "🪨 why use many token when few token do trick. Viral skill + proxy for coding agents that cuts 65% of tokens by talking like a caveman.",
+      "language": "Go",
+      "topics": [
+        "ai",
+        "anthropic",
+        "caveman",
+        "claude",
+        "claude-code",
+        "llm",
+        "meme",
+        "prompt-engineering",
+        "skill",
+        "tokens"
+      ],
+      "stars": 118964,
+      "forks": 6920,
+      "open_issues": 80,
+      "archived": false,
+      "fork": false,
+      "license_spdx": "Apache-2.0",
+      "created_at": "2026-04-04T10:03:00Z",
+      "pushed_at": "2026-11-10T21:36:32Z",
+      "html_url": "https://github.com/JuliusBrussee/caveman"
+    }
+  },
+  "backups": [
+    {
+      "full_name": "KKKKhazix/AIHOT",
+      "score": 0.951568,
+      "reason": "score=0.952, Δ1d=+145(snapshot), Δ7d=+869, recency=1.00, topic=1.00",
+      "flags": [],
+      "repo": {
+        "full_name": "KKKKhazix/AIHOT",
+        "owner": "KKKKhazix",
+        "name": "AIHOT",
+        "description": "一个自己找热点、自己写日报的网站框架。把信源和精选标准换成你的，它就是你的行业热点站。",
+        "language": "TypeScript",
+        "topics": [
+          "ai",
+          "chinese",
+          "content-curation",
+          "daily-digest",
+          "docker-compose",
+          "llm",
+          "mcp",
+          "news-aggregator",
+          "postgresql",
+          "rss",
+          "self-hosted",
+          "typescript"
+        ],
+        "stars": 10325,
+        "forks": 2403,
+        "open_issues": 1,
+        "archived": false,
+        "fork": false,
+        "license_spdx": "MIT",
+        "created_at": "2026-09-28T23:40:05Z",
+        "pushed_at": "2026-11-11T02:44:47Z",
+        "html_url": "https://github.com/KKKKhazix/AIHOT"
+      }
+    },
+    {
+      "full_name": "makecindy/cindy",
+      "score": 0.933744,
+      "reason": "score=0.934, Δ1d=+95(snapshot), Δ7d=+574, recency=1.00, topic=1.00",
+      "flags": [],
+      "repo": {
+        "full_name": "makecindy/cindy",
+        "owner": "makecindy",
+        "name": "cindy",
+        "description": "Consider it done. The open-source AI agent that works out of the box · 想到，就能做到。开源、开箱即用的 AI Agent。",
+        "language": "TypeScript",
+        "topics": [
+          "agent",
+          "ai-agent",
+          "ai-assistant",
+          "android",
+          "claude-code",
+          "codex",
+          "electron",
+          "ios",
+          "llm",
+          "macos",
+          "react-native",
+          "typescript",
+          "windows"
+        ],
+        "stars": 9776,
+        "forks": 1219,
+        "open_issues": 3084,
+        "archived": false,
+        "fork": false,
+        "license_spdx": "Apache-2.0",
+        "created_at": "2026-07-22T17:49:34Z",
+        "pushed_at": "2026-11-11T07:14:04Z",
+        "html_url": "https://github.com/makecindy/cindy"
+      }
+    }
+  ],
+  "validation_calls": 3,
+  "rejected": [
+    {
+      "full_name": "kuafuai/andee",
+      "rule": "no_license"
+    },
+    {
+      "full_name": "hypit-ai/hypit",
+      "rule": "no_license"
+    },
+    {
+      "full_name": "herdrdev/herdr",
+      "rule": "recently_published"
+    },
+    {
+      "full_name": "rohitg00/ai-engineering-from-scratch",
+      "rule": "excluded_topic"
+    },
+    {
+      "full_name": "NousResearch/hermes-agent",
+      "rule": "recently_published"
+    },
+    {
+      "full_name": "mnfst/awesome-free-llm-apis",
+      "rule": "excluded_topic"
+    },
+    {
+      "full_name": "Tencent/WeKnora",
+      "rule": "no_license"
+    },
+    {
+      "full_name": "TencentCloud/TencentDB-Agent-Memory",
+      "rule": "no_license"
+    }
+  ]
+}
