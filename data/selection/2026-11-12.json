@@ -1,0 +1,156 @@
+{
+  "date": "2026-11-12",
+  "generated_at": "2026-11-12T07:53:00.234126Z",
+  "primary": {
+    "full_name": "JuliusBrussee/caveman",
+    "score": 0.962718,
+    "reason": "score=0.963, Δ1d=+243(snapshot), Δ7d=+1629, recency=0.95, topic=1.00",
+    "flags": [],
+    "repo": {
+      "full_name": "JuliusBrussee/caveman",
+      "owner": "JuliusBrussee",
+      "name": "caveman",
+      "description": "🪨 why use many token when few token do trick. Viral skill + proxy for coding agents that cuts 65% of tokens by talking like a caveman.",
+      "language": "Go",
+      "topics": [
+        "ai",
+        "anthropic",
+        "caveman",
+        "claude",
+        "claude-code",
+        "llm",
+        "meme",
+        "prompt-engineering",
+        "skill",
+        "tokens"
+      ],
+      "stars": 119207,
+      "forks": 6932,
+      "open_issues": 82,
+      "archived": false,
+      "fork": false,
+      "license_spdx": "Apache-2.0",
+      "created_at": "2026-04-04T10:03:00Z",
+      "pushed_at": "2026-11-12T07:27:22Z",
+      "html_url": "https://github.com/JuliusBrussee/caveman"
+    }
+  },
+  "backups": [
+    {
+      "full_name": "PurpleDoubleD/locally-uncensored",
+      "score": 0.942826,
+      "reason": "score=0.943, Δ1d=+199(snapshot), Δ7d=+586, recency=0.94, topic=1.00",
+      "flags": [],
+      "repo": {
+        "full_name": "PurpleDoubleD/locally-uncensored",
+        "owner": "PurpleDoubleD",
+        "name": "locally-uncensored",
+        "description": "The all-in-one local AI studio for your desktop: chat, image and video generation and a coding agent in one free, open source app. Windows and Linux. No Docker, no terminal, no cloud required.",
+        "language": "TypeScript",
+        "topics": [
+          "agent",
+          "ai-chat",
+          "ai-studio",
+          "all-in-one",
+          "coding-agent",
+          "desktop-app",
+          "flux",
+          "image-generation",
+          "linux",
+          "llm",
+          "local-ai",
+          "local-llm",
+          "open-source",
+          "privacy",
+          "self-hosted",
+          "stable-diffusion",
+          "uncensored",
+          "uncensored-ai",
+          "video-generation",
+          "windows"
+        ],
+        "stars": 3915,
+        "forks": 626,
+        "open_issues": 24,
+        "archived": false,
+        "fork": false,
+        "license_spdx": "AGPL-3.0",
+        "created_at": "2026-03-24T21:52:47Z",
+        "pushed_at": "2026-11-09T15:41:41Z",
+        "html_url": "https://github.com/PurpleDoubleD/locally-uncensored"
+      }
+    },
+    {
+      "full_name": "makecindy/cindy",
+      "score": 0.93812,
+      "reason": "score=0.938, Δ1d=+123(snapshot), Δ7d=+595, recency=1.00, topic=1.00",
+      "flags": [],
+      "repo": {
+        "full_name": "makecindy/cindy",
+        "owner": "makecindy",
+        "name": "cindy",
+        "description": "Consider it done. The open-source AI agent that works out of the box · 想到，就能做到。开源、开箱即用的 AI Agent。",
+        "language": "TypeScript",
+        "topics": [
+          "agent",
+          "ai-agent",
+          "ai-assistant",
+          "android",
+          "claude-code",
+          "codex",
+          "electron",
+          "ios",
+          "llm",
+          "macos",
+          "react-native",
+          "typescript",
+          "windows"
+        ],
+        "stars": 9899,
+        "forks": 1231,
+        "open_issues": 3172,
+        "archived": false,
+        "fork": false,
+        "license_spdx": "Apache-2.0",
+        "created_at": "2026-07-22T17:49:34Z",
+        "pushed_at": "2026-11-12T07:50:30Z",
+        "html_url": "https://github.com/makecindy/cindy"
+      }
+    }
+  ],
+  "validation_calls": 3,
+  "rejected": [
+    {
+      "full_name": "kuafuai/andee",
+      "rule": "no_license"
+    },
+    {
+      "full_name": "herdrdev/herdr",
+      "rule": "recently_published"
+    },
+    {
+      "full_name": "hypit-ai/hypit",
+      "rule": "no_license"
+    },
+    {
+      "full_name": "rohitg00/ai-engineering-from-scratch",
+      "rule": "excluded_topic"
+    },
+    {
+      "full_name": "NousResearch/hermes-agent",
+      "rule": "recently_published"
+    },
+    {
+      "full_name": "mnfst/awesome-free-llm-apis",
+      "rule": "excluded_topic"
+    },
+    {
+      "full_name": "Tencent/WeKnora",
+      "rule": "no_license"
+    },
+    {
+      "full_name": "TencentCloud/TencentDB-Agent-Memory",
+      "rule": "no_license"
+    }
+  ]
+}
