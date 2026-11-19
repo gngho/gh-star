@@ -1,0 +1,158 @@
+{
+  "date": "2026-11-19",
+  "generated_at": "2026-11-19T08:11:27.528686Z",
+  "primary": {
+    "full_name": "JuliusBrussee/caveman",
+    "score": 0.968077,
+    "reason": "score=0.968, Δ1d=+232(snapshot), Δ7d=+2172, recency=0.95, topic=1.00",
+    "flags": [],
+    "repo": {
+      "full_name": "JuliusBrussee/caveman",
+      "owner": "JuliusBrussee",
+      "name": "caveman",
+      "description": "why use many token when few token do trick. Skill + local proxy for coding agents: shorter answers, smaller tool output, every original recoverable.",
+      "language": "Go",
+      "topics": [
+        "ai",
+        "anthropic",
+        "caveman",
+        "claude",
+        "claude-code",
+        "llm",
+        "meme",
+        "prompt-engineering",
+        "skill",
+        "tokens"
+      ],
+      "stars": 121379,
+      "forks": 7099,
+      "open_issues": 105,
+      "archived": false,
+      "fork": false,
+      "license_spdx": "Apache-2.0",
+      "created_at": "2026-04-04T10:03:00Z",
+      "pushed_at": "2026-11-19T07:21:42Z",
+      "html_url": "https://github.com/JuliusBrussee/caveman"
+    }
+  },
+  "backups": [
+    {
+      "full_name": "OpenMontageInc/OpenMontage",
+      "score": 0.961154,
+      "reason": "score=0.961, Δ1d=+198(snapshot), Δ7d=+1831, recency=0.94, topic=1.00",
+      "flags": [],
+      "repo": {
+        "full_name": "OpenMontageInc/OpenMontage",
+        "owner": "OpenMontageInc",
+        "name": "OpenMontage",
+        "description": "World's first open-source, agentic video production system. 12 production pipelines, 100+ tools, 700+ agent skill and production-knowledge files. Turn your AI coding assistant into a full video production studio.",
+        "language": "Python",
+        "topics": [
+          "agent",
+          "agentic-ai",
+          "ai",
+          "claude",
+          "copilot",
+          "cursor",
+          "elevenlabs",
+          "ffmpeg",
+          "flux",
+          "image-generation",
+          "open-source",
+          "openai",
+          "python",
+          "remotion",
+          "stable-diffusion",
+          "text-to-speech",
+          "text-to-video",
+          "video-generation",
+          "video-production"
+        ],
+        "stars": 81624,
+        "forks": 11104,
+        "open_issues": 346,
+        "archived": false,
+        "fork": false,
+        "license_spdx": "AGPL-3.0",
+        "created_at": "2026-03-29T15:23:22Z",
+        "pushed_at": "2026-11-16T06:55:27Z",
+        "html_url": "https://github.com/OpenMontageInc/OpenMontage"
+      }
+    },
+    {
+      "full_name": "KKKKhazix/AIHOT",
+      "score": 0.934566,
+      "reason": "score=0.935, Δ1d=+87(snapshot), Δ7d=+615, recency=1.00, topic=1.00",
+      "flags": [],
+      "repo": {
+        "full_name": "KKKKhazix/AIHOT",
+        "owner": "KKKKhazix",
+        "name": "AIHOT",
+        "description": "一个自己找热点、自己写日报的网站框架。把信源和精选标准换成你的，它就是你的行业热点站。",
+        "language": "TypeScript",
+        "topics": [
+          "ai",
+          "chinese",
+          "content-curation",
+          "daily-digest",
+          "docker-compose",
+          "llm",
+          "mcp",
+          "news-aggregator",
+          "postgresql",
+          "rss",
+          "self-hosted",
+          "typescript"
+        ],
+        "stars": 11035,
+        "forks": 2564,
+        "open_issues": 1,
+        "archived": false,
+        "fork": false,
+        "license_spdx": "MIT",
+        "created_at": "2026-09-28T23:40:05Z",
+        "pushed_at": "2026-11-18T23:05:49Z",
+        "html_url": "https://github.com/KKKKhazix/AIHOT"
+      }
+    }
+  ],
+  "validation_calls": 3,
+  "rejected": [
+    {
+      "full_name": "hypit-ai/hypit",
+      "rule": "no_license"
+    },
+    {
+      "full_name": "herdrdev/herdr",
+      "rule": "recently_published"
+    },
+    {
+      "full_name": "rohitg00/ai-engineering-from-scratch",
+      "rule": "excluded_topic"
+    },
+    {
+      "full_name": "mnfst/awesome-free-llm-apis",
+      "rule": "excluded_topic"
+    },
+    {
+      "full_name": "NousResearch/hermes-agent",
+      "rule": "recently_published"
+    },
+    {
+      "full_name": "Ebony-Vinyl/dsh-our-free-model",
+      "rule": "no_license"
+    },
+    {
+      "full_name": "datawhalechina/hello-agents",
+      "rule": "no_license"
+    },
+    {
+      "full_name": "Tencent/WeKnora",
+      "rule": "no_license"
+    },
+    {
+      "full_name": "ChenLiu-1996/figures4papers",
+      "rule": "no_license"
+    }
+  ]
+}
