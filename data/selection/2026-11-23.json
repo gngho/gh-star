@@ -1,0 +1,154 @@
+{
+  "date": "2026-11-23",
+  "generated_at": "2026-11-23T08:26:48.117052Z",
+  "primary": {
+    "full_name": "OpenMontageInc/OpenMontage",
+    "score": 0.967615,
+    "reason": "score=0.968, Δ1d=+309(snapshot), Δ7d=+1719, recency=0.94, topic=1.00",
+    "flags": [],
+    "repo": {
+      "full_name": "OpenMontageInc/OpenMontage",
+      "owner": "OpenMontageInc",
+      "name": "OpenMontage",
+      "description": "World's first open-source, agentic video production system. 12 production pipelines, 100+ tools, 700+ agent skill and production-knowledge files. Turn your AI coding assistant into a full video production studio.",
+      "language": "Python",
+      "topics": [
+        "agent",
+        "agentic-ai",
+        "ai",
+        "claude",
+        "copilot",
+        "cursor",
+        "elevenlabs",
+        "ffmpeg",
+        "flux",
+        "image-generation",
+        "open-source",
+        "openai",
+        "python",
+        "remotion",
+        "stable-diffusion",
+        "text-to-speech",
+        "text-to-video",
+        "video-generation",
+        "video-production"
+      ],
+      "stars": 82519,
+      "forks": 11249,
+      "open_issues": 360,
+      "archived": false,
+      "fork": false,
+      "license_spdx": "AGPL-3.0",
+      "created_at": "2026-03-29T15:23:22Z",
+      "pushed_at": "2026-11-16T06:55:27Z",
+      "html_url": "https://github.com/OpenMontageInc/OpenMontage"
+    }
+  },
+  "backups": [
+    {
+      "full_name": "JuliusBrussee/caveman",
+      "score": 0.960862,
+      "reason": "score=0.961, Δ1d=+206(snapshot), Δ7d=+1693, recency=0.94, topic=1.00",
+      "flags": [],
+      "repo": {
+        "full_name": "JuliusBrussee/caveman",
+        "owner": "JuliusBrussee",
+        "name": "caveman",
+        "description": "why use many token when few token do trick. Skill + local proxy for coding agents: shorter answers, smaller tool output, every original recoverable.",
+        "language": "Go",
+        "topics": [
+          "ai",
+          "anthropic",
+          "caveman",
+          "claude",
+          "claude-code",
+          "llm",
+          "meme",
+          "prompt-engineering",
+          "skill",
+          "tokens"
+        ],
+        "stars": 122236,
+        "forks": 7133,
+        "open_issues": 85,
+        "archived": false,
+        "fork": false,
+        "license_spdx": "Apache-2.0",
+        "created_at": "2026-04-04T10:03:00Z",
+        "pushed_at": "2026-11-23T05:09:14Z",
+        "html_url": "https://github.com/JuliusBrussee/caveman"
+      }
+    },
+    {
+      "full_name": "vercel-labs/ui",
+      "score": 0.957978,
+      "reason": "score=0.958, Δ1d=+124(snapshot), Δ7d=+1538, recency=1.00, topic=1.00",
+      "flags": [],
+      "repo": {
+        "full_name": "vercel-labs/ui",
+        "owner": "vercel-labs",
+        "name": "ui",
+        "description": "A library of behaviors for agents to build the next generation of user interfaces.",
+        "language": "TypeScript",
+        "topics": [
+          "accessibility",
+          "agent",
+          "agents",
+          "ai",
+          "aria",
+          "behaviors",
+          "component",
+          "component-library",
+          "headless",
+          "mcp",
+          "react",
+          "solid",
+          "svelte",
+          "vue",
+          "web-components",
+          "webmcp"
+        ],
+        "stars": 6602,
+        "forks": 235,
+        "open_issues": 107,
+        "archived": false,
+        "fork": false,
+        "license_spdx": "Apache-2.0",
+        "created_at": "2026-10-26T17:39:27Z",
+        "pushed_at": "2026-11-23T08:05:45Z",
+        "html_url": "https://github.com/vercel-labs/ui"
+      }
+    }
+  ],
+  "validation_calls": 3,
+  "rejected": [
+    {
+      "full_name": "hypit-ai/hypit",
+      "rule": "no_license"
+    },
+    {
+      "full_name": "herdrdev/herdr",
+      "rule": "recently_published"
+    },
+    {
+      "full_name": "rohitg00/ai-engineering-from-scratch",
+      "rule": "excluded_topic"
+    },
+    {
+      "full_name": "Ebony-Vinyl/dsh-our-free-model",
+      "rule": "no_license"
+    },
+    {
+      "full_name": "mnfst/awesome-free-llm-apis",
+      "rule": "excluded_topic"
+    },
+    {
+      "full_name": "datawhalechina/hello-agents",
+      "rule": "no_license"
+    },
+    {
+      "full_name": "Tencent/WeKnora",
+      "rule": "no_license"
+    }
+  ]
+}
