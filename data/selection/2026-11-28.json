@@ -1,0 +1,146 @@
+{
+  "date": "2026-11-28",
+  "generated_at": "2026-11-28T08:35:31.373072Z",
+  "primary": {
+    "full_name": "BaaRai/ARTEX",
+    "score": 0.999578,
+    "reason": "score=1.000, Δ1d=+1175(snapshot), Δ7d=+9844, recency=1.00, topic=1.00",
+    "flags": [],
+    "repo": {
+      "full_name": "BaaRai/ARTEX",
+      "owner": "BaaRai",
+      "name": "ARTEX",
+      "description": "Actively maintained ARTEX: AI autonomous penetration testing system. Self-hosted, model-agnostic, evidence-backed findings. Community continuation of Autumn-27/ARTEX, AGPL-3.0.",
+      "language": "Go",
+      "topics": [
+        "ai",
+        "ai-agents",
+        "artex",
+        "autonomous-agents",
+        "bug-bounty",
+        "docker",
+        "golang",
+        "linux",
+        "llm",
+        "mcp",
+        "nextjs",
+        "penetration-testing",
+        "pentest",
+        "postgresql",
+        "rea",
+        "red-team",
+        "security",
+        "security-automation",
+        "sqlite",
+        "typescript"
+      ],
+      "stars": 23895,
+      "forks": 8850,
+      "open_issues": 47,
+      "archived": false,
+      "fork": false,
+      "license_spdx": "AGPL-3.0",
+      "created_at": "2026-10-08T21:14:39Z",
+      "pushed_at": "2026-11-28T07:51:44Z",
+      "html_url": "https://github.com/BaaRai/ARTEX"
+    }
+  },
+  "backups": [
+    {
+      "full_name": "phone-harness/phone-harness",
+      "score": 0.959443,
+      "reason": "score=0.959, Δ1d=+187(trending), Δ7d=+802, recency=1.00, topic=1.00",
+      "flags": [],
+      "repo": {
+        "full_name": "phone-harness/phone-harness",
+        "owner": "phone-harness",
+        "name": "phone-harness",
+        "description": "let your agent control your phone",
+        "language": "Python",
+        "topics": [
+          "agent",
+          "ai",
+          "automation",
+          "developer-tools",
+          "mobile-ai",
+          "mobile-development"
+        ],
+        "stars": 6203,
+        "forks": 651,
+        "open_issues": 114,
+        "archived": false,
+        "fork": false,
+        "license_spdx": "MIT",
+        "created_at": "2026-08-07T22:28:53Z",
+        "pushed_at": "2026-11-24T03:20:48Z",
+        "html_url": "https://github.com/phone-harness/phone-harness"
+      }
+    },
+    {
+      "full_name": "OpenMontageInc/OpenMontage",
+      "score": 0.958419,
+      "reason": "score=0.958, Δ1d=+186(snapshot), Δ7d=+1926, recency=0.93, topic=1.00",
+      "flags": [],
+      "repo": {
+        "full_name": "OpenMontageInc/OpenMontage",
+        "owner": "OpenMontageInc",
+        "name": "OpenMontage",
+        "description": "World's first open-source, agentic video production system. 12 production pipelines, 100+ tools, 700+ agent skill and production-knowledge files. Turn your AI coding assistant into a full video production studio.",
+        "language": "Python",
+        "topics": [
+          "agent",
+          "agentic-ai",
+          "ai",
+          "claude",
+          "copilot",
+          "cursor",
+          "elevenlabs",
+          "ffmpeg",
+          "flux",
+          "image-generation",
+          "open-source",
+          "openai",
+          "python",
+          "remotion",
+          "stable-diffusion",
+          "text-to-speech",
+          "text-to-video",
+          "video-generation",
+          "video-production"
+        ],
+        "stars": 83925,
+        "forks": 11450,
+        "open_issues": 358,
+        "archived": false,
+        "fork": false,
+        "license_spdx": "AGPL-3.0",
+        "created_at": "2026-03-29T15:23:22Z",
+        "pushed_at": "2026-11-16T06:55:27Z",
+        "html_url": "https://github.com/OpenMontageInc/OpenMontage"
+      }
+    }
+  ],
+  "validation_calls": 3,
+  "rejected": [
+    {
+      "full_name": "rohitg00/ai-engineering-from-scratch",
+      "rule": "excluded_topic"
+    },
+    {
+      "full_name": "hypit-ai/hypit",
+      "rule": "no_license"
+    },
+    {
+      "full_name": "Ebony-Vinyl/dsh-our-free-model",
+      "rule": "no_license"
+    },
+    {
+      "full_name": "mnfst/awesome-free-llm-apis",
+      "rule": "excluded_topic"
+    },
+    {
+      "full_name": "Tencent/WeKnora",
+      "rule": "no_license"
+    }
+  ]
+}
